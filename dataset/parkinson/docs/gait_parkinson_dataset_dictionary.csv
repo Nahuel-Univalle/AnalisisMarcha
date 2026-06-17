@@ -1,0 +1,96 @@
+table,column,description
+raw_original_merged,source_file,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,source_dataset,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,subject_id,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,study,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,subject_type,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,subject_number,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,condition,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,parkinson_binary,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,walk_number,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,walk_type,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,gender_code,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,age,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,height_m,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,weight_kg,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,hoehn_yahr,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,updrs,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,updrsm,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,tuag,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,recorded_speed_m_per_s,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,sample_index,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,time_seconds,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,left_1,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,left_2,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,left_3,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,left_4,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,left_5,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,left_6,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,left_7,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,left_8,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,right_1,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,right_2,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,right_3,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,right_4,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,right_5,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,right_6,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,right_7,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,right_8,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,left_total,Columna original VGRF o metadato del archivo TXT.
+raw_original_merged,right_total,Columna original VGRF o metadato del archivo TXT.
+features_summary,source_file,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,source_dataset,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,subject_id,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,study,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,subject_type,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,subject_number,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,condition,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,parkinson_binary,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,walk_number,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,walk_type,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,gender_code,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,age,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,height_m,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,weight_kg,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,hoehn_yahr,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,updrs,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,updrsm,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,tuag,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,recorded_speed_m_per_s,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,n_samples,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,duration_seconds,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,sampling_rate_hz,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,mean_left_total,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_left_total,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,min_left_total,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,max_left_total,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,mean_right_total,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_right_total,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,min_right_total,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,max_right_total,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,mean_total_force,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_total_force,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,mean_force_asymmetry_abs,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_force_asymmetry_abs,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,mean_force_asymmetry_index,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_force_asymmetry_index,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,left_contact_ratio,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,right_contact_ratio,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,double_support_ratio,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,no_support_ratio,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,left_step_events,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,right_step_events,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,total_step_events,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,estimated_cadence_steps_per_min,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,mean_left_stance_time_sec,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_left_stance_time_sec,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,mean_right_stance_time_sec,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_right_stance_time_sec,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,mean_left_swing_time_sec,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_left_swing_time_sec,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,mean_right_swing_time_sec,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_right_swing_time_sec,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_left_cop_x,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_left_cop_y,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_right_cop_x,Métrica resumen derivada por archivo/caminata para entrenamiento.
+features_summary,std_right_cop_y,Métrica resumen derivada por archivo/caminata para entrenamiento.

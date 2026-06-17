@@ -1,0 +1,64 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# python (sprint 2/3 video + pose validation)
+.venv*/
+.venv/
+.venv311/
+venv/
+__pycache__/
+*.pyc
+# sample videos and generated frame evidence (keep folder + README only)
+/videos/*
+!/videos/README.md
+# generated pose data / CSV exports (keep folder + README only)
+/outputs/*
+!/outputs/README.md
+outputs/
+tmp/
+uploads/tmp/
+dataset/parkinson/raw/
+dataset/parkinson/raw/gait_parkinson_dataset_raw_merged.csv
+public/processed-videos/*.mp4
+!public/processed-videos/.gitkeep
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+/src/generated/prisma

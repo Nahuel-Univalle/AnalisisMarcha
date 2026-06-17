@@ -1,0 +1,9 @@
+-- Recovered migration placeholder.
+--
+-- This migration exists as APPLIED in the target PostgreSQL database, but the
+-- original local migration folder was missing from the repository. The actual
+-- dataset tables are represented by later local migrations and were verified
+-- against the live schema before this placeholder was restored.
+--
+-- Intentionally no-op to avoid creating duplicate objects on databases where
+-- the later idempotent/manual reconciliation path is used.

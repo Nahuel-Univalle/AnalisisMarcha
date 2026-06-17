@@ -1,0 +1,24 @@
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1
+    FROM pg_type
+    WHERE typname = 'UserRole'
+  ) THEN
+    CREATE TYPE "UserRole" AS ENUM ('USER', 'ADMIN');
+  END IF;
+END $$;
+
+ALTER TABLE "User"
+  ADD COLUMN IF NOT EXISTS "role" "UserRole" NOT NULL DEFAULT 'USER';
+
+ALTER TABLE "User"
+  ADD COLUMN IF NOT EXISTS "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+UPDATE "User"
+SET "role" = 'USER'
+WHERE "role" IS NULL;
+
+UPDATE "User"
+SET "updatedAt" = COALESCE("createdAt", CURRENT_TIMESTAMP)
+WHERE "updatedAt" IS NULL;

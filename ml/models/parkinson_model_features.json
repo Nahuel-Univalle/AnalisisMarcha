@@ -1,0 +1,57 @@
+{
+  "model": "parkinson_video_compatible_model.joblib",
+  "metrics": "parkinson_video_compatible_metrics.json",
+  "feature_columns": [
+    "estimated_cadence_steps_per_min",
+    "mean_force_asymmetry_index",
+    "left_contact_ratio",
+    "right_contact_ratio",
+    "double_support_ratio",
+    "mean_left_stance_time_sec",
+    "mean_right_stance_time_sec"
+  ],
+  "minimum_required_features": 7,
+  "mapping": {
+    "estimated_cadence_steps_per_min": {
+      "video_key": "cadence_visual",
+      "fallback_keys": [
+        "estimated_cadence_steps_per_min"
+      ],
+      "description": "Cadencia estimada desde oscilaciones visuales de tobillos."
+    },
+    "mean_force_asymmetry_index": {
+      "video_key": "leg_asymmetry_visual",
+      "fallback_keys": [
+        "left_right_asymmetry"
+      ],
+      "description": "Proxy visual de asimetria entre piernas; no es fuerza plantar."
+    },
+    "left_contact_ratio": {
+      "video_key": "estimated_left_contact_proxy",
+      "fallback_keys": [],
+      "description": "Proporcion de cuadros con proxy visual de contacto del pie izquierdo."
+    },
+    "right_contact_ratio": {
+      "video_key": "estimated_right_contact_proxy",
+      "fallback_keys": [],
+      "description": "Proporcion de cuadros con proxy visual de contacto del pie derecho."
+    },
+    "double_support_ratio": {
+      "video_key": "estimated_double_support_proxy",
+      "fallback_keys": [],
+      "description": "Proxy visual de soporte doble, derivado de contacto simultaneo."
+    },
+    "mean_left_stance_time_sec": {
+      "video_key": "mean_left_stance_time_proxy",
+      "fallback_keys": [],
+      "description": "Proxy visual de tiempo medio de apoyo izquierdo."
+    },
+    "mean_right_stance_time_sec": {
+      "video_key": "mean_right_stance_time_proxy",
+      "fallback_keys": [],
+      "description": "Proxy visual de tiempo medio de apoyo derecho."
+    }
+  },
+  "validation_method": "group_split_by_subject_id",
+  "warning": "Modelo compatible con video basado en proxies visuales. Resultado orientativo; no constituye diagnostico medico."
+}

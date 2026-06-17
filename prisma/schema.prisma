@@ -1,0 +1,266 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AlertLevel {
+  BAJO
+  MEDIO
+  ALTO
+}
+
+enum VideoStatus {
+  CARGADO
+  VALIDANDO
+  VALIDO
+  INVALIDO
+  PROCESANDO
+  FINALIZADO
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  age          Int?
+  email        String   @unique
+  passwordHash String
+  role         UserRole @default(USER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  videos       VideoMarcha[]
+  analyses     GaitAnalysis[]
+  reports      MedicalReport[]
+}
+
+model VideoMarcha {
+  id                       String      @id @default(cuid())
+  userId                   String
+  originalName             String
+  storedName               String?
+  url                      String?
+  mimeType                 String
+  sizeBytes                Int
+  validationStatus         VideoStatus @default(CARGADO)
+  originalVideoUrl         String?
+  originalVideoPublicId    String?
+  processedVideoUrl        String?
+  processedVideoPublicId   String?
+  localOriginalVideoUrl    String?
+  localProcessedVideoUrl   String?
+  videoProvider            String      @default("local")
+  originalFileName         String?
+  processedFileName        String?
+  cloudinaryOriginalBytes  Int?
+  cloudinaryProcessedBytes Int?
+  cloudinaryOriginalFormat String?
+  cloudinaryProcessedFormat String?
+  createdAt                DateTime    @default(now())
+
+  user                     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  analyses                 GaitAnalysis[]
+  posePoints               PosePoint[]
+}
+
+model PosePoint {
+  id            String @id @default(cuid())
+  videoId       String
+  frameNumber   Int
+  bodyPoint     String
+  x             Float
+  y             Float
+  z             Float?
+
+  video         VideoMarcha @relation(fields: [videoId], references: [id], onDelete: Cascade)
+}
+
+model GaitAnalysis {
+  id        String     @id @default(cuid())
+  userId    String
+  videoId   String
+  alert     AlertLevel
+  summary   String
+  createdAt DateTime   @default(now())
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  video      VideoMarcha @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  parameters GaitParameter[]
+  signals    DetectedSignal[]
+  conditions AssociatedCondition[]
+  report     MedicalReport?
+}
+
+model GaitParameter {
+  id          String @id @default(cuid())
+  analysisId String
+  name        String
+  value       String
+  state       String
+  description String?
+
+  analysis    GaitAnalysis @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+}
+
+model DetectedSignal {
+  id          String     @id @default(cuid())
+  analysisId String
+  name        String
+  relevance   AlertLevel
+  description String
+
+  analysis    GaitAnalysis @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+}
+
+model AssociatedCondition {
+  id          String @id @default(cuid())
+  analysisId String
+  condition   String
+  status      String
+  description String
+
+  analysis    GaitAnalysis @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+}
+
+model MedicalReport {
+  id         String   @id @default(cuid())
+  userId     String
+  analysisId String   @unique
+  title      String
+  pdfUrl     String?
+  createdAt  DateTime @default(now())
+
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  analysis   GaitAnalysis @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+}
+
+model SystemLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String
+  detail    String?
+  createdAt DateTime @default(now())
+}
+
+model ParkinsonDatasetRecord {
+  id                      String   @id @default(cuid())
+  sourceFile              String
+  subjectId               String
+  study                   String?
+  subjectType             String?
+  condition               String
+  parkinsonBinary         Int
+  walkNumber              String?
+  walkType                String?
+  genderCode              Int?
+  age                     Float?
+  heightM                 Float?
+  weightKg                Float?
+  hoehnYahr               Float?
+  updrs                   Float?
+  updrsm                  Float?
+  tuag                    Float?
+  recordedSpeed           Float?
+  meanLeftTotal           Float?
+  stdLeftTotal            Float?
+  meanRightTotal          Float?
+  stdRightTotal           Float?
+  meanTotalForce          Float?
+  meanForceAsymmetryAbs   Float?
+  meanForceAsymmetryIndex Float?
+  leftContactRatio        Float?
+  rightContactRatio       Float?
+  doubleSupportRatio      Float?
+  leftStepEvents          Int?
+  rightStepEvents         Int?
+  estimatedCadence        Float?
+  meanLeftStanceTimeSec   Float?
+  meanRightStanceTimeSec  Float?
+  meanLeftSwingTimeSec    Float?
+  meanRightSwingTimeSec   Float?
+  stdLeftCopX             Float?
+  stdLeftCopY             Float?
+  stdRightCopX            Float?
+  stdRightCopY            Float?
+  createdAt               DateTime @default(now())
+
+  @@unique([sourceFile, subjectId, walkNumber])
+  @@index([condition])
+  @@index([parkinsonBinary])
+  @@index([subjectId])
+}
+
+model ParkinsonRawSample {
+  id                  String   @id @default(cuid())
+  sourceFile          String
+  sourceDataset       String?
+  subjectId           String
+  study               String?
+  subjectType         String?
+  subjectNumber       Int?
+  condition           String
+  parkinsonBinary     Int
+  walkNumber          String?
+  walkType            String?
+  sampleIndex         Int
+  time                Float?
+  left1               Float?
+  left2               Float?
+  left3               Float?
+  left4               Float?
+  left5               Float?
+  left6               Float?
+  left7               Float?
+  left8               Float?
+  right1              Float?
+  right2              Float?
+  right3              Float?
+  right4              Float?
+  right5              Float?
+  right6              Float?
+  right7              Float?
+  right8              Float?
+  leftTotal           Float?
+  rightTotal          Float?
+  totalForce          Float?
+  forceDifference     Float?
+  forceAsymmetryAbs   Float?
+  forceAsymmetryIndex Float?
+  leftContact         Boolean?
+  rightContact        Boolean?
+  doubleSupport       Boolean?
+  noSupport           Boolean?
+  leftCopX            Float?
+  leftCopY            Float?
+  rightCopX           Float?
+  rightCopY           Float?
+  overallCopX         Float?
+  overallCopY         Float?
+  createdAt           DateTime @default(now())
+
+  @@unique([sourceFile, subjectId, walkNumber, sampleIndex])
+  @@index([sourceFile])
+  @@index([subjectId])
+  @@index([condition])
+  @@index([parkinsonBinary])
+}
+
+model DatasetImportLog {
+  id           String   @id @default(cuid())
+  datasetName  String
+  filePath     String
+  rowsImported Int
+  rowsSkipped  Int      @default(0)
+  status       String
+  message      String?
+  createdAt    DateTime @default(now())
+}

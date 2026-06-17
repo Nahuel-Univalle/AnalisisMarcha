@@ -1,0 +1,5 @@
+video_id,file_path,category,notes
+demo_walk_01,public/uploads-temp/analysis_5088f48e-b58d-4973-931f-72781f851487.mp4,control,Video de prueba real usado en la demo de Iteracion 7; etiqueta 'control' de EJEMPLO (sin diagnostico clinico)
+ejemplo_parkinson,videos/ejemplo_parkinson.mp4,parkinson,Plantilla de ejemplo; reemplazar por un video real etiquetado por un profesional
+ejemplo_esclerosis,videos/ejemplo_esclerosis_multiple.mp4,multiple_sclerosis,Plantilla de ejemplo; reemplazar por un video real etiquetado por un profesional
+ejemplo_riesgo_caida,videos/ejemplo_riesgo_caida.mp4,fall_risk,Plantilla de ejemplo; reemplazar por un video real etiquetado por un profesional

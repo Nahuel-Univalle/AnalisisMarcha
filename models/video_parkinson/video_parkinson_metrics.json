@@ -1,0 +1,1253 @@
+{
+  "training_date": "2026-06-15T03:02:40.798856+00:00",
+  "total_videos": 87,
+  "total_subjects": 37,
+  "total_normal_videos": 59,
+  "total_parkinson_videos": 28,
+  "total_normal_subjects": 30,
+  "total_parkinson_subjects": 7,
+  "features_used": [
+    "body_motion_mean",
+    "body_motion_std",
+    "hip_center_motion_mean",
+    "shoulder_center_motion_mean",
+    "vertical_motion_mean",
+    "horizontal_motion_mean",
+    "left_ankle_motion_mean",
+    "right_ankle_motion_mean",
+    "left_knee_motion_mean",
+    "right_knee_motion_mean",
+    "leg_motion_asymmetry",
+    "ankle_vertical_range_left",
+    "ankle_vertical_range_right",
+    "ankle_vertical_asymmetry",
+    "knee_vertical_range_left",
+    "knee_vertical_range_right",
+    "step_regularity_score",
+    "left_wrist_motion_mean",
+    "right_wrist_motion_mean",
+    "arm_swing_mean",
+    "arm_swing_asymmetry",
+    "left_arm_range",
+    "right_arm_range",
+    "shoulder_width_mean",
+    "hip_width_mean",
+    "trunk_inclination_mean",
+    "trunk_inclination_std",
+    "trunk_sway_mean",
+    "trunk_sway_std",
+    "posture_stability_score",
+    "estimated_step_count",
+    "estimated_cadence_steps_per_min",
+    "step_frequency_hz",
+    "gait_variability",
+    "motion_smoothness",
+    "rhythm_variability"
+  ],
+  "model_selected": "LogisticRegression",
+  "validation_method": "GroupKFold por subject_id; splits train/val/test por sujeto",
+  "metrics": {
+    "cross_validation": {
+      "LogisticRegression": {
+        "folds": [
+          {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0,
+            "confusion_matrix": [
+              [
+                10,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 10.0
+              },
+              "parkinson": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 8.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 1,
+            "test_subjects": [
+              "001_PD",
+              "007_PD",
+              "011_NM",
+              "012_NM",
+              "016_NM",
+              "021_NM",
+              "026_NM"
+            ]
+          },
+          {
+            "accuracy": 0.9444444444444444,
+            "precision": 0.8888888888888888,
+            "recall": 1.0,
+            "f1_score": 0.9411764705882353,
+            "confusion_matrix": [
+              [
+                9,
+                1
+              ],
+              [
+                0,
+                8
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 0.9,
+                "f1-score": 0.9473684210526315,
+                "support": 10.0
+              },
+              "parkinson": {
+                "precision": 0.8888888888888888,
+                "recall": 1.0,
+                "f1-score": 0.9411764705882353,
+                "support": 8.0
+              },
+              "accuracy": 0.9444444444444444,
+              "macro avg": {
+                "precision": 0.9444444444444444,
+                "recall": 0.95,
+                "f1-score": 0.9442724458204335,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 0.9506172839506173,
+                "recall": 0.9444444444444444,
+                "f1-score": 0.9446164430684555,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 2,
+            "test_subjects": [
+              "004_NM",
+              "005_PD",
+              "006_PD",
+              "014_NM",
+              "020_NM",
+              "025_NM",
+              "029_NM"
+            ]
+          },
+          {
+            "accuracy": 0.7777777777777778,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1_score": 0.0,
+            "confusion_matrix": [
+              [
+                14,
+                0
+              ],
+              [
+                4,
+                0
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 0.7777777777777778,
+                "recall": 1.0,
+                "f1-score": 0.875,
+                "support": 14.0
+              },
+              "parkinson": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 4.0
+              },
+              "accuracy": 0.7777777777777778,
+              "macro avg": {
+                "precision": 0.3888888888888889,
+                "recall": 0.5,
+                "f1-score": 0.4375,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 0.6049382716049383,
+                "recall": 0.7777777777777778,
+                "f1-score": 0.6805555555555556,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 0.9464285714285715,
+            "fold": 3,
+            "test_subjects": [
+              "001_NM",
+              "002_PD",
+              "003_NM",
+              "007_NM",
+              "013_NM",
+              "019_NM",
+              "024_NM",
+              "030_NM"
+            ]
+          },
+          {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0,
+            "confusion_matrix": [
+              [
+                13,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 13.0
+              },
+              "parkinson": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 4.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 17.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 17.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 4,
+            "test_subjects": [
+              "002_NM",
+              "003_PD",
+              "005_NM",
+              "009_NM",
+              "015_NM",
+              "018_NM",
+              "023_NM",
+              "028_NM"
+            ]
+          },
+          {
+            "accuracy": 0.9375,
+            "precision": 0.8,
+            "recall": 1.0,
+            "f1_score": 0.8888888888888888,
+            "confusion_matrix": [
+              [
+                11,
+                1
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 0.9166666666666666,
+                "f1-score": 0.9565217391304348,
+                "support": 12.0
+              },
+              "parkinson": {
+                "precision": 0.8,
+                "recall": 1.0,
+                "f1-score": 0.8888888888888888,
+                "support": 4.0
+              },
+              "accuracy": 0.9375,
+              "macro avg": {
+                "precision": 0.9,
+                "recall": 0.9583333333333333,
+                "f1-score": 0.9227053140096618,
+                "support": 16.0
+              },
+              "weighted avg": {
+                "precision": 0.95,
+                "recall": 0.9375,
+                "f1-score": 0.9396135265700484,
+                "support": 16.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 5,
+            "test_subjects": [
+              "004_PD",
+              "006_NM",
+              "008_NM",
+              "010_NM",
+              "017_NM",
+              "022_NM",
+              "027_NM"
+            ]
+          }
+        ],
+        "mean_accuracy": 0.9319444444444445,
+        "mean_precision": 0.7377777777777778,
+        "mean_recall": 0.8,
+        "mean_f1_score": 0.7660130718954248,
+        "std_f1_score": 0.3852418653276729,
+        "mean_roc_auc": 0.9892857142857143
+      },
+      "RandomForestClassifier": {
+        "folds": [
+          {
+            "accuracy": 0.6666666666666666,
+            "precision": 1.0,
+            "recall": 0.25,
+            "f1_score": 0.4,
+            "confusion_matrix": [
+              [
+                10,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 0.625,
+                "recall": 1.0,
+                "f1-score": 0.7692307692307693,
+                "support": 10.0
+              },
+              "parkinson": {
+                "precision": 1.0,
+                "recall": 0.25,
+                "f1-score": 0.4,
+                "support": 8.0
+              },
+              "accuracy": 0.6666666666666666,
+              "macro avg": {
+                "precision": 0.8125,
+                "recall": 0.625,
+                "f1-score": 0.5846153846153846,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 0.7916666666666666,
+                "recall": 0.6666666666666666,
+                "f1-score": 0.6051282051282052,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 1,
+            "test_subjects": [
+              "001_PD",
+              "007_PD",
+              "011_NM",
+              "012_NM",
+              "016_NM",
+              "021_NM",
+              "026_NM"
+            ]
+          },
+          {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0,
+            "confusion_matrix": [
+              [
+                10,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 10.0
+              },
+              "parkinson": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 8.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 2,
+            "test_subjects": [
+              "004_NM",
+              "005_PD",
+              "006_PD",
+              "014_NM",
+              "020_NM",
+              "025_NM",
+              "029_NM"
+            ]
+          },
+          {
+            "accuracy": 0.7777777777777778,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1_score": 0.0,
+            "confusion_matrix": [
+              [
+                14,
+                0
+              ],
+              [
+                4,
+                0
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 0.7777777777777778,
+                "recall": 1.0,
+                "f1-score": 0.875,
+                "support": 14.0
+              },
+              "parkinson": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 4.0
+              },
+              "accuracy": 0.7777777777777778,
+              "macro avg": {
+                "precision": 0.3888888888888889,
+                "recall": 0.5,
+                "f1-score": 0.4375,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 0.6049382716049383,
+                "recall": 0.7777777777777778,
+                "f1-score": 0.6805555555555556,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 0.8571428571428572,
+            "fold": 3,
+            "test_subjects": [
+              "001_NM",
+              "002_PD",
+              "003_NM",
+              "007_NM",
+              "013_NM",
+              "019_NM",
+              "024_NM",
+              "030_NM"
+            ]
+          },
+          {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0,
+            "confusion_matrix": [
+              [
+                13,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 13.0
+              },
+              "parkinson": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 4.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 17.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 17.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 4,
+            "test_subjects": [
+              "002_NM",
+              "003_PD",
+              "005_NM",
+              "009_NM",
+              "015_NM",
+              "018_NM",
+              "023_NM",
+              "028_NM"
+            ]
+          },
+          {
+            "accuracy": 0.875,
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1_score": 0.8,
+            "confusion_matrix": [
+              [
+                10,
+                2
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 0.8333333333333334,
+                "f1-score": 0.9090909090909091,
+                "support": 12.0
+              },
+              "parkinson": {
+                "precision": 0.6666666666666666,
+                "recall": 1.0,
+                "f1-score": 0.8,
+                "support": 4.0
+              },
+              "accuracy": 0.875,
+              "macro avg": {
+                "precision": 0.8333333333333333,
+                "recall": 0.9166666666666667,
+                "f1-score": 0.8545454545454545,
+                "support": 16.0
+              },
+              "weighted avg": {
+                "precision": 0.9166666666666666,
+                "recall": 0.875,
+                "f1-score": 0.8818181818181818,
+                "support": 16.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 5,
+            "test_subjects": [
+              "004_PD",
+              "006_NM",
+              "008_NM",
+              "010_NM",
+              "017_NM",
+              "022_NM",
+              "027_NM"
+            ]
+          }
+        ],
+        "mean_accuracy": 0.8638888888888889,
+        "mean_precision": 0.7333333333333333,
+        "mean_recall": 0.65,
+        "mean_f1_score": 0.64,
+        "std_f1_score": 0.3878143885933063,
+        "mean_roc_auc": 0.9714285714285714
+      },
+      "GradientBoostingClassifier": {
+        "folds": [
+          {
+            "accuracy": 0.6666666666666666,
+            "precision": 1.0,
+            "recall": 0.25,
+            "f1_score": 0.4,
+            "confusion_matrix": [
+              [
+                10,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 0.625,
+                "recall": 1.0,
+                "f1-score": 0.7692307692307693,
+                "support": 10.0
+              },
+              "parkinson": {
+                "precision": 1.0,
+                "recall": 0.25,
+                "f1-score": 0.4,
+                "support": 8.0
+              },
+              "accuracy": 0.6666666666666666,
+              "macro avg": {
+                "precision": 0.8125,
+                "recall": 0.625,
+                "f1-score": 0.5846153846153846,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 0.7916666666666666,
+                "recall": 0.6666666666666666,
+                "f1-score": 0.6051282051282052,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 0.625,
+            "fold": 1,
+            "test_subjects": [
+              "001_PD",
+              "007_PD",
+              "011_NM",
+              "012_NM",
+              "016_NM",
+              "021_NM",
+              "026_NM"
+            ]
+          },
+          {
+            "accuracy": 0.8333333333333334,
+            "precision": 0.8571428571428571,
+            "recall": 0.75,
+            "f1_score": 0.8,
+            "confusion_matrix": [
+              [
+                9,
+                1
+              ],
+              [
+                2,
+                6
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 0.8181818181818182,
+                "recall": 0.9,
+                "f1-score": 0.8571428571428571,
+                "support": 10.0
+              },
+              "parkinson": {
+                "precision": 0.8571428571428571,
+                "recall": 0.75,
+                "f1-score": 0.8,
+                "support": 8.0
+              },
+              "accuracy": 0.8333333333333334,
+              "macro avg": {
+                "precision": 0.8376623376623377,
+                "recall": 0.825,
+                "f1-score": 0.8285714285714285,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 0.8354978354978354,
+                "recall": 0.8333333333333334,
+                "f1-score": 0.8317460317460318,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 0.8625,
+            "fold": 2,
+            "test_subjects": [
+              "004_NM",
+              "005_PD",
+              "006_PD",
+              "014_NM",
+              "020_NM",
+              "025_NM",
+              "029_NM"
+            ]
+          },
+          {
+            "accuracy": 0.7777777777777778,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1_score": 0.0,
+            "confusion_matrix": [
+              [
+                14,
+                0
+              ],
+              [
+                4,
+                0
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 0.7777777777777778,
+                "recall": 1.0,
+                "f1-score": 0.875,
+                "support": 14.0
+              },
+              "parkinson": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 4.0
+              },
+              "accuracy": 0.7777777777777778,
+              "macro avg": {
+                "precision": 0.3888888888888889,
+                "recall": 0.5,
+                "f1-score": 0.4375,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 0.6049382716049383,
+                "recall": 0.7777777777777778,
+                "f1-score": 0.6805555555555556,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 0.5,
+            "fold": 3,
+            "test_subjects": [
+              "001_NM",
+              "002_PD",
+              "003_NM",
+              "007_NM",
+              "013_NM",
+              "019_NM",
+              "024_NM",
+              "030_NM"
+            ]
+          },
+          {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0,
+            "confusion_matrix": [
+              [
+                13,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 13.0
+              },
+              "parkinson": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 4.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 17.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 17.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 4,
+            "test_subjects": [
+              "002_NM",
+              "003_PD",
+              "005_NM",
+              "009_NM",
+              "015_NM",
+              "018_NM",
+              "023_NM",
+              "028_NM"
+            ]
+          },
+          {
+            "accuracy": 0.6875,
+            "precision": 0.4444444444444444,
+            "recall": 1.0,
+            "f1_score": 0.6153846153846154,
+            "confusion_matrix": [
+              [
+                7,
+                5
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 0.5833333333333334,
+                "f1-score": 0.7368421052631579,
+                "support": 12.0
+              },
+              "parkinson": {
+                "precision": 0.4444444444444444,
+                "recall": 1.0,
+                "f1-score": 0.6153846153846154,
+                "support": 4.0
+              },
+              "accuracy": 0.6875,
+              "macro avg": {
+                "precision": 0.7222222222222222,
+                "recall": 0.7916666666666667,
+                "f1-score": 0.6761133603238867,
+                "support": 16.0
+              },
+              "weighted avg": {
+                "precision": 0.8611111111111112,
+                "recall": 0.6875,
+                "f1-score": 0.7064777327935222,
+                "support": 16.0
+              }
+            },
+            "roc_auc": 0.9583333333333333,
+            "fold": 5,
+            "test_subjects": [
+              "004_PD",
+              "006_NM",
+              "008_NM",
+              "010_NM",
+              "017_NM",
+              "022_NM",
+              "027_NM"
+            ]
+          }
+        ],
+        "mean_accuracy": 0.7930555555555555,
+        "mean_precision": 0.6603174603174603,
+        "mean_recall": 0.6,
+        "mean_f1_score": 0.5630769230769231,
+        "std_f1_score": 0.34450547697916073,
+        "mean_roc_auc": 0.7891666666666667
+      },
+      "SVM_RBF": {
+        "folds": [
+          {
+            "accuracy": 0.6666666666666666,
+            "precision": 1.0,
+            "recall": 0.25,
+            "f1_score": 0.4,
+            "confusion_matrix": [
+              [
+                10,
+                0
+              ],
+              [
+                6,
+                2
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 0.625,
+                "recall": 1.0,
+                "f1-score": 0.7692307692307693,
+                "support": 10.0
+              },
+              "parkinson": {
+                "precision": 1.0,
+                "recall": 0.25,
+                "f1-score": 0.4,
+                "support": 8.0
+              },
+              "accuracy": 0.6666666666666666,
+              "macro avg": {
+                "precision": 0.8125,
+                "recall": 0.625,
+                "f1-score": 0.5846153846153846,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 0.7916666666666666,
+                "recall": 0.6666666666666666,
+                "f1-score": 0.6051282051282052,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 1,
+            "test_subjects": [
+              "001_PD",
+              "007_PD",
+              "011_NM",
+              "012_NM",
+              "016_NM",
+              "021_NM",
+              "026_NM"
+            ]
+          },
+          {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0,
+            "confusion_matrix": [
+              [
+                10,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 10.0
+              },
+              "parkinson": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 8.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 2,
+            "test_subjects": [
+              "004_NM",
+              "005_PD",
+              "006_PD",
+              "014_NM",
+              "020_NM",
+              "025_NM",
+              "029_NM"
+            ]
+          },
+          {
+            "accuracy": 0.7777777777777778,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1_score": 0.0,
+            "confusion_matrix": [
+              [
+                14,
+                0
+              ],
+              [
+                4,
+                0
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 0.7777777777777778,
+                "recall": 1.0,
+                "f1-score": 0.875,
+                "support": 14.0
+              },
+              "parkinson": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 4.0
+              },
+              "accuracy": 0.7777777777777778,
+              "macro avg": {
+                "precision": 0.3888888888888889,
+                "recall": 0.5,
+                "f1-score": 0.4375,
+                "support": 18.0
+              },
+              "weighted avg": {
+                "precision": 0.6049382716049383,
+                "recall": 0.7777777777777778,
+                "f1-score": 0.6805555555555556,
+                "support": 18.0
+              }
+            },
+            "roc_auc": 0.9464285714285715,
+            "fold": 3,
+            "test_subjects": [
+              "001_NM",
+              "002_PD",
+              "003_NM",
+              "007_NM",
+              "013_NM",
+              "019_NM",
+              "024_NM",
+              "030_NM"
+            ]
+          },
+          {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1_score": 1.0,
+            "confusion_matrix": [
+              [
+                13,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 13.0
+              },
+              "parkinson": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 4.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 17.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 17.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 4,
+            "test_subjects": [
+              "002_NM",
+              "003_PD",
+              "005_NM",
+              "009_NM",
+              "015_NM",
+              "018_NM",
+              "023_NM",
+              "028_NM"
+            ]
+          },
+          {
+            "accuracy": 0.9375,
+            "precision": 0.8,
+            "recall": 1.0,
+            "f1_score": 0.8888888888888888,
+            "confusion_matrix": [
+              [
+                11,
+                1
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "classification_report": {
+              "normal": {
+                "precision": 1.0,
+                "recall": 0.9166666666666666,
+                "f1-score": 0.9565217391304348,
+                "support": 12.0
+              },
+              "parkinson": {
+                "precision": 0.8,
+                "recall": 1.0,
+                "f1-score": 0.8888888888888888,
+                "support": 4.0
+              },
+              "accuracy": 0.9375,
+              "macro avg": {
+                "precision": 0.9,
+                "recall": 0.9583333333333333,
+                "f1-score": 0.9227053140096618,
+                "support": 16.0
+              },
+              "weighted avg": {
+                "precision": 0.95,
+                "recall": 0.9375,
+                "f1-score": 0.9396135265700484,
+                "support": 16.0
+              }
+            },
+            "roc_auc": 1.0,
+            "fold": 5,
+            "test_subjects": [
+              "004_PD",
+              "006_NM",
+              "008_NM",
+              "010_NM",
+              "017_NM",
+              "022_NM",
+              "027_NM"
+            ]
+          }
+        ],
+        "mean_accuracy": 0.8763888888888889,
+        "mean_precision": 0.76,
+        "mean_recall": 0.65,
+        "mean_f1_score": 0.6577777777777778,
+        "std_f1_score": 0.39667755976328317,
+        "mean_roc_auc": 0.9892857142857143
+      }
+    }
+  },
+  "confusion_matrix": [
+    [
+      11,
+      1
+    ],
+    [
+      0,
+      4
+    ]
+  ],
+  "notes": [
+    "Este modelo no emite diagnostico medico definitivo. Su resultado debe interpretarse como apoyo tecnologico para identificar patrones de marcha asociados a Parkinson.",
+    "La decision prioriza recall para Parkinson, F1 y estabilidad entre folds."
+  ],
+  "limitations": [
+    "El rendimiento depende de calidad, encuadre y diversidad de videos.",
+    "No debe usarse como diagnostico medico definitivo.",
+    "La validacion evita fuga de sujetos entre folds."
+  ],
+  "splits": {
+    "train_subjects": [
+      "001_NM",
+      "001_PD",
+      "002_NM",
+      "003_NM",
+      "003_PD",
+      "004_NM",
+      "005_NM",
+      "005_PD",
+      "006_NM",
+      "006_PD",
+      "007_PD",
+      "009_NM",
+      "010_NM",
+      "012_NM",
+      "013_NM",
+      "014_NM",
+      "016_NM",
+      "017_NM",
+      "018_NM",
+      "023_NM",
+      "024_NM",
+      "025_NM",
+      "026_NM",
+      "028_NM",
+      "029_NM"
+    ],
+    "val_subjects": [
+      "004_PD",
+      "007_NM",
+      "015_NM",
+      "019_NM",
+      "020_NM",
+      "030_NM"
+    ],
+    "test_subjects": [
+      "002_PD",
+      "008_NM",
+      "011_NM",
+      "021_NM",
+      "022_NM",
+      "027_NM"
+    ]
+  },
+  "accuracy": 0.9319444444444445,
+  "precision": 0.7377777777777778,
+  "recall": 0.8,
+  "f1_score": 0.7660130718954248,
+  "roc_auc": 0.9892857142857143,
+  "samples": 87,
+  "control_samples": 59,
+  "parkinson_samples": 28
+}

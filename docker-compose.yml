@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: analisis_marcha_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: marcha_user
+      POSTGRES_PASSWORD: marcha_password
+      POSTGRES_DB: analisis_marcha_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - analisis_marcha_data:/var/lib/postgresql/data
+
+volumes:
+  analisis_marcha_data:

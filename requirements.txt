@@ -1,0 +1,7 @@
+opencv-python
+mediapipe==0.10.14
+numpy
+pandas
+# Modelo de predicción (Parkinson). scikit-learn fijado a la versión con la que se entrenó el .joblib.
+scikit-learn==1.8.0
+joblib
