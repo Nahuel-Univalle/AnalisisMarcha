@@ -94,7 +94,7 @@ def main() -> int:
         print(json.dumps(payload, ensure_ascii=False))
         return 1
 
-    subject_id, sequence, _ = parse_subject_and_sequence(video_path.name, "unknown")
+    subject_id, sequence, _, _ = parse_subject_and_sequence(video_path.name, "unknown")
     metadata = {
         "video_path": str(video_path),
         "filename": video_path.name,
@@ -112,6 +112,22 @@ def main() -> int:
     )
     if result.error_row:
         payload = unavailable(project_relative(video_path), str(result.error_row.get("error")))
+        write_json(output_json, payload)
+        print(json.dumps(payload, ensure_ascii=False))
+        return 1
+
+    # Gate de calidad: sin suficiente pose no se emite prediccion (evita
+    # predecir sobre el vector mediano imputado y devolver falsa confianza).
+    try:
+        pose_rate = float(result.feature_row.get("pose_detection_rate"))
+    except (TypeError, ValueError):
+        pose_rate = 0.0
+    valid_frames = int(float(result.feature_row.get("valid_pose_frames") or 0))
+    if pose_rate < 0.45 or valid_frames < 15:
+        payload = unavailable(
+            project_relative(video_path),
+            f"Calidad de pose insuficiente (deteccion {pose_rate:.0%}, {valid_frames} frames validos).",
+        )
         write_json(output_json, payload)
         print(json.dumps(payload, ensure_ascii=False))
         return 1

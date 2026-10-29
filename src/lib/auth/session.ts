@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { SESSION_COOKIE, verifySession } from "@/lib/auth/sessionToken";
 
 export type SessionUser = {
   email: string;
@@ -6,23 +7,11 @@ export type SessionUser = {
   role: "USER" | "ADMIN";
 };
 
-export async function getSessionUser() {
+export async function getSessionUser(): Promise<SessionUser | null> {
   const cookieStore = await cookies();
-  const rawUser = cookieStore.get("gait-user")?.value;
+  const payload = await verifySession(cookieStore.get(SESSION_COOKIE)?.value);
 
-  if (!rawUser) return null;
+  if (!payload) return null;
 
-  try {
-    const parsed = JSON.parse(rawUser) as Partial<SessionUser>;
-
-    if (!parsed.email || !parsed.name) return null;
-
-    return {
-      email: parsed.email.toLowerCase(),
-      name: parsed.name,
-      role: parsed.role === "ADMIN" ? "ADMIN" : "USER",
-    };
-  } catch {
-    return null;
-  }
+  return { email: payload.email, name: payload.name, role: payload.role };
 }

@@ -1,102 +1,94 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Design tokens — "instrumento clínico para el movimiento humano".
+   Todos los colores están en HEX a propósito: html2canvas (exportación del
+   informe a PDF) no interpreta oklch(), que es el formato de la paleta por
+   defecto de Tailwind v4. Usar SIEMPRE estos tokens, no slate/red/amber/blue.
+   ========================================================================== */
 @theme {
-  --color-primary: #1e3a5f;
-  --color-secondary: #2c5f8a;
-  --color-accent: #3b82f6;
-  --color-surface: #f0f4f8;
-  --color-danger: #ef4444;
-  --animate-fadeIn: fadeIn 0.5s ease-in-out;
-  --animate-slideIn: slideIn 0.3s ease-out;
+  /* Alias históricos: todas las superficies usan la identidad teal. */
+  --color-navy-950: #124F48;
+  --color-navy-900: #124F48;
+  --color-navy-800: rgba(204, 252, 240, 0.18);
+  --color-navy-700: #124F48;
+
+  /* Acciones */
+  --color-primary: #0B9586;
+  --color-primary-dark: #124F48;
+  --color-primary-soft: #CCFCF0;
+
+  /* Foco, actividad y puntos corporales; sin colores de marca adicionales. */
+  --color-accent-blue: #0B9586;
+  --color-accent-cyan: #CCFCF0;
+  --color-accent-cyan-ink: #124F48;
+
+  /* Superficies */
+  --color-background: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: rgba(204, 252, 240, 0.28);
+
+  /* Texto */
+  --color-ink: #124F48;
+  --color-ink-muted: rgba(18, 79, 72, 0.85);
+  --color-ink-subtle: rgba(18, 79, 72, 0.74);
+  --color-on-navy: #CCFCF0;
+
+  /* Bordes */
+  --color-line: rgba(18, 79, 72, 0.13);
+  --color-line-strong: rgba(11, 149, 134, 0.38);
+
+  /* Estado (solo para significado, nunca decoración) */
+  --color-success: #0f7a55;
+  --color-success-bg: #e8f6ef;
+  --color-success-line: #b7e2cd;
+  --color-warning: #a15c07;
+  --color-warning-bg: #fdf3e2;
+  --color-warning-line: #f1d29a;
+  --color-danger: #c23a2b;
+  --color-danger-bg: #fdecea;
+  --color-danger-line: #f5c2bb;
+
+  /* Sombras: solo dos niveles además de "ninguna". */
+  --shadow-raised: 0 2px 8px rgba(18, 79, 72, 0.045);
+  --shadow-overlay: 0 12px 28px -8px rgba(18, 79, 72, 0.14);
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-:root {
-  --background: #f0f4f8;
-  --foreground: #1e293b;
+@theme inline {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "Cascadia Mono", monospace;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-* {
-  box-sizing: border-box;
-}
+/* ==========================================================================
+   Base
+   ========================================================================== */
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 32rem),
-    linear-gradient(180deg, #f0f4f8 0%, #f8fafc 100%);
-  color: var(--foreground);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-.page-container {
-  width: 100%;
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2rem 1rem;
-  animation: fadeIn 0.5s ease-in-out;
+::selection {
+  background: var(--color-primary-soft);
+  color: var(--color-ink);
 }
 
-@media (min-width: 768px) {
-  .page-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-.soft-card {
-  border-radius: 1rem;
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
-  box-shadow: 0 4px 10px rgba(30, 58, 95, 0.08);
-}
-
-.gradient-bg {
-  background:
-    radial-gradient(circle at top, rgba(59, 130, 246, 0.18), transparent 28rem),
-    linear-gradient(135deg, #f0f4f8 0%, #e8f1fb 48%, #f8fafc 100%);
-}
-
-input:not([type="checkbox"]),
-textarea,
-select {
-  transition:
-    border-color 200ms ease,
-    box-shadow 200ms ease,
-    transform 200ms ease;
-}
-
-input:not([type="checkbox"]):focus,
-textarea:focus,
-select:focus {
-  border-color: #3b82f6;
-  box-shadow:
-    0 0 0 2px #ffffff,
-    0 0 0 4px rgba(59, 130, 246, 0.35);
+/* Foco visible y consistente para teclado en todo el producto. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
 }
 
 input[type="password"]::-ms-reveal,
@@ -104,7 +96,349 @@ input[type="password"]::-ms-clear {
   display: none;
 }
 
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Espacio de trabajo: blanco para lectura, mint para orientar la atención. */
+.app-shell {
+  background: var(--color-surface-subtle);
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 40px;
+}
+
+.app-content { padding-top: 40px; padding-bottom: 64px; }
+.app-content .grid > * { min-width: 0; }
+.app-skip-link { position: fixed; top: -80px; left: 20px; z-index: 60; padding: 10px 16px; border-radius: 8px; background: var(--color-navy-900); color: white; }
+.app-skip-link:focus { top: 12px; }
+.app-topbar { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid var(--color-line); background: var(--color-surface); }
+.app-topbar-inner { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px; min-height: 76px; }
+.app-brand { display: inline-flex; width: fit-content; border-radius: 6px; white-space: nowrap; }
+.app-navigation { min-width: 0; overflow-x: auto; justify-self: center; }
+.app-navigation ul { display: flex; align-items: center; gap: 6px; }
+.app-nav-link { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 8px 12px; border-radius: 7px; color: var(--color-ink-muted); font-size: 13px; font-weight: 600; white-space: nowrap; transition: background-color 150ms, color 150ms; }
+.app-nav-link:hover { background: var(--color-surface-subtle); color: var(--color-ink); }
+.app-nav-link-active, .app-nav-link-active:hover { background: var(--color-primary-soft); color: var(--color-primary-dark); }
+.app-account { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.app-avatar { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 34px; height: 34px; border: 1px solid var(--color-line); border-radius: 50%; background: var(--color-primary-soft); color: var(--color-ink); font-size: 11px; font-weight: 700; }
+.app-account-name { min-width: 0; max-width: 136px; line-height: 1.5; }
+.app-account-name p { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink); font-size: 12px; font-weight: 700; }
+.app-account-name > span { display: block; color: var(--color-ink-subtle); font-size: 11px; }
+.app-logout { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 36px; margin-left: 4px; padding: 8px 0 8px 14px; border-left: 1px solid var(--color-line); color: var(--color-ink-muted); font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.app-logout:hover { color: var(--color-primary); }
+
+.welcome-page { display: grid; gap: 28px; }
+.welcome-greeting { color: var(--color-ink-muted); font-size: 16px; font-weight: 500; }
+.welcome-panel { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 56px; padding-block: 8px 24px; }
+.welcome-copy { display: flex; flex-direction: column; justify-content: center; padding-block: 16px; }
+.welcome-eyebrow { display: flex; align-items: center; gap: 8px; color: var(--color-primary-dark); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
+.welcome-copy h1 { margin-top: 20px; color: var(--color-ink); font-size: clamp(32px, 3.1vw, 44px); line-height: 1.18; font-weight: 700; letter-spacing: -0.04em; }
+.welcome-description { max-width: 490px; margin-top: 20px; color: var(--color-ink-muted); font-size: 15px; line-height: 1.85; }
+.welcome-note { display: flex; align-items: flex-start; gap: 8px; max-width: 430px; margin-top: 28px; color: var(--color-ink-subtle); font-size: 12px; line-height: 1.7; }
+.welcome-note svg { margin-top: 2px; }
+.welcome-visual { display: grid; grid-template-columns: minmax(160px, 0.9fr) minmax(200px, 1fr); align-items: center; gap: 28px; padding: 28px; border: 1px solid var(--color-line); border-radius: 16px; background: var(--color-surface); }
+.welcome-visual-label { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid var(--color-line); color: var(--color-ink-muted); font-size: 11px; font-weight: 500; }
+.welcome-figure { width: 100%; max-width: 240px; padding: 12px; justify-self: center; border-radius: 12px; background: var(--color-primary-soft); }
+.welcome-features { display: grid; gap: 26px; }
+.welcome-feature { display: flex; align-items: flex-start; gap: 10px; }
+.welcome-feature > svg { flex-shrink: 0; margin-top: 2px; color: var(--color-primary); }
+.welcome-feature h2 { color: var(--color-ink); font-size: 13px; font-weight: 600; line-height: 1.6; }
+.welcome-feature p { margin-top: 5px; color: var(--color-ink-muted); font-size: 12px; line-height: 1.75; }
+.welcome-shortcuts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 24px; border-top: 1px solid var(--color-line); }
+.welcome-shortcut { display: flex; align-items: center; gap: 16px; padding: 24px; border: 1px solid var(--color-line); border-radius: 12px; background: var(--color-surface); color: var(--color-ink-muted); transition: background-color 150ms, border-color 150ms; }
+.welcome-shortcut > svg:first-child { box-sizing: content-box; padding: 12px; border-radius: 10px; background: var(--color-primary-soft); }
+.welcome-shortcut:hover { border-color: var(--color-line-strong); background: var(--color-surface-subtle); }
+.welcome-shortcut h2 { color: var(--color-ink); font-size: 14px; font-weight: 700; }
+.welcome-shortcut p { margin-top: 3px; color: var(--color-ink-subtle); font-size: 13px; }
+
+.report-workspace { overflow: hidden; border: 1px solid var(--color-line); border-radius: 14px; background: var(--color-surface-subtle); }
+.report-workspace-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 24px; border-bottom: 1px solid var(--color-line); background: var(--color-surface); color: var(--color-ink-muted); font-size: 12px; }
+.report-sheet { overflow-x: auto; padding: 36px; }
+.upload-panel { align-content: start; padding: 24px; border: 1px solid var(--color-line); border-radius: 14px; background: var(--color-surface); box-shadow: var(--shadow-raised); }
+.upload-dropzone { background: var(--color-surface-subtle); }
+.processing-workspace { overflow: hidden; border: 1px solid var(--color-line); border-radius: 16px; background: var(--color-surface); box-shadow: var(--shadow-raised); }
+.result-summary { border-top: 3px solid var(--color-primary); }
+.result-alert { padding: 20px; border-radius: 10px; background: var(--color-surface-subtle); }
+.auth-screen { background: var(--color-surface-subtle); }
+.auth-form-panel { margin: 24px 0 24px 24px; border: 1px solid var(--color-line); border-radius: 16px; background: var(--color-surface); }
+.auth-visual-panel { color: var(--color-ink); }
+.auth-visual-figure { max-width: 300px; border: 1px solid var(--color-line); border-radius: 16px; background: var(--color-primary-soft); }
+.landing-visual { border: 1px solid var(--color-line); background: var(--color-primary-soft); }
+
+@media (max-width: 1279px) {
+  .app-container { padding-inline: 28px; }
+  .app-topbar-inner { gap: 16px; }
+  .app-account-name { max-width: 110px; }
+  .app-logout > span { display: none; }
+  .welcome-panel { gap: 32px; }
+  .welcome-visual { gap: 18px; padding: 24px; }
+}
+
+@media (max-width: 1023px) {
+  .app-topbar-inner { grid-template-columns: 1fr auto; gap: 0 20px; padding-top: 16px; }
+  .app-navigation { grid-column: 1 / -1; grid-row: 2; width: 100%; margin-top: 12px; padding-block: 8px; border-top: 1px solid var(--color-line); }
+  .app-navigation ul { justify-content: center; gap: 12px; }
+  .app-account { grid-column: 2; grid-row: 1; }
+  .app-logout > span { display: inline; }
+  .welcome-panel { grid-template-columns: 1fr 0.9fr; gap: 28px; }
+  .welcome-visual { grid-template-columns: 1fr; gap: 18px; padding: 24px; }
+  .welcome-figure { max-width: 160px; }
+  .welcome-features { gap: 16px; }
+  .welcome-feature p { display: none; }
+  .auth-form-panel { margin: 16px; }
+}
+
+@media (max-width: 767px) {
+  .app-container { padding-inline: 20px; }
+  .app-content { padding-top: 26px; padding-bottom: 40px; }
+  .app-account-name { display: none; }
+  .welcome-panel { grid-template-columns: 1fr; }
+  .welcome-copy { padding: 0; }
+  .welcome-visual { grid-template-columns: minmax(100px, 0.7fr) minmax(0, 1fr); gap: 16px; padding: 24px; }
+  .welcome-feature p { display: block; }
+  .welcome-shortcuts { gap: 24px; }
+  .welcome-shortcut { align-items: flex-start; gap: 10px; padding: 18px; }
+  .welcome-shortcut > svg:last-child { display: none; }
+  .report-sheet { padding: 16px; }
+  .report-sheet #medical-report-content { min-width: 640px; }
+  .report-workspace-bar { padding-inline: 16px; }
+  .upload-panel { padding: 16px; }
+}
+
+@media (max-width: 479px) {
+  .app-container { padding-inline: 16px; }
+  .app-topbar-inner { column-gap: 12px; }
+  .app-brand > span { gap: 8px; }
+  .app-brand > span > span:last-child { font-size: 12px; }
+  .app-avatar { width: 28px; height: 28px; font-size: 10px; }
+  .app-account { gap: 8px; }
+  .app-logout { margin: 0; padding-left: 8px; }
+  .app-logout > span { display: none; }
+  .app-navigation ul { min-width: max-content; gap: 2px; justify-content: space-between; }
+  .app-nav-link { gap: 5px; padding: 8px 7px; font-size: 11px; }
+  .app-nav-link svg { width: 13px; height: 13px; }
+  .welcome-greeting { font-size: 21px; }
+  .welcome-copy { padding: 0; }
+  .welcome-visual { padding: 20px 16px; gap: 8px; }
+  .welcome-feature h2 { font-size: 12px; }
+  .welcome-feature p { font-size: 11px; }
+  .welcome-shortcuts { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* ==========================================================================
+   Movimiento — sutil, una sola vez. Los bucles solo existen en la landing
+   (pulso lento) y durante el procesamiento real del video.
+   ========================================================================== */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes point-in {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes point-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+
+@keyframes scan {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(11, 149, 134, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 7px rgba(11, 149, 134, 0);
+  }
+}
+
+@keyframes fill-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fill-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Entrada de secciones: usar style={{ "--i": n }} para escalonar. */
+.reveal {
+  animation: rise 320ms var(--ease-out-soft) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+.fade-in {
+  animation: fade 240ms var(--ease-out-soft) both;
+}
+
+/* GaitFigure — huesos que se dibujan y puntos que aparecen en secuencia. */
+.gf-bone {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.gf-animated .gf-bone {
+  animation: draw 700ms var(--ease-out-soft) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+.gf-point {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.gf-animated .gf-point {
+  animation: point-in 360ms var(--ease-out-soft) both;
+  animation-delay: calc(500ms + var(--i, 0) * 55ms);
+}
+
+.gf-trace {
+  stroke-dasharray: 1;
+}
+
+.gf-animated .gf-trace {
+  animation: draw 1400ms var(--ease-out-soft) both;
+  animation-delay: 1100ms;
+}
+
+.gf-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+}
+
+.gf-ambient .gf-halo {
+  animation: point-pulse 3.2s ease-in-out infinite;
+  animation-delay: calc(1800ms + var(--i, 0) * 400ms);
+}
+
+.gf-active .gf-halo {
+  animation: point-pulse 1.8s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 120ms);
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-accent-cyan);
+  animation: scan 2.8s linear infinite;
+}
+
+.ring-pulse {
+  animation: ring 1.6s ease-out infinite;
+}
+
+.fill-x {
+  transform-origin: left;
+  animation: fill-x 480ms var(--ease-out-soft) both;
+}
+
+.fill-y {
+  transform-origin: top;
+  animation: fill-y 700ms var(--ease-out-soft) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .scan-line,
+  .gf-halo {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Impresión (fallback window.print() del informe)
+   ========================================================================== */
 @media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
   body {
     background: #ffffff;
   }
@@ -124,6 +458,16 @@ input[type="password"]::-ms-clear {
     top: 0;
     width: 100%;
     max-width: none;
+    border: 0;
     box-shadow: none;
+    padding: 0;
+  }
+
+  /* Mitigación parcial de corte de página SOLO para window.print(). La vía
+     principal (html2canvas + jsPDF en src/utils/generatePdf.ts) rasteriza el
+     informe completo y corta por altura fija. */
+  #medical-report-content section,
+  #medical-report-content table tr {
+    break-inside: avoid;
   }
 }

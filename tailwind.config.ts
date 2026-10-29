@@ -4,10 +4,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#1E3A5F",
-        secondary: "#2C5F8A",
-        accent: "#3B82F6",
-        surface: "#F0F4F8",
+        primary: "#0B9586",
+        secondary: "#124F48",
+        accent: "#CCFCF0",
+        surface: "#FFFFFF",
       },
       animation: {
         fadeIn: "fadeIn 0.5s ease-in-out",

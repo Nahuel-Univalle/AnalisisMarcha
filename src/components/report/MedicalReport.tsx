@@ -1,271 +1,218 @@
 "use client";
 
-import { AlertBadge } from "@/components/ui/AlertBadge";
+import { Activity } from "lucide-react";
+import { ClassificationBreakdown } from "@/components/analysis/ClassificationBreakdown";
 import { useAnalysis } from "@/context/AnalysisContext";
 import { useAuth } from "@/context/AuthContext";
-import { AnalysisResult, Signal } from "@/types";
-
-const SUMMARY_TEXT =
-  "El sistema analizó el movimiento observado en el video y encontró señales que podrían estar relacionadas con una alteración de la marcha. Este resultado no confirma una enfermedad y debe ser revisado por un profesional de salud.";
-const MEDICAL_DISCLAIMER =
-  "Este resultado no constituye diagnóstico médico. Debe ser revisado por un profesional de salud.";
-const RECOMMENDATION =
-  "Si estos signos se repiten o generan preocupación, se recomienda consultar con un profesional de salud. El sistema solo entrega una orientación inicial.";
+import {
+  EXPERIMENTAL_DISCLAIMER,
+  MODEL_CONFIDENCE_NOTE,
+  ORIENTATION_DISCLAIMER,
+  analysisQuality,
+  experimentalClassification,
+  modelQualityWarnings,
+  isReliable,
+  keyGaitMetricGroups,
+  medicalContextNote,
+  patternPresentation,
+  presentedFindings,
+  NO_FINDINGS_TEXT,
+} from "@/lib/analysis/resultPresentation";
 
 function dedupeStrings(values: string[]) {
   return Array.from(new Set(values.filter(Boolean).map((value) => value.trim())));
 }
 
-function normalizedScore(value: number | null | undefined) {
-  if (value === null || value === undefined || !Number.isFinite(value)) {
-    return null;
-  }
-
-  if (value < 0) return null;
-  const normalized = value > 1 ? value / 100 : value;
-  return normalized <= 1 ? normalized : null;
-}
-
-function visualResultLabel(result: AnalysisResult) {
-  const probabilityParkinson = normalizedScore(
-    result.probabilityParkinson ?? result.modelParkinsonProbability
+function ReportSection({ number, title, children }: { number: number; title: string; children: React.ReactNode }) {
+  return (
+    <section className="border-t border-line py-6">
+      <h2 className="flex items-baseline gap-3 text-[13px] font-bold uppercase tracking-[0.08em] text-ink">
+        <span className="font-mono font-medium text-accent-cyan-ink">{number}.</span>
+        {title}
+      </h2>
+      <div className="mt-3">{children}</div>
+    </section>
   );
-  const riskLevel = result.riskLevel?.toLowerCase();
-
-  if (result.modelSource === "video_parkinson_model") {
-    if (riskLevel === "bajo" || (probabilityParkinson !== null && probabilityParkinson < 0.4)) {
-      return "Sin señales relevantes";
-    }
-
-    if (
-      riskLevel === "medio" ||
-      (probabilityParkinson !== null && probabilityParkinson <= 0.7)
-    ) {
-      return "Señales moderadas";
-    }
-
-    return "Señales relevantes";
-  }
-
-  const { predictionConfidence: confidence, alertLevel } = result;
-  const score = normalizedScore(confidence);
-
-  if (score !== null) {
-    if (score < 0.4) return "Señales leves";
-    if (score < 0.7) return "Señales moderadas";
-    return "Señales relevantes";
-  }
-
-  if (alertLevel === "Alto") return "Señales relevantes";
-  if (alertLevel === "Medio") return "Señales moderadas";
-  return "Señales leves";
 }
 
-function friendlySignalName(name: string) {
-  const normalized = name.toLowerCase();
-
-  if (normalized.includes("marcha lenta")) return "Marcha lenta o irregular";
-  if (normalized.includes("asimetr")) {
-    return "Movimiento desigual entre ambos lados del cuerpo";
-  }
-  if (normalized.includes("brazo")) {
-    return "Balanceo de brazos reducido o desigual";
-  }
-  if (normalized.includes("ritmo") || normalized.includes("paso")) {
-    return "Variación en el ritmo de los pasos";
-  }
-  if (normalized.includes("estabilidad") || normalized.includes("postura")) {
-    return "Estabilidad corporal reducida";
-  }
-
-  return name;
-}
-
-function signalDetails(signal: Signal) {
-  const name = signal.name.toLowerCase();
-
-  if (name.includes("brazo")) {
-    return "Se observó menor movimiento o diferencia entre ambos brazos durante la caminata.";
-  }
-
-  if (name.includes("asimetr")) {
-    return "Se observaron diferencias entre el movimiento del lado izquierdo y derecho del cuerpo.";
-  }
-
-  if (name.includes("postura") || name.includes("estabilidad")) {
-    return "Se observaron variaciones en la postura o en el control corporal.";
-  }
-
-  if (name.includes("marcha") || name.includes("paso") || name.includes("ritmo")) {
-    return "Se observaron cambios en velocidad, ritmo o regularidad del paso.";
-  }
-
-  return signal.description;
-}
-
+// Informe de apoyo para el profesional de salud. Este mismo componente es el
+// que se captura para el PDF (`downloadElementAsPdf`), por lo que la vista web
+// y el PDF muestran exactamente la misma información. Solo usa tokens HEX
+// (html2canvas no interpreta oklch()).
 export function MedicalReport() {
   const { user } = useAuth();
-  const { result, videoMeta } = useAnalysis();
-  const posePercent =
-    result.poseDetectionRate === null || result.poseDetectionRate === undefined
-      ? "Sin dato"
-      : `${Math.round(result.poseDetectionRate * 100)}%`;
-  const observations = dedupeStrings([
-    ...(result.analysisWarnings ?? []),
-    ...(result.datasetWarnings ?? []),
-  ]);
+  const { result } = useAnalysis();
+
+  const reliable = isReliable(result);
+  const pattern = patternPresentation(result);
+  const quality = analysisQuality(result);
+  const findings = presentedFindings(result);
+  const keyMetricGroups = keyGaitMetricGroups(result);
+  const contextNote = reliable ? medicalContextNote(pattern.classKey) : "";
   const recommendations = dedupeStrings(result.recommendations ?? []);
-  const analysisCompleted = Boolean(
-    result.visualAnalysisCompleted ?? (result.framesAnalyzed ?? 0) > 0
-  );
-  const summaryText =
-    result.signals.length === 0
-      ? result.signalEmptyMessage ||
-        "No se detectaron señales relevantes asociadas a patrones de Parkinson en este análisis. Resultado orientativo: patrón compatible con marcha normal."
-      : SUMMARY_TEXT;
+  const classification = experimentalClassification(result);
+  const qualityWarnings = modelQualityWarnings(result);
+  // El resultado en memoria no trae la fecha del análisis; la fecha mostrada
+  // es la de emisión del documento.
+  const issuedAt = new Date().toLocaleDateString("es-BO");
+
+  let n = 0;
+  const next = () => ++n;
 
   return (
     <div
       id="medical-report-content"
-      className="mx-auto max-w-4xl rounded-2xl border border-slate-200 border-l-4 border-l-primary bg-white p-8 text-slate-900 shadow-xl shadow-slate-200/80 md:p-12"
+      className="mx-auto w-full max-w-[794px] border border-line bg-surface px-8 py-10 text-ink shadow-raised md:px-14 md:py-12"
     >
-      <div className="border-b-2 border-slate-900 pb-6">
-        <h1 className="text-3xl font-bold uppercase">
-          Informe de análisis de marcha
-        </h1>
-        <p className="mt-2 text-slate-600">Análisis de Marcha IA</p>
-      </div>
-
-      <section className="mt-8">
-        <h2 className="text-xl font-bold">Resumen del análisis</h2>
-        <div className="mt-4 grid gap-4 rounded-2xl bg-slate-50 p-5 md:grid-cols-2">
-          <div>
-            <p className="text-xs font-bold uppercase text-slate-500">
-              Usuario evaluado
-            </p>
-            <p className="mt-1 font-semibold">{user?.name || "Usuario"}</p>
-          </div>
-          <div>
-            <p className="text-xs font-bold uppercase text-slate-500">
-              Fecha del análisis
-            </p>
-            <p className="mt-1 font-semibold">
-              {new Date().toLocaleDateString("es-BO")}
-            </p>
-          </div>
-          <div>
-            <p className="text-xs font-bold uppercase text-slate-500">
-              Video analizado
-            </p>
-            <p className="mt-1 font-semibold">
-              {videoMeta?.name || "Video cargado por el usuario"}
-            </p>
-          </div>
-          <div>
-            <p className="text-xs font-bold uppercase text-slate-500">
-              Nivel de alerta
-            </p>
-            <div className="mt-1">
-              <AlertBadge level={result.alertLevel} />
-            </div>
-          </div>
+      {/* Membrete */}
+      <header className="flex items-start justify-between gap-6 border-b-2 border-navy-900 pb-5">
+        <div>
+          <p className="flex items-center gap-2 text-[13px] font-bold text-navy-900">
+            <Activity className="h-4 w-4 text-accent-cyan-ink" aria-hidden />
+            Análisis de Marcha IA
+          </p>
+          <h1 className="mt-3 text-[24px] font-bold leading-8 tracking-[-0.01em] text-ink">
+            Informe de análisis de marcha
+          </h1>
+          <p className="mt-1 text-[13px] text-ink-muted">Documento orientativo para profesionales de salud</p>
         </div>
-        <p className="mt-4 rounded-2xl border border-blue-100 bg-blue-50 p-5 leading-7 text-blue-950 shadow-sm">
-          {summaryText}
+        <p className="shrink-0 rounded-md border border-line px-2 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
+          {classification.available ? "Clasificación experimental" : "Resultado orientativo"}
         </p>
-      </section>
+      </header>
 
-      <section className="mt-8">
-        <h2 className="text-xl font-bold">Calidad del video</h2>
-        <div className="mt-4 grid gap-3 md:grid-cols-4">
-          {[
-            ["Estado del análisis", analysisCompleted ? "Completado" : "No completado"],
-            ["Cuerpo detectado en el video", posePercent],
-            ["Momentos analizados", String(result.framesAnalyzed ?? 0)],
-            ["Calidad general", result.poseQuality || "Sin dato"],
-          ].map(([label, value]) => (
-            <div key={label} className="rounded-2xl border border-slate-200 p-4 shadow-sm">
-              <p className="text-xs font-bold uppercase text-slate-500">
-                {label}
+      <ReportSection number={next()} title="Datos del análisis">
+        <dl className="grid gap-4 sm:grid-cols-3">
+          <div>
+            <dt className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">Usuario evaluado</dt>
+            <dd className="mt-1 text-[15px] font-semibold">{user?.name || "Usuario"}</dd>
+          </div>
+          <div>
+            <dt className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">Fecha de emisión</dt>
+            <dd className="mt-1 font-mono text-[14px] font-medium">{issuedAt}</dd>
+          </div>
+          <div>
+            <dt className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">Confianza del modelo</dt>
+            <dd className="mt-1 font-mono text-[15px] font-bold tabular-nums">{classification.confidenceText}</dd>
+          </div>
+        </dl>
+      </ReportSection>
+
+      <ReportSection number={next()} title="Resultado">
+        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">
+          {classification.available ? "Clasificación experimental de patrones de marcha" : "Patrón de marcha observado"}
+        </p>
+        <p className="mt-1 text-[18px] font-semibold leading-7">
+          {reliable ? pattern.phrase : "Análisis no concluyente por calidad del video"}
+        </p>
+        {classification.caveat && (
+          <p className="mt-3 border-l-2 border-warning-line bg-warning-bg px-3 py-2 text-[13px] font-semibold leading-6 text-warning">
+            {classification.caveat}
+          </p>
+        )}
+        {classification.available && (
+          <ClassificationBreakdown rows={classification.rows} className="mt-4 max-w-md" />
+        )}
+        <p className="mt-3 text-[13px] leading-6 text-ink-muted">
+          {reliable ? MODEL_CONFIDENCE_NOTE : quality.explanation}
+        </p>
+        {reliable && (qualityWarnings.alerts.length > 0 || qualityWarnings.notes.length > 0) && (
+          <div className="mt-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">Advertencias sobre el video</p>
+            <ul className="mt-1.5 space-y-1">
+              {[...qualityWarnings.alerts, ...qualityWarnings.notes].map((warning) => (
+                <li key={warning.code} className="text-[13px] leading-6 text-ink-muted">
+                  <span className="font-semibold text-ink">{warning.title}.</span> {warning.message}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </ReportSection>
+
+      {reliable && (
+        <>
+          <ReportSection number={next()} title="Observaciones del movimiento">
+            {findings.length > 0 ? (
+              <ol className="divide-y divide-line">
+                {findings.map((finding, index) => (
+                  <li key={finding.kind} className="grid grid-cols-[28px_1fr] gap-x-2 py-3 first:pt-0 last:pb-0">
+                    <span className="font-mono text-[13px] text-ink-subtle">{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <p className="text-[15px] font-semibold">{finding.title}</p>
+                      <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">{finding.relevance}</p>
+                      <p className="mt-1 text-[13px] leading-6 text-ink-muted">{finding.medicalText}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <p className="text-[13px] text-ink-muted">{NO_FINDINGS_TEXT}</p>
+            )}
+          </ReportSection>
+
+          {keyMetricGroups.length > 0 && (
+            <ReportSection number={next()} title="Parámetros de marcha">
+              <table className="w-full text-left text-[13px]">
+                <thead>
+                  <tr className="border-b border-line text-[11px] uppercase tracking-[0.08em] text-ink-subtle">
+                    <th scope="col" className="pb-2 pr-4 font-bold">Parámetro</th>
+                    <th scope="col" className="pb-2 pr-4 font-bold">Descripción</th>
+                    <th scope="col" className="pb-2 text-right font-bold">Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {keyMetricGroups
+                    .flatMap((group) => group.params)
+                    .map((param) => (
+                      <tr key={param.label} className="border-b border-line align-top last:border-b-0">
+                        <td className="py-2.5 pr-4 font-semibold text-ink">{param.label}</td>
+                        <td className="py-2.5 pr-4 text-ink-muted">{param.explanation}</td>
+                        <td className="w-36 py-2.5 text-right font-mono font-medium text-ink">
+                          {param.value}
+                          {param.unit ? ` ${param.unit}` : ""}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </ReportSection>
+          )}
+
+          <ReportSection number={next()} title="Interpretación">
+            {contextNote && <p className="text-[14px] leading-7 text-ink">{contextNote}</p>}
+            <p className="mt-2 text-[14px] leading-7 text-ink-muted">
+              Este resultado no confirma una enfermedad y requiere valoración
+              por un profesional de salud.
+            </p>
+          </ReportSection>
+
+          <ReportSection number={next()} title="Recomendaciones">
+            {recommendations.length > 0 ? (
+              <ul className="space-y-1.5">
+                {recommendations.map((recommendation) => (
+                  <li key={recommendation} className="flex gap-2.5 text-[14px] leading-6 text-ink-muted">
+                    <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-navy-700" aria-hidden />
+                    {recommendation}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-[14px] leading-6 text-ink-muted">
+                Se recomienda que un profesional de salud revise este resultado.
               </p>
-              <p className="mt-1 font-semibold">{value}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-8">
-        <h2 className="text-xl font-bold">Movimiento observado</h2>
-        <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
-          <p className="text-xs font-bold uppercase text-slate-500">
-            Resultado del análisis visual
-          </p>
-          <p className="mt-1 text-2xl font-bold">
-            {visualResultLabel(result)}
-          </p>
-        </div>
-      </section>
-
-      <section className="mt-8">
-        <h2 className="text-xl font-bold">Señales detectadas</h2>
-        {result.signals.length > 0 ? (
-          <div className="mt-4 space-y-4">
-            {result.signals.map((signal) => (
-              <div key={signal.name} className="rounded-2xl border border-slate-200 p-4 shadow-sm">
-                <h3 className="font-bold">{friendlySignalName(signal.name)}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-700">
-                  {signalDetails(signal)}
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="mt-3 leading-7 text-slate-700">
-            {result.signalEmptyMessage ||
-              "No se detectaron señales relevantes en este análisis."}
-          </p>
-        )}
-      </section>
-
-      <section className="mt-8">
-        <h2 className="text-xl font-bold">Resultado orientativo</h2>
-        <p className="mt-3 leading-7 text-slate-700">
-          El sistema puede identificar combinaciones de señales de marcha que
-          podrían ser compatibles con un posible patrón asociado a Parkinson.
-          Este resultado no confirma una enfermedad y requiere valoración por
-          un profesional de salud.
-        </p>
-      </section>
-
-      <section className="mt-8">
-        <h2 className="text-xl font-bold">Recomendaciones</h2>
-        <p className="mt-3 leading-7 text-slate-700">{RECOMMENDATION}</p>
-        {recommendations.length > 0 && (
-          <ul className="mt-3 space-y-2 text-slate-700">
-            {recommendations.map((recommendation) => (
-              <li key={recommendation}>• {recommendation}</li>
-            ))}
-          </ul>
-        )}
-      </section>
-
-      {observations.length > 0 && (
-        <section className="mt-8">
-          <h2 className="text-xl font-bold">Observaciones</h2>
-          <ul className="mt-3 space-y-2 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
-            {observations.map((warning) => (
-              <li key={warning}>• {warning}</li>
-            ))}
-          </ul>
-        </section>
+            )}
+          </ReportSection>
+        </>
       )}
 
-      <section className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-5">
-        <h2 className="text-xl font-bold text-amber-900">
-          Advertencia médica
-        </h2>
-        <p className="mt-3 leading-7 text-amber-800">{MEDICAL_DISCLAIMER}</p>
-      </section>
+      <ReportSection number={next()} title="Advertencia">
+        <p className="border-l-2 border-navy-900 bg-surface-subtle px-4 py-3 text-[13px] leading-6 text-ink">
+          {classification.available
+            ? EXPERIMENTAL_DISCLAIMER
+            : `${ORIENTATION_DISCLAIMER} La interpretación clínica debe ser realizada por un profesional de salud.`}
+        </p>
+      </ReportSection>
     </div>
   );
 }

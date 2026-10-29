@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { AnalysisResult, SavedReport, VideoMeta } from "@/types";
 import { mockAnalysisResult } from "@/data/mockAnalysis";
+import { associatedConditionText } from "@/lib/analysis/conditionLabels";
 import { useAuth } from "@/context/AuthContext";
 
 type AnalysisContextValue = {
@@ -86,6 +87,13 @@ export function AnalysisProvider({ children }: { children: React.ReactNode }) {
       date: new Date().toISOString().split("T")[0],
       alertLevel: result.alertLevel,
       title: result.title || "Informe de análisis de marcha",
+      analysisType: "Análisis de marcha",
+      pattern:
+        result.analysisReliable === false
+          ? "Análisis no concluyente"
+          : result.detectedClass
+            ? associatedConditionText(result.detectedClass)
+            : undefined,
       originalVideoUrl: result.originalVideoUrl,
       processedVideoUrl:
         result.processedVideoUrl ||

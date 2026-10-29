@@ -325,6 +325,19 @@ def main() -> int:
     valid_df = valid_df.dropna(subset=["subject_id", "label"])
     valid_df["label"] = valid_df["label"].astype(int)
 
+    # Este script es el BASELINE BINARIO historico (normal vs parkinson). Desde la
+    # ampliacion multiclase el manifest puede contener labels 2 (esclerosis) y 3
+    # (riesgo de caida): se ignoran aqui. El modelo multiclase de Deep Learning
+    # vive en scripts/video_training/deep/.
+    dropped = valid_df[~valid_df["label"].isin([0, 1])]
+    if not dropped.empty:
+        print(
+            f"[baseline binario] Ignorando {len(dropped)} videos de clases no binarias "
+            f"(labels {sorted(dropped['label'].unique().tolist())}). "
+            "Use scripts/video_training/deep/ para el modelo multiclase."
+        )
+    valid_df = valid_df[valid_df["label"].isin([0, 1])].copy()
+
     if valid_df.empty or valid_df["label"].nunique() < 2:
         print("No hay suficientes videos validos de ambas clases para entrenar un modelo real.")
         return 1

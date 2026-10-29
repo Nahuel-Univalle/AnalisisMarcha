@@ -1,0 +1,273 @@
+{
+  "protocol": "StratifiedGroupKFold(k=5) por subject_id, semilla 42. Ablaciones: mismas particiones e hiperparametros; solo cambia la arquitectura.",
+  "ablations": {
+    "feat_only": {
+      "accuracy": 0.8102,
+      "balanced_accuracy": 0.7592,
+      "macro_f1": 0.7589,
+      "per_class": {
+        "normal": {
+          "precision": 0.931,
+          "recall": 0.9153,
+          "f1": 0.9231,
+          "specificity": 0.9487,
+          "support": 59
+        },
+        "parkinson": {
+          "precision": 0.8519,
+          "recall": 0.8214,
+          "f1": 0.8364,
+          "specificity": 0.9633,
+          "support": 28
+        },
+        "esclerosis_multiple": {
+          "precision": 0.7059,
+          "recall": 0.8,
+          "f1": 0.75,
+          "specificity": 0.9065,
+          "support": 30
+        },
+        "riesgo_caida": {
+          "precision": 0.5556,
+          "recall": 0.5,
+          "f1": 0.5263,
+          "specificity": 0.9316,
+          "support": 20
+        }
+      },
+      "confusion_matrix": [
+        [
+          54,
+          4,
+          0,
+          1
+        ],
+        [
+          4,
+          23,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          24,
+          6
+        ],
+        [
+          0,
+          0,
+          10,
+          10
+        ]
+      ],
+      "macro_roc_auc_ovr": 0.9397,
+      "seconds": 25.7
+    },
+    "seq_only": {
+      "accuracy": 0.7956,
+      "balanced_accuracy": 0.8143,
+      "macro_f1": 0.7925,
+      "per_class": {
+        "normal": {
+          "precision": 0.9348,
+          "recall": 0.7288,
+          "f1": 0.819,
+          "specificity": 0.9615,
+          "support": 59
+        },
+        "parkinson": {
+          "precision": 0.619,
+          "recall": 0.9286,
+          "f1": 0.7429,
+          "specificity": 0.8532,
+          "support": 28
+        },
+        "esclerosis_multiple": {
+          "precision": 0.8571,
+          "recall": 0.8,
+          "f1": 0.8276,
+          "specificity": 0.9626,
+          "support": 30
+        },
+        "riesgo_caida": {
+          "precision": 0.7619,
+          "recall": 0.8,
+          "f1": 0.7805,
+          "specificity": 0.9573,
+          "support": 20
+        }
+      },
+      "confusion_matrix": [
+        [
+          43,
+          16,
+          0,
+          0
+        ],
+        [
+          2,
+          26,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          24,
+          5
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ]
+      ],
+      "macro_roc_auc_ovr": 0.9735,
+      "seconds": 32.6
+    },
+    "full": {
+      "accuracy": 0.8394,
+      "balanced_accuracy": 0.8282,
+      "macro_f1": 0.8029,
+      "per_class": {
+        "normal": {
+          "precision": 0.9643,
+          "recall": 0.9153,
+          "f1": 0.9391,
+          "specificity": 0.9744,
+          "support": 59
+        },
+        "parkinson": {
+          "precision": 0.8438,
+          "recall": 0.9643,
+          "f1": 0.9,
+          "specificity": 0.9541,
+          "support": 28
+        },
+        "esclerosis_multiple": {
+          "precision": 0.8889,
+          "recall": 0.5333,
+          "f1": 0.6667,
+          "specificity": 0.9813,
+          "support": 30
+        },
+        "riesgo_caida": {
+          "precision": 0.5806,
+          "recall": 0.9,
+          "f1": 0.7059,
+          "specificity": 0.8889,
+          "support": 20
+        }
+      },
+      "confusion_matrix": [
+        [
+          54,
+          5,
+          0,
+          0
+        ],
+        [
+          1,
+          27,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          16,
+          13
+        ],
+        [
+          0,
+          0,
+          2,
+          18
+        ]
+      ],
+      "macro_roc_auc_ovr": 0.9634,
+      "seconds": 88.7
+    }
+  },
+  "aporte_temporal": {
+    "delta_macro_f1_full_vs_feat_only": 0.044,
+    "delta_accuracy_full_vs_feat_only": 0.0292,
+    "delta_macro_f1_full_vs_seq_only": 0.0104,
+    "seq_only_macro_f1": 0.7925
+  },
+  "within_source": {
+    "source_A_normal_vs_parkinson": {
+      "accuracy": 0.8966,
+      "balanced_accuracy": 0.8862,
+      "macro_f1": 0.8826,
+      "per_class": {
+        "normal": {
+          "precision": 0.931,
+          "recall": 0.9153,
+          "f1": 0.9231,
+          "specificity": 0.8571,
+          "support": 59
+        },
+        "parkinson": {
+          "precision": 0.8276,
+          "recall": 0.8571,
+          "f1": 0.8421,
+          "specificity": 0.9153,
+          "support": 28
+        }
+      },
+      "confusion_matrix": [
+        [
+          54,
+          5
+        ],
+        [
+          4,
+          24
+        ]
+      ],
+      "roc_auc": 0.9534,
+      "seconds": 53.8,
+      "n_videos": 87,
+      "n_subjects": 37
+    },
+    "source_B_esclerosis_vs_riesgo": {
+      "accuracy": 0.74,
+      "balanced_accuracy": 0.7083,
+      "macro_f1": 0.7143,
+      "per_class": {
+        "esclerosis_multiple": {
+          "precision": 0.7429,
+          "recall": 0.8667,
+          "f1": 0.8,
+          "specificity": 0.55,
+          "support": 30
+        },
+        "riesgo_caida": {
+          "precision": 0.7333,
+          "recall": 0.55,
+          "f1": 0.6286,
+          "specificity": 0.8667,
+          "support": 20
+        }
+      },
+      "confusion_matrix": [
+        [
+          26,
+          4
+        ],
+        [
+          9,
+          11
+        ]
+      ],
+      "roc_auc": 0.8183,
+      "seconds": 47.1,
+      "n_videos": 50,
+      "n_subjects": 50
+    }
+  },
+  "_SUPERSEDED": "Corrida INICIAL no determinista (1 semilla, sin control de lote de tamano 1). Reemplazada por experiments_report_final.json (5-fold x 3 semillas, deterministic). NO usar estas cifras."
+}

@@ -1,0 +1,56 @@
+{
+  "purpose": "Control del sesgo de fuente: igualar las caracteristicas tecnicas de grabacion en las 4 clases ANTES de estimar la pose, para medir cuanto del rendimiento del modelo depende de la marcha y cuanto de artefactos de la fuente (fps, resolucion, densidad temporal).",
+  "normalizacion_aplicada": {
+    "1_remuestreo_temporal": "lectura secuencial; se conserva 1 frame por cada 1/15 s -> densidad temporal efectiva = 15 fps identica en todas las clases (antes: normal 32.7fps, parkinson 40fps, EM/fall 24fps).",
+    "2_resolucion": "reescalado a dimension maxima 720px (antes: 1920x1080 vs 1280x720).",
+    "3_ventana_maxima": "400 frames de salida (27s) para acotar clips muy largos (parkinson ~13.5s).",
+    "4_igual_que_produccion": "tras esto se aplica el MISMO preprocesamiento: hip-centrado + escala por longitud de tronco + remuestreo a T=96 + velocidades; y las MISMAS 36 features (build_feature_row).",
+    "NO_se_normaliza": "no se altera la geometria de la marcha (amplitudes, asimetrias, ritmo, coordinacion): solo se igualan fps y resolucion. La normalizacion hip-centrado + escala de tronco ya es identica a produccion y NO elimina informacion clinica (son distancias relativas al cuerpo)."
+  },
+  "n_samples": 136,
+  "n_excluded": 0,
+  "excluded": [],
+  "videos_per_class": {
+    "normal": 59,
+    "parkinson": 28,
+    "esclerosis_multiple": 29,
+    "riesgo_caida": 20
+  },
+  "subjects_per_class": {
+    "normal": 30,
+    "parkinson": 7,
+    "esclerosis_multiple": 29,
+    "riesgo_caida": 20
+  },
+  "real_pose_rate_per_class_after_norm": {
+    "normal": 0.7681,
+    "parkinson": 0.8086,
+    "esclerosis_multiple": 1.0,
+    "riesgo_caida": 1.0
+  },
+  "valid_frames_per_class": {
+    "normal": {
+      "min": 34,
+      "median": 53,
+      "max": 156
+    },
+    "parkinson": {
+      "min": 90,
+      "median": 157,
+      "max": 254
+    },
+    "esclerosis_multiple": {
+      "min": 120,
+      "median": 150,
+      "max": 150
+    },
+    "riesgo_caida": {
+      "min": 150,
+      "median": 150,
+      "max": 150
+    }
+  },
+  "excluded_from_dataset": [
+    "VideoEscleorosis7.mp4"
+  ]
+}

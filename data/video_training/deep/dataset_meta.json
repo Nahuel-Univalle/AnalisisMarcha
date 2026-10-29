@@ -1,0 +1,128 @@
+{
+  "dataset_path": "data\\video_training\\deep\\dataset.npz",
+  "n_samples": 136,
+  "sequence_shape": [
+    68,
+    96
+  ],
+  "n_features": 36,
+  "frame_step": 2,
+  "class_names": [
+    "normal",
+    "parkinson",
+    "esclerosis_multiple",
+    "riesgo_caida"
+  ],
+  "videos_per_class": {
+    "normal": 59,
+    "parkinson": 28,
+    "esclerosis_multiple": 29,
+    "riesgo_caida": 20
+  },
+  "subjects_per_class": {
+    "normal": 30,
+    "parkinson": 7,
+    "esclerosis_multiple": 29,
+    "riesgo_caida": 20
+  },
+  "documented_subjects_per_class": {
+    "normal": 30,
+    "parkinson": 7,
+    "esclerosis_multiple": 0,
+    "riesgo_caida": 0
+  },
+  "valid_frames_per_class": {
+    "normal": {
+      "min": 41,
+      "median": 55,
+      "max": 158
+    },
+    "parkinson": {
+      "min": 88,
+      "median": 215,
+      "max": 449
+    },
+    "esclerosis_multiple": {
+      "min": 96,
+      "median": 120,
+      "max": 120
+    },
+    "riesgo_caida": {
+      "min": 120,
+      "median": 120,
+      "max": 120
+    }
+  },
+  "mean_pose_rate": 0.8681,
+  "real_pose_rate_per_class": {
+    "normal": {
+      "mean": 0.7791,
+      "min": 0.4688
+    },
+    "parkinson": {
+      "mean": 0.8247,
+      "min": 0.6618
+    },
+    "esclerosis_multiple": {
+      "mean": 1.0,
+      "min": 1.0
+    },
+    "riesgo_caida": {
+      "mean": 1.0,
+      "min": 1.0
+    }
+  },
+  "tech_per_class": {
+    "normal": {
+      "duration_seconds": 4.874,
+      "fps": 32.712,
+      "width": 1920.0,
+      "height": 1080.0,
+      "total_frames": 159.237,
+      "processed_frames": 79.881,
+      "valid_pose_frames": 62.051
+    },
+    "parkinson": {
+      "duration_seconds": 13.45,
+      "fps": 40.0,
+      "width": 1920.0,
+      "height": 1080.0,
+      "total_frames": 547.607,
+      "processed_frames": 274.036,
+      "valid_pose_frames": 226.536
+    },
+    "esclerosis_multiple": {
+      "duration_seconds": 9.931,
+      "fps": 24.0,
+      "width": 1280.0,
+      "height": 720.0,
+      "total_frames": 238.345,
+      "processed_frames": 119.172,
+      "valid_pose_frames": 119.172
+    },
+    "riesgo_caida": {
+      "duration_seconds": 10.0,
+      "fps": 24.0,
+      "width": 1280.0,
+      "height": 720.0,
+      "total_frames": 240.0,
+      "processed_frames": 120.0,
+      "valid_pose_frames": 120.0
+    }
+  },
+  "excluded": [],
+  "n_excluded": 0,
+  "exclusiones": [
+    {
+      "filename": "VideoEscleorosis7.mp4",
+      "motivo": "duplicado byte-identico de VideoEscleorosis6.mp4"
+    }
+  ],
+  "limitations": [
+    "esclerosis_multiple y riesgo_caida: los nombres de archivo NO contienen identificador de sujeto; se asume 1 video == 1 sujeto (subject_documented=False). Si varios videos correspondieran a la misma persona, la validacion por sujeto podria ser optimista para esas dos clases.",
+    "parkinson: 28 videos de solo 7 sujetos documentados; los niveles PD_ML (6 sujetos), PD_MD (7 sujetos) y PD_SV (1 sujeto / 2 videos) comparten numeracion de sujeto y se tratan como el mismo sujeto. La severidad se conserva como METADATO, NO como objetivo del modelo: con 1 solo sujeto 'severe' no es defendible una cabeza de clasificacion de severidad.",
+    "riesgo_caida NO es una enfermedad mutuamente excluyente de Parkinson o Esclerosis Multiple. Con este dataset (carpetas disjuntas, 1 etiqueta por video, sin anotaciones multi-etiqueta) la clasificacion en 4 clases excluyentes es una APROXIMACION operativa: el sistema devuelve el patron mas compatible y expone las 4 probabilidades (una persona podria mostrar P(parkinson) y P(riesgo_caida) altas a la vez). No se afirma exclusividad clinica.",
+    "Fuente de grabacion: normal+parkinson (.MOV, 1920x1080, ~33-40 fps) y esclerosis_multiple+riesgo_caida (.mp4, 1280x720, 24 fps) provienen de colecciones distintas. Un clasificador que usa SOLO metadatos tecnicos (sin marcha) separa las 4 clases con ~89% -> parte de la separacion entre-fuentes puede deberse a artefactos de grabacion. Ver auditoria de sesgo de fuente (models/gait_deep/audit/source_bias_report.json) y los modelos dentro-de-fuente (23_experiments) que si controlan ese confound.",
+    "Dataset pequeno (136 videos / 86 sujetos): la metrica de un unico split de validacion cruzada tiene varianza alta (~±0.04 macro-F1); se reporta media±desv sobre 5 semillas de particion."
+  ]
+}

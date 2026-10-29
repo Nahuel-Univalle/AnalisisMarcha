@@ -18,7 +18,7 @@ export async function GET() {
     include: {
       user: { select: { email: true, name: true } },
       analysis: {
-        include: { video: true },
+        include: { video: true, conditions: true },
       },
     },
   });
@@ -28,6 +28,9 @@ export async function GET() {
       id: report.id,
       title: report.title,
       summary: report.analysis.summary,
+      analysisType: "Análisis de marcha",
+      pattern: report.analysis.conditions[0]?.condition ?? null,
+      patternStatus: report.analysis.conditions[0]?.status ?? null,
       date: report.createdAt.toISOString().split("T")[0],
       alertLevel: fromPrismaAlert(report.analysis.alert),
       analysisId: report.analysisId,

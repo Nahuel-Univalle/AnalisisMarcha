@@ -1,0 +1,464 @@
+{
+  "validation_method": "StratifiedGroupKFold(k=5) por subject_id; OOF agregado",
+  "trained_at": "2026-09-07T20:43:00",
+  "n_samples": 136,
+  "n_subjects": 86,
+  "class_names": [
+    "normal",
+    "parkinson",
+    "esclerosis_multiple",
+    "riesgo_caida"
+  ],
+  "videos_per_class": {
+    "normal": 59,
+    "parkinson": 28,
+    "esclerosis_multiple": 29,
+    "riesgo_caida": 20
+  },
+  "oof": {
+    "accuracy": 0.8235294117647058,
+    "balanced_accuracy": 0.7677569508224097,
+    "macro_f1": 0.7768463497453311,
+    "weighted_f1": 0.8180927294517129,
+    "macro_precision": 0.8002913752913753,
+    "macro_recall": 0.7677569508224097,
+    "macro_roc_auc_ovr": 0.9543229917901503,
+    "confusion_matrix": [
+      [
+        57,
+        2,
+        0,
+        0
+      ],
+      [
+        8,
+        18,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        25,
+        4
+      ],
+      [
+        0,
+        0,
+        8,
+        12
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "normal",
+      "parkinson",
+      "esclerosis_multiple",
+      "riesgo_caida"
+    ],
+    "per_class": {
+      "normal": {
+        "precision": 0.8769230769230769,
+        "recall": 0.9661016949152542,
+        "f1": 0.9193548387096774,
+        "support": 59,
+        "sensitivity": 0.9661016949152542,
+        "specificity": 0.8961038961038961,
+        "roc_auc_ovr": 0.9863526304204271
+      },
+      "parkinson": {
+        "precision": 0.9,
+        "recall": 0.6428571428571429,
+        "f1": 0.75,
+        "support": 28,
+        "sensitivity": 0.6428571428571429,
+        "specificity": 0.9814814814814815,
+        "roc_auc_ovr": 0.9315476190476191
+      },
+      "esclerosis_multiple": {
+        "precision": 0.7575757575757576,
+        "recall": 0.8620689655172413,
+        "f1": 0.8064516129032258,
+        "support": 29,
+        "sensitivity": 0.8620689655172413,
+        "specificity": 0.9252336448598131,
+        "roc_auc_ovr": 0.9532710280373832
+      },
+      "riesgo_caida": {
+        "precision": 0.6666666666666666,
+        "recall": 0.6,
+        "f1": 0.631578947368421,
+        "support": 20,
+        "sensitivity": 0.6,
+        "specificity": 0.9482758620689655,
+        "roc_auc_ovr": 0.9461206896551724
+      }
+    },
+    "n_samples": 136
+  },
+  "cv_stability_multiseed": {
+    "n_seeds": 5,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "per_seed": [
+      {
+        "seed": 42,
+        "accuracy": 0.8235,
+        "macro_f1": 0.7768,
+        "balanced_accuracy": 0.7678,
+        "per_class_f1": {
+          "normal": 0.9194,
+          "parkinson": 0.75,
+          "esclerosis_multiple": 0.8065,
+          "riesgo_caida": 0.6316
+        }
+      },
+      {
+        "seed": 43,
+        "accuracy": 0.9118,
+        "macro_f1": 0.8804,
+        "balanced_accuracy": 0.8779,
+        "per_class_f1": {
+          "normal": 0.9744,
+          "parkinson": 0.9474,
+          "esclerosis_multiple": 0.8571,
+          "riesgo_caida": 0.7429
+        }
+      },
+      {
+        "seed": 44,
+        "accuracy": 0.9044,
+        "macro_f1": 0.8763,
+        "balanced_accuracy": 0.8851,
+        "per_class_f1": {
+          "normal": 0.9744,
+          "parkinson": 0.9655,
+          "esclerosis_multiple": 0.7925,
+          "riesgo_caida": 0.7727
+        }
+      },
+      {
+        "seed": 45,
+        "accuracy": 0.8309,
+        "macro_f1": 0.8092,
+        "balanced_accuracy": 0.7979,
+        "per_class_f1": {
+          "normal": 0.878,
+          "parkinson": 0.7547,
+          "esclerosis_multiple": 0.8475,
+          "riesgo_caida": 0.7568
+        }
+      },
+      {
+        "seed": 46,
+        "accuracy": 0.8529,
+        "macro_f1": 0.8212,
+        "balanced_accuracy": 0.8195,
+        "per_class_f1": {
+          "normal": 0.9333,
+          "parkinson": 0.8302,
+          "esclerosis_multiple": 0.807,
+          "riesgo_caida": 0.7143
+        }
+      }
+    ],
+    "accuracy_mean": 0.8647,
+    "accuracy_std": 0.0368,
+    "macro_f1_mean": 0.8328,
+    "macro_f1_std": 0.0399,
+    "balanced_accuracy_mean": 0.8296,
+    "balanced_accuracy_std": 0.0455,
+    "per_class_f1_across_seeds": {
+      "normal": {
+        "min": 0.878,
+        "max": 0.9744,
+        "mean": 0.9359
+      },
+      "parkinson": {
+        "min": 0.75,
+        "max": 0.9655,
+        "mean": 0.8496
+      },
+      "esclerosis_multiple": {
+        "min": 0.7925,
+        "max": 0.8571,
+        "mean": 0.8221
+      },
+      "riesgo_caida": {
+        "min": 0.6316,
+        "max": 0.7727,
+        "mean": 0.7237
+      }
+    },
+    "mean_probability_oof": {
+      "accuracy": 0.8970588235294118,
+      "macro_f1": 0.8715585138421891,
+      "balanced_accuracy": 0.8724482341153879,
+      "confusion_matrix": [
+        [
+          56,
+          3,
+          0,
+          0
+        ],
+        [
+          1,
+          26,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          25,
+          3
+        ],
+        [
+          0,
+          0,
+          5,
+          15
+        ]
+      ],
+      "per_class": {
+        "normal": {
+          "precision": 0.9655,
+          "recall": 0.9492,
+          "f1": 0.9573,
+          "support": 59,
+          "sensitivity": 0.9492,
+          "specificity": 0.974,
+          "roc_auc_ovr": 0.9927
+        },
+        "parkinson": {
+          "precision": 0.8966,
+          "recall": 0.9286,
+          "f1": 0.9123,
+          "support": 28,
+          "sensitivity": 0.9286,
+          "specificity": 0.9722,
+          "roc_auc_ovr": 0.9921
+        },
+        "esclerosis_multiple": {
+          "precision": 0.8333,
+          "recall": 0.8621,
+          "f1": 0.8475,
+          "support": 29,
+          "sensitivity": 0.8621,
+          "specificity": 0.9533,
+          "roc_auc_ovr": 0.9762
+        },
+        "riesgo_caida": {
+          "precision": 0.7895,
+          "recall": 0.75,
+          "f1": 0.7692,
+          "support": 20,
+          "sensitivity": 0.75,
+          "specificity": 0.9655,
+          "roc_auc_ovr": 0.9754
+        }
+      }
+    }
+  },
+  "calibration": {
+    "method": "temperature scaling; T por fold ajustada en su validacion interna; T_pooled ajustada sobre TODAS las validaciones internas concatenadas (no sobre test OOF)",
+    "raw": {
+      "ece": 0.284,
+      "mce": 0.3708,
+      "brier": 0.3832
+    },
+    "temperature_scaled_per_fold": {
+      "ece": 0.1542,
+      "mce": 0.6382,
+      "brier": 0.2874
+    },
+    "temperature_scaled_pooled": {
+      "ece": 0.1503,
+      "mce": 0.6382,
+      "brier": 0.2877
+    },
+    "fold_temperatures": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.6336
+    ],
+    "pooled_temperature": 0.5
+  },
+  "final_temperature": 0.5,
+  "folds": [
+    {
+      "fold": 1,
+      "test_subjects": [
+        "001_PD",
+        "005_NM",
+        "006_NM",
+        "013_NM",
+        "014_NM",
+        "020_NM",
+        "022_NM",
+        "FALL_001",
+        "FALL_004",
+        "FALL_006",
+        "FALL_007",
+        "MS_003",
+        "MS_011",
+        "MS_012",
+        "MS_013",
+        "MS_014",
+        "MS_016"
+      ],
+      "accuracy": 0.7857142857142857,
+      "macro_f1": 0.691086691086691,
+      "balanced_accuracy": 0.7291666666666667,
+      "temperature": 0.5
+    },
+    {
+      "fold": 2,
+      "test_subjects": [
+        "002_PD",
+        "006_PD",
+        "012_NM",
+        "015_NM",
+        "019_NM",
+        "023_NM",
+        "025_NM",
+        "030_NM",
+        "FALL_003",
+        "FALL_013",
+        "FALL_014",
+        "FALL_016",
+        "MS_002",
+        "MS_005",
+        "MS_008",
+        "MS_022",
+        "MS_023"
+      ],
+      "accuracy": 0.8214285714285714,
+      "macro_f1": 0.7681277056277056,
+      "balanced_accuracy": 0.7625,
+      "temperature": 0.5
+    },
+    {
+      "fold": 3,
+      "test_subjects": [
+        "001_NM",
+        "003_NM",
+        "004_NM",
+        "005_PD",
+        "007_PD",
+        "008_NM",
+        "026_NM",
+        "029_NM",
+        "FALL_010",
+        "FALL_011",
+        "FALL_015",
+        "FALL_018",
+        "MS_004",
+        "MS_009",
+        "MS_017",
+        "MS_021",
+        "MS_024",
+        "MS_028"
+      ],
+      "accuracy": 0.75,
+      "macro_f1": 0.6890331890331891,
+      "balanced_accuracy": 0.7083333333333334,
+      "temperature": 0.5
+    },
+    {
+      "fold": 4,
+      "test_subjects": [
+        "002_NM",
+        "003_PD",
+        "007_NM",
+        "009_NM",
+        "010_NM",
+        "018_NM",
+        "027_NM",
+        "FALL_002",
+        "FALL_005",
+        "FALL_008",
+        "FALL_020",
+        "MS_001",
+        "MS_010",
+        "MS_018",
+        "MS_020",
+        "MS_025",
+        "MS_030"
+      ],
+      "accuracy": 0.8076923076923077,
+      "macro_f1": 0.7031746031746031,
+      "balanced_accuracy": 0.6875,
+      "temperature": 0.5
+    },
+    {
+      "fold": 5,
+      "test_subjects": [
+        "004_PD",
+        "011_NM",
+        "016_NM",
+        "017_NM",
+        "021_NM",
+        "024_NM",
+        "028_NM",
+        "FALL_009",
+        "FALL_012",
+        "FALL_017",
+        "FALL_019",
+        "MS_006",
+        "MS_015",
+        "MS_019",
+        "MS_026",
+        "MS_027",
+        "MS_029"
+      ],
+      "accuracy": 0.9615384615384616,
+      "macro_f1": 0.9450549450549451,
+      "balanced_accuracy": 0.9375,
+      "temperature": 0.6336
+    }
+  ],
+  "accuracy": 0.8647,
+  "macro_f1": 0.8328,
+  "balanced_accuracy": 0.8296,
+  "precision": 0.8712,
+  "recall": 0.8725,
+  "f1_score": 0.8328,
+  "confusion_matrix": [
+    [
+      56,
+      3,
+      0,
+      0
+    ],
+    [
+      1,
+      26,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      25,
+      3
+    ],
+    [
+      0,
+      0,
+      5,
+      15
+    ]
+  ],
+  "samples": 136,
+  "accuracy_std": 0.0368,
+  "macro_f1_std": 0.0399,
+  "confusion_matrix_source": "OOF probabilidad media 5 semillas",
+  "model_version": "gait_deep_v1_20260907_204300_eb10429885a2"
+}

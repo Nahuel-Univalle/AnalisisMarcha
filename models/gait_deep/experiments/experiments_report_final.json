@@ -1,0 +1,584 @@
+{
+  "dataset": "dataset",
+  "n_samples": 136,
+  "n_subjects": 86,
+  "repeats": 3,
+  "protocol": "StratifiedGroupKFold(k=5) por subject_id, semillas 42..44. Todos los modelos con LAS MISMAS particiones. macro_f1_mean = media OOF entre semillas.",
+  "baselines": {
+    "logistic_regression_36feat": {
+      "accuracy": 0.8382,
+      "balanced_accuracy": 0.7954,
+      "macro_f1": 0.7923,
+      "per_class": {
+        "normal": {
+          "precision": 0.9655,
+          "recall": 0.9492,
+          "f1": 0.9573,
+          "specificity": 0.974,
+          "support": 59
+        },
+        "parkinson": {
+          "precision": 0.8929,
+          "recall": 0.8929,
+          "f1": 0.8929,
+          "specificity": 0.9722,
+          "support": 28
+        },
+        "esclerosis_multiple": {
+          "precision": 0.7407,
+          "recall": 0.6897,
+          "f1": 0.7143,
+          "specificity": 0.9346,
+          "support": 29
+        },
+        "riesgo_caida": {
+          "precision": 0.5652,
+          "recall": 0.65,
+          "f1": 0.6047,
+          "specificity": 0.9138,
+          "support": 20
+        }
+      },
+      "confusion_matrix": [
+        [
+          56,
+          3,
+          0,
+          0
+        ],
+        [
+          2,
+          25,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          20,
+          9
+        ],
+        [
+          0,
+          0,
+          7,
+          13
+        ]
+      ],
+      "macro_roc_auc_ovr": 0.9591,
+      "accuracy_mean": 0.8431,
+      "accuracy_std": 0.0069,
+      "macro_f1_mean": 0.7961,
+      "macro_f1_std": 0.0124,
+      "balanced_accuracy_mean": 0.7983,
+      "balanced_accuracy_std": 0.0138,
+      "per_seed": [
+        {
+          "seed": 42,
+          "macro_f1": 0.7923,
+          "accuracy": 0.8382
+        },
+        {
+          "seed": 43,
+          "macro_f1": 0.8128,
+          "accuracy": 0.8529
+        },
+        {
+          "seed": 44,
+          "macro_f1": 0.7832,
+          "accuracy": 0.8382
+        }
+      ]
+    },
+    "random_forest_36feat": {
+      "accuracy": 0.8529,
+      "balanced_accuracy": 0.8074,
+      "macro_f1": 0.8136,
+      "per_class": {
+        "normal": {
+          "precision": 0.9344,
+          "recall": 0.9661,
+          "f1": 0.95,
+          "specificity": 0.9481,
+          "support": 59
+        },
+        "parkinson": {
+          "precision": 0.8462,
+          "recall": 0.7857,
+          "f1": 0.8148,
+          "specificity": 0.963,
+          "support": 28
+        },
+        "esclerosis_multiple": {
+          "precision": 0.75,
+          "recall": 0.8276,
+          "f1": 0.7869,
+          "specificity": 0.9252,
+          "support": 29
+        },
+        "riesgo_caida": {
+          "precision": 0.7647,
+          "recall": 0.65,
+          "f1": 0.7027,
+          "specificity": 0.9655,
+          "support": 20
+        }
+      },
+      "confusion_matrix": [
+        [
+          57,
+          2,
+          0,
+          0
+        ],
+        [
+          4,
+          22,
+          2,
+          0
+        ],
+        [
+          0,
+          1,
+          24,
+          4
+        ],
+        [
+          0,
+          1,
+          6,
+          13
+        ]
+      ],
+      "macro_roc_auc_ovr": 0.9627,
+      "accuracy_mean": 0.8382,
+      "accuracy_std": 0.012,
+      "macro_f1_mean": 0.7937,
+      "macro_f1_std": 0.0164,
+      "balanced_accuracy_mean": 0.7859,
+      "balanced_accuracy_std": 0.0175,
+      "per_seed": [
+        {
+          "seed": 42,
+          "macro_f1": 0.8136,
+          "accuracy": 0.8529
+        },
+        {
+          "seed": 43,
+          "macro_f1": 0.7939,
+          "accuracy": 0.8382
+        },
+        {
+          "seed": 44,
+          "macro_f1": 0.7735,
+          "accuracy": 0.8235
+        }
+      ]
+    }
+  },
+  "ablations": {
+    "feat_only": {
+      "accuracy": 0.8676,
+      "balanced_accuracy": 0.8263,
+      "macro_f1": 0.8263,
+      "per_class": {
+        "normal": {
+          "precision": 0.9655,
+          "recall": 0.9492,
+          "f1": 0.9573,
+          "specificity": 0.974,
+          "support": 59
+        },
+        "parkinson": {
+          "precision": 0.8966,
+          "recall": 0.9286,
+          "f1": 0.9123,
+          "specificity": 0.9722,
+          "support": 28
+        },
+        "esclerosis_multiple": {
+          "precision": 0.75,
+          "recall": 0.8276,
+          "f1": 0.7869,
+          "specificity": 0.9252,
+          "support": 29
+        },
+        "riesgo_caida": {
+          "precision": 0.7059,
+          "recall": 0.6,
+          "f1": 0.6486,
+          "specificity": 0.9569,
+          "support": 20
+        }
+      },
+      "confusion_matrix": [
+        [
+          56,
+          3,
+          0,
+          0
+        ],
+        [
+          2,
+          26,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          24,
+          5
+        ],
+        [
+          0,
+          0,
+          8,
+          12
+        ]
+      ],
+      "macro_roc_auc_ovr": 0.9587,
+      "accuracy_mean": 0.8431,
+      "accuracy_std": 0.0211,
+      "macro_f1_mean": 0.7976,
+      "macro_f1_std": 0.0252,
+      "balanced_accuracy_mean": 0.7987,
+      "balanced_accuracy_std": 0.0211,
+      "per_seed": [
+        {
+          "seed": 42,
+          "accuracy": 0.8676,
+          "macro_f1": 0.8263,
+          "balanced_accuracy": 0.8263
+        },
+        {
+          "seed": 43,
+          "accuracy": 0.8456,
+          "macro_f1": 0.8016,
+          "balanced_accuracy": 0.7947
+        },
+        {
+          "seed": 44,
+          "accuracy": 0.8162,
+          "macro_f1": 0.765,
+          "balanced_accuracy": 0.7751
+        }
+      ],
+      "seconds": 153.5
+    },
+    "seq_only": {
+      "accuracy": 0.9044,
+      "balanced_accuracy": 0.8987,
+      "macro_f1": 0.8879,
+      "per_class": {
+        "normal": {
+          "precision": 1.0,
+          "recall": 0.8983,
+          "f1": 0.9464,
+          "specificity": 1.0,
+          "support": 59
+        },
+        "parkinson": {
+          "precision": 0.8235,
+          "recall": 1.0,
+          "f1": 0.9032,
+          "specificity": 0.9444,
+          "support": 28
+        },
+        "esclerosis_multiple": {
+          "precision": 0.8667,
+          "recall": 0.8966,
+          "f1": 0.8814,
+          "specificity": 0.9626,
+          "support": 29
+        },
+        "riesgo_caida": {
+          "precision": 0.8421,
+          "recall": 0.8,
+          "f1": 0.8205,
+          "specificity": 0.9741,
+          "support": 20
+        }
+      },
+      "confusion_matrix": [
+        [
+          53,
+          6,
+          0,
+          0
+        ],
+        [
+          0,
+          28,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          26,
+          3
+        ],
+        [
+          0,
+          0,
+          4,
+          16
+        ]
+      ],
+      "macro_roc_auc_ovr": 0.9855,
+      "accuracy_mean": 0.902,
+      "accuracy_std": 0.0034,
+      "macro_f1_mean": 0.8823,
+      "macro_f1_std": 0.0059,
+      "balanced_accuracy_mean": 0.8879,
+      "balanced_accuracy_std": 0.0116,
+      "per_seed": [
+        {
+          "seed": 42,
+          "accuracy": 0.9044,
+          "macro_f1": 0.8879,
+          "balanced_accuracy": 0.8987
+        },
+        {
+          "seed": 43,
+          "accuracy": 0.8971,
+          "macro_f1": 0.8741,
+          "balanced_accuracy": 0.8718
+        },
+        {
+          "seed": 44,
+          "accuracy": 0.9044,
+          "macro_f1": 0.8849,
+          "balanced_accuracy": 0.8932
+        }
+      ],
+      "seconds": 167.7
+    },
+    "full": {
+      "accuracy": 0.8235,
+      "balanced_accuracy": 0.7678,
+      "macro_f1": 0.7768,
+      "per_class": {
+        "normal": {
+          "precision": 0.8769,
+          "recall": 0.9661,
+          "f1": 0.9194,
+          "specificity": 0.8961,
+          "support": 59
+        },
+        "parkinson": {
+          "precision": 0.9,
+          "recall": 0.6429,
+          "f1": 0.75,
+          "specificity": 0.9815,
+          "support": 28
+        },
+        "esclerosis_multiple": {
+          "precision": 0.7576,
+          "recall": 0.8621,
+          "f1": 0.8065,
+          "specificity": 0.9252,
+          "support": 29
+        },
+        "riesgo_caida": {
+          "precision": 0.6667,
+          "recall": 0.6,
+          "f1": 0.6316,
+          "specificity": 0.9483,
+          "support": 20
+        }
+      },
+      "confusion_matrix": [
+        [
+          57,
+          2,
+          0,
+          0
+        ],
+        [
+          8,
+          18,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          25,
+          4
+        ],
+        [
+          0,
+          0,
+          8,
+          12
+        ]
+      ],
+      "macro_roc_auc_ovr": 0.9543,
+      "accuracy_mean": 0.8799,
+      "accuracy_std": 0.04,
+      "macro_f1_mean": 0.8445,
+      "macro_f1_std": 0.0479,
+      "balanced_accuracy_mean": 0.8436,
+      "balanced_accuracy_std": 0.0537,
+      "per_seed": [
+        {
+          "seed": 42,
+          "accuracy": 0.8235,
+          "macro_f1": 0.7768,
+          "balanced_accuracy": 0.7678
+        },
+        {
+          "seed": 43,
+          "accuracy": 0.9118,
+          "macro_f1": 0.8804,
+          "balanced_accuracy": 0.8779
+        },
+        {
+          "seed": 44,
+          "accuracy": 0.9044,
+          "macro_f1": 0.8763,
+          "balanced_accuracy": 0.8851
+        }
+      ],
+      "seconds": 123.2
+    }
+  },
+  "aporte_temporal": {
+    "macro_f1": {
+      "logreg": 0.7961,
+      "rf": 0.7937,
+      "feat_only": 0.7976,
+      "seq_only": 0.8823,
+      "full": 0.8445
+    },
+    "delta_macro_f1_full_vs_feat_only": 0.0469,
+    "delta_macro_f1_full_vs_seq_only": -0.0378,
+    "delta_macro_f1_full_vs_best_baseline": 0.0484
+  },
+  "within_source": {
+    "source_A_normal_vs_parkinson": {
+      "accuracy": 0.9655,
+      "balanced_accuracy": 0.9652,
+      "macro_f1": 0.9609,
+      "per_class": {
+        "normal": {
+          "precision": 0.9828,
+          "recall": 0.9661,
+          "f1": 0.9744,
+          "specificity": 0.9643,
+          "support": 59
+        },
+        "parkinson": {
+          "precision": 0.931,
+          "recall": 0.9643,
+          "f1": 0.9474,
+          "specificity": 0.9661,
+          "support": 28
+        }
+      },
+      "confusion_matrix": [
+        [
+          57,
+          2
+        ],
+        [
+          1,
+          27
+        ]
+      ],
+      "roc_auc": 0.9873,
+      "accuracy_mean": 0.9578,
+      "accuracy_std": 0.0108,
+      "macro_f1_mean": 0.9524,
+      "macro_f1_std": 0.0124,
+      "balanced_accuracy_mean": 0.9596,
+      "balanced_accuracy_std": 0.0151,
+      "per_seed": [
+        {
+          "seed": 42,
+          "accuracy": 0.9655,
+          "macro_f1": 0.9609,
+          "balanced_accuracy": 0.9652
+        },
+        {
+          "seed": 43,
+          "accuracy": 0.9425,
+          "macro_f1": 0.9348,
+          "balanced_accuracy": 0.9389
+        },
+        {
+          "seed": 44,
+          "accuracy": 0.9655,
+          "macro_f1": 0.9615,
+          "balanced_accuracy": 0.9746
+        }
+      ],
+      "seconds": 88.8,
+      "n_videos": 87,
+      "n_subjects": 37
+    },
+    "source_B_esclerosis_vs_riesgo": {
+      "accuracy": 0.7959,
+      "balanced_accuracy": 0.7888,
+      "macro_f1": 0.7888,
+      "per_class": {
+        "esclerosis_multiple": {
+          "precision": 0.8276,
+          "recall": 0.8276,
+          "f1": 0.8276,
+          "specificity": 0.75,
+          "support": 29
+        },
+        "riesgo_caida": {
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75,
+          "specificity": 0.8276,
+          "support": 20
+        }
+      },
+      "confusion_matrix": [
+        [
+          24,
+          5
+        ],
+        [
+          5,
+          15
+        ]
+      ],
+      "roc_auc": 0.8483,
+      "accuracy_mean": 0.7483,
+      "accuracy_std": 0.0347,
+      "macro_f1_mean": 0.7426,
+      "macro_f1_std": 0.0339,
+      "balanced_accuracy_mean": 0.746,
+      "balanced_accuracy_std": 0.0319,
+      "per_seed": [
+        {
+          "seed": 42,
+          "accuracy": 0.7959,
+          "macro_f1": 0.7888,
+          "balanced_accuracy": 0.7888
+        },
+        {
+          "seed": 43,
+          "accuracy": 0.7143,
+          "macro_f1": 0.7083,
+          "balanced_accuracy": 0.7121
+        },
+        {
+          "seed": 44,
+          "accuracy": 0.7347,
+          "macro_f1": 0.7307,
+          "balanced_accuracy": 0.7371
+        }
+      ],
+      "seconds": 53.5,
+      "n_videos": 49,
+      "n_subjects": 49
+    }
+  }
+}

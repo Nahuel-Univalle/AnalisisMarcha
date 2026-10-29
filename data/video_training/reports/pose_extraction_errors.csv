@@ -1,2 +1,1 @@
-video_path,filename,subject_id,condition,label,severity,sequence,source_folder,file_extension,error
-videos\normal\015_NM_02.MOV,015_NM_02.MOV,015_NM,normal,0,none,02,normal,.mov,No se pudo abrir el video: videos\normal\015_NM_02.MOV
+video_path,filename,subject_id,subject_documented,condition,label,severity,sequence,source_folder,file_extension,error

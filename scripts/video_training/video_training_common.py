@@ -32,6 +32,26 @@ TRAINING_REPORT_PATH = MODELS_DIR / "video_parkinson_training_report.md"
 
 SUPPORTED_EXTENSIONS = {".mov", ".mp4", ".avi", ".mkv"}
 
+# ---------------------------------------------------------------------------
+#  Clases del sistema.
+#  El pipeline historico era BINARIO (normal vs parkinson). A partir de la
+#  ampliacion multiclase se agregan esclerosis multiple y riesgo de caida.
+#  Los scripts binarios legacy (03_train_video_parkinson_model.py) siguen
+#  funcionando: filtran a label in {0, 1}.
+# ---------------------------------------------------------------------------
+CLASS_NAMES = ["normal", "parkinson", "esclerosis_multiple", "riesgo_caida"]
+CLASS_TO_LABEL = {name: index for index, name in enumerate(CLASS_NAMES)}
+LABEL_TO_CLASS = {index: name for index, name in enumerate(CLASS_NAMES)}
+NUM_CLASSES = len(CLASS_NAMES)
+
+# Etiquetas legibles para informes / frontend (se replican en TS).
+CLASS_HUMAN_LABEL = {
+    "normal": "Marcha dentro de patrones esperados",
+    "parkinson": "Patrón compatible con alteración asociada a Parkinson",
+    "esclerosis_multiple": "Patrón compatible con alteración asociada a Esclerosis Múltiple",
+    "riesgo_caida": "Patrón compatible con inestabilidad / riesgo de caída",
+}
+
 VIDEO_SOURCES = [
     {
         "folder": PROJECT_ROOT / "videos" / "normal",
@@ -61,12 +81,49 @@ VIDEO_SOURCES = [
         "severity": "severe",
         "source_folder": "PD_SV",
     },
+    {
+        "folder": PROJECT_ROOT / "videos" / "esclerosis_multiple",
+        "condition": "esclerosis_multiple",
+        "label": 2,
+        "severity": "unknown",
+        "source_folder": "esclerosis_multiple",
+    },
+    {
+        "folder": PROJECT_ROOT / "videos" / "riesgo_caida",
+        "condition": "riesgo_caida",
+        "label": 3,
+        "severity": "unknown",
+        "source_folder": "riesgo_caida",
+    },
 ]
+
+# Archivos excluidos del pipeline (NO se borran del disco; solo no entran a
+# manifest/dataset). Motivo documentado por archivo.
+#  - VideoEscleorosis7.mp4: byte-identico a VideoEscleorosis6.mp4 (mismo MD5).
+#    Duplicado literal; incluirlo mete el mismo video en train y test de folds
+#    distintos (fuga) e infla el conteo de la clase esclerosis_multiple.
+#  - Escleorosis3.mp4 (lote nuevo, subido 2026-09-15): revision visual de esta
+#    sesion (contact sheet de 15 fotogramas a lo largo de sus 183s) muestra
+#    multiples escenas/actividades no relacionadas con marcha en piso plano
+#    (sala con juguetes, estiramientos con brazos en alto, y una secuencia
+#    completa de subir escaleras sujetando el pasamanos). No es una secuencia
+#    de marcha coherente; se excluye del manifest, no se recorta ni modifica
+#    el archivo de video.
+MANIFEST_EXCLUDE = {
+    "VideoEscleorosis7.mp4": "duplicado byte-identico de VideoEscleorosis6.mp4",
+    "Escleorosis3.mp4": (
+        "contiene multiples escenas/actividades no relacionadas con marcha en "
+        "piso plano (sala con juguetes, estiramientos, subir escaleras) a lo "
+        "largo de sus 183s; no es una secuencia de marcha coherente "
+        "(revision visual, sesion 2026-09-27)."
+    ),
+}
 
 MANIFEST_COLUMNS = [
     "video_path",
     "filename",
     "subject_id",
+    "subject_documented",
     "condition",
     "label",
     "severity",
@@ -79,6 +136,7 @@ ID_COLUMNS = [
     "video_path",
     "filename",
     "subject_id",
+    "subject_documented",
     "condition",
     "label",
     "severity",
@@ -174,9 +232,10 @@ CORE_LANDMARKS = [
 ]
 
 NO_DIAGNOSIS_NOTE = (
-    "Este modelo no emite diagnostico medico definitivo. Su resultado debe "
-    "interpretarse como apoyo tecnologico para identificar patrones de marcha "
-    "asociados a Parkinson."
+    "Este analisis constituye una orientacion basada en patrones de movimiento y "
+    "no representa un diagnostico medico. Identifica patrones de marcha que "
+    "pueden asociarse a marcha normal, Parkinson, Esclerosis Multiple o riesgo "
+    "de caida, y siempre requiere valoracion por un profesional de salud."
 )
 
 
@@ -217,9 +276,23 @@ def safe_stem(value: str) -> str:
     return cleaned[:120] or "video"
 
 
-def parse_subject_and_sequence(filename: str, condition: str) -> tuple[str, str, str | None]:
+def parse_subject_and_sequence(
+    filename: str, condition: str
+) -> tuple[str, str, bool, str | None]:
+    """Devuelve (subject_id, sequence, subject_documented, warning).
+
+    - normal / parkinson: nombres tipo ``001_NM_02`` o ``001_PD_01_MD`` -> el
+      sujeto es ``001_NM`` / ``001_PD`` y NO depende del nivel de severidad
+      (ML/MD/SV son clips del mismo sujeto). subject_documented=True.
+    - esclerosis_multiple: ``VideoEsclerosis7.mp4`` -> pseudo-sujeto ``MS_007``.
+    - riesgo_caida: ``RiesgoCaida7.mp4`` -> pseudo-sujeto ``FALL_007``.
+      En ambos casos NO hay identificador clinico de sujeto en los datos: se
+      asume 1 video == 1 sujeto y subject_documented=False (limitacion
+      registrada para la division train/val/test).
+    """
     stem = Path(filename).stem
     normalized = stem.replace("-", "_")
+
     pattern = re.compile(
         r"^(?P<prefix>[A-Za-z0-9]+)_(?P<tag>NM|PD)_(?P<sequence>\d+)(?:_(?P<suffix>[A-Za-z]+))?$",
         re.IGNORECASE,
@@ -227,15 +300,36 @@ def parse_subject_and_sequence(filename: str, condition: str) -> tuple[str, str,
     match = pattern.match(normalized)
     if match:
         subject_id = f"{match.group('prefix')}_{match.group('tag').upper()}"
-        return subject_id, match.group("sequence"), None
+        return subject_id, match.group("sequence"), True, None
+
+    ms_match = re.match(r"^video?_?escl?erosis_?(\d+)$", normalized, re.IGNORECASE)
+    if condition == "esclerosis_multiple" or ms_match:
+        number = ms_match.group(1) if ms_match else _trailing_digits(normalized) or "0"
+        return f"MS_{int(number):03d}", "01", False, None
+
+    fall_match = re.match(
+        r"^riesgo_?(?:de_?)?caida_?(\d+)$", normalized, re.IGNORECASE
+    )
+    if condition == "riesgo_caida" or fall_match:
+        number = fall_match.group(1) if fall_match else _trailing_digits(normalized) or "0"
+        return f"FALL_{int(number):03d}", "01", False, None
 
     parts = [part for part in normalized.split("_") if part]
     if len(parts) >= 2 and parts[-1].isdigit():
-        return "_".join(parts[:-1]), parts[-1], None
+        return "_".join(parts[:-1]), parts[-1], True, None
 
     inferred_tag = "NM" if condition == "normal" else "PD"
-    fallback_subject = f"{normalized}_{inferred_tag}" if inferred_tag not in normalized.upper() else normalized
-    return fallback_subject, "", f"Nombre fuera del patron esperado: {filename}"
+    fallback_subject = (
+        f"{normalized}_{inferred_tag}"
+        if inferred_tag not in normalized.upper()
+        else normalized
+    )
+    return fallback_subject, "", False, f"Nombre fuera del patron esperado: {filename}"
+
+
+def _trailing_digits(value: str) -> str | None:
+    match = re.search(r"(\d+)\s*$", value)
+    return match.group(1) if match else None
 
 
 def discover_videos() -> tuple[list[dict[str, Any]], list[str]]:
@@ -255,8 +349,13 @@ def discover_videos() -> tuple[list[dict[str, Any]], list[str]]:
             extension = video_path.suffix.lower()
             if extension not in SUPPORTED_EXTENSIONS:
                 continue
+            if video_path.name in MANIFEST_EXCLUDE:
+                warnings.append(
+                    f"Excluido {video_path.name}: {MANIFEST_EXCLUDE[video_path.name]}"
+                )
+                continue
 
-            subject_id, sequence, warning = parse_subject_and_sequence(
+            subject_id, sequence, subject_documented, warning = parse_subject_and_sequence(
                 video_path.name,
                 str(source["condition"]),
             )
@@ -268,6 +367,7 @@ def discover_videos() -> tuple[list[dict[str, Any]], list[str]]:
                     "video_path": project_relative(video_path),
                     "filename": video_path.name,
                     "subject_id": subject_id,
+                    "subject_documented": bool(subject_documented),
                     "condition": source["condition"],
                     "label": source["label"],
                     "severity": source["severity"],
@@ -296,25 +396,31 @@ def read_manifest(path: Path = MANIFEST_PATH) -> list[dict[str, Any]]:
 
 
 def manifest_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    normal_rows = [row for row in rows if str(row.get("condition")) == "normal"]
-    parkinson_rows = [row for row in rows if str(row.get("condition")) == "parkinson"]
     by_source = {
         source["source_folder"]: sum(
             1 for row in rows if row.get("source_folder") == source["source_folder"]
         )
         for source in VIDEO_SOURCES
     }
-    return {
+    summary: dict[str, Any] = {
         "total_videos": len(rows),
-        "total_normales": len(normal_rows),
-        "total_parkinson": len(parkinson_rows),
+        "extensiones_encontradas": sorted({str(row.get("file_extension")) for row in rows}),
         "total_PD_ML": by_source.get("PD_ML", 0),
         "total_PD_MD": by_source.get("PD_MD", 0),
         "total_PD_SV": by_source.get("PD_SV", 0),
-        "extensiones_encontradas": sorted({str(row.get("file_extension")) for row in rows}),
-        "sujetos_normales": len({row.get("subject_id") for row in normal_rows}),
-        "sujetos_parkinson": len({row.get("subject_id") for row in parkinson_rows}),
     }
+    for class_name in CLASS_NAMES:
+        class_rows = [row for row in rows if str(row.get("condition")) == class_name]
+        subjects = {row.get("subject_id") for row in class_rows}
+        documented = {
+            row.get("subject_id")
+            for row in class_rows
+            if str(row.get("subject_documented")).lower() == "true"
+        }
+        summary[f"videos_{class_name}"] = len(class_rows)
+        summary[f"sujetos_{class_name}"] = len(subjects)
+        summary[f"sujetos_{class_name}_documentados"] = len(documented)
+    return summary
 
 
 def to_float(value: Any) -> float | None:
@@ -701,9 +807,16 @@ def build_feature_row(
 
 
 def landmark_output_path(metadata: dict[str, Any], suffix: str = "landmarks") -> Path:
-    subject = safe_stem(str(metadata.get("subject_id") or "subject"))
-    sequence = safe_stem(str(metadata.get("sequence") or Path(str(metadata.get("filename", "video"))).stem))
-    return LANDMARKS_DIR / f"{subject}_{sequence}_{suffix}.csv"
+    # Se indexa por el nombre de archivo del video (unico por video). Antes se
+    # usaba subject_id + sequence, lo que hacia colisionar los clips de Parkinson
+    # de distinta severidad (001_PD_01_ML / 001_PD_01_MD / 001_PD_01_SV escribian
+    # todos el mismo CSV). Al indexar por stem cada video conserva sus landmarks.
+    stem = safe_stem(str(Path(str(metadata.get("filename", "") or metadata.get("video_path", "video"))).stem))
+    if not stem or stem == "video":
+        subject = safe_stem(str(metadata.get("subject_id") or "subject"))
+        sequence = safe_stem(str(metadata.get("sequence") or "seq"))
+        stem = f"{subject}_{sequence}"
+    return LANDMARKS_DIR / f"{stem}_{suffix}.csv"
 
 
 def import_pose_dependencies():

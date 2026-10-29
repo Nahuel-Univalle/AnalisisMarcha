@@ -1,0 +1,267 @@
+{
+  "deep_learning": {
+    "accuracy": 0.8235294117647058,
+    "balanced_accuracy": 0.7677569508224097,
+    "macro_f1": 0.7768463497453311,
+    "weighted_f1": 0.8180927294517129,
+    "macro_precision": 0.8002913752913753,
+    "macro_recall": 0.7677569508224097,
+    "macro_roc_auc_ovr": 0.9543229917901503,
+    "confusion_matrix": [
+      [
+        57,
+        2,
+        0,
+        0
+      ],
+      [
+        8,
+        18,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        25,
+        4
+      ],
+      [
+        0,
+        0,
+        8,
+        12
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "normal",
+      "parkinson",
+      "esclerosis_multiple",
+      "riesgo_caida"
+    ],
+    "per_class": {
+      "normal": {
+        "precision": 0.8769230769230769,
+        "recall": 0.9661016949152542,
+        "f1": 0.9193548387096774,
+        "support": 59,
+        "sensitivity": 0.9661016949152542,
+        "specificity": 0.8961038961038961,
+        "roc_auc_ovr": 0.9863526304204271
+      },
+      "parkinson": {
+        "precision": 0.9,
+        "recall": 0.6428571428571429,
+        "f1": 0.75,
+        "support": 28,
+        "sensitivity": 0.6428571428571429,
+        "specificity": 0.9814814814814815,
+        "roc_auc_ovr": 0.9315476190476191
+      },
+      "esclerosis_multiple": {
+        "precision": 0.7575757575757576,
+        "recall": 0.8620689655172413,
+        "f1": 0.8064516129032258,
+        "support": 29,
+        "sensitivity": 0.8620689655172413,
+        "specificity": 0.9252336448598131,
+        "roc_auc_ovr": 0.9532710280373832
+      },
+      "riesgo_caida": {
+        "precision": 0.6666666666666666,
+        "recall": 0.6,
+        "f1": 0.631578947368421,
+        "support": 20,
+        "sensitivity": 0.6,
+        "specificity": 0.9482758620689655,
+        "roc_auc_ovr": 0.9461206896551724
+      }
+    },
+    "n_samples": 136
+  },
+  "baseline_logreg_36feat": {
+    "accuracy": 0.8382352941176471,
+    "balanced_accuracy": 0.7954162144109543,
+    "macro_f1": 0.792264744299628,
+    "weighted_f1": 0.8403378047700895,
+    "macro_precision": 0.7910831290703855,
+    "macro_recall": 0.7954162144109543,
+    "macro_roc_auc_ovr": 0.9591221794457659,
+    "confusion_matrix": [
+      [
+        56,
+        3,
+        0,
+        0
+      ],
+      [
+        2,
+        25,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        20,
+        9
+      ],
+      [
+        0,
+        0,
+        7,
+        13
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "normal",
+      "parkinson",
+      "esclerosis_multiple",
+      "riesgo_caida"
+    ],
+    "per_class": {
+      "normal": {
+        "precision": 0.9655172413793104,
+        "recall": 0.9491525423728814,
+        "f1": 0.9572649572649573,
+        "support": 59,
+        "sensitivity": 0.9491525423728814,
+        "specificity": 0.974025974025974,
+        "roc_auc_ovr": 0.9940567906669602
+      },
+      "parkinson": {
+        "precision": 0.8928571428571429,
+        "recall": 0.8928571428571429,
+        "f1": 0.8928571428571429,
+        "support": 28,
+        "sensitivity": 0.8928571428571429,
+        "specificity": 0.9722222222222222,
+        "roc_auc_ovr": 0.9900793650793651
+      },
+      "esclerosis_multiple": {
+        "precision": 0.7407407407407407,
+        "recall": 0.6896551724137931,
+        "f1": 0.7142857142857143,
+        "support": 29,
+        "sensitivity": 0.6896551724137931,
+        "specificity": 0.9345794392523364,
+        "roc_auc_ovr": 0.9368353206574284
+      },
+      "riesgo_caida": {
+        "precision": 0.5652173913043478,
+        "recall": 0.65,
+        "f1": 0.6046511627906976,
+        "support": 20,
+        "sensitivity": 0.65,
+        "specificity": 0.9137931034482759,
+        "roc_auc_ovr": 0.9155172413793102
+      }
+    },
+    "n_samples": 136
+  },
+  "baseline_randomforest_36feat": {
+    "accuracy": 0.8529411764705882,
+    "balanced_accuracy": 0.8073505468815229,
+    "macro_f1": 0.8136006908547891,
+    "weighted_f1": 0.85101868382365,
+    "macro_precision": 0.823821489503746,
+    "macro_recall": 0.8073505468815229,
+    "macro_roc_auc_ovr": 0.9626963934158532,
+    "confusion_matrix": [
+      [
+        57,
+        2,
+        0,
+        0
+      ],
+      [
+        4,
+        22,
+        2,
+        0
+      ],
+      [
+        0,
+        1,
+        24,
+        4
+      ],
+      [
+        0,
+        1,
+        6,
+        13
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "normal",
+      "parkinson",
+      "esclerosis_multiple",
+      "riesgo_caida"
+    ],
+    "per_class": {
+      "normal": {
+        "precision": 0.9344262295081968,
+        "recall": 0.9661016949152542,
+        "f1": 0.95,
+        "support": 59,
+        "sensitivity": 0.9661016949152542,
+        "specificity": 0.948051948051948,
+        "roc_auc_ovr": 0.986682808716707
+      },
+      "parkinson": {
+        "precision": 0.8461538461538461,
+        "recall": 0.7857142857142857,
+        "f1": 0.8148148148148148,
+        "support": 28,
+        "sensitivity": 0.7857142857142857,
+        "specificity": 0.9629629629629629,
+        "roc_auc_ovr": 0.9664351851851852
+      },
+      "esclerosis_multiple": {
+        "precision": 0.75,
+        "recall": 0.8275862068965517,
+        "f1": 0.7868852459016393,
+        "support": 29,
+        "sensitivity": 0.8275862068965517,
+        "specificity": 0.9252336448598131,
+        "roc_auc_ovr": 0.9532710280373831
+      },
+      "riesgo_caida": {
+        "precision": 0.7647058823529411,
+        "recall": 0.65,
+        "f1": 0.7027027027027027,
+        "support": 20,
+        "sensitivity": 0.65,
+        "specificity": 0.9655172413793104,
+        "roc_auc_ovr": 0.944396551724138
+      }
+    },
+    "n_samples": 136
+  },
+  "comparison": {
+    "accuracy": {
+      "deep": 0.8235294117647058,
+      "logreg": 0.8382352941176471,
+      "rf": 0.8529411764705882
+    },
+    "macro_f1": {
+      "deep": 0.7768463497453311,
+      "logreg": 0.792264744299628,
+      "rf": 0.8136006908547891
+    },
+    "balanced_accuracy": {
+      "deep": 0.7677569508224097,
+      "logreg": 0.7954162144109543,
+      "rf": 0.8073505468815229
+    }
+  },
+  "confusion_analysis": [
+    "2/59 videos de 'normal' se clasificaron como 'parkinson' (3%)",
+    "8/28 videos de 'parkinson' se clasificaron como 'normal' (29%)",
+    "2/28 videos de 'parkinson' se clasificaron como 'riesgo_caida' (7%)",
+    "4/29 videos de 'esclerosis_multiple' se clasificaron como 'riesgo_caida' (14%)",
+    "8/20 videos de 'riesgo_caida' se clasificaron como 'esclerosis_multiple' (40%)"
+  ],
+  "evaluation_protocol": "StratifiedGroupKFold(k=5) por subject_id, semilla 42. Todos los modelos evaluados con las MISMAS particiones. Metricas = predicciones out-of-fold agregadas."
+}

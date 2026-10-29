@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-type SessionUser = {
-  email?: string;
-  role?: string;
-};
+import { SESSION_COOKIE, verifySession } from "@/lib/auth/sessionToken";
 
 const protectedRoutes = [
   "/dashboard",
@@ -22,26 +18,17 @@ function startsWithAny(pathname: string, routes: string[]) {
   return routes.some((route) => pathname === route || pathname.startsWith(`${route}/`));
 }
 
-function readSessionUser(request: NextRequest) {
-  const rawUser = request.cookies.get("gait-user")?.value;
+async function readSessionUser(request: NextRequest) {
+  const session = await verifySession(request.cookies.get(SESSION_COOKIE)?.value);
 
-  if (!rawUser) return null;
+  if (!session) return null;
 
-  try {
-    const user = JSON.parse(rawUser) as SessionUser;
-    if (!user.email) return null;
-    return {
-      email: user.email,
-      role: user.role === "ADMIN" ? "ADMIN" : "USER",
-    };
-  } catch {
-    return null;
-  }
+  return { email: session.email, role: session.role };
 }
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const user = readSessionUser(request);
+  const user = await readSessionUser(request);
 
   if (startsWithAny(pathname, authRoutes) && user) {
     return NextResponse.redirect(new URL("/dashboard", request.url));

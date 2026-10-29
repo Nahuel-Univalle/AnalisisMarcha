@@ -1,0 +1,78 @@
+{
+  "in_channels": 68,
+  "num_features": 36,
+  "num_classes": 4,
+  "seq_channels": [
+    24,
+    32,
+    32
+  ],
+  "feat_hidden": [
+    24,
+    16
+  ],
+  "head_hidden": 32,
+  "dropout_seq": 0.3,
+  "dropout_feat": 0.3,
+  "dropout_head": 0.4,
+  "use_seq_branch": true,
+  "use_feat_branch": true,
+  "sequence_length": 96,
+  "model_version": "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f",
+  "weights_sha256": "d7323250d26fa81c9306660ada47bc00c2aa1bd9bba374e2e87b3619c5213048",
+  "E_star": 71,
+  "temperature": 0.9022,
+  "protocol": {
+    "partition_seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "outer_folds": 5,
+    "inner_folds": 3,
+    "max_epochs": 240,
+    "smoothing_window": 5,
+    "batch_size": 16,
+    "lr": 0.001,
+    "weight_decay": 0.0002,
+    "label_smoothing": 0.05,
+    "augment": true,
+    "grad_clip": 5.0,
+    "scheduler": "ReduceLROnPlateau(mode=min sobre perdida de entrenamiento, factor=0.5, patience=8)",
+    "model_seed_rule": "outer: 1000*p + 10*k ; inner j: 1000*p + 10*k + j ; inner SGKF random_state = 1000*p + k (p = semilla de particion, k = fold externo 1..5, j = fold interno 1..3)",
+    "final_model_rule": "inner SGKF(3) random_state=4200 sobre los 117 videos; semillas 4201..4203 internas, 4200 modelo final",
+    "expected": {
+      "videos": 117,
+      "subjects": 67,
+      "per_class_subjects": [
+        30,
+        7,
+        21,
+        9
+      ],
+      "per_class_videos": [
+        58,
+        26,
+        22,
+        11
+      ]
+    },
+    "variants": {
+      "M1_principal": "outputs/dataset_v4_4class/dataset_v4_preview.npz",
+      "M3_expA_c3_bs5": "outputs/dataset_v4_4class/step5/dataset_A_c3_bs5_w503.npz"
+    },
+    "selection_rule": "Paso 11 §7: diferencia pareada media > 2*sd_pareada/sqrt(5); estabilidad (sd entre 25 folds) no empeora > 0.02; ninguna clase pierde > 0.10 de F1. M3 solo secundario (no puede ser final)."
+  },
+  "dataset": "outputs/dataset_v4_4class/dataset_v4_preview.npz",
+  "class_names": [
+    "normal",
+    "parkinson",
+    "esclerosis_multiple",
+    "riesgo_caida"
+  ],
+  "n_samples": 117,
+  "n_subjects": 67,
+  "status": "EXPERIMENTAL - no integrado, no diagnostico, no generaliza a nuevas fuentes"
+}

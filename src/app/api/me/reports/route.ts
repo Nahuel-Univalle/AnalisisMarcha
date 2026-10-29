@@ -18,6 +18,7 @@ function reportPayload(report: {
   analysis: {
     alert: "BAJO" | "MEDIO" | "ALTO";
     summary: string;
+    conditions: { condition: string; status: string }[];
     video: {
       originalVideoUrl: string | null;
       processedVideoUrl: string | null;
@@ -28,10 +29,14 @@ function reportPayload(report: {
     };
   };
 }) {
+  const primaryCondition = report.analysis.conditions[0] ?? null;
   return {
     id: report.id,
     title: report.title,
     summary: report.analysis.summary,
+    analysisType: "Análisis de marcha",
+    pattern: primaryCondition?.condition ?? null,
+    patternStatus: primaryCondition?.status ?? null,
     date: report.createdAt.toISOString().split("T")[0],
     alertLevel: fromPrismaAlert(report.analysis.alert),
     analysisId: report.analysisId,
@@ -56,6 +61,7 @@ export async function GET() {
       analysis: {
         include: {
           video: true,
+          conditions: true,
         },
       },
     },
@@ -108,6 +114,7 @@ export async function POST(request: Request) {
       analysis: {
         include: {
           video: true,
+          conditions: true,
         },
       },
     },

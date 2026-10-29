@@ -1,15 +1,28 @@
 import { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+type CardProps = HTMLAttributes<HTMLDivElement> & {
+  /**
+   * Solo para superficies realmente clickeables/navegables. El Card base no
+   * reacciona al hover: la mayoría de sus usos son contenido estático.
+   */
+  interactive?: boolean;
+};
+
+/**
+ * Superficie blanca con borde fino, sin sombra. Representa UNA zona de
+ * contenido; dentro se separa con divisores, nunca con otro Card.
+ */
+export function Card({ className, interactive = false, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "rounded-2xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-200/80 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl",
+        "rounded-xl border border-line bg-surface p-6",
+        interactive &&
+          "cursor-pointer transition-[border-color,box-shadow] duration-150 hover:border-line-strong hover:shadow-raised",
         className
       )}
       {...props}
     />
   );
 }
-

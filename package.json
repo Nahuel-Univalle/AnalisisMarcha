@@ -20,7 +20,11 @@
     "check:python": "node scripts/check-python-env.js",
     "check:python-env": "python test_entorno.py",
     "check:cloudinary": "node scripts/check-cloudinary-config.js",
-    "test:cloudinary": "node scripts/test-cloudinary-upload.js"
+    "test:cloudinary": "node scripts/test-cloudinary-upload.js",
+    "test:deep": "./.venv311/Scripts/python.exe scripts/video_training/deep/test_deep_pipeline.py",
+    "test:deep:methodology": "./.venv311/Scripts/python.exe scripts/video_training/deep/21_methodology_checks.py",
+    "deep:audit": "./.venv311/Scripts/python.exe scripts/video_training/deep/20_audit_model.py",
+    "deep:predict": "./.venv311/Scripts/python.exe scripts/video_training/deep/13_predict_deep_video.py --video"
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",

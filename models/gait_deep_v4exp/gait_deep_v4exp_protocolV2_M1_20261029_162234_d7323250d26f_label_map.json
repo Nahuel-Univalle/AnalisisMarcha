@@ -1,0 +1,14 @@
+{
+  "class_names": [
+    "normal",
+    "parkinson",
+    "esclerosis_multiple",
+    "riesgo_caida"
+  ],
+  "index": {
+    "normal": 0,
+    "parkinson": 1,
+    "esclerosis_multiple": 2,
+    "riesgo_caida": 3
+  }
+}

@@ -22,12 +22,22 @@ import {
   observedSeverityToAlertLabel,
 } from "@/lib/analysis/observedSignals";
 import {
+  alteredProbabilityFrom,
+  associatedConditionText,
+  detectedClassFrom,
+  gaitClassInfo,
+  GaitClassKey,
+  normalizeClassProbabilities,
+  sortedClassProbabilities,
+} from "@/lib/analysis/conditionLabels";
+import {
   CloudinaryVideoUpload,
   CloudinaryVideoUploadOk,
   deleteCloudinaryVideo,
   uploadVideoToCloudinary,
 } from "@/lib/cloudinary";
 import { getModelStatusDetails } from "@/lib/ml/modelMetrics";
+import { requireUser } from "@/lib/auth/guards";
 import { getSessionUser } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
 
@@ -39,8 +49,13 @@ const ALLOWED_VIDEO_TYPES = new Set([
   "video/quicktime",
 ]);
 const MAX_VIDEO_BYTES = 120 * 1024 * 1024;
+const DEEP_GAIT_MODEL_SOURCE = "gait_deep_model";
 const VIDEO_PARKINSON_MODEL_SOURCE = "video_parkinson_model";
 const FALLBACK_GAIT_RULES_SOURCE = "fallback_gait_rules";
+const MODEL_SOURCES_WITH_MODEL = new Set([
+  DEEP_GAIT_MODEL_SOURCE,
+  VIDEO_PARKINSON_MODEL_SOURCE,
+]);
 const PYTHON_TIMEOUT_MS = 90_000;
 const PYTHON_SCRIPT_NOT_FOUND =
   "No se encontró python_analysis/analyze_video.py. Verifique que el módulo Python esté instalado.";
@@ -54,6 +69,10 @@ const SENSOR_VIDEO_MODEL_MESSAGE =
   "El modelo de referencia usa datos de sensores de marcha. El video actual se evaluó mediante análisis visual.";
 const VIDEO_FEATURE_PREDICTION_FAILED =
   "No se pudieron extraer suficientes métricas visuales compatibles para aplicar el modelo.";
+const DEEP_GAIT_V4EXP_VERSION =
+  "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f";
+const EXPERIMENTAL_MODEL_UNAVAILABLE =
+  "No fue posible realizar la clasificación experimental de patrones de marcha: el modelo de 4 clases no está disponible en este momento. No se utilizó ningún otro modelo en su lugar. Intente nuevamente más tarde.";
 
 function projectPath(...segments: string[]) {
   return path.join(/* turbopackIgnore: true */ process.cwd(), ...segments);
@@ -63,25 +82,29 @@ function findPythonScript() {
   return projectPath("python_analysis", "analyze_video.py");
 }
 
-function findVideoPredictionScript() {
-  return projectPath("ml", "predict_parkinson_from_video_features.py");
+// Modelo experimental de 4 clases (Dataset V4, M1, protocolo V2). Su script
+// reproduce el preprocesamiento de entrenamiento; 13_predict_deep_video.py NO
+// debe usarse con este modelo (usa otro pipeline de entrada).
+function findDeepGaitPredictionScript() {
+  return projectPath(
+    "scripts",
+    "video_training",
+    "deep",
+    "14_predict_deep_video_v4exp.py"
+  );
 }
 
-function findTrainedVideoPredictionScript() {
-  return projectPath("scripts", "video_training", "04_predict_video_with_model.py");
-}
-
-function trainedVideoModelArtifactPaths() {
+function deepGaitModelArtifactPaths() {
   return [
-    "video_parkinson_model.joblib",
-    "video_parkinson_scaler.joblib",
-    "video_parkinson_feature_schema.json",
-    "video_parkinson_metrics.json",
-  ].map((fileName) => projectPath("models", "video_parkinson", fileName));
+    `${DEEP_GAIT_V4EXP_VERSION}.pt`,
+    `${DEEP_GAIT_V4EXP_VERSION}_config.json`,
+    `${DEEP_GAIT_V4EXP_VERSION}_feature_scaler.json`,
+    `${DEEP_GAIT_V4EXP_VERSION}_label_map.json`,
+  ].map((fileName) => projectPath("models", "gait_deep_v4exp", fileName));
 }
 
-function hasTrainedVideoModelArtifacts() {
-  return trainedVideoModelArtifactPaths().every((filePath) => existsSync(filePath));
+function hasDeepGaitModelArtifacts() {
+  return deepGaitModelArtifactPaths().every((filePath) => existsSync(filePath));
 }
 
 function normalizeExecutable(value: string) {
@@ -361,15 +384,12 @@ function parsePredictionStdout(stdout: string) {
   }
 }
 
-function runTrainedVideoModelPrediction(
-  videoPath: string,
-  predictionJsonPath: string
-) {
+function runDeepGaitPrediction(videoPath: string, predictionJsonPath: string) {
   return new Promise<Record<string, unknown> | null>((resolve) => {
-    const scriptPath = findTrainedVideoPredictionScript();
+    const scriptPath = findDeepGaitPredictionScript();
     const pythonCommand = findPythonCommand();
 
-    if (!existsSync(scriptPath) || !pythonCommand || !hasTrainedVideoModelArtifacts()) {
+    if (!existsSync(scriptPath) || !pythonCommand || !hasDeepGaitModelArtifacts()) {
       resolve(null);
       return;
     }
@@ -382,114 +402,65 @@ function runTrainedVideoModelPrediction(
         videoPath,
         "--output-json",
         predictionJsonPath,
-        "--frame-step",
-        "3",
       ],
-      {
-        cwd: projectPath(),
-        windowsHide: true,
-      }
+      { cwd: projectPath(), windowsHide: true }
     );
 
     let stdout = "";
     let stderr = "";
+    const timeout = setTimeout(() => {
+      child.kill("SIGTERM");
+      resolve(null);
+    }, SPRINT4_TIMEOUT_MS);
 
     child.stdout.on("data", (data) => {
       stdout += data.toString();
     });
-
     child.stderr.on("data", (data) => {
       stderr += data.toString();
     });
-
     child.on("error", () => {
+      clearTimeout(timeout);
       resolve(null);
     });
-
     child.on("close", () => {
+      clearTimeout(timeout);
       try {
         const parsed = parsePredictionStdout(stdout);
         resolve({
           ...parsed,
-          modelSource: parsed.modelSource ?? VIDEO_PARKINSON_MODEL_SOURCE,
+          modelSource: parsed.modelSource ?? DEEP_GAIT_MODEL_SOURCE,
         });
       } catch {
-        console.error("VIDEO_PARKINSON_MODEL_ERROR", stderr.trim());
+        console.error("DEEP_GAIT_MODEL_ERROR", stderr.trim());
         resolve(null);
       }
     });
   });
 }
 
-function runLegacyVideoFeaturePrediction(inputJsonPath: string) {
-  return new Promise<Record<string, unknown>>((resolve) => {
-    const scriptPath = findVideoPredictionScript();
-    const pythonCommand = findPythonCommand();
-
-    if (!existsSync(scriptPath) || !pythonCommand) {
-      resolve(unavailableVideoPrediction());
-      return;
-    }
-
-    const child = spawn(pythonCommand, [scriptPath, inputJsonPath], {
-      cwd: projectPath(),
-      windowsHide: true,
-    });
-
-    let stdout = "";
-    let stderr = "";
-
-    child.stdout.on("data", (data) => {
-      stdout += data.toString();
-    });
-
-    child.stderr.on("data", (data) => {
-      stderr += data.toString();
-    });
-
-    child.on("error", () => {
-      resolve(unavailableVideoPrediction());
-    });
-
-    child.on("close", () => {
-      try {
-        const parsed = parsePredictionStdout(stdout);
-        resolve({
-          ...parsed,
-          modelSource: FALLBACK_GAIT_RULES_SOURCE,
-        });
-      } catch {
-        console.error("VIDEO_FEATURE_PREDICTION_ERROR", stderr.trim());
-        resolve(unavailableVideoPrediction());
-      }
-    });
-  });
-}
-
-async function runVideoFeaturePrediction(
-  inputJsonPath: string,
-  videoPath: string,
-  predictionJsonPath: string
-) {
-  const trainedPrediction = await runTrainedVideoModelPrediction(
-    videoPath,
-    predictionJsonPath
+// Clasificación experimental de 4 clases. Si falla, NO se recurre al modelo
+// binario histórico ni a reglas: se devuelve un fallo controlado y la ruta
+// responde con un error explícito (salvo pose insuficiente, que sigue el flujo
+// existente de "análisis no concluyente").
+async function runVideoFeaturePrediction(videoPath: string, predictionJsonPath: string) {
+  const deepPrediction = await runDeepGaitPrediction(videoPath, predictionJsonPath);
+  if (deepPrediction && deepPrediction.modelUsed) {
+    return deepPrediction;
+  }
+  console.error(
+    "EXPERIMENTAL_GAIT_MODEL_FAILED",
+    deepPrediction && typeof deepPrediction.message === "string"
+      ? deepPrediction.message
+      : "sin respuesta del script de inferencia"
   );
-
-  if (trainedPrediction && trainedPrediction.modelUsed) {
-    return trainedPrediction;
-  }
-
-  if (trainedPrediction) {
-    console.error(
-      "VIDEO_PARKINSON_MODEL_FALLBACK",
-      typeof trainedPrediction.message === "string"
-        ? trainedPrediction.message
-        : VIDEO_FEATURE_PREDICTION_FAILED
-    );
-  }
-
-  return runLegacyVideoFeaturePrediction(inputJsonPath);
+  return {
+    ...unavailableVideoPrediction(EXPERIMENTAL_MODEL_UNAVAILABLE),
+    failureKind:
+      deepPrediction && typeof deepPrediction.failureKind === "string"
+        ? deepPrediction.failureKind
+        : "model_unavailable",
+  };
 }
 
 function safeFileStem(name: string) {
@@ -528,13 +499,6 @@ function probabilityFrom(
   return numberFrom((classProbabilities as Record<string, unknown>)[label]);
 }
 
-function modelAlertLevel(parkinsonProbability: number | null) {
-  if (parkinsonProbability === null) return "BAJO";
-  if (parkinsonProbability >= 0.7) return "ALTO";
-  if (parkinsonProbability >= 0.5) return "MEDIO";
-  return "BAJO";
-}
-
 function riskLevelFromProbability(parkinsonProbability: number | null) {
   if (parkinsonProbability === null) return null;
   if (parkinsonProbability < 0.4) return "bajo";
@@ -549,9 +513,11 @@ function riskLevelFromAlert(alertLevel: string) {
 }
 
 function normalizeModelSource(videoPrediction: Record<string, unknown>) {
-  return videoPrediction.modelSource === VIDEO_PARKINSON_MODEL_SOURCE
-    ? VIDEO_PARKINSON_MODEL_SOURCE
-    : FALLBACK_GAIT_RULES_SOURCE;
+  const source = String(videoPrediction.modelSource ?? "");
+  if (Boolean(videoPrediction.modelUsed) && MODEL_SOURCES_WITH_MODEL.has(source)) {
+    return source;
+  }
+  return FALLBACK_GAIT_RULES_SOURCE;
 }
 
 function observedSeverityToApiLevel(severity: string): "BAJO" | "MEDIO" | "ALTO" {
@@ -560,50 +526,91 @@ function observedSeverityToApiLevel(severity: string): "BAJO" | "MEDIO" | "ALTO"
   return "BAJO";
 }
 
-function buildModelDrivenEvaluation(
-  evaluation: GaitEvaluationResult,
-  videoPrediction: Record<string, unknown>
-): GaitEvaluationResult & {
+function alteredAlertLevel(alteredProbability: number | null) {
+  if (alteredProbability === null) return "BAJO";
+  if (alteredProbability >= 0.7) return "ALTO";
+  if (alteredProbability >= 0.5) return "MEDIO";
+  return "BAJO";
+}
+
+type ModelDrivenEvaluation = GaitEvaluationResult & {
   decisionSource: "modelo" | "observaciones";
   modelControlProbability: number | null;
   modelParkinsonProbability: number | null;
-} {
+  detectedCondition: GaitClassKey | null;
+  detectedConditionLabel: string | null;
+  alteredProbability: number | null;
+  classProbabilitiesByName: Record<string, number> | null;
+};
+
+function buildModelDrivenEvaluation(
+  evaluation: GaitEvaluationResult,
+  videoPrediction: Record<string, unknown>
+): ModelDrivenEvaluation {
+  const source = String(videoPrediction.modelSource ?? "");
   const modelUsed =
-    Boolean(videoPrediction.modelUsed) &&
-    videoPrediction.modelSource === VIDEO_PARKINSON_MODEL_SOURCE;
-  const controlProbability = probabilityFrom(
-    videoPrediction.classProbabilities,
-    "control"
-  );
-  const parkinsonProbability = probabilityFrom(
-    videoPrediction.classProbabilities,
-    "parkinson"
-  );
+    Boolean(videoPrediction.modelUsed) && MODEL_SOURCES_WITH_MODEL.has(source);
 
-  if (!modelUsed || controlProbability === null || parkinsonProbability === null) {
-    return {
-      ...evaluation,
-      decisionSource: "observaciones",
-      modelControlProbability: controlProbability,
-      modelParkinsonProbability: parkinsonProbability,
-    };
-  }
+  const probsByName = normalizeClassProbabilities(videoPrediction.classProbabilities);
+  const controlProbability =
+    probsByName?.normal ?? probabilityFrom(videoPrediction.classProbabilities, "control");
+  const parkinsonProbability =
+    probsByName?.parkinson ??
+    probabilityFrom(videoPrediction.classProbabilities, "parkinson");
 
-  const modelSuggestsParkinson = parkinsonProbability > controlProbability;
-
-  return {
+  const base: ModelDrivenEvaluation = {
     ...evaluation,
-    alertLevel: modelAlertLevel(parkinsonProbability),
-    possibleCondition: modelSuggestsParkinson ? "posible_parkinson" : "sin_alerta",
-    title: modelSuggestsParkinson
-      ? "Resultado orientativo compatible con posible patrón asociado a Parkinson"
-      : "Resultado orientativo sin alerta principal asociada a Parkinson",
-    summary: modelSuggestsParkinson
-      ? "El modelo encontró una coincidencia visual orientativa mayor con patrones asociados a Parkinson. Este resultado no confirma una enfermedad y requiere valoración profesional."
-      : "El modelo encontró mayor coincidencia visual con patrones de control. Las observaciones de la marcha se presentan solo como información complementaria y no cambian la decisión final.",
-    decisionSource: "modelo",
+    decisionSource: "observaciones",
     modelControlProbability: controlProbability,
     modelParkinsonProbability: parkinsonProbability,
+    detectedCondition: null,
+    detectedConditionLabel: null,
+    alteredProbability: null,
+    classProbabilitiesByName: probsByName
+      ? (Object.fromEntries(
+          Object.entries(probsByName).filter(([, v]) => typeof v === "number")
+        ) as Record<string, number>)
+      : null,
+  };
+
+  if (!modelUsed || !probsByName) {
+    return base;
+  }
+
+  const detected =
+    (typeof videoPrediction.detectedClass === "string" &&
+      (videoPrediction.detectedClass as GaitClassKey)) ||
+    detectedClassFrom(probsByName);
+  const info = gaitClassInfo(detected);
+  const isNormal = detected === "normal";
+  const altered =
+    alteredProbabilityFrom(probsByName) ??
+    (parkinsonProbability !== null ? parkinsonProbability : null);
+
+  const orientationText =
+    typeof videoPrediction.orientationText === "string" &&
+    videoPrediction.orientationText.trim()
+      ? (videoPrediction.orientationText as string)
+      : `${info.patternPhrase} ${info.description}`;
+
+  return {
+    ...base,
+    alertLevel: isNormal ? "BAJO" : alteredAlertLevel(altered),
+    possibleCondition: isNormal
+      ? "sin_alerta"
+      : detected === "parkinson"
+        ? "posible_parkinson"
+        : "posible_alteracion_marcha",
+    title: isNormal
+      ? "Resultado orientativo sin alerta principal en la marcha"
+      : `Resultado orientativo: ${info.label}`,
+    summary: isNormal
+      ? "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+      : `${orientationText} Este resultado no confirma una enfermedad y requiere valoración por un profesional de salud.`,
+    decisionSource: "modelo",
+    detectedCondition: detected,
+    detectedConditionLabel: info.label,
+    alteredProbability: altered,
   };
 }
 
@@ -663,7 +670,9 @@ type SaveAnalysisInput = {
   processedUpload: CloudinaryVideoUploadOk | null;
   localOriginalVideoUrl: string | null;
   localProcessedVideoUrl: string | null;
-  evaluation: GaitEvaluationResult;
+  evaluation: GaitEvaluationResult & {
+    detectedCondition?: GaitClassKey | null;
+  };
   poseDetectionRate: number | null;
   framesAnalyzed: number;
   framesWithPose: number;
@@ -751,10 +760,12 @@ async function saveAnalysisToDatabase({
       conditions: {
         create: [
           {
+            // Texto dependiente de la CLASE REALMENTE DETECTADA por el modelo
+            // (normal / parkinson / esclerosis_multiple / riesgo_caida).
             condition:
               evaluation.possibleCondition === "sin_alerta"
                 ? "Sin alerta específica"
-                : "Posible patrón asociado a Parkinson",
+                : associatedConditionText(evaluation.detectedCondition),
             status:
               evaluation.possibleCondition === "sin_alerta"
                 ? "Sin alerta específica"
@@ -1005,6 +1016,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Verifica en la base de datos que la identidad existe y su rol real,
+    // antes de cualquier procesamiento, subida o escritura.
+    const authResult = await requireUser();
+
+    if ("error" in authResult) {
+      return authResult.error;
+    }
+
+    if (authResult.user.role === "ADMIN") {
+      return Response.json(
+        {
+          success: false,
+          message: "Los administradores no pueden crear analisis de paciente.",
+          analysis: null,
+        },
+        { status: 403 }
+      );
+    }
+
     const contentType = request.headers.get("content-type") ?? "";
     if (!contentType.includes("multipart/form-data")) {
       return Response.json(
@@ -1110,13 +1140,22 @@ export async function POST(request: NextRequest) {
       });
     } catch (error) {
       console.error("PYTHON_VIDEO_ANALYSIS_ERROR", error);
+      const detail = error instanceof Error ? error.message : "";
+      // Distingue entrada inválida (video dañado / no es un video / vacío) de un
+      // fallo interno: en el primer caso es un 400 con mensaje claro para el usuario.
+      const badInput =
+        /no se pudo abrir el video|no es un video|dañad|corrupt|invalid|moov atom|could not|formato/i.test(
+          detail
+        );
       return Response.json(
         {
           success: false,
-          message: PYTHON_ANALYSIS_FAILED,
+          message: badInput
+            ? "El archivo no es un video válido o está dañado. Suba un video MP4, MOV o WEBM con una persona caminando de cuerpo completo."
+            : PYTHON_ANALYSIS_FAILED,
           analysis: null,
         },
-        { status: 500 }
+        { status: badInput ? 400 : 500 }
       );
     }
 
@@ -1212,10 +1251,56 @@ export async function POST(request: NextRequest) {
     const [evaluation, modelStatus, videoPrediction] = await Promise.all([
       evaluateGaitAgainstParkinsonDataset(videoMetrics),
       getModelStatusDetails(),
-      runVideoFeaturePrediction(outputJsonPath, tempVideoPath, videoPredictionJsonPath),
+      runVideoFeaturePrediction(tempVideoPath, videoPredictionJsonPath),
     ]);
+
+    // Fallo del modelo experimental: error controlado (sin modelo de respaldo).
+    // La pose insuficiente NO es un fallo del modelo: sigue el flujo existente
+    // de "análisis no concluyente" mediante el gate de calidad de más abajo.
+    const experimentalFailureKind = videoPrediction.modelUsed
+      ? null
+      : String(videoPrediction.failureKind ?? "model_unavailable");
+    if (experimentalFailureKind && experimentalFailureKind !== "pose_insufficient") {
+      if (originalUpload.ok) await deleteCloudinaryVideo(originalUpload.publicId);
+      if (processedUpload.ok) await deleteCloudinaryVideo(processedUpload.publicId);
+      preserveLocalFallback = false;
+      if (outputVideoPath) await rm(outputVideoPath, { force: true }).catch(() => undefined);
+      return Response.json(
+        {
+          success: false,
+          errorCode: "EXPERIMENTAL_MODEL_UNAVAILABLE",
+          message: EXPERIMENTAL_MODEL_UNAVAILABLE,
+          analysis: null,
+        },
+        { status: 503 }
+      );
+    }
+
     const finalEvaluation = buildModelDrivenEvaluation(evaluation, videoPrediction);
     const modelSource = normalizeModelSource(videoPrediction);
+    const classProbabilitiesByName = finalEvaluation.classProbabilitiesByName;
+    const detectedCondition = finalEvaluation.detectedCondition;
+    const detectedConditionLabel = finalEvaluation.detectedConditionLabel;
+    const classProbabilitiesList = sortedClassProbabilities(
+      normalizeClassProbabilities(videoPrediction.classProbabilities)
+    );
+    const alteredProbability =
+      finalEvaluation.alteredProbability ??
+      alteredProbabilityFrom(
+        normalizeClassProbabilities(videoPrediction.classProbabilities)
+      );
+    const featureHighlights = Array.isArray(videoPrediction.featureHighlights)
+      ? videoPrediction.featureHighlights
+      : [];
+    const gaitFeatures =
+      videoPrediction.gaitFeatures &&
+      typeof videoPrediction.gaitFeatures === "object"
+        ? (videoPrediction.gaitFeatures as Record<string, unknown>)
+        : null;
+    const orientationText =
+      typeof videoPrediction.orientationText === "string"
+        ? videoPrediction.orientationText
+        : null;
     const probabilityParkinson =
       numberFrom(videoPrediction.probability_parkinson) ??
       finalEvaluation.modelParkinsonProbability;
@@ -1226,7 +1311,7 @@ export async function POST(request: NextRequest) {
       (typeof videoPrediction.risk_level === "string"
         ? videoPrediction.risk_level
         : null) ??
-      riskLevelFromProbability(probabilityParkinson) ??
+      riskLevelFromProbability(alteredProbability ?? probabilityParkinson) ??
       riskLevelFromAlert(finalEvaluation.alertLevel);
     const confidence =
       numberFrom(videoPrediction.confidence) ??
@@ -1234,10 +1319,28 @@ export async function POST(request: NextRequest) {
     const poseDetectionRate = numberFrom(pythonOutput.pose_detection_rate);
     const framesAnalyzed = Number(pythonOutput.frames_analyzed ?? 0);
     const framesWithPose = Number(pythonOutput.frames_with_pose ?? 0);
+
+    // --- Gate de calidad de pose (obligatorio) --------------------------------
+    // Si el video no contiene suficiente información corporal, NINGÚN modelo debe
+    // devolver una predicción con falsa confianza. Se anula la clase detectada y
+    // se marca el análisis como NO concluyente.
+    const poseRatio =
+      framesAnalyzed > 0 ? framesWithPose / framesAnalyzed : null;
+    const poseQualityInsufficient =
+      (poseDetectionRate !== null && poseDetectionRate < 0.45) ||
+      (poseRatio !== null && poseRatio < 0.45) ||
+      framesWithPose < 15 ||
+      experimentalFailureKind === "pose_insufficient";
+    const UNRELIABLE_MESSAGE =
+      "El video no contiene información corporal suficiente para un análisis confiable. Suba un video con la persona de cuerpo completo, buena iluminación, cámara estable y varios pasos visibles.";
+    const analysisReliable = !poseQualityInsufficient;
+
     const observedSignalResult = buildObservedSignals({
       modelSource,
       probabilityParkinson,
       probabilityNormal,
+      alteredProbability,
+      detectedClass: detectedCondition,
       riskLevel,
       confidence,
       poseDetectionRate,
@@ -1248,14 +1351,43 @@ export async function POST(request: NextRequest) {
     });
     const modelAlignedEvaluation = {
       ...finalEvaluation,
-      detectedSignals: observedSignalResult.signals
-        .filter((signal) => signal.severity !== "info")
-        .map((signal) => ({
-          name: signal.title,
-          relevance: observedSeverityToApiLevel(signal.severity),
-          description: signal.description,
-        })),
+      ...(analysisReliable
+        ? {}
+        : {
+            alertLevel: "BAJO" as const,
+            possibleCondition: "sin_alerta" as const,
+            detectedCondition: null,
+            detectedConditionLabel: null,
+            title: "Análisis no concluyente por calidad del video",
+            summary: UNRELIABLE_MESSAGE,
+            decisionSource: "observaciones" as const,
+          }),
+      detectedSignals: analysisReliable
+        ? observedSignalResult.signals
+            .filter((signal) => signal.severity !== "info")
+            .map((signal) => ({
+              name: signal.title,
+              relevance: observedSeverityToApiLevel(signal.severity),
+              description: signal.description,
+            }))
+        : [],
     };
+
+    // Valores "efectivos": si la calidad de pose es insuficiente se anulan la
+    // clase, las probabilidades y la confianza para no mostrar un resultado
+    // aparentemente válido.
+    const effModelSource = analysisReliable ? modelSource : FALLBACK_GAIT_RULES_SOURCE;
+    const effDetectedCondition = analysisReliable ? detectedCondition : null;
+    const effDetectedConditionLabel = analysisReliable ? detectedConditionLabel : null;
+    const effClassProbabilitiesByName = analysisReliable ? classProbabilitiesByName : null;
+    const effClassProbabilitiesList = analysisReliable ? classProbabilitiesList : [];
+    const effOrientationText = analysisReliable ? orientationText : UNRELIABLE_MESSAGE;
+    const effAlteredProbability = analysisReliable ? alteredProbability : null;
+    const effConfidence = analysisReliable ? confidence : null;
+    const effProbabilityParkinson = analysisReliable ? probabilityParkinson : null;
+    const effProbabilityNormal = analysisReliable ? probabilityNormal : null;
+    const effRiskLevel = analysisReliable ? riskLevel : "bajo";
+    const effModelUsed = analysisReliable && Boolean(videoPrediction.modelUsed);
     const rawCadence = numberFrom(pythonOutput.estimated_cadence_steps_per_min);
     const cadenceWarning =
       rawCadence !== null && reliableCadence(rawCadence) === null
@@ -1311,6 +1443,31 @@ export async function POST(request: NextRequest) {
           "No se encontró el usuario para guardar el análisis en seguimiento."
         );
       }
+
+      // Trazabilidad: qué modelo produjo este resultado.
+      if (databaseRecord) {
+        await prisma.systemLog
+          .create({
+            data: {
+              userId: userEmail || null,
+              action: "GAIT_ANALYSIS_MODEL",
+              detail: JSON.stringify({
+                analysisId: databaseRecord.analysisId,
+                videoId: databaseRecord.videoId,
+                modelSource: effModelSource,
+                modelVersion:
+                  typeof videoPrediction.modelVersion === "string"
+                    ? videoPrediction.modelVersion
+                    : null,
+                detectedClass: effDetectedCondition,
+                analysisReliable,
+                poseDetectionRate,
+                framesWithPose,
+              }),
+            },
+          })
+          .catch(() => undefined);
+      }
     } catch (error) {
       console.error("VIDEO_ANALYSIS_DB_SAVE_ERROR", error);
       databaseWarnings.push(
@@ -1340,13 +1497,46 @@ export async function POST(request: NextRequest) {
       warnings: allWarnings,
       videoMetrics,
       visualAnalysisCompleted: true,
-      modelSource,
-      probabilityParkinson,
-      probabilityNormal,
-      riskLevel,
-      confidence,
-      modelUsed: Boolean(videoPrediction.modelUsed),
-      modelUsedForVideo: Boolean(videoPrediction.modelUsedForVideo ?? videoPrediction.modelUsed),
+      analysisReliable,
+      qualityMessage: analysisReliable ? null : UNRELIABLE_MESSAGE,
+      modelSource: effModelSource,
+      modelVersion:
+        analysisReliable && typeof videoPrediction.modelVersion === "string"
+          ? videoPrediction.modelVersion
+          : null,
+      modelKind: modelStatus.modelKind,
+      // Clasificación experimental (modelo V4): advertencias estructuradas y
+      // textos de contexto. Se anulan si el análisis no es concluyente.
+      experimentalClassification: effModelUsed && videoPrediction.experimental === true,
+      modelVariant:
+        typeof videoPrediction.modelVariant === "string" ? videoPrediction.modelVariant : null,
+      modelWarnings:
+        analysisReliable && Array.isArray(videoPrediction.warnings)
+          ? videoPrediction.warnings
+          : [],
+      confidenceMeaning:
+        typeof videoPrediction.confidenceMeaning === "string"
+          ? videoPrediction.confidenceMeaning
+          : null,
+      modelDisclaimer:
+        typeof videoPrediction.disclaimer === "string" ? videoPrediction.disclaimer : null,
+      detectedClass: effDetectedCondition,
+      detectedClassLabel: effDetectedConditionLabel,
+      classProbabilitiesByName: effClassProbabilitiesByName,
+      classProbabilitiesList: effClassProbabilitiesList,
+      alteredProbability: effAlteredProbability,
+      orientationText: effOrientationText,
+      featureHighlights,
+      gaitFeatures,
+      probabilityParkinson: effProbabilityParkinson,
+      probabilityNormal: effProbabilityNormal,
+      riskLevel: effRiskLevel,
+      confidence: effConfidence,
+      modelMacroF1:
+        numberFrom(videoPrediction.modelMacroF1) ??
+        (modelStatus.metricsAvailable ? modelStatus.macroF1 ?? null : null),
+      modelUsed: effModelUsed,
+      modelUsedForVideo: effModelUsed && Boolean(videoPrediction.modelUsedForVideo ?? videoPrediction.modelUsed),
       predictionLabel:
         typeof videoPrediction.predictionLabel === "string"
           ? videoPrediction.predictionLabel
@@ -1465,6 +1655,9 @@ export async function POST(request: NextRequest) {
       metricAuditIssues: metricAuditIssues(debugMetrics),
       modelOutput: {
         modelSource: analysis.modelSource,
+        modelVersion: analysis.modelVersion,
+        analysisReliable: analysis.analysisReliable,
+        detectedClass: analysis.detectedClass,
         modelUsed: analysis.modelUsed,
         modelUsedForVideo: analysis.modelUsedForVideo,
         predictionLabel: analysis.predictionLabel,
@@ -1515,7 +1708,11 @@ export async function POST(request: NextRequest) {
       framesAnalyzed,
       framesWithPose,
       visualAnalysisCompleted: analysis.visualAnalysisCompleted,
+      analysisReliable: analysis.analysisReliable,
+      qualityMessage: analysis.qualityMessage,
+      message: analysis.analysisReliable ? null : UNRELIABLE_MESSAGE,
       modelSource: analysis.modelSource,
+      modelVersion: analysis.modelVersion,
       probabilityParkinson: analysis.probabilityParkinson,
       probabilityNormal: analysis.probabilityNormal,
       riskLevel: analysis.riskLevel,
@@ -1527,6 +1724,16 @@ export async function POST(request: NextRequest) {
       modelUsedForVideo: analysis.modelUsedForVideo,
       predictionConfidence: analysis.predictionConfidence,
       classProbabilities: analysis.classProbabilities,
+      classProbabilitiesByName: analysis.classProbabilitiesByName,
+      classProbabilitiesList: analysis.classProbabilitiesList,
+      detectedClass: analysis.detectedClass,
+      detectedClassLabel: analysis.detectedClassLabel,
+      alteredProbability: analysis.alteredProbability,
+      orientationText: analysis.orientationText,
+      featureHighlights: analysis.featureHighlights,
+      gaitFeatures: analysis.gaitFeatures,
+      modelKind: analysis.modelKind,
+      modelMacroF1: analysis.modelMacroF1,
       predictionLabel: analysis.predictionLabel,
       visualSignals: analysis.signals,
       modelAccuracy: analysis.modelAccuracy,

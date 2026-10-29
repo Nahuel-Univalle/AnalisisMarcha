@@ -1,0 +1,385 @@
+{
+  "check_13_augment_solo_train": {
+    "check": "augmentation solo en train",
+    "build_batch_call_sites": [
+      {
+        "line": 130,
+        "augment_arg": "False"
+      },
+      {
+        "line": 224,
+        "augment_arg": "'augment'"
+      }
+    ],
+    "augment_common_apply_calls_gated_by_rng": "augment_sample() se invoca solo dentro de build_batch cuando augment es verdadero",
+    "ok": true
+  },
+  "check_14_sin_fuga_sujeto": {
+    "check": "sin fuga de sujeto train/test por fold",
+    "folds": [
+      {
+        "fold": 1,
+        "n_train_subj": 69,
+        "n_test_subj": 17,
+        "test_subjects": [
+          "001_PD",
+          "005_NM",
+          "006_NM",
+          "013_NM",
+          "014_NM",
+          "020_NM",
+          "022_NM",
+          "FALL_001",
+          "FALL_004",
+          "FALL_006",
+          "FALL_007",
+          "MS_003",
+          "MS_011",
+          "MS_012",
+          "MS_013",
+          "MS_014",
+          "MS_016"
+        ]
+      },
+      {
+        "fold": 2,
+        "n_train_subj": 69,
+        "n_test_subj": 17,
+        "test_subjects": [
+          "002_PD",
+          "006_PD",
+          "012_NM",
+          "015_NM",
+          "019_NM",
+          "023_NM",
+          "025_NM",
+          "030_NM",
+          "FALL_003",
+          "FALL_013",
+          "FALL_014",
+          "FALL_016",
+          "MS_002",
+          "MS_005",
+          "MS_008",
+          "MS_022",
+          "MS_023"
+        ]
+      },
+      {
+        "fold": 3,
+        "n_train_subj": 68,
+        "n_test_subj": 18,
+        "test_subjects": [
+          "001_NM",
+          "003_NM",
+          "004_NM",
+          "005_PD",
+          "007_PD",
+          "008_NM",
+          "026_NM",
+          "029_NM",
+          "FALL_010",
+          "FALL_011",
+          "FALL_015",
+          "FALL_018",
+          "MS_004",
+          "MS_009",
+          "MS_017",
+          "MS_021",
+          "MS_024",
+          "MS_028"
+        ]
+      },
+      {
+        "fold": 4,
+        "n_train_subj": 69,
+        "n_test_subj": 17,
+        "test_subjects": [
+          "002_NM",
+          "003_PD",
+          "007_NM",
+          "009_NM",
+          "010_NM",
+          "018_NM",
+          "027_NM",
+          "FALL_002",
+          "FALL_005",
+          "FALL_008",
+          "FALL_020",
+          "MS_001",
+          "MS_010",
+          "MS_018",
+          "MS_020",
+          "MS_025",
+          "MS_030"
+        ]
+      },
+      {
+        "fold": 5,
+        "n_train_subj": 69,
+        "n_test_subj": 17,
+        "test_subjects": [
+          "004_PD",
+          "011_NM",
+          "016_NM",
+          "017_NM",
+          "021_NM",
+          "024_NM",
+          "028_NM",
+          "FALL_009",
+          "FALL_012",
+          "FALL_017",
+          "FALL_019",
+          "MS_006",
+          "MS_015",
+          "MS_019",
+          "MS_026",
+          "MS_027",
+          "MS_029"
+        ]
+      }
+    ],
+    "folds_con_fuga": [],
+    "sujetos_en_mas_de_un_fold_test": {},
+    "ok": true
+  },
+  "check_15_independencia_sujetos_MS_fall": {
+    "check": "independencia de sujetos EM / riesgo_caida",
+    "detalle": {
+      "esclerosis_multiple": {
+        "n_videos": 29,
+        "n_subjects_asumidos": 29,
+        "pares_mas_cercanos_top5": [
+          {
+            "rms_z_dist": 0.423,
+            "cosine": 0.791,
+            "video_a": "VideoEscleorosis23.mp4",
+            "video_b": "VideoEscleorosis30.mp4"
+          },
+          {
+            "rms_z_dist": 0.436,
+            "cosine": 0.735,
+            "video_a": "VideoEscleorosis21.mp4",
+            "video_b": "VideoEscleorosis23.mp4"
+          },
+          {
+            "rms_z_dist": 0.446,
+            "cosine": 0.788,
+            "video_a": "VideoEscleorosis15.mp4",
+            "video_b": "VideoEscleorosis3.mp4"
+          },
+          {
+            "rms_z_dist": 0.457,
+            "cosine": 0.67,
+            "video_a": "VideoEscleorosis10.mp4",
+            "video_b": "VideoEscleorosis25.mp4"
+          },
+          {
+            "rms_z_dist": 0.505,
+            "cosine": 0.655,
+            "video_a": "VideoEscleorosis15.mp4",
+            "video_b": "VideoEscleorosis21.mp4"
+          }
+        ],
+        "pares_sospechosos_rms_z_lt_0.6": [
+          {
+            "rms_z_dist": 0.423,
+            "cosine": 0.791,
+            "video_a": "VideoEscleorosis23.mp4",
+            "video_b": "VideoEscleorosis30.mp4"
+          },
+          {
+            "rms_z_dist": 0.436,
+            "cosine": 0.735,
+            "video_a": "VideoEscleorosis21.mp4",
+            "video_b": "VideoEscleorosis23.mp4"
+          },
+          {
+            "rms_z_dist": 0.446,
+            "cosine": 0.788,
+            "video_a": "VideoEscleorosis15.mp4",
+            "video_b": "VideoEscleorosis3.mp4"
+          },
+          {
+            "rms_z_dist": 0.457,
+            "cosine": 0.67,
+            "video_a": "VideoEscleorosis10.mp4",
+            "video_b": "VideoEscleorosis25.mp4"
+          },
+          {
+            "rms_z_dist": 0.505,
+            "cosine": 0.655,
+            "video_a": "VideoEscleorosis15.mp4",
+            "video_b": "VideoEscleorosis21.mp4"
+          },
+          {
+            "rms_z_dist": 0.506,
+            "cosine": 0.704,
+            "video_a": "VideoEscleorosis21.mp4",
+            "video_b": "VideoEscleorosis30.mp4"
+          },
+          {
+            "rms_z_dist": 0.526,
+            "cosine": 0.77,
+            "video_a": "VideoEscleorosis24.mp4",
+            "video_b": "VideoEscleorosis27.mp4"
+          },
+          {
+            "rms_z_dist": 0.533,
+            "cosine": 0.709,
+            "video_a": "VideoEscleorosis21.mp4",
+            "video_b": "VideoEscleorosis5.mp4"
+          },
+          {
+            "rms_z_dist": 0.541,
+            "cosine": 0.577,
+            "video_a": "VideoEscleorosis15.mp4",
+            "video_b": "VideoEscleorosis23.mp4"
+          },
+          {
+            "rms_z_dist": 0.548,
+            "cosine": 0.577,
+            "video_a": "VideoEscleorosis10.mp4",
+            "video_b": "VideoEscleorosis28.mp4"
+          },
+          {
+            "rms_z_dist": 0.551,
+            "cosine": 0.641,
+            "video_a": "VideoEscleorosis13.mp4",
+            "video_b": "VideoEscleorosis23.mp4"
+          },
+          {
+            "rms_z_dist": 0.557,
+            "cosine": 0.653,
+            "video_a": "VideoEscleorosis23.mp4",
+            "video_b": "VideoEscleorosis3.mp4"
+          },
+          {
+            "rms_z_dist": 0.586,
+            "cosine": 0.661,
+            "video_a": "VideoEscleorosis13.mp4",
+            "video_b": "VideoEscleorosis3.mp4"
+          },
+          {
+            "rms_z_dist": 0.59,
+            "cosine": 0.694,
+            "video_a": "VideoEscleorosis11.mp4",
+            "video_b": "VideoEscleorosis15.mp4"
+          },
+          {
+            "rms_z_dist": 0.592,
+            "cosine": 0.437,
+            "video_a": "VideoEscleorosis10.mp4",
+            "video_b": "VideoEscleorosis23.mp4"
+          }
+        ],
+        "veredicto": "15 par(es) muy similares: revisar si son la misma persona"
+      },
+      "riesgo_caida": {
+        "n_videos": 20,
+        "n_subjects_asumidos": 20,
+        "pares_mas_cercanos_top5": [
+          {
+            "rms_z_dist": 0.407,
+            "cosine": 0.891,
+            "video_a": "RiesgoCaida17.mp4",
+            "video_b": "RiesgoCaida4.mp4"
+          },
+          {
+            "rms_z_dist": 0.477,
+            "cosine": 0.815,
+            "video_a": "RiesgoCaida13.mp4",
+            "video_b": "RiesgoCaida3.mp4"
+          },
+          {
+            "rms_z_dist": 0.547,
+            "cosine": 0.861,
+            "video_a": "RiesgoCaida11.mp4",
+            "video_b": "RiesgoCaida16.mp4"
+          },
+          {
+            "rms_z_dist": 0.66,
+            "cosine": 0.716,
+            "video_a": "RiesgoCaida12.mp4",
+            "video_b": "RiesgoCaida5.mp4"
+          },
+          {
+            "rms_z_dist": 0.662,
+            "cosine": 0.66,
+            "video_a": "RiesgoCaida18.mp4",
+            "video_b": "RiesgoCaida4.mp4"
+          }
+        ],
+        "pares_sospechosos_rms_z_lt_0.6": [
+          {
+            "rms_z_dist": 0.407,
+            "cosine": 0.891,
+            "video_a": "RiesgoCaida17.mp4",
+            "video_b": "RiesgoCaida4.mp4"
+          },
+          {
+            "rms_z_dist": 0.477,
+            "cosine": 0.815,
+            "video_a": "RiesgoCaida13.mp4",
+            "video_b": "RiesgoCaida3.mp4"
+          },
+          {
+            "rms_z_dist": 0.547,
+            "cosine": 0.861,
+            "video_a": "RiesgoCaida11.mp4",
+            "video_b": "RiesgoCaida16.mp4"
+          }
+        ],
+        "veredicto": "3 par(es) muy similares: revisar si son la misma persona"
+      }
+    }
+  },
+  "check_12_uniformidad_preprocesamiento": {
+    "check": "uniformidad de preprocesamiento dentro de fuente",
+    "metricas": {
+      "pose_rate": [
+        {
+          "pair": "normal_vs_parkinson",
+          "mean_c1": 0.7791,
+          "mean_c2": 0.8247,
+          "cohens_d": -0.49
+        },
+        {
+          "pair": "esclerosis_vs_riesgo",
+          "mean_c1": 1.0,
+          "mean_c2": 1.0,
+          "cohens_d": null
+        }
+      ],
+      "seq_spatial_range": [
+        {
+          "pair": "normal_vs_parkinson",
+          "mean_c1": 3.2586,
+          "mean_c2": 3.2548,
+          "cohens_d": 0.012
+        },
+        {
+          "pair": "esclerosis_vs_riesgo",
+          "mean_c1": 3.2296,
+          "mean_c2": 3.1485,
+          "cohens_d": 0.416
+        }
+      ],
+      "seq_abs_mean": [
+        {
+          "pair": "normal_vs_parkinson",
+          "mean_c1": 0.4975,
+          "mean_c2": 0.4729,
+          "cohens_d": 0.951
+        },
+        {
+          "pair": "esclerosis_vs_riesgo",
+          "mean_c1": 0.5185,
+          "mean_c2": 0.5294,
+          "cohens_d": -0.31
+        }
+      ]
+    },
+    "lectura": "cohens_d pequeno (|d|<0.5) dentro de una fuente = sin sesgo de preprocesamiento; seq_* son las magnitudes que realmente ve el modelo (posiciones normalizadas)."
+  }
+}

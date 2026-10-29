@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { validateEmailFormat } from "@/lib/validations/auth";
+import {
+  SESSION_COOKIE,
+  sessionCookieOptions,
+  signSession,
+} from "@/lib/auth/sessionToken";
 
 export async function POST(request: Request) {
   try {
@@ -68,7 +73,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       message: "Inicio de sesión correcto.",
       user: {
         name: user.name,
@@ -77,6 +82,14 @@ export async function POST(request: Request) {
         role: user.role,
       },
     });
+
+    response.cookies.set(
+      SESSION_COOKIE,
+      await signSession({ email: user.email, name: user.name, role: user.role }),
+      sessionCookieOptions()
+    );
+
+    return response;
   } catch (error) {
     console.error("LOGIN_ERROR", error);
 

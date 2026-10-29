@@ -1,0 +1,21 @@
+{
+  "class_names": [
+    "normal",
+    "parkinson",
+    "esclerosis_multiple",
+    "riesgo_caida"
+  ],
+  "label_to_class": {
+    "0": "normal",
+    "1": "parkinson",
+    "2": "esclerosis_multiple",
+    "3": "riesgo_caida"
+  },
+  "class_to_label": {
+    "normal": 0,
+    "parkinson": 1,
+    "esclerosis_multiple": 2,
+    "riesgo_caida": 3
+  },
+  "model_version": "gait_deep_v1_20260907_204300_eb10429885a2"
+}

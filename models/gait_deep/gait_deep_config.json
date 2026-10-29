@@ -1,0 +1,42 @@
+{
+  "in_channels": 68,
+  "num_features": 36,
+  "num_classes": 4,
+  "seq_channels": [
+    24,
+    32,
+    32
+  ],
+  "feat_hidden": [
+    24,
+    16
+  ],
+  "head_hidden": 32,
+  "dropout_seq": 0.3,
+  "dropout_feat": 0.3,
+  "dropout_head": 0.4,
+  "use_seq_branch": true,
+  "use_feat_branch": true,
+  "sequence_length": 96,
+  "trained_at": "2026-09-07T20:43:00",
+  "framework": "pytorch 2.14.0+cpu",
+  "epochs": 240,
+  "patience": 35,
+  "batch_size": 16,
+  "lr": 0.001,
+  "weight_decay": 0.0002,
+  "label_smoothing": 0.05,
+  "folds": 5,
+  "seed": 42,
+  "augment": true,
+  "final_best_epoch": 52,
+  "temperature": 0.5,
+  "dataset_excluded": [
+    "VideoEscleorosis7.mp4"
+  ],
+  "dataset_n_samples": 136,
+  "dataset_n_subjects": 86,
+  "deterministic": true,
+  "model_version": "gait_deep_v1_20260907_204300_eb10429885a2",
+  "weights_sha256_12": "eb10429885a2"
+}

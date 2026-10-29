@@ -1,7 +1,16 @@
+# --- Vision por computadora / extraccion de pose ---
 opencv-python
 mediapipe==0.10.14
 numpy
 pandas
-# Modelo de predicción (Parkinson). scikit-learn fijado a la versión con la que se entrenó el .joblib.
+
+# --- Modelo binario historico (baseline Parkinson vs normal). scikit-learn
+#     fijado a la version con la que se entreno el .joblib ---
 scikit-learn==1.8.0
 joblib
+
+# --- Modelo de Deep Learning multiclase (scripts/video_training/deep/) ---
+# CPU. Instalar con:
+#   pip install --index-url https://download.pytorch.org/whl/cpu torch
+torch>=2.4
+matplotlib

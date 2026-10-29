@@ -36,10 +36,10 @@ export const mockAnalysisResult: AnalysisResult = {
   ],
   conditions: [
     {
-      condition: "Sin alerta principal asociada a Parkinson",
+      condition: "Sin alerta principal en la marcha",
       status: "Sin alerta principal",
       description:
-        "Cargue un video para obtener un análisis asistido por IA. El sistema no emite diagnósticos definitivos.",
+        "Cargue un video para obtener un análisis orientativo asistido por IA. El sistema no emite un diagnóstico médico.",
     },
   ],
   recommendations: [

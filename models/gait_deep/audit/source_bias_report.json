@@ -1,0 +1,222 @@
+{
+  "contexto": "normal+parkinson = fuente A (.MOV). esclerosis_multiple+riesgo_caida = fuente B (.mp4).",
+  "metadatos_por_clase": {
+    "normal": {
+      "width": 1920.0,
+      "height": 1080.0,
+      "aspect_ratio": 1.7778,
+      "fps": 32.7119,
+      "frame_count": 159.2373,
+      "duration_s": 4.8738,
+      "brightness_mean": 111.93,
+      "brightness_std": 6.2505,
+      "sharpness_lap_var": 13.2651,
+      "saturation_mean": 108.4927,
+      "edge_density": 0.0037,
+      "person_bbox_height_frac": 0.6014,
+      "person_bbox_width_frac": 0.131,
+      "valid_seq_frames": 62.0508,
+      "pose_rate": 1.0
+    },
+    "parkinson": {
+      "width": 1920.0,
+      "height": 1080.0,
+      "aspect_ratio": 1.7778,
+      "fps": 40.0,
+      "frame_count": 547.6071,
+      "duration_s": 13.4503,
+      "brightness_mean": 108.2223,
+      "brightness_std": 7.6426,
+      "sharpness_lap_var": 18.808,
+      "saturation_mean": 123.4981,
+      "edge_density": 0.0058,
+      "person_bbox_height_frac": 0.6004,
+      "person_bbox_width_frac": 0.0952,
+      "valid_seq_frames": 226.5357,
+      "pose_rate": 1.0
+    },
+    "esclerosis_multiple": {
+      "width": 1280.0,
+      "height": 720.0,
+      "aspect_ratio": 1.7778,
+      "fps": 24.0,
+      "frame_count": 238.3448,
+      "duration_s": 9.931,
+      "brightness_mean": 147.5907,
+      "brightness_std": 3.1049,
+      "sharpness_lap_var": 49.1484,
+      "saturation_mean": 31.7416,
+      "edge_density": 0.0223,
+      "person_bbox_height_frac": 0.7891,
+      "person_bbox_width_frac": 0.1645,
+      "valid_seq_frames": 119.1724,
+      "pose_rate": 1.0
+    },
+    "riesgo_caida": {
+      "width": 1280.0,
+      "height": 720.0,
+      "aspect_ratio": 1.7778,
+      "fps": 24.0,
+      "frame_count": 240.0,
+      "duration_s": 10.0,
+      "brightness_mean": 135.3655,
+      "brightness_std": 3.6427,
+      "sharpness_lap_var": 45.2704,
+      "saturation_mean": 64.2623,
+      "edge_density": 0.0206,
+      "person_bbox_height_frac": 0.7407,
+      "person_bbox_width_frac": 0.1635,
+      "valid_seq_frames": 120.0,
+      "pose_rate": 1.0
+    }
+  },
+  "metadatos_por_fuente": {
+    "A_normal_parkinson": {
+      "width": 1920.0,
+      "height": 1080.0,
+      "aspect_ratio": 1.7778,
+      "fps": 35.0575,
+      "frame_count": 284.2299,
+      "duration_s": 7.634,
+      "brightness_mean": 110.7367,
+      "brightness_std": 6.6985,
+      "sharpness_lap_var": 15.049,
+      "saturation_mean": 113.322,
+      "edge_density": 0.0044,
+      "person_bbox_height_frac": 0.6011,
+      "person_bbox_width_frac": 0.1194,
+      "valid_seq_frames": 114.9885,
+      "pose_rate": 1.0
+    },
+    "B_esclerosis_riesgo": {
+      "width": 1280.0,
+      "height": 720.0,
+      "aspect_ratio": 1.7778,
+      "fps": 24.0,
+      "frame_count": 239.0204,
+      "duration_s": 9.9592,
+      "brightness_mean": 142.6008,
+      "brightness_std": 3.3244,
+      "sharpness_lap_var": 47.5655,
+      "saturation_mean": 45.0153,
+      "edge_density": 0.0216,
+      "person_bbox_height_frac": 0.7694,
+      "person_bbox_width_frac": 0.1641,
+      "valid_seq_frames": 119.5102,
+      "pose_rate": 1.0
+    },
+    "cohens_d_A_vs_B": {
+      "width": null,
+      "height": null,
+      "aspect_ratio": 1.605,
+      "fps": 1.579,
+      "frame_count": 0.251,
+      "duration_s": -0.63,
+      "brightness_mean": -1.736,
+      "brightness_std": 0.779,
+      "sharpness_lap_var": -1.641,
+      "saturation_mean": 1.915,
+      "edge_density": -1.571,
+      "person_bbox_height_frac": -3.358,
+      "person_bbox_width_frac": -2.139,
+      "valid_seq_frames": -0.058,
+      "pose_rate": null
+    }
+  },
+  "diferencias_dentro_de_fuente_cohens_d": {
+    "normal_vs_parkinson": {
+      "width": null,
+      "height": null,
+      "aspect_ratio": -0.567,
+      "fps": -0.901,
+      "frame_count": -2.949,
+      "duration_s": -3.833,
+      "brightness_mean": 0.262,
+      "brightness_std": -0.309,
+      "sharpness_lap_var": -1.298,
+      "saturation_mean": -0.392,
+      "edge_density": -1.253,
+      "person_bbox_height_frac": 0.018,
+      "person_bbox_width_frac": 2.604,
+      "valid_seq_frames": -2.805,
+      "pose_rate": null
+    },
+    "esclerosis_vs_riesgo": {
+      "width": null,
+      "height": null,
+      "aspect_ratio": 0.0,
+      "fps": null,
+      "frame_count": -0.241,
+      "duration_s": -0.241,
+      "brightness_mean": 0.519,
+      "brightness_std": -0.135,
+      "sharpness_lap_var": 0.119,
+      "saturation_mean": -1.301,
+      "edge_density": 0.09,
+      "person_bbox_height_frac": 1.493,
+      "person_bbox_width_frac": 0.049,
+      "valid_seq_frames": -0.241,
+      "pose_rate": null
+    }
+  },
+  "sondas_solo_metadatos": {
+    "4_clases": {
+      "logreg": {
+        "accuracy": 0.8676,
+        "balanced_accuracy": 0.825,
+        "macro_f1": 0.8273
+      },
+      "rf": {
+        "accuracy": 0.8971,
+        "balanced_accuracy": 0.8598,
+        "macro_f1": 0.8629
+      },
+      "chance_level": 0.25
+    },
+    "fuente_A_vs_B": {
+      "logreg": {
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0,
+        "macro_f1": 1.0
+      },
+      "rf": {
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0,
+        "macro_f1": 1.0
+      },
+      "chance_level": 0.5
+    },
+    "normal_vs_parkinson_solo_fuenteA": {
+      "logreg": {
+        "accuracy": 0.954,
+        "balanced_accuracy": 0.938,
+        "macro_f1": 0.9463
+      },
+      "rf": {
+        "accuracy": 0.9655,
+        "balanced_accuracy": 0.9558,
+        "macro_f1": 0.9601
+      },
+      "chance_level": 0.5
+    },
+    "EM_vs_riesgo_solo_fuenteB": {
+      "logreg": {
+        "accuracy": 0.7755,
+        "balanced_accuracy": 0.7638,
+        "macro_f1": 0.7658
+      },
+      "rf": {
+        "accuracy": 0.8163,
+        "balanced_accuracy": 0.806,
+        "macro_f1": 0.8083
+      },
+      "chance_level": 0.5
+    }
+  },
+  "lectura": {
+    "fuente_A_vs_B": "Se espera ~perfecto: confirma y mide el confound de fuente.",
+    "4_clases": "Si acierta MUCHO por encima del azar (0.25) -> parte de la separacion 4-clases se explica por la fuente, no por la marcha.",
+    "dentro_de_fuente": "normal-vs-parkinson y EM-vs-riesgo con SOLO metadatos deberian quedar cerca del azar (0.5); si asi es, dentro de una fuente la clase NO se lee de la grabacion y el modelo profundo debe usar la marcha.",
+    "preprocesamiento": "person_bbox_*_frac, valid_seq_frames y pose_rate: si difieren fuerte DENTRO de una fuente, habria sesgo de preprocesamiento; entre fuentes distintas es esperable."
+  }
+}

@@ -29,33 +29,44 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    queueMicrotask(() => {
-      const savedUser = localStorage.getItem("gait-user");
-      const cookieUser = Cookies.get("gait-user");
-      const sessionUser = cookieUser || savedUser;
+    let cancelled = false;
 
-      if (sessionUser) {
-        const parsedUser = JSON.parse(sessionUser) as User;
-        localStorage.setItem("gait-user", JSON.stringify(parsedUser));
-        Cookies.set("gait-user", JSON.stringify(parsedUser), {
-          expires: 7,
-          sameSite: "lax",
-          path: "/",
-        });
-        setUser(parsedUser);
+    // La identidad real vive en la cookie de sesion firmada (HttpOnly). El
+    // usuario local solo sirve para pintar la interfaz y se valida con el servidor.
+    Cookies.remove("gait-user", { path: "/" });
+
+    const syncSession = async () => {
+      try {
+        const response = await fetch("/api/auth/me", { cache: "no-store" });
+
+        if (cancelled) return;
+
+        if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem("gait-user", JSON.stringify(data.user));
+          setUser(data.user as User);
+        } else {
+          localStorage.removeItem("gait-user");
+          setUser(null);
+        }
+      } catch {
+        if (cancelled) return;
+        localStorage.removeItem("gait-user");
+        setUser(null);
+      } finally {
+        if (!cancelled) setReady(true);
       }
+    };
 
-      setReady(true);
-    });
+    void syncSession();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const persistUser = (nextUser: User) => {
     localStorage.setItem("gait-user", JSON.stringify(nextUser));
-    Cookies.set("gait-user", JSON.stringify(nextUser), {
-      expires: 7,
-      sameSite: "lax",
-      path: "/",
-    });
     setUser(nextUser);
   };
 
@@ -100,6 +111,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("gait-user");
     Cookies.remove("gait-user", { path: "/" });
     setUser(null);
+    void fetch("/api/auth/logout", { method: "POST" }).catch(() => undefined);
   };
 
   const isAdmin = () => user?.role === "ADMIN";

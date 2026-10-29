@@ -140,7 +140,7 @@ export async function evaluateGaitAgainstParkinsonDataset(
       signals,
       "Balanceo de brazos reducido o asimétrico",
       "ALTO",
-      "El sistema observó menor movimiento o diferencia entre ambos brazos durante la caminata. Esta señal puede aparecer en patrones asociados a Parkinson."
+      "El sistema observó menor movimiento o diferencia entre ambos brazos durante la caminata. Esta característica puede presentarse en diferentes alteraciones de la marcha."
     );
   }
 

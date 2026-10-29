@@ -1,21 +1,13 @@
-"use client";
+import { redirect } from "next/navigation";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import ParkinsonDatasetPage from "@/app/datasets/parkinson/page";
-import { useAuth } from "@/context/AuthContext";
-
+/**
+ * `/referencias` no tiene contenido propio: antes renderizaba el mismo
+ * componente que `/datasets/parkinson` bajo una URL distinta, sin ningún
+ * enlace de navegación que apuntara aquí. Se mantiene como redirect para no
+ * romper accesos directos a esta URL; `/datasets/parkinson` es la única
+ * fuente de verdad. La ruta ya está protegida (solo admin) por
+ * `src/proxy.ts`, por lo que no hace falta repetir esa verificación aquí.
+ */
 export default function ReferencesPage() {
-  const router = useRouter();
-  const { ready, isAdmin } = useAuth();
-
-  useEffect(() => {
-    if (ready && !isAdmin()) {
-      router.replace("/dashboard");
-    }
-  }, [ready, isAdmin, router]);
-
-  if (!ready || !isAdmin()) return null;
-
-  return <ParkinsonDatasetPage />;
+  redirect("/datasets/parkinson");
 }

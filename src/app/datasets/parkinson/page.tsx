@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { BookOpen, RefreshCw } from "lucide-react";
+import { RefreshCw } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -14,7 +14,8 @@ import {
 } from "recharts";
 import { AppShell } from "@/components/layout/AppShell";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
+import { PageHeader, SectionHeader } from "@/components/ui/PageHeader";
+import { InlineAlert } from "@/components/ui/InlineAlert";
 import { useAuth } from "@/context/AuthContext";
 
 type DatasetRecord = {
@@ -219,201 +220,162 @@ export default function ParkinsonDatasetPage() {
 
   return (
     <AppShell>
-      <section className="grid gap-6 animate-fadeIn">
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h1 className="text-4xl font-black text-slate-900">
-              Patrones de referencia
-            </h1>
-            <p className="mt-2 max-w-3xl text-slate-500">
-              Sección para revisar los datos de referencia usados por la
-              aplicación. Los resultados para pacientes siguen siendo
-              orientativos y requieren valoración profesional.
-            </p>
-          </div>
+      <div className="grid gap-8">
+        <PageHeader
+          eyebrow="Administración"
+          title="Patrones de referencia"
+          description="Sección para revisar los datos de referencia usados por la aplicación. Los resultados para pacientes siguen siendo orientativos y requieren valoración profesional."
+          actions={
+            <Button variant="outline" onClick={() => setPage(1)}>
+              <RefreshCw aria-hidden />
+              Actualizar
+            </Button>
+          }
+        />
 
-          <Button variant="outline" onClick={() => setPage(1)}>
-            <RefreshCw className="h-4 w-4" />
-            Actualizar
-          </Button>
-        </div>
+        <InlineAlert tone="info">
+          <span className="font-semibold text-ink">Datos de referencia.</span>{" "}
+          Esta información resume el conjunto control/Parkinson cargado en
+          PostgreSQL. No representa una valoración clínica individual.
+        </InlineAlert>
 
-        <Card className="border-blue-200 bg-blue-50">
-          <div className="flex items-start gap-3">
-            <BookOpen className="mt-1 h-5 w-5 text-primary" />
-            <div>
-              <h2 className="font-black text-slate-900">
-                Datos de referencia
-              </h2>
-              <p className="mt-1 text-sm text-slate-600">
-                Esta información resume el conjunto control/Parkinson cargado
-                en PostgreSQL. No representa una valoración clínica individual.
-              </p>
-            </div>
-          </div>
-        </Card>
+        {error && <InlineAlert tone="error">{error}</InlineAlert>}
 
-        {error && (
-          <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700 shadow-md">
-            {error}
-          </div>
-        )}
-
-        <div className="grid gap-4 md:grid-cols-4">
+        <section
+          aria-label="Indicadores del dataset"
+          className="reveal grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-4 xl:grid-cols-7"
+        >
           {kpis.map(([label, value]) => (
-            <Card key={label} className="p-5">
-              <p className="text-sm font-semibold text-slate-500">{label}</p>
-              <p className="mt-2 text-2xl font-black text-slate-900">
-                {value}
-              </p>
-            </Card>
-          ))}
-        </div>
-
-        <Card>
-          <h2 className="text-2xl font-black text-slate-900">
-            Distribución del dataset
-          </h2>
-          <div className="mt-5 h-72">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={summaryChartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                <XAxis dataKey="label" stroke="#6B7280" />
-                <YAxis stroke="#6B7280" />
-                <Tooltip
-                  cursor={{ fill: "rgba(59, 130, 246, 0.08)" }}
-                  contentStyle={{
-                    borderRadius: "16px",
-                    borderColor: "#E5E7EB",
-                    boxShadow: "0 12px 28px rgba(30, 64, 175, 0.14)",
-                  }}
-                />
-                <Bar dataKey="total" fill="#3B82F6" radius={[10, 10, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </Card>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card>
-            <h2 className="text-xl font-black text-slate-950">
-              Estado de muestras crudas
-            </h2>
-            <p className="mt-3 leading-7 text-slate-600">{rawStatus.message}</p>
-          </Card>
-
-          <Card>
-            <h2 className="text-xl font-black text-slate-950">
-              Preparación de datos
-            </h2>
-            <p className="mt-3 leading-7 text-slate-600">
-              Los datos de referencia contienen registros control y Parkinson
-              suficientes para apoyar una comparación orientativa.
-            </p>
-            <div className="mt-5 grid gap-3 md:grid-cols-2">
-              {[
-                [
-                  "Registros resumidos",
-                  `${modelStatus.controlRecords} control / ${modelStatus.parkinsonRecords} Parkinson`,
-                ],
-                [
-                  "Estado",
-                  modelStatus.trainingReady ? "Datos preparados" : "Datos incompletos",
-                ],
-              ].map(([label, value]) => (
-                <div key={label} className="rounded-2xl bg-slate-50 p-4">
-                  <p className="text-sm font-semibold text-slate-500">{label}</p>
-                  <p className="mt-1 font-bold text-slate-950">{value}</p>
-                </div>
-              ))}
+            <div key={label} className="bg-surface px-5 py-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.09em] text-ink-subtle">{label}</p>
+              <p className="tabular mt-2 text-2xl font-extrabold tracking-[-0.02em] text-ink">{value}</p>
             </div>
-          </Card>
+          ))}
+        </section>
+
+        <div className="grid gap-6 xl:grid-cols-12">
+          <section className="reveal rounded-xl border border-line bg-surface p-6 xl:col-span-8">
+            <SectionHeader title="Distribución del dataset" />
+            <div className="mt-5 h-72">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={summaryChartData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(18, 79, 72, 0.13)" vertical={false} />
+                  <XAxis dataKey="label" stroke="#124F48" tickLine={false} axisLine={{ stroke: "rgba(18, 79, 72, 0.13)" }} fontSize={12} />
+                  <YAxis stroke="#124F48" tickLine={false} axisLine={false} fontSize={12} />
+                  <Tooltip
+                    cursor={{ fill: "rgba(204, 252, 240, 0.4)" }}
+                    contentStyle={{
+                      borderRadius: "8px",
+                      borderColor: "rgba(18, 79, 72, 0.13)",
+                      boxShadow: "0 4px 16px rgba(18, 79, 72, 0.08)",
+                      fontSize: 13,
+                    }}
+                  />
+                  <Bar dataKey="total" fill="#0B9586" radius={[4, 4, 0, 0]} maxBarSize={56} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </section>
+
+          <section className="reveal divide-y divide-line rounded-xl border border-line bg-surface xl:col-span-4">
+            <div className="p-6">
+              <h2 className="text-base font-bold text-ink">Estado de muestras crudas</h2>
+              <p className="mt-2 text-sm leading-6 text-ink-muted">{rawStatus.message}</p>
+            </div>
+            <div className="p-6">
+              <h2 className="text-base font-bold text-ink">Preparación de datos</h2>
+              <p className="mt-2 text-sm leading-6 text-ink-muted">
+                Los datos de referencia contienen registros control y Parkinson
+                suficientes para apoyar una comparación orientativa.
+              </p>
+              <dl className="mt-4 space-y-3 text-sm">
+                <div className="flex justify-between gap-4">
+                  <dt className="text-ink-subtle">Registros resumidos</dt>
+                  <dd className="text-right font-mono text-[13px] text-ink">
+                    {modelStatus.controlRecords} control / {modelStatus.parkinsonRecords} Parkinson
+                  </dd>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <dt className="text-ink-subtle">Estado</dt>
+                  <dd className="font-semibold text-ink">
+                    {modelStatus.trainingReady ? "Datos preparados" : "Datos incompletos"}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </section>
         </div>
 
         {data.warnings.length > 0 && (
           <div className="grid gap-3">
             {data.warnings.map((warning) => (
-              <div
-                key={warning}
-                className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold text-amber-800 shadow-md"
-              >
+              <InlineAlert key={warning} tone="warning">
                 {warning}
-              </div>
+              </InlineAlert>
             ))}
           </div>
         )}
 
-        <Card>
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <h2 className="text-2xl font-black text-slate-950">
-              Registros resumidos
-            </h2>
-
-            <input
-              value={condition}
-              onChange={(event) => {
-                setCondition(event.target.value);
-                setPage(1);
-              }}
-              placeholder="Filtrar condición"
-              className="rounded-2xl border border-slate-200 px-4 py-2 text-sm outline-none transition-all duration-200 focus:border-secondary focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-            />
+        <section className="reveal overflow-hidden rounded-xl border border-line bg-surface">
+          <div className="flex flex-col gap-3 p-5 md:flex-row md:items-center md:justify-between">
+            <SectionHeader title="Registros resumidos" />
+            <div className="w-full md:max-w-xs">
+              <label htmlFor="condition-filter" className="sr-only">
+                Filtrar condición
+              </label>
+              <input
+                id="condition-filter"
+                value={condition}
+                onChange={(event) => {
+                  setCondition(event.target.value);
+                  setPage(1);
+                }}
+                placeholder="Filtrar condición"
+                className="h-10 w-full rounded-lg border border-line-strong bg-surface px-3 text-sm text-ink outline-none transition-colors placeholder:text-ink-subtle focus:border-accent-blue"
+              />
+            </div>
           </div>
 
-          <div className="mt-5 overflow-x-auto">
-            <table className="w-full min-w-[760px] text-left text-sm">
-              <thead className="border-b border-slate-200 text-slate-500">
-                <tr>
-                  <th className="py-3 pr-4">Sujeto</th>
-                  <th className="py-3 pr-4">Condición</th>
-                  <th className="py-3 pr-4">Caminata</th>
-                  <th className="py-3 pr-4">Edad</th>
-                  <th className="py-3 pr-4">Velocidad</th>
-                  <th className="py-3 pr-4">Asimetría</th>
-                  <th className="py-3 pr-4">Ritmo</th>
-                  <th className="py-3">Apoyo</th>
+          <div className="max-h-[560px] overflow-auto border-t border-line">
+            <table className="w-full min-w-190 text-left text-sm">
+              <thead className="sticky top-0 z-10 bg-surface-subtle text-[11px] uppercase tracking-[0.08em] text-ink-subtle">
+                <tr className="border-b border-line">
+                  <th scope="col" className="px-5 py-2.5 font-bold">Sujeto</th>
+                  <th scope="col" className="py-2.5 pr-4 font-bold">Condición</th>
+                  <th scope="col" className="py-2.5 pr-4 text-right font-bold">Caminata</th>
+                  <th scope="col" className="py-2.5 pr-4 text-right font-bold">Edad</th>
+                  <th scope="col" className="py-2.5 pr-4 text-right font-bold">Velocidad</th>
+                  <th scope="col" className="py-2.5 pr-4 text-right font-bold">Asimetría</th>
+                  <th scope="col" className="py-2.5 pr-4 text-right font-bold">Ritmo</th>
+                  <th scope="col" className="py-2.5 pr-5 text-right font-bold">Apoyo</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-line">
                 {loading ? (
                   <tr>
-                    <td className="py-6 text-slate-500" colSpan={8}>
+                    <td className="px-5 py-6 text-ink-muted" colSpan={8}>
                       Cargando información de referencia...
                     </td>
                   </tr>
                 ) : data.records.length === 0 ? (
                   <tr>
-                    <td className="py-6 text-slate-500" colSpan={8}>
+                    <td className="px-5 py-6 text-ink-muted" colSpan={8}>
                       No hay registros resumidos para mostrar.
                     </td>
                   </tr>
                 ) : (
                   data.records.map((record) => (
-                    <tr
-                      key={record.id}
-                      className="border-b border-slate-100 transition hover:bg-blue-50/70"
-                    >
-                      <td className="py-3 pr-4 font-semibold text-slate-900">
-                        {record.subjectId}
+                    <tr key={record.id} className="transition-colors duration-150 hover:bg-surface-subtle">
+                      <td className="px-5 py-2.5 font-semibold text-ink">{record.subjectId}</td>
+                      <td className="py-2.5 pr-4 text-ink-muted">{record.condition}</td>
+                      <td className="py-2.5 pr-4 text-right font-mono text-[13px] text-ink">{record.walkNumber ?? "-"}</td>
+                      <td className="py-2.5 pr-4 text-right font-mono text-[13px] text-ink">{formatNumber(record.age)}</td>
+                      <td className="py-2.5 pr-4 text-right font-mono text-[13px] text-ink">{formatNumber(record.recordedSpeed)}</td>
+                      <td className="py-2.5 pr-4 text-right font-mono text-[13px] text-ink">
+                        {formatNumber(record.meanForceAsymmetryIndex ?? record.meanForceAsymmetryAbs)}
                       </td>
-                      <td className="py-3 pr-4">{record.condition}</td>
-                      <td className="py-3 pr-4">{record.walkNumber ?? "-"}</td>
-                      <td className="py-3 pr-4">{formatNumber(record.age)}</td>
-                      <td className="py-3 pr-4">
-                        {formatNumber(record.recordedSpeed)}
-                      </td>
-                      <td className="py-3 pr-4">
-                        {formatNumber(
-                          record.meanForceAsymmetryIndex ??
-                            record.meanForceAsymmetryAbs
-                        )}
-                      </td>
-                      <td className="py-3 pr-4">
-                        {formatNumber(record.estimatedCadence)}
-                      </td>
-                      <td className="py-3">
-                        {formatNumber(record.doubleSupportRatio)}
-                      </td>
+                      <td className="py-2.5 pr-4 text-right font-mono text-[13px] text-ink">{formatNumber(record.estimatedCadence)}</td>
+                      <td className="py-2.5 pr-5 text-right font-mono text-[13px] text-ink">{formatNumber(record.doubleSupportRatio)}</td>
                     </tr>
                   ))
                 )}
@@ -421,13 +383,14 @@ export default function ParkinsonDatasetPage() {
             </table>
           </div>
 
-          <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p className="text-sm text-slate-500">
+          <div className="flex flex-col gap-3 border-t border-line px-5 py-4 md:flex-row md:items-center md:justify-between">
+            <p className="font-mono text-[13px] text-ink-muted">
               Página {data.pagination.page} de {data.pagination.totalPages}
             </p>
             <div className="flex gap-2">
               <Button
                 variant="outline"
+                size="sm"
                 disabled={page <= 1}
                 onClick={() => setPage((current) => Math.max(1, current - 1))}
               >
@@ -435,6 +398,7 @@ export default function ParkinsonDatasetPage() {
               </Button>
               <Button
                 variant="outline"
+                size="sm"
                 disabled={page >= data.pagination.totalPages}
                 onClick={() => setPage((current) => current + 1)}
               >
@@ -442,8 +406,8 @@ export default function ParkinsonDatasetPage() {
               </Button>
             </div>
           </div>
-        </Card>
-      </section>
+        </section>
+      </div>
     </AppShell>
   );
 }

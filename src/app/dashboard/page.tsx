@@ -1,69 +1,59 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Activity, FileText, ShieldCheck, UploadCloud } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { Activity, ArrowRight, FileText, History, Plus, ShieldCheck } from "lucide-react";
 import { AppShell } from "@/components/layout/AppShell";
-import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import { useAuth } from "@/context/AuthContext";
+import { LinkButton } from "@/components/ui/LinkButton";
 import { AdminDashboard } from "@/components/admin/AdminDashboard";
+import { useAuth } from "@/context/AuthContext";
+import styles from "./dashboard.module.css";
 
-type DashboardSummary = {
-  totalAnalyses: number;
-  totalReports: number;
-  lastAlertLevel: string;
-  privacyStatus: string;
-  recentAnalyses: Array<{
-    id: string;
-    alertLevel: string;
-    summary: string;
-    date: string;
-    videoName: string;
-    originalVideoUrl: string | null;
-  }>;
-  analysisCount: number;
-  reportCount: number;
-  latestAlert: string;
-  latestAnalysisDate: string | null;
-};
-
-const EMPTY_SUMMARY: DashboardSummary = {
-  totalAnalyses: 0,
-  totalReports: 0,
-  lastAlertLevel: "Sin datos",
-  privacyStatus: "Activa",
-  recentAnalyses: [],
-  analysisCount: 0,
-  reportCount: 0,
-  latestAlert: "Sin datos",
-  latestAnalysisDate: null,
+// Solo los campos que Inicio usa de los endpoints existentes.
+type Summary = { totalAnalyses: number; totalReports: number };
+type LatestAnalysis = {
+  id: string;
+  date: string;
+  alertLevel: string;
+  summary: string;
+  video: { originalVideoUrl: string | null };
+  conditions: Array<{ condition: string }>;
 };
 
 export default function DashboardPage() {
-  const router = useRouter();
   const { user } = useAuth();
   const admin = user?.role === "ADMIN";
-  const [summary, setSummary] = useState<DashboardSummary>(EMPTY_SUMMARY);
-  const [loadingSummary, setLoadingSummary] = useState(true);
+  // La carga existente se conserva; Inicio ya no presenta datos de seguimiento.
+  const [, setSummary] = useState<Summary>({ totalAnalyses: 0, totalReports: 0 });
+  const [, setLatest] = useState<LatestAnalysis | null>(null);
+  const [, setLoading] = useState(true);
 
   useEffect(() => {
     if (admin) return;
 
     let active = true;
 
-    async function loadSummary() {
+    async function load() {
       try {
-        const response = await fetch("/api/me/summary");
-        if (!response.ok) return;
-        const payload = (await response.json()) as DashboardSummary;
-        if (active) setSummary(payload);
+        const [summaryResponse, analysesResponse] = await Promise.all([
+          fetch("/api/me/summary"),
+          fetch("/api/me/analyses"),
+        ]);
+        if (summaryResponse.ok) {
+          const payload = (await summaryResponse.json()) as Summary;
+          if (active) setSummary(payload);
+        }
+        if (analysesResponse.ok) {
+          const payload = (await analysesResponse.json()) as { analyses: LatestAnalysis[] };
+          if (active) setLatest(payload.analyses[0] ?? null);
+        }
       } finally {
-        if (active) setLoadingSummary(false);
+        if (active) setLoading(false);
       }
     }
 
-    loadSummary();
+    load();
 
     return () => {
       active = false;
@@ -78,116 +68,47 @@ export default function DashboardPage() {
     );
   }
 
+  const firstName = user?.name?.split(" ").filter(Boolean)[0] || "Usuario";
   return (
-    <AppShell>
-      <section className="grid gap-6 animate-fadeIn">
-        <div>
-          <p className="text-lg text-slate-600">
-            Hola, {user?.name || "Usuario"}
-          </p>
-
-          <h1 className="text-4xl font-black text-slate-900">
-            Panel de análisis de marcha
-          </h1>
-
-          <p className="mt-2 text-slate-500">
-            Sube un video y revisa tus informes generados.
-          </p>
-        </div>
-
-        <Card className="bg-linear-to-br from-primary via-secondary to-accent text-white shadow-xl shadow-blue-200/70">
-          <h2 className="text-2xl font-black">Nuevo análisis de marcha</h2>
-
-          <p className="mt-3 max-w-2xl text-cyan-50">
-            Sube un video caminando para recibir una orientación inicial sobre
-            posibles señales funcionales.
-          </p>
-
-          <Button
-            className="mt-6"
-            variant="secondary"
-            onClick={() => router.push("/analisis/subir-video")}
-          >
-            <UploadCloud className="h-5 w-5" />
-            Subir video
-          </Button>
-        </Card>
-
-        <div className="grid gap-4 md:grid-cols-4">
-          {[
-            {
-              label: "Análisis realizados",
-              value: loadingSummary ? "..." : String(summary.totalAnalyses),
-              icon: Activity,
-              tone: "from-blue-50 to-white text-accent",
-            },
-            {
-              label: "Último nivel de alerta",
-              value: loadingSummary ? "..." : summary.lastAlertLevel,
-              icon: ShieldCheck,
-              tone: "from-emerald-50 to-white text-emerald-600",
-            },
-            {
-              label: "Informes generados",
-              value: loadingSummary ? "..." : String(summary.totalReports),
-              icon: FileText,
-              tone: "from-indigo-50 to-white text-secondary",
-            },
-            {
-              label: "Privacidad protegida",
-              value: "Activa",
-              icon: ShieldCheck,
-              tone: "from-slate-50 to-white text-primary",
-            },
-          ].map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <Card key={item.label} className={`bg-linear-to-br ${item.tone}`}>
-                <Icon className="mb-4 h-10 w-10" />
-                <p className="text-sm text-slate-500">{item.label}</p>
-                <p className="mt-1 text-2xl font-black text-slate-900">
-                  {item.value}
-                </p>
-              </Card>
-            );
-          })}
-        </div>
-
-        {!loadingSummary && summary.totalAnalyses === 0 && (
-          <Card>
-            <h2 className="text-2xl font-black text-slate-900">
-              No tienes análisis aún
-            </h2>
-            <p className="mt-2 text-slate-500">
-              Cuando subas tu primer video, tus resultados aparecerán aquí.
-            </p>
-          </Card>
-        )}
-
-        <Card>
-          <h2 className="text-2xl font-black text-slate-900">
-            ¿Qué observa el sistema?
-          </h2>
-
-          <div className="mt-5 grid gap-4 md:grid-cols-4">
-            {[
-              "Velocidad de marcha",
-              "Estabilidad",
-              "Simetría corporal",
-              "Regularidad de pasos",
-              "Movimiento de brazos",
-              "Posible rigidez",
-              "Posible arrastre de pies",
-              "Diferencia lateral",
-            ].map((item) => (
-              <div key={item} className="rounded-2xl border border-slate-100 bg-slate-50 p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-                <p className="font-bold text-slate-900">{item}</p>
-              </div>
-            ))}
+    <AppShell className={styles.dashboardShell}>
+      <div className={styles.page}>
+        <section className={styles.hero} aria-labelledby="welcome-heading">
+          <div className={styles.backdrop}>
+            <Image
+              src="/images/gait-biomechanics-hero.png"
+              alt="Mujer caminando con puntos de seguimiento biomecánico en el cuerpo"
+              fill
+              preload
+              sizes="100vw"
+              className={styles.photo}
+            />
           </div>
-        </Card>
-      </section>
+          <div className={styles.heroContent}>
+            <div className={`reveal ${styles.copy}`}>
+              <p className={styles.greeting}>Hola, {firstName}</p>
+              <p className={styles.eyebrow}><Activity className="h-4 w-4" aria-hidden /> Análisis de movimiento con IA</p>
+              <h1 id="welcome-heading">Panel de análisis<br className="hidden sm:block" /> de marcha</h1>
+              <p className={styles.description}>Obtén una orientación sobre tu forma de caminar a partir de un video. Revisa los patrones observados y comparte el informe con un profesional de salud.</p>
+              <LinkButton href="/analisis/subir-video" size="lg" className={styles.action}>
+                <Plus aria-hidden /> Nuevo análisis <ArrowRight aria-hidden />
+              </LinkButton>
+              <p className={styles.note}><ShieldCheck className="h-4 w-4 shrink-0" aria-hidden /> El análisis es orientativo y no reemplaza una valoración médica.</p>
+            </div>
+          </div>
+        </section>
+        <div className={styles.shortcuts}>
+          <Link href="/seguimiento" className="welcome-shortcut">
+            <History className="h-5 w-5 text-primary" aria-hidden />
+            <div><h2>Seguimiento</h2><p>Consulta tus análisis anteriores.</p></div>
+            <ArrowRight className="ml-auto h-4 w-4" aria-hidden />
+          </Link>
+          <Link href="/analisis/informe" className="welcome-shortcut">
+            <FileText className="h-5 w-5 text-primary" aria-hidden />
+            <div><h2>Informes</h2><p>Revisa tus informes guardados.</p></div>
+            <ArrowRight className="ml-auto h-4 w-4" aria-hidden />
+          </Link>
+        </div>
+      </div>
     </AppShell>
   );
 }

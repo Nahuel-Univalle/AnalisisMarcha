@@ -1,107 +1,220 @@
-import Link from "next/link";
-import {
-  Activity,
-  Brain,
-  FileText,
-  ShieldCheck,
-  UploadCloud,
-} from "lucide-react";
+import { CSSProperties } from "react";
+import Image from "next/image";
+import { ArrowRight, FileText, ListChecks, ShieldCheck, Video } from "lucide-react";
 import { PublicHeader } from "@/components/layout/PublicHeader";
-import { Card } from "@/components/ui/Card";
-import { MedicalDisclaimer } from "@/components/ui/MedicalDisclaimer";
+import { BrandMark } from "@/components/brand/BrandMark";
+import { LinkButton } from "@/components/ui/LinkButton";
+import { OBSERVED_GROUPS } from "@/components/analysis/guidance";
+import styles from "./home.module.css";
+
+const STEPS = [
+  {
+    title: "Sube un video",
+    text: "Un video caminando, con el cuerpo completo visible.",
+  },
+  {
+    title: "Revisión",
+    text: "Confirmas que el video cumple las recomendaciones de grabación.",
+  },
+  {
+    title: "Análisis de movimiento",
+    text: "El sistema detecta los puntos del cuerpo y evalúa la marcha.",
+  },
+  {
+    title: "Resultado e informe",
+    text: "Recibes una orientación explicada y un informe para tu consulta.",
+  },
+];
+
+const PROOF = [
+  { icon: Video, title: "Análisis a partir de un video", text: "Sin sensores ni equipos especiales." },
+  { icon: ListChecks, title: "Explicación de cada hallazgo", text: "Qué se observó y por qué es relevante." },
+  { icon: FileText, title: "Informe para tu consulta", text: "Un documento para compartir con un profesional." },
+];
+
+const delay = (i: number) => ({ "--i": i }) as CSSProperties;
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen gradient-bg animate-fadeIn">
+    <div className="min-h-screen bg-background">
       <PublicHeader />
 
-      <main className="mx-auto w-full max-w-7xl px-4 pb-8 pt-0 md:px-8 md:pt-0">
-        <section className="grid min-h-[520px] items-start gap-10 pt-0 md:min-h-[560px] md:grid-cols-2 md:pt-2">
-          <div className="pt-6 md:pt-10">
-            <div className="mb-5 inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-bold text-primary shadow-md">
-              Salud digital e inteligencia artificial responsable
-            </div>
-
-            <h1 className="text-4xl font-black tracking-tight text-slate-900 md:text-6xl">
-              Cuida tu forma de caminar con ayuda de inteligencia artificial
-            </h1>
-
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-500">
-              Sube un video caminando y recibe una orientación inicial sobre
-              posibles señales relacionadas con la marcha, para apoyar una futura
-              consulta médica.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/login"
-                className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-4 font-semibold text-white shadow-md transition duration-200 hover:scale-[1.02] hover:bg-blue-600 hover:shadow-lg"
+      <main>
+        {/* ================= Hero ================= */}
+        <section className={styles.hero} aria-labelledby="home-heading">
+          <div className={styles.imageWrap} aria-hidden="true">
+            <Image
+              src="/images/gait-biomechanics-hero.png"
+              alt=""
+              fill
+              preload
+              sizes="100vw"
+              className={styles.image}
+            />
+          </div>
+          <div className={styles.veil} aria-hidden="true" />
+          <div className={styles.heroInner}>
+            <div className={styles.copy}>
+              <p
+                className={`reveal ${styles.eyebrow}`}
+                style={delay(0)}
               >
-                Comenzar análisis
-              </Link>
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+                Tecnología para una evaluación objetiva
+              </p>
 
-              <Link
-                href="#funciona"
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-7 py-4 font-semibold text-slate-900 shadow-md transition duration-200 hover:scale-[1.02] hover:bg-slate-50 hover:shadow-lg"
+              <h1
+                id="home-heading"
+                className={`reveal ${styles.title}`}
+                style={delay(1)}
               >
-                Ver cómo funciona
-              </Link>
-            </div>
+                Analiza tu marcha con inteligencia artificial
+              </h1>
 
-            <div className="mt-8">
-              <MedicalDisclaimer />
+              <p className={`reveal ${styles.description}`} style={delay(2)}>
+                Obtén un análisis orientativo de tu forma de caminar a partir de un
+                video, detecta patrones de movimiento y recibe información clara
+                para compartir con un profesional de salud.
+              </p>
+
+              <div className={`reveal ${styles.actions}`} style={delay(3)}>
+                <LinkButton href="/login" size="lg">
+                  Comenzar análisis
+                  <ArrowRight aria-hidden />
+                </LinkButton>
+                <LinkButton href="#funciona" variant="outline" size="lg">
+                  Ver cómo funciona
+                </LinkButton>
+              </div>
+
+              <p className={`reveal ${styles.note}`} style={delay(4)}>
+                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-navy-700" aria-hidden />
+                Resultado orientativo, no diagnóstico. Toda interpretación debe
+                revisarse con un profesional de salud.
+              </p>
             </div>
           </div>
-
-          <Card className="relative mt-4 overflow-hidden bg-linear-to-br from-blue-700 to-emerald-600 p-8 text-white shadow-xl shadow-blue-200/70 md:mt-8">
-            <div className="mb-6 flex items-center gap-3">
-              <Activity className="h-8 w-8 text-emerald-200" />
-              <h2 className="text-2xl font-bold">Análisis visual de marcha</h2>
-            </div>
-
-            <div className="relative aspect-video rounded-3xl bg-white/10">
-              <div className="absolute left-1/2 top-10 h-14 w-14 -translate-x-1/2 rounded-full border-4 border-emerald-200" />
-              <div className="absolute left-1/2 top-24 h-28 w-1 -translate-x-1/2 bg-emerald-200" />
-              <div className="absolute left-[42%] top-32 h-1 w-24 bg-emerald-200" />
-              <div className="absolute left-[45%] top-52 h-24 w-1 rotate-12 bg-emerald-200" />
-              <div className="absolute left-[55%] top-52 h-24 w-1 -rotate-12 bg-emerald-200" />
-
-              <div className="absolute bottom-6 left-6 rounded-2xl bg-white/15 p-4 backdrop-blur">
-                Puntos corporales detectados
-              </div>
-            </div>
-          </Card>
         </section>
 
-        <section id="funciona" className="mt-16 pb-10 md:mt-24">
-          <h2 className="text-center text-3xl font-black text-slate-900">
-            ¿Cómo funciona?
-          </h2>
+        {/* ================= Prueba ================= */}
+        <section className="border-y border-line bg-surface-subtle">
+          <div className="mx-auto grid max-w-[1240px] px-4 md:grid-cols-3 md:px-8">
+            {PROOF.map(({ icon: Icon, title, text }, index) => (
+              <div
+                key={title}
+                className={`flex gap-3 py-6 md:px-6 ${index > 0 ? "border-t border-line md:border-l md:border-t-0" : "md:pl-0"}`}
+              >
+                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+                <div>
+                  <p className="text-sm font-semibold text-ink">{title}</p>
+                  <p className="mt-0.5 text-sm text-ink-muted">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-4">
-            {[
-              { title: "Sube un video", icon: UploadCloud },
-              { title: "Validación del video", icon: ShieldCheck },
-              { title: "Análisis de movimiento", icon: Brain },
-              { title: "Informe médico", icon: FileText },
-            ].map((item, index) => {
-              const Icon = item.icon;
+        {/* ================= Cómo funciona ================= */}
+        <section id="funciona" className="mx-auto max-w-[1240px] scroll-mt-20 px-4 py-20 md:px-8 lg:py-24">
+          <div className="max-w-xl">
+            <p className="text-xs font-bold uppercase tracking-[0.09em] text-accent-cyan-ink">Cómo funciona</p>
+            <h2 className="mt-2 text-[28px] font-bold leading-9 tracking-[-0.02em] text-ink md:text-[32px] md:leading-10">
+              Cuatro pasos, de tu video a un informe
+            </h2>
+          </div>
 
-              return (
-                <Card key={item.title} className="text-center">
-                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-primary shadow-md">
-                    <Icon className="h-7 w-7" />
-                  </div>
+          <ol className="relative mt-12 grid gap-8 md:grid-cols-4 md:gap-6">
+            <span className="absolute left-0 right-0 top-[18px] hidden h-px bg-line-strong md:block" aria-hidden />
+            {STEPS.map((step, index) => (
+              <li key={step.title} className="relative flex gap-4 md:block">
+                <span className="relative z-10 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line-strong bg-background font-mono text-xs font-medium text-ink">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="md:mt-5 md:pr-4">
+                  <h3 className="text-base font-semibold text-ink">{step.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-ink-muted">{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-                  <h3 className="font-bold text-slate-950">
-                    {index + 1}. {item.title}
-                  </h3>
-                </Card>
-              );
-            })}
+        {/* ================= Qué analiza ================= */}
+        <section id="analiza" className="scroll-mt-16 border-t border-line bg-surface">
+          <div className="mx-auto grid max-w-[1240px] gap-12 px-4 py-20 md:px-8 lg:grid-cols-12 lg:py-24">
+            <div className="lg:col-span-4">
+              <p className="text-xs font-bold uppercase tracking-[0.09em] text-accent-cyan-ink">Qué analiza</p>
+              <h2 className="mt-2 text-[28px] font-bold leading-9 tracking-[-0.02em] text-ink md:text-[32px] md:leading-10">
+                Lo que el sistema observa en tu caminata
+              </h2>
+              <p className="mt-4 text-[15px] leading-7 text-ink-muted">
+                A partir de los puntos del cuerpo detectados en el video, el
+                sistema describe características de la marcha y las explica en
+                lenguaje sencillo.
+              </p>
+            </div>
+
+            <div className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:col-span-8">
+              {OBSERVED_GROUPS.map((group) => (
+                <div key={group.title} className="bg-surface p-6">
+                  <h3 className="text-[11px] font-bold uppercase tracking-[0.09em] text-ink-subtle">{group.title}</h3>
+                  <ul className="mt-4 space-y-3">
+                    {group.items.map(({ label, icon: Icon }) => (
+                      <li key={label} className="flex items-center gap-3 text-[15px] font-medium text-ink">
+                        <Icon className="h-4 w-4 shrink-0 text-navy-700" aria-hidden />
+                        {label}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================= Uso responsable ================= */}
+        <section id="responsable" className="scroll-mt-16 bg-navy-900">
+          <div className="mx-auto grid max-w-[1240px] gap-10 px-4 py-20 md:px-8 lg:grid-cols-12 lg:py-24">
+            <div className="lg:col-span-5">
+              <p className="text-xs font-bold uppercase tracking-[0.09em] text-accent-cyan">Uso responsable</p>
+              <h2 className="mt-2 text-[28px] font-bold leading-9 tracking-[-0.02em] text-white md:text-[32px] md:leading-10">
+                Una orientación para tu consulta, no un diagnóstico
+              </h2>
+              <p className="mt-4 text-[15px] leading-7 text-on-navy">
+                Este sistema no reemplaza una valoración médica profesional. El
+                resultado es una orientación inicial generada a partir del
+                análisis visual de la marcha.
+              </p>
+              <LinkButton href="/registro" size="lg" className="mt-8">
+                Crear cuenta
+                <ArrowRight aria-hidden />
+              </LinkButton>
+            </div>
+
+            <dl className="grid gap-px self-start overflow-hidden rounded-xl border border-navy-700 bg-navy-700 lg:col-span-6 lg:col-start-7">
+              {[
+                ["Patrón compatible", "Indica similitud con patrones de marcha aprendidos; no confirma una enfermedad."],
+                ["Características observadas", "Describe lo que se vio en el video, en lenguaje sencillo."],
+                ["Requiere valoración profesional", "La interpretación clínica corresponde a un profesional de salud."],
+              ].map(([term, detail]) => (
+                <div key={term} className="bg-navy-900 p-6">
+                  <dt className="text-[15px] font-semibold text-white">{term}</dt>
+                  <dd className="mt-1 text-sm leading-6 text-on-navy">{detail}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </section>
       </main>
+
+      <footer className="border-t border-navy-800 bg-navy-950">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-3 px-4 py-8 md:flex-row md:items-center md:justify-between md:px-8">
+          <BrandMark tone="light" />
+          <p className="text-[13px] text-on-navy">
+            Resultado orientativo. No constituye un diagnóstico médico.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

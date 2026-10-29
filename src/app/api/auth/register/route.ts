@@ -4,6 +4,11 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { validateRegisterInput } from "@/lib/validations/auth";
 import { validateEmailDomain } from "@/lib/validations/emailServer";
+import {
+  SESSION_COOKIE,
+  sessionCookieOptions,
+  signSession,
+} from "@/lib/auth/sessionToken";
 
 export const runtime = "nodejs";
 
@@ -98,13 +103,21 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         message: "Cuenta creada correctamente.",
         user,
       },
       { status: 201 }
     );
+
+    response.cookies.set(
+      SESSION_COOKIE,
+      await signSession({ email: user.email, name: user.name, role: user.role }),
+      sessionCookieOptions()
+    );
+
+    return response;
   } catch (error) {
     console.error("REGISTER_ERROR", error);
 

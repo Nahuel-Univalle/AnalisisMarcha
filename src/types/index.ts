@@ -35,6 +35,13 @@ export type GaitParameter = {
   state: string;
 };
 
+/** Advertencia de calidad o de clase emitida por el script de inferencia. */
+export type ModelWarning = {
+  code: string;
+  severity: "alta" | "media" | "info";
+  message: string;
+};
+
 export type AnalysisResult = {
   id?: string;
   alertLevel: AlertLevel;
@@ -68,11 +75,47 @@ export type AnalysisResult = {
   signalEmptyMessage?: string | null;
   signalDecision?: string | null;
   modelSource?: string | null;
+  modelVersion?: string | null;
+  modelKind?: string | null;
+  analysisReliable?: boolean;
+  qualityMessage?: string | null;
+  detectedClass?: string | null;
+  detectedClassLabel?: string | null;
+  classProbabilitiesByName?: Record<string, number> | null;
+  classProbabilitiesList?: Array<{
+    key: string;
+    label: string;
+    shortLabel: string;
+    probability: number;
+  }> | null;
+  alteredProbability?: number | null;
+  orientationText?: string | null;
+  featureHighlights?: Array<{
+    concept: string;
+    label: string;
+    values: Record<string, number>;
+    note: string;
+  }> | null;
+  gaitFeatures?: Record<string, number | null> | null;
+  modelMacroF1?: number | null;
   probabilityParkinson?: number | null;
   probabilityNormal?: number | null;
   riskLevel?: string | null;
   confidence?: number | null;
-  predictionLabel?: "possible_parkinson" | "rule_based_orientation" | string | null;
+  /** Resultado del modelo experimental de 4 clases (Dataset V4). */
+  experimentalClassification?: boolean;
+  modelVariant?: string | null;
+  modelWarnings?: ModelWarning[];
+  confidenceMeaning?: string | null;
+  modelDisclaimer?: string | null;
+  predictionLabel?:
+    | "possible_parkinson"
+    | "possible_esclerosis_multiple"
+    | "possible_riesgo_caida"
+    | "control"
+    | "rule_based_orientation"
+    | string
+    | null;
   predictionConfidence?: number | null;
   modelAvailable?: boolean;
   modelMetricsAvailable?: boolean;
@@ -107,6 +150,9 @@ export type SavedReport = {
   alertLevel: AlertLevel;
   title: string;
   summary?: string;
+  analysisType?: string;
+  pattern?: string;
+  patternStatus?: string;
   userEmail?: string;
   userName?: string;
   originalVideoUrl?: string;

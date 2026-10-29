@@ -21,6 +21,8 @@ export type ObservedSignalInput = {
   modelSource?: string | null;
   probabilityParkinson?: number | null;
   probabilityNormal?: number | null;
+  alteredProbability?: number | null;
+  detectedClass?: string | null;
   riskLevel?: string | null;
   confidence?: number | null;
   poseDetectionRate?: number | null;
@@ -37,12 +39,19 @@ export type ObservedSignalResult = {
 };
 
 const VIDEO_MODEL_SOURCE = "video_parkinson_model";
+const DEEP_MODEL_SOURCE = "gait_deep_model";
+const TRAINED_MODEL_SOURCES = new Set([VIDEO_MODEL_SOURCE, DEEP_MODEL_SOURCE]);
+
+function isTrainedModelSource(source: string | null | undefined) {
+  return Boolean(source) && TRAINED_MODEL_SOURCES.has(source as string);
+}
+
 const LOW_RISK_EMPTY_MESSAGE =
   "No se detectaron señales relevantes en la marcha analizada.";
 const QUALITY_EMPTY_MESSAGE =
   "Calidad del video insuficiente para interpretar señales de marcha con confianza.";
 const NO_EVIDENCE_EMPTY_MESSAGE =
-  "No se detectaron señales relevantes asociadas a patrones de Parkinson en este análisis.";
+  "No se detectaron señales de marcha relevantes en este análisis.";
 
 function finiteNumber(value: number | null | undefined) {
   return typeof value === "number" && Number.isFinite(value) ? value : null;
@@ -144,20 +153,23 @@ function videoQualityIsInsufficient(input: ObservedSignalInput) {
 
 function maxSeverityForModel(
   modelSource: string | null | undefined,
-  probabilityParkinson: number | null,
+  alteredProbability: number | null,
   riskLevel: string | null
 ): ObservedSignalSeverity | null {
-  if (modelSource !== VIDEO_MODEL_SOURCE) return null;
-  if (riskLevel === "bajo" || (probabilityParkinson !== null && probabilityParkinson < 0.4)) {
+  if (!isTrainedModelSource(modelSource)) return null;
+  if (
+    riskLevel === "bajo" ||
+    (alteredProbability !== null && alteredProbability < 0.4)
+  ) {
     return null;
   }
   if (
     riskLevel === "medio" ||
-    (probabilityParkinson !== null && probabilityParkinson <= 0.7)
+    (alteredProbability !== null && alteredProbability <= 0.7)
   ) {
     return "medio";
   }
-  return probabilityParkinson !== null && probabilityParkinson > 0.7 ? "alto" : "medio";
+  return alteredProbability !== null && alteredProbability > 0.7 ? "alto" : "medio";
 }
 
 export function observedSeverityToAlertLabel(severity: ObservedSignalSeverity) {
@@ -170,8 +182,13 @@ export function observedSeverityToAlertLabel(severity: ObservedSignalSeverity) {
 export function buildObservedSignals(input: ObservedSignalInput): ObservedSignalResult {
   const probabilityParkinson = finiteNumber(input.probabilityParkinson);
   const probabilityNormal = finiteNumber(input.probabilityNormal);
+  const alteredProbability =
+    finiteNumber(input.alteredProbability) ??
+    (probabilityNormal !== null ? Math.max(0, Math.min(1, 1 - probabilityNormal)) : null) ??
+    probabilityParkinson;
   const riskLevel = normalizeRiskLevel(input.riskLevel);
   const ruleSignals = input.ruleSignals ?? [];
+  const trainedModel = isTrainedModelSource(input.modelSource);
 
   if (videoQualityIsInsufficient(input)) {
     return {
@@ -183,14 +200,14 @@ export function buildObservedSignals(input: ObservedSignalInput): ObservedSignal
 
   const modelMaxSeverity = maxSeverityForModel(
     input.modelSource,
-    probabilityParkinson,
+    alteredProbability,
     riskLevel
   );
 
-  if (input.modelSource === VIDEO_MODEL_SOURCE && modelMaxSeverity === null) {
+  if (trainedModel && modelMaxSeverity === null) {
     const normalConfidence =
       probabilityNormal !== null && probabilityNormal >= 0.8
-        ? " Modelo con alta coincidencia normal."
+        ? " Modelo con alta coincidencia con marcha normal."
         : "";
 
     return {
@@ -201,8 +218,7 @@ export function buildObservedSignals(input: ObservedSignalInput): ObservedSignal
   }
 
   const maxSeverity = modelMaxSeverity ?? "alto";
-  const source: ObservedSignalSource =
-    input.modelSource === VIDEO_MODEL_SOURCE ? "model" : "fallback";
+  const source: ObservedSignalSource = trainedModel ? "model" : "fallback";
   const signals = ruleSignals
     .filter((signal) => hasFeatureSupport(signal.name, input.videoMetrics))
     .map<ObservedSignal>((signal) => {
@@ -213,10 +229,9 @@ export function buildObservedSignals(input: ObservedSignalInput): ObservedSignal
         description: signal.description,
         severity,
         source,
-        reason:
-          input.modelSource === VIDEO_MODEL_SOURCE
-            ? `Feature respaldada por métricas reales y limitada por riesgo global ${riskLevel ?? "sin dato"}.`
-            : "Señal generada por reglas de respaldo al no estar disponible el modelo de video.",
+        reason: trainedModel
+          ? `Característica respaldada por métricas reales y limitada por el riesgo global (${riskLevel ?? "sin dato"}).`
+          : "Señal generada por reglas de respaldo al no estar disponible el modelo de Deep Learning.",
       };
     })
     .filter((signal) => signal.severity !== "info");
@@ -232,9 +247,8 @@ export function buildObservedSignals(input: ObservedSignalInput): ObservedSignal
   return {
     signals,
     emptyMessage: null,
-    signalDecision:
-      input.modelSource === VIDEO_MODEL_SOURCE
-        ? "Signals generated from feature evidence and capped by video model risk"
-        : "Signals generated from fallback gait rules",
+    signalDecision: trainedModel
+      ? "Signals generated from feature evidence and capped by trained model risk"
+      : "Signals generated from fallback gait rules",
   };
 }

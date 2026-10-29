@@ -1,19 +1,25 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { ArrowRight, CircleCheck, RotateCcw } from "lucide-react";
 import { AppShell } from "@/components/layout/AppShell";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
-import { ProgressSteps } from "@/components/ui/ProgressSteps";
+import { LinkButton } from "@/components/ui/LinkButton";
+import { InlineAlert } from "@/components/ui/InlineAlert";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { StepIndicator } from "@/components/ui/StepIndicator";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { ProcessingTimeline } from "@/components/analysis/ProcessingTimeline";
+import { VideoStage } from "@/components/analysis/VideoStage";
+import { GaitFigure } from "@/components/brand/GaitFigure";
 import { useAnalysis } from "@/context/AnalysisContext";
 import { useAuth } from "@/context/AuthContext";
 import {
   buildObservedSignals,
   observedSeverityToAlertLabel,
 } from "@/lib/analysis/observedSignals";
-import { AlertLevel, AnalysisResult, SignalSeverity } from "@/types";
+import { AlertLevel, AnalysisResult, ModelWarning, SignalSeverity } from "@/types";
 
 const steps = [
   "Video cargado",
@@ -51,6 +57,29 @@ type ApiAnalysis = {
   decisionSource?: string;
   modelControlProbability?: number | null;
   modelParkinsonProbability?: number | null;
+  modelKind?: string | null;
+  modelVersion?: string | null;
+  analysisReliable?: boolean;
+  qualityMessage?: string | null;
+  detectedClass?: string | null;
+  detectedClassLabel?: string | null;
+  classProbabilitiesByName?: Record<string, number> | null;
+  classProbabilitiesList?: Array<{
+    key: string;
+    label: string;
+    shortLabel: string;
+    probability: number;
+  }> | null;
+  alteredProbability?: number | null;
+  orientationText?: string | null;
+  featureHighlights?: Array<{
+    concept: string;
+    label: string;
+    values: Record<string, number>;
+    note: string;
+  }> | null;
+  gaitFeatures?: Record<string, number | null> | null;
+  modelMacroF1?: number | null;
   modelAvailable?: boolean;
   modelMetricsAvailable?: boolean;
   modelAccuracy?: number | null;
@@ -79,6 +108,11 @@ type ApiAnalysis = {
   probabilityNormal?: number | null;
   riskLevel?: string | null;
   confidence?: number | null;
+  experimentalClassification?: boolean;
+  modelVariant?: string | null;
+  modelWarnings?: ModelWarning[];
+  confidenceMeaning?: string | null;
+  modelDisclaimer?: string | null;
   observedSignals?: Array<{
     title: string;
     description: string;
@@ -110,7 +144,7 @@ export default function MovementAnalysisPage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [apiStatus, setApiStatus] = useState("Esperando inicio del análisis.");
   const [apiError, setApiError] = useState<string | null>(null);
-  const [annotatedVideoFailed, setAnnotatedVideoFailed] = useState(false);
+  const [, setAnnotatedVideoFailed] = useState(false);
   const [processing, setProcessing] = useState(false);
   const analyzedRef = useRef(false);
 
@@ -180,16 +214,10 @@ export default function MovementAnalysisPage() {
   }, [ready, user, videoFile, setResult, category]);
 
   const completed = currentStep === steps.length - 1 && !processing;
-  const posePercent =
-    result.poseDetectionRate === null || result.poseDetectionRate === undefined
-      ? "Sin dato"
-      : `${Math.round(result.poseDetectionRate * 100)}%`;
-  const statusDetail =
-    result.poseDetectionRate !== null &&
-    result.poseDetectionRate !== undefined &&
-    result.poseDetectionRate >= 0.95
-      ? "El seguimiento corporal fue adecuado para realizar el análisis orientativo."
-      : "El sistema logró seguir el cuerpo durante el video y generar una lectura inicial del movimiento.";
+  // Los datos técnicos de seguimiento (porcentaje de cuerpo detectado,
+  // calidad, cantidad de momentos analizados) se siguen recibiendo y
+  // guardando en el resultado, pero ya no se muestran al usuario.
+  const succeeded = completed && !apiError;
   const originalPlaybackUrl =
     result.originalVideoUrl || result.localOriginalVideoUrl || videoUrl;
   const processedPlaybackUrl =
@@ -197,125 +225,136 @@ export default function MovementAnalysisPage() {
     result.annotatedVideoUrl ||
     result.localProcessedVideoUrl;
 
+  const failed = Boolean(apiError);
+  const noVideo = !videoFile && !processing && !failed;
+
   return (
     <AppShell>
-      <section className="grid gap-6 animate-fadeIn">
-        <div>
-          <h1 className="text-4xl font-black text-slate-900">
-            Analizando patrones de movimiento
-          </h1>
+      <div className="grid gap-8">
+        <StepIndicator current={succeeded ? 3 : 2} />
 
-          <p className="mt-2 text-slate-500">
-            El sistema evalúa señales observadas en la marcha. Este análisis no
-            reemplaza una evaluación médica.
-          </p>
-        </div>
+        <PageHeader
+          eyebrow="Procesamiento"
+          title={
+            succeeded
+              ? "Análisis completado"
+              : failed
+                ? "No se pudo completar el análisis"
+                : "Analizando patrones de movimiento"
+          }
+          description="El sistema evalúa señales observadas en la marcha. Este análisis no reemplaza una evaluación médica."
+        />
 
-        <ProgressSteps steps={steps} current={currentStep} />
-
-        <div className="grid gap-6 lg:grid-cols-2">
-          <Card>
-            <h2 className="text-xl font-black text-slate-950">
-              Video original
-            </h2>
-            {originalPlaybackUrl ? (
-              <video
-                src={originalPlaybackUrl}
-                controls
-                className="mt-4 w-full rounded-2xl"
-              />
-            ) : (
-              <p className="mt-4 text-slate-600">
-                No hay video cargado para analizar.
-              </p>
-            )}
-          </Card>
-
-          <Card>
-            <h2 className="text-xl font-black text-slate-950">
-              Video con puntos clave
-            </h2>
-            {processedPlaybackUrl ? (
-              annotatedVideoFailed ? (
-                <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold text-amber-800">
-                  El video anotado se generó, pero no pudo reproducirse.
+        {noVideo ? (
+          <div className="reveal rounded-xl border border-line bg-surface p-6">
+            <EmptyState
+              visual={
+                <div className="w-20 rounded-lg bg-navy-900 p-2">
+                  <GaitFigure guides={false} />
                 </div>
-              ) : (
-                <video
-                  src={processedPlaybackUrl}
-                  controls
-                  className="mt-4 w-full rounded-2xl"
-                  onError={() => setAnnotatedVideoFailed(true)}
-                />
-              )
-            ) : (
-              <p className="mt-4 text-slate-600">
-                Todavía no se generó el video con puntos clave. Inicie el
-                análisis para procesarlo.
-              </p>
-            )}
-          </Card>
-        </div>
-
-        <Card>
-          <h2 className="text-xl font-black text-slate-950">
-            Estado del análisis
-          </h2>
-
-          <p className={`mt-3 flex items-center gap-2 text-sm font-semibold text-slate-700 ${processing ? "animate-pulse" : ""}`}>
-            {processing && <Loader2 className="h-4 w-4 animate-spin text-accent" />}
-            {apiStatus}
-          </p>
-
-          {!apiError && completed && (
-            <p className="mt-2 text-sm text-slate-600">{statusDetail}</p>
-          )}
-
-          {apiError && (
-            <div className="mt-4 animate-slideIn rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold text-amber-800 shadow-md">
-              {apiError}
-            </div>
-          )}
-
-          {result.analysisWarnings && result.analysisWarnings.length > 0 && (
-            <details className="mt-4 animate-slideIn rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 shadow-md">
-              <summary className="cursor-pointer font-bold">
-                Observaciones del análisis
-              </summary>
-              <ul className="mt-3 space-y-2">
-                {result.analysisWarnings.map((warning) => (
-                  <li key={warning}>• {warning}</li>
-                ))}
-              </ul>
-            </details>
-          )}
-
-          <div className="mt-5 grid gap-4 md:grid-cols-4">
-            {[
-              ["Cuerpo detectado en el video", posePercent],
-              ["Calidad", result.poseQuality || "Sin dato"],
-              ["Momentos analizados", String(result.framesAnalyzed ?? 0)],
-              [
-                "Momentos con seguimiento correcto",
-                String(result.framesWithPose ?? 0),
-              ],
-            ].map(([label, value]) => (
-              <div key={label} className="rounded-2xl border border-blue-100 bg-blue-50 p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-                <p className="text-sm text-primary">{label}</p>
-                <p className="mt-1 font-bold text-slate-900">{value}</p>
-              </div>
-            ))}
+              }
+              title="No hay video cargado para analizar"
+              description="Sube un video caminando para iniciar un nuevo análisis."
+              action={<LinkButton href="/analisis/subir-video">Subir video</LinkButton>}
+            />
           </div>
-
-          <Button
-            className="mt-6 w-full"
-            disabled={!completed}
-            onClick={() => router.push("/analisis/resultado")}
+        ) : (
+          <section
+            className="reveal processing-workspace"
+            style={{ "--i": 1 } as CSSProperties}
+            aria-label="Panel de análisis"
           >
-            Ver resultado
-          </Button>
-        </Card>
-      </section>
+            <div className="grid lg:grid-cols-12">
+              <div className="border-b border-line bg-surface-subtle p-4 sm:p-6 lg:col-span-7 lg:border-b-0 lg:border-r">
+                {originalPlaybackUrl || processedPlaybackUrl ? (
+                  <VideoStage
+                    key={processedPlaybackUrl ? "processed" : "original"}
+                    sources={[
+                      { label: "Puntos clave", src: processedPlaybackUrl ?? "" },
+                      { label: "Original", src: originalPlaybackUrl ?? "" },
+                    ]}
+                    initial={processedPlaybackUrl ? "Puntos clave" : "Original"}
+                    size="lg"
+                    scanning={processing}
+                    className="fade-in border border-navy-800"
+                  />
+                ) : (
+                  <div className="flex min-h-[300px] items-center justify-center rounded-xl bg-navy-950 p-6 text-sm text-on-navy">
+                    No hay video cargado para analizar.
+                  </div>
+                )}
+              </div>
+
+              <div className="flex flex-col p-6 sm:p-8 lg:col-span-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-[64px] shrink-0 rounded-lg bg-primary-soft p-2">
+                    <GaitFigure tone="light" active={processing} guides={false} />
+                  </div>
+                  <div className="min-w-0">
+                    <h2 className="text-xl font-semibold text-ink">
+                      {succeeded ? "Análisis completado" : failed ? "Análisis interrumpido" : "Analizando tu video"}
+                    </h2>
+                    <p className="mt-2 text-sm leading-6 text-ink-muted" aria-live="polite">
+                      {apiStatus}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-7 border-t border-line pt-6">
+                  <ProcessingTimeline
+                    steps={steps}
+                    current={currentStep}
+                    processing={processing}
+                    completed={succeeded}
+                    failed={failed}
+                  />
+                </div>
+
+                {!succeeded && !failed && (
+                  <p className="mt-6 text-xs text-ink-subtle">
+                    El tiempo depende de la duración del video.
+                  </p>
+                )}
+
+                {succeeded && (
+                  <p className="fade-in mt-6 flex items-center gap-2 text-sm font-medium text-ink">
+                    <CircleCheck className="h-4 w-4 text-primary" aria-hidden />
+                    El resultado está listo para revisar.
+                  </p>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {apiError && <InlineAlert tone="error">{apiError}</InlineAlert>}
+
+        {result.analysisWarnings && result.analysisWarnings.length > 0 && (
+          <details className="group rounded-xl border border-warning-line bg-warning-bg px-4 py-3 text-sm text-warning">
+            <summary className="cursor-pointer font-semibold">Observaciones del análisis</summary>
+            <ul className="mt-2 list-disc space-y-1 pl-5">
+              {result.analysisWarnings.map((warning) => (
+                <li key={warning}>{warning}</li>
+              ))}
+            </ul>
+          </details>
+        )}
+
+        {!noVideo && (
+          <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-end">
+            {failed && (
+              <LinkButton href="/analisis/subir-video" variant="outline" size="lg">
+                <RotateCcw aria-hidden />
+                Subir otro video
+              </LinkButton>
+            )}
+            <Button size="lg" disabled={!succeeded} onClick={() => router.push("/analisis/resultado")}>
+              Ver resultado
+              <ArrowRight aria-hidden />
+            </Button>
+          </div>
+        )}
+      </div>
     </AppShell>
   );
 }
@@ -348,7 +387,7 @@ function mapSignalDescription(name: string, description: string) {
   }
 
   if (name === "Balanceo de brazos reducido o asimétrico") {
-    return "El sistema observó menor movimiento o diferencia entre ambos brazos durante la caminata. Esta señal puede aparecer en patrones asociados a Parkinson.";
+    return "El sistema observó menor movimiento o diferencia entre ambos brazos durante la caminata. Esta señal puede aparecer en distintas alteraciones de la marcha.";
   }
 
   if (name === "Asimetría de marcha") {
@@ -371,17 +410,23 @@ function mapEvaluationToAnalysisResult(analysis: ApiAnalysis): AnalysisResult {
   const alertLevel = toAlertLevel(evaluation.alertLevel);
   const warnings = dedupeStrings(analysis.warnings ?? []);
   const datasetWarnings = dedupeStrings(evaluation.datasetWarnings ?? []);
-  const modelSuggestsParkinson =
+  const modelDetectedAlteration =
     analysis.modelUsed === true &&
-    evaluation.possibleCondition === "posible_parkinson";
+    evaluation.possibleCondition !== "sin_alerta" &&
+    (analysis.detectedClass ?? "normal") !== "normal";
+  const detectedLabel =
+    analysis.detectedClassLabel ||
+    (modelDetectedAlteration
+      ? "Patrón de marcha con posible alteración"
+      : "Marcha dentro de patrones esperados");
   const parkinsonCondition = {
-    condition: modelSuggestsParkinson
-      ? "Resultado orientativo compatible con posible patrón asociado a Parkinson"
-      : "Sin alerta principal asociada a Parkinson",
-    status: modelSuggestsParkinson
+    condition: modelDetectedAlteration
+      ? `Resultado orientativo: ${detectedLabel}`
+      : "Sin alerta principal en la marcha",
+    status: modelDetectedAlteration
       ? "Requiere valoración profesional"
       : "Sin alerta principal",
-    description: evaluation.summary,
+    description: analysis.orientationText || evaluation.summary,
   };
   const observedSignalResult =
     analysis.observedSignals && analysis.observedSignals.length > 0
@@ -427,11 +472,29 @@ function mapEvaluationToAnalysisResult(analysis: ApiAnalysis): AnalysisResult {
     cloudinaryUploadOk: analysis.cloudinaryUploadOk,
     savedToDatabase: analysis.savedToDatabase,
     visualAnalysisCompleted: analysis.visualAnalysisCompleted ?? true,
+    analysisReliable: analysis.analysisReliable ?? true,
+    qualityMessage: analysis.qualityMessage ?? null,
     modelSource: analysis.modelSource ?? null,
+    modelVersion: analysis.modelVersion ?? null,
+    modelKind: analysis.modelKind ?? null,
+    detectedClass: analysis.detectedClass ?? null,
+    detectedClassLabel: analysis.detectedClassLabel ?? null,
+    classProbabilitiesByName: analysis.classProbabilitiesByName ?? null,
+    classProbabilitiesList: analysis.classProbabilitiesList ?? null,
+    alteredProbability: analysis.alteredProbability ?? null,
+    orientationText: analysis.orientationText ?? null,
+    featureHighlights: analysis.featureHighlights ?? null,
+    gaitFeatures: analysis.gaitFeatures ?? null,
+    modelMacroF1: analysis.modelMacroF1 ?? null,
     probabilityParkinson: analysis.probabilityParkinson ?? null,
     probabilityNormal: analysis.probabilityNormal ?? null,
     riskLevel: analysis.riskLevel ?? null,
     confidence: analysis.confidence ?? null,
+    experimentalClassification: analysis.experimentalClassification ?? false,
+    modelVariant: analysis.modelVariant ?? null,
+    modelWarnings: analysis.modelWarnings ?? [],
+    confidenceMeaning: analysis.confidenceMeaning ?? null,
+    modelDisclaimer: analysis.modelDisclaimer ?? null,
     modelUsed: analysis.modelUsed ?? false,
     modelUsedForVideo: analysis.modelUsedForVideo ?? analysis.modelUsed ?? false,
     predictionLabel: analysis.predictionLabel,

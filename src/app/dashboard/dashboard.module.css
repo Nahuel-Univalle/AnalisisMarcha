@@ -1,0 +1,162 @@
+.dashboardShell :global(.app-content) {
+  max-width: none;
+  padding: 0;
+}
+
+.page { min-width: 0; }
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 77px);
+  min-height: calc(100svh - 77px);
+  background: var(--color-primary-soft);
+}
+
+.backdrop {
+  --photo-scale: 0.94;
+  --photo-inset: 3%;
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* El reflejo de los extremos prolonga la fotografía sin dejar franjas vacías. */
+.backdrop::before,
+.backdrop::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(100% - var(--photo-inset) * 2);
+  background: url("/images/gait-biomechanics-hero.png") var(--photo-position, center) / cover no-repeat;
+  transform: scaleY(-1);
+}
+
+.backdrop::before { bottom: calc(100% - var(--photo-inset) - 1px); }
+.backdrop::after { top: calc(100% - var(--photo-inset) - 1px); }
+
+.photo {
+  width: calc(100% / var(--photo-scale)) !important;
+  max-width: none;
+  left: calc((100% - 100% / var(--photo-scale)) / 2) !important;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(var(--photo-scale));
+}
+
+.heroContent {
+  width: 100%;
+  padding: 44px 5vw;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  width: min(43vw, 600px);
+  padding: clamp(28px, 2.5vw, 44px);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(18, 79, 72, 0.06);
+  color: var(--color-ink);
+}
+
+.greeting {
+  margin-bottom: 20px;
+  color: var(--color-primary-dark);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-primary-dark);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.eyebrow svg { flex-shrink: 0; }
+
+.copy h1 {
+  margin-top: 16px;
+  font-size: clamp(40px, 3.7vw, 58px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+}
+
+.description {
+  margin-top: 20px;
+  color: var(--color-ink-muted);
+  font-size: clamp(16px, 1.1vw, 18px);
+  line-height: 1.8;
+}
+
+.action { align-self: flex-start; margin-top: 28px; }
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 24px;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.note svg { margin-top: 2px; }
+
+.shortcuts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  padding: 28px 5vw 36px;
+}
+
+@media (min-width: 1024px) {
+  .dashboardShell :global(.app-topbar-inner) {
+    max-width: none;
+    padding-inline: 5vw;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    --photo-height: clamp(300px, 58vw, 460px);
+    display: block;
+    min-height: auto;
+  }
+
+  .backdrop { --photo-position: 64% center; bottom: auto; height: var(--photo-height); }
+  .photo { object-position: 64% center; }
+  .heroContent { padding: calc(var(--photo-height) - 16px) 28px 28px; }
+  .copy { width: 100%; max-width: 640px; margin-inline: auto; padding: 32px; }
+  .copy h1 { font-size: 42px; }
+  .description { font-size: 16px; }
+  .shortcuts { padding-inline: 28px; }
+}
+
+@media (max-width: 767px) {
+  .heroContent { padding-inline: 20px; }
+  .copy { padding: 28px; border-radius: 16px; }
+  .copy h1 { font-size: clamp(32px, 6vw, 40px); }
+  .greeting { font-size: 18px; }
+  .shortcuts { gap: 16px; padding: 20px 20px 28px; }
+}
+
+@media (max-width: 479px) {
+  .heroContent { padding-inline: 16px; }
+  .copy { padding: 24px; }
+  .eyebrow { font-size: 11px; }
+  .description { font-size: 15px; }
+  .shortcuts { grid-template-columns: minmax(0, 1fr); gap: 12px; padding-inline: 16px; }
+}

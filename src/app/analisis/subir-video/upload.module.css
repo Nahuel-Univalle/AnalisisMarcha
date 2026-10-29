@@ -1,0 +1,12 @@
+.shell :global(.app-content) { padding-top: 24px; }
+
+.page > nav { padding-block: 0 8px; }
+
+.page > nav > ol {
+  margin-inline: auto;
+  padding-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .shell :global(.app-content) { padding-top: 20px; }
+}

@@ -1,56 +1,74 @@
 "use client";
 
+import { CSSProperties } from "react";
 import { useRouter } from "next/navigation";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { AppShell } from "@/components/layout/AppShell";
 import { Button } from "@/components/ui/Button";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { StepIndicator } from "@/components/ui/StepIndicator";
 import { MedicalDisclaimer } from "@/components/ui/MedicalDisclaimer";
 import { ValidationChecklist } from "@/components/analysis/ValidationChecklist";
+import { VideoStage } from "@/components/analysis/VideoStage";
 import { useAnalysis } from "@/context/AnalysisContext";
 
 export default function ValidationPage() {
   const router = useRouter();
-  const { videoFile } = useAnalysis();
+  const { videoFile, videoUrl, videoMeta } = useAnalysis();
 
   const valid = Boolean(videoFile);
 
   return (
     <AppShell>
-      <section className="mx-auto max-w-4xl">
-        <h1 className="text-center text-4xl font-black text-slate-950">
-          Validando tu video
-        </h1>
+      <div className="grid gap-8">
+        <StepIndicator current={1} />
 
-        <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
-          Revisamos si el video cumple las condiciones mínimas para un análisis
-          confiable.
-        </p>
+        <PageHeader
+          eyebrow="Revisión"
+          title="Revisión antes de continuar"
+          description="Confirma que tu video cumple estas recomendaciones antes de iniciar el análisis."
+        />
 
-        <div className="mt-8">
-          <ValidationChecklist valid={valid} />
-        </div>
+        <div className="grid gap-6 lg:grid-cols-12">
+          <section className="reveal lg:col-span-5" style={{ "--i": 1 } as CSSProperties}>
+            {videoUrl ? (
+              <>
+                <VideoStage sources={[{ label: "Original", src: videoUrl }]} size="md" />
+                {videoMeta && (
+                  <p className="mt-3 truncate font-mono text-xs text-ink-muted">
+                    {videoMeta.name} · {videoMeta.size}
+                  </p>
+                )}
+              </>
+            ) : (
+              <div className="flex min-h-[240px] items-center justify-center rounded-xl bg-navy-950 p-6 text-center text-sm text-on-navy">
+                No hay un video cargado.
+              </div>
+            )}
+          </section>
 
-        <div className="mt-6">
-          <MedicalDisclaimer />
-        </div>
-
-        <div className="mt-8 flex justify-center gap-3">
-          {!valid && (
-            <Button
-              variant="outline"
-              onClick={() => router.push("/analisis/subir-video")}
-            >
-              Subir otro video
-            </Button>
-          )}
-
-          <Button
-            disabled={!valid}
-            onClick={() => router.push("/analisis/movimiento")}
+          <section
+            className="reveal rounded-xl border border-line bg-surface p-6 lg:col-span-7"
+            style={{ "--i": 2 } as CSSProperties}
           >
-            Iniciar análisis
-          </Button>
+            <ValidationChecklist valid={valid} />
+          </section>
         </div>
-      </section>
+
+        <div className="reveal grid gap-5 border-t border-line pt-6 lg:grid-cols-12" style={{ "--i": 3 } as CSSProperties}>
+          <MedicalDisclaimer variant="inline" className="lg:col-span-7" />
+          <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end lg:col-span-5">
+            <Button variant="outline" size="lg" onClick={() => router.push("/analisis/subir-video")}>
+              <ArrowLeft aria-hidden />
+              {valid ? "Cambiar video" : "Subir otro video"}
+            </Button>
+            <Button size="lg" disabled={!valid} onClick={() => router.push("/analisis/movimiento")}>
+              Iniciar análisis
+              <ArrowRight aria-hidden />
+            </Button>
+          </div>
+        </div>
+      </div>
     </AppShell>
   );
 }

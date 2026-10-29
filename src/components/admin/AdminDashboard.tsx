@@ -1,16 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import {
-  Activity,
-  BarChart3,
-  Database,
-  FileText,
-  Users,
-  Video,
-} from "lucide-react";
-import { Card } from "@/components/ui/Card";
+import { CSSProperties, useEffect, useState } from "react";
+import { Database, Files } from "lucide-react";
+import { LinkButton } from "@/components/ui/LinkButton";
+import { AlertBadge } from "@/components/ui/AlertBadge";
+import { PageHeader, SectionHeader } from "@/components/ui/PageHeader";
+import { Skeleton } from "@/components/ui/EmptyState";
+import { cn } from "@/lib/utils";
 
 type AdminSummary = {
   totalUsers: number;
@@ -72,6 +68,8 @@ const EMPTY_SUMMARY: AdminSummary = {
   recentUsers: [],
 };
 
+const delay = (i: number) => ({ "--i": i }) as CSSProperties;
+
 export function AdminDashboard() {
   const [summary, setSummary] = useState<AdminSummary>(EMPTY_SUMMARY);
   const [loading, setLoading] = useState(true);
@@ -97,129 +95,165 @@ export function AdminDashboard() {
     };
   }, []);
 
-  const metrics = [
-    { label: "Usuarios registrados", value: summary.totalUsers, icon: Users },
-    { label: "Análisis totales", value: summary.totalAnalyses, icon: Activity },
-    { label: "Informes generados", value: summary.totalReports, icon: FileText },
-    { label: "Videos procesados", value: summary.totalVideos, icon: Video },
-    {
-      label: "Registros de referencia",
-      value: summary.datasetSummary.datasetRecords,
-      icon: Database,
-    },
-    {
-      label: "Estado del modelo",
-      value: summary.modelStatus.available ? "Disponible" : "No disponible",
-      icon: BarChart3,
-    },
+  const metrics: Array<[string, number | string]> = [
+    ["Usuarios registrados", summary.totalUsers],
+    ["Análisis totales", summary.totalAnalyses],
+    ["Informes generados", summary.totalReports],
+    ["Videos procesados", summary.totalVideos],
+    ["Registros de referencia", summary.datasetSummary.datasetRecords],
   ];
 
   return (
-    <section className="grid gap-6 animate-fadeIn">
-      <div>
-        <h1 className="text-4xl font-black text-slate-900">
-          Panel administrativo
-        </h1>
-        <p className="mt-2 text-slate-500">
-          Resumen general del sistema de análisis de marcha.
-        </p>
-      </div>
+    <div className="grid gap-10">
+      <PageHeader
+        eyebrow="Administración"
+        title="Panel administrativo"
+        description="Resumen general del sistema de análisis de marcha."
+        actions={
+          <>
+            <LinkButton href="/datasets/parkinson" variant="outline">
+              <Database aria-hidden />
+              Datasets
+            </LinkButton>
+            <LinkButton href="/seguimiento" variant="outline">
+              <Files aria-hidden />
+              Informes globales
+            </LinkButton>
+          </>
+        }
+      />
 
-      <div className="grid gap-4 md:grid-cols-3">
-        {metrics.map((metric) => {
-          const Icon = metric.icon;
-          return (
-            <Card key={metric.label}>
-              <Icon className="mb-4 h-7 w-7 text-primary" />
-              <p className="text-sm text-slate-500">{metric.label}</p>
-              <p className="mt-1 text-2xl font-black text-slate-900">
-                {loading ? "..." : metric.value}
-              </p>
-            </Card>
-          );
-        })}
-      </div>
-
-      <Card>
-        <h2 className="text-2xl font-black text-slate-950">
-          Accesos rápidos
-        </h2>
-        <div className="mt-5 flex flex-wrap gap-3">
-          {[
-            ["Datasets", "/datasets/parkinson"],
-            ["Informes globales", "/seguimiento"],
-          ].map(([label, href]) => (
-            <Link
-              key={href}
-              href={href}
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-md transition duration-200 hover:scale-[1.02] hover:bg-slate-50 hover:shadow-lg"
-            >
-              {label}
-            </Link>
-          ))}
+      <section
+        aria-label="Métricas del sistema"
+        className="reveal grid overflow-hidden rounded-xl border border-line bg-surface sm:grid-cols-3 xl:grid-cols-6"
+        style={delay(1)}
+      >
+        {metrics.map(([label, value], index) => (
+          <div
+            key={label}
+            className={cn(
+              "border-line px-5 py-5",
+              index > 0 && "border-t sm:border-t-0",
+              index % 3 !== 0 && "sm:border-l",
+              index >= 3 && "sm:border-t xl:border-t-0",
+              index === 3 && "xl:border-l"
+            )}
+          >
+            <p className="min-h-8 text-[11px] font-bold uppercase leading-4 tracking-[0.09em] text-ink-subtle">{label}</p>
+            <p className="tabular mt-2 text-[28px] font-extrabold leading-8 tracking-[-0.02em] text-ink">
+              {loading ? <Skeleton className="h-8 w-12" /> : value}
+            </p>
+          </div>
+        ))}
+        <div className="border-t border-line px-5 py-5 sm:border-l xl:border-t-0">
+          <p className="min-h-8 text-[11px] font-bold uppercase leading-4 tracking-[0.09em] text-ink-subtle">Estado del modelo</p>
+          <p className="mt-3 flex items-center gap-2 text-[15px] font-semibold text-ink">
+            {loading ? (
+              <Skeleton className="h-6 w-24" />
+            ) : (
+              <>
+                <span
+                  className={cn("h-2 w-2 rounded-full", summary.modelStatus.available ? "bg-success" : "bg-danger")}
+                  aria-hidden
+                />
+                {summary.modelStatus.available ? "Disponible" : "No disponible"}
+              </>
+            )}
+          </p>
         </div>
-      </Card>
+      </section>
 
-      <div className="grid gap-4 lg:grid-cols-3">
-        <Card>
-          <h2 className="text-xl font-black text-slate-950">
-            Últimos análisis
-          </h2>
-          <div className="mt-4 space-y-3">
-            {summary.recentAnalyses.length === 0 ? (
-              <p className="text-sm text-slate-500">Sin análisis registrados.</p>
-            ) : (
-              summary.recentAnalyses.map((analysis) => (
-                <div key={analysis.id} className="rounded-lg border border-slate-100 bg-slate-50 p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-                  <p className="font-bold text-slate-950">{analysis.userName}</p>
-                  <p className="text-sm text-slate-500">
-                    {analysis.userEmail} | {analysis.date} | {analysis.alertLevel}
-                  </p>
-                </div>
-              ))
-            )}
-          </div>
-        </Card>
+      <div className="reveal grid gap-6 xl:grid-cols-3" style={delay(2)}>
+        <ActivityList
+          title="Últimos análisis"
+          empty="Sin análisis registrados."
+          loading={loading}
+          rows={summary.recentAnalyses.map((analysis) => ({
+            key: analysis.id,
+            primary: analysis.userName,
+            secondary: analysis.userEmail,
+            date: analysis.date,
+            badge: <AlertBadge level={analysis.alertLevel} size="sm" />,
+          }))}
+        />
+        <ActivityList
+          title="Últimos informes"
+          empty="Sin informes registrados."
+          loading={loading}
+          rows={summary.recentReports.map((report) => ({
+            key: report.id,
+            primary: report.title,
+            secondary: report.userEmail,
+            date: report.date,
+            badge: <AlertBadge level={report.alertLevel} size="sm" />,
+          }))}
+        />
+        <ActivityList
+          title="Usuarios recientes"
+          empty="Sin usuarios registrados."
+          loading={loading}
+          rows={summary.recentUsers.map((user) => ({
+            key: user.email,
+            primary: user.name,
+            secondary: user.email,
+            date: user.date,
+            badge: (
+              <span className="inline-flex h-6 items-center rounded-md border border-line bg-surface-subtle px-1.5 font-mono text-[11px] text-ink-muted">
+                {user.role}
+              </span>
+            ),
+          }))}
+        />
+      </div>
+    </div>
+  );
+}
 
-        <Card>
-          <h2 className="text-xl font-black text-slate-950">
-            Últimos informes
-          </h2>
-          <div className="mt-4 space-y-3">
-            {summary.recentReports.length === 0 ? (
-              <p className="text-sm text-slate-500">Sin informes registrados.</p>
-            ) : (
-              summary.recentReports.map((report) => (
-                <div key={report.id} className="rounded-lg border border-slate-100 bg-slate-50 p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-                  <p className="font-bold text-slate-950">{report.title}</p>
-                  <p className="text-sm text-slate-500">
-                    {report.userEmail} | {report.date} | {report.alertLevel}
-                  </p>
-                </div>
-              ))
-            )}
-          </div>
-        </Card>
+type ActivityRow = {
+  key: string;
+  primary: string;
+  secondary: string;
+  date: string;
+  badge: React.ReactNode;
+};
 
-        <Card>
-          <h2 className="text-xl font-black text-slate-950">
-            Usuarios recientes
-          </h2>
-          <div className="mt-4 space-y-3">
-            {summary.recentUsers.length === 0 ? (
-              <p className="text-sm text-slate-500">Sin usuarios registrados.</p>
-            ) : (
-              summary.recentUsers.map((user) => (
-                <div key={user.email} className="rounded-lg border border-slate-100 bg-slate-50 p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-                  <p className="font-bold text-slate-950">{user.name}</p>
-                  <p className="text-sm text-slate-500">
-                    {user.email} | {user.role} | {user.date}
-                  </p>
-                </div>
-              ))
-            )}
+function ActivityList({
+  title,
+  empty,
+  loading,
+  rows,
+}: {
+  title: string;
+  empty: string;
+  loading: boolean;
+  rows: ActivityRow[];
+}) {
+  return (
+    <section>
+      <SectionHeader title={title} as="h2" />
+      <div className="mt-3 rounded-xl border border-line bg-surface">
+        {loading ? (
+          <div className="space-y-3 p-5">
+            <Skeleton className="h-4 w-3/4" />
+            <Skeleton className="h-4 w-2/3" />
+            <Skeleton className="h-4 w-3/5" />
           </div>
-        </Card>
+        ) : rows.length === 0 ? (
+          <p className="px-5 py-6 text-sm text-ink-muted">{empty}</p>
+        ) : (
+          <ul className="divide-y divide-line">
+            {rows.map((row) => (
+              <li key={row.key} className="flex items-start justify-between gap-3 px-5 py-3.5">
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-semibold text-ink">{row.primary}</p>
+                  <p className="truncate text-[13px] text-ink-muted">{row.secondary}</p>
+                  <p className="mt-0.5 font-mono text-[11px] text-ink-subtle">{row.date}</p>
+                </div>
+                {row.badge}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );
