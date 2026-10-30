@@ -3,19 +3,21 @@
 import { ReactNode, useMemo, useState } from "react";
 import { ChevronDown, Video } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { AlertBadge, LEVEL_STYLES, levelKey } from "@/components/ui/AlertBadge";
+import { PatternBadge } from "@/components/ui/PatternBadge";
 import { FilterTabs } from "@/components/ui/FilterTabs";
 import { EmptyState, Skeleton } from "@/components/ui/EmptyState";
 import { VideoStage } from "@/components/analysis/VideoStage";
 import { GaitFigure } from "@/components/brand/GaitFigure";
 import { formatDayMonth, monthGroup } from "@/lib/formatDate";
+import { STORED_PATTERN_LABEL, StoredPattern } from "@/lib/analysis/conditionLabels";
 import { cn } from "@/lib/utils";
 
 export type HistoryItem = {
   id: string;
   date: string;
   title: string;
-  alertLevel: string;
+  /** Patrón asignado por el modelo (4 clases) o "no concluyente". */
+  pattern: StoredPattern | null;
   /** Línea secundaria (p. ej. usuario en la vista admin). */
   subtitle?: string;
   meta: Array<[string, string]>;
@@ -26,7 +28,11 @@ export type HistoryItem = {
   tag?: ReactNode;
 };
 
-const ALERT_FILTERS = ["Todos", "Bajo", "Medio", "Alto"];
+const ALL = "todos";
+const UNCLASSIFIED = "sin_clasificar";
+const PATTERN_FILTERS: StoredPattern[] = ["normal", "parkinson", "esclerosis_multiple", "riesgo_caida", "no_concluyente"];
+
+const patternValue = (item: HistoryItem) => item.pattern ?? UNCLASSIFIED;
 
 type HistoryTimelineProps = {
   items: HistoryItem[];
@@ -39,7 +45,7 @@ type HistoryTimelineProps = {
 };
 
 /**
- * Lista cronológica agrupada por mes, con filtro por nivel de alerta y videos
+ * Lista cronológica agrupada por mes, con filtro por patrón de marcha y videos
  * en un área desplegable. Se usa para el historial de análisis (Seguimiento)
  * y para los informes guardados (Informes / Informes globales).
  */
@@ -51,19 +57,24 @@ export function HistoryTimeline({
   emptyAction,
   toolbar,
 }: HistoryTimelineProps) {
-  const [alertFilter, setAlertFilter] = useState("Todos");
+  const [patternFilter, setPatternFilter] = useState(ALL);
   const [openVideos, setOpenVideos] = useState<string | null>(null);
 
   const filtered = useMemo(
-    () => items.filter((item) => alertFilter === "Todos" || item.alertLevel === alertFilter),
-    [items, alertFilter]
+    () => items.filter((item) => patternFilter === ALL || patternValue(item) === patternFilter),
+    [items, patternFilter]
   );
 
-  const filterOptions = ALERT_FILTERS.map((filter) => ({
-    value: filter,
-    label: filter,
-    count: items.filter((item) => filter === "Todos" || item.alertLevel === filter).length,
-  }));
+  // Las 4 clases siempre; "No concluyente" y "Sin clasificar" solo si existen.
+  const filterOptions = [
+    { value: ALL, label: "Todos", count: items.length },
+    ...PATTERN_FILTERS.map((pattern) => ({
+      value: pattern as string,
+      label: STORED_PATTERN_LABEL[pattern],
+      count: items.filter((item) => item.pattern === pattern).length,
+    })).filter((option) => option.value !== "no_concluyente" || option.count > 0),
+    { value: UNCLASSIFIED, label: "Sin clasificar", count: items.filter((item) => !item.pattern).length },
+  ].filter((option) => option.value !== UNCLASSIFIED || option.count > 0);
 
   const groups = useMemo(() => {
     const map = new Map<string, { label: string; items: HistoryItem[] }>();
@@ -79,8 +90,8 @@ export function HistoryTimeline({
     <div className="grid gap-6">
       <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-          <span className="pl-1 text-xs font-semibold text-ink-muted">Nivel de alerta</span>
-          <FilterTabs label="Filtrar por nivel de alerta" options={filterOptions} value={alertFilter} onChange={setAlertFilter} />
+          <span className="pl-1 text-xs font-semibold text-ink-muted">Patrón de marcha</span>
+          <FilterTabs label="Filtrar por patrón de marcha" options={filterOptions} value={patternFilter} onChange={setPatternFilter} />
         </div>
         {toolbar}
       </div>
@@ -107,7 +118,7 @@ export function HistoryTimeline({
               </div>
             }
             title={items.length > 0 ? "Ningún elemento coincide con el filtro" : emptyTitle}
-            description={items.length > 0 ? "Prueba con otro nivel de alerta." : emptyDescription}
+            description={items.length > 0 ? "Prueba con otro patrón de marcha." : emptyDescription}
             action={items.length > 0 ? undefined : emptyAction}
           />
         </div>
@@ -126,7 +137,6 @@ export function HistoryTimeline({
                   const processedSrc = item.processedSrc || "";
                   const hasVideos = Boolean(originalSrc || processedSrc);
                   const open = openVideos === item.id;
-                  const rail = LEVEL_STYLES[levelKey(item.alertLevel)].rail;
 
                   return (
                     <li key={item.id} className={cn("transition-colors hover:bg-surface-subtle", index > 0 && "border-t border-line")}>
@@ -134,13 +144,12 @@ export function HistoryTimeline({
                         <div className="flex items-center gap-3 self-start rounded-lg bg-primary-soft px-3 py-2 sm:block sm:px-1 sm:text-center">
                           <p className="tabular text-2xl font-bold leading-7 text-ink">{day}</p>
                           <p className="font-mono text-[11px] uppercase text-ink-subtle">{month}</p>
-                          <span className={cn("mx-auto mt-2 hidden h-1 w-6 rounded-full sm:block", rail)} aria-hidden />
                         </div>
 
                         <div className="min-w-0">
                           <div className="flex flex-wrap items-center gap-2">
                             <h4 className="text-[16px] font-bold leading-6 tracking-[-0.01em] text-ink">{item.title}</h4>
-                            <AlertBadge level={item.alertLevel} size="sm" />
+                            <PatternBadge pattern={item.pattern} />
                             {item.tag}
                           </div>
                           {item.subtitle && <p className="mt-0.5 text-[13px] text-ink-muted">{item.subtitle}</p>}

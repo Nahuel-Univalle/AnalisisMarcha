@@ -8,12 +8,15 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { HistoryTimeline, HistoryItem } from "@/components/analysis/HistoryTimeline";
 import { SavedReportsList } from "@/components/analysis/SavedReportsList";
 import { useAuth } from "@/context/AuthContext";
+import { StoredPattern, storedPatternStatus, storedPatternTitle } from "@/lib/analysis/conditionLabels";
+import { formatPercent } from "@/lib/formatPercent";
 
 // Forma de GET /api/me/analyses (endpoint existente, sin cambios).
 type ApiAnalysis = {
   id: string;
   date: string;
-  alertLevel: string;
+  pattern: StoredPattern | null;
+  modelConfidence: number | null;
   summary: string;
   reportId: string | null;
   video: {
@@ -84,15 +87,17 @@ function AnalysisHistory() {
   const items = useMemo<HistoryItem[]>(
     () =>
       analyses.map((analysis) => {
-        const primary = analysis.conditions?.[0];
         return {
           id: analysis.id,
           date: analysis.date,
-          title: primary?.condition || "Análisis de marcha",
-          alertLevel: analysis.alertLevel,
+          title: storedPatternTitle(analysis.pattern),
+          pattern: analysis.pattern,
           meta: [
             ["Tipo", "Análisis de marcha"],
-            ["Estado", primary?.status || "Completado"],
+            ["Estado", storedPatternStatus(analysis.pattern)],
+            ...(analysis.modelConfidence !== null && analysis.modelConfidence !== undefined
+              ? ([["Confianza del modelo", formatPercent(analysis.modelConfidence)]] as Array<[string, string]>)
+              : []),
             ["Fecha", analysis.date],
           ],
           summary: analysis.summary,

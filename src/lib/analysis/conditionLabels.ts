@@ -66,16 +66,83 @@ export const GAIT_CLASS_INFO: Record<GaitClassKey, GaitClassInfo> = {
 // e historial). Debe depender de la clase realmente detectada, nunca fijo a
 // Parkinson.
 export const ASSOCIATED_CONDITION_TEXT: Record<GaitClassKey, string> = {
-  normal: "Sin alerta específica",
+  normal: "Patrón de marcha normal",
   parkinson: "Posible patrón asociado a Parkinson",
   esclerosis_multiple: "Posible patrón asociado a Esclerosis Múltiple",
   riesgo_caida: "Posible patrón asociado a inestabilidad / riesgo de caída",
 };
 
+export const INCONCLUSIVE_CONDITION_TEXT = "Análisis no concluyente por calidad del video";
+export const EXPERIMENTAL_CLASSIFICATION_STATUS = "Clasificación experimental";
+export const INCONCLUSIVE_STATUS = "No concluyente";
+
+// Nombres de las filas de GaitParameter con el resultado del modelo (sin cambio
+// de esquema). Permiten mostrar clase y confianza en historial e informes.
+export const MODEL_CLASS_PARAMETER = "Clase predicha por el modelo experimental";
+export const MODEL_CONFIDENCE_PARAMETER = "Confianza del modelo";
+export const MODEL_VERSION_PARAMETER = "Versión del modelo";
+
 export function associatedConditionText(key: string | null | undefined): string {
   return isGaitClassKey(key)
     ? ASSOCIATED_CONDITION_TEXT[key]
     : ASSOCIATED_CONDITION_TEXT.normal;
+}
+
+// Patrón guardado de un análisis: una de las 4 clases, "no concluyente" o null
+// (registro que no permite saberlo). NO es un nivel de alerta ni de severidad.
+export type StoredPattern = GaitClassKey | "no_concluyente";
+
+// Textos históricos (antes del Paso 16) que siguen en la base de datos.
+const LEGACY_NORMAL_OR_INCONCLUSIVE = "Sin alerta específica";
+const LEGACY_INCONCLUSIVE_SUMMARY_PREFIX = "El video no contiene información corporal suficiente";
+
+type StoredAnalysisLike = {
+  summary?: string | null;
+  conditions?: Array<{ condition: string }> | null;
+  parameters?: Array<{ name: string; value: string; state?: string | null }> | null;
+};
+
+export function storedPatternOf(analysis: StoredAnalysisLike): {
+  pattern: StoredPattern | null;
+  modelConfidence: number | null;
+} {
+  const params = analysis.parameters ?? [];
+  const classParam = params.find((p) => p.name === MODEL_CLASS_PARAMETER);
+  const confidenceParam = params.find((p) => p.name === MODEL_CONFIDENCE_PARAMETER);
+  const parsedConfidence = confidenceParam ? Number.parseFloat(confidenceParam.value) / 100 : NaN;
+  const modelConfidence = Number.isFinite(parsedConfidence) ? parsedConfidence : null;
+
+  if (classParam && isGaitClassKey(classParam.state)) {
+    return { pattern: classParam.state, modelConfidence };
+  }
+
+  const condition = analysis.conditions?.[0]?.condition?.trim() ?? "";
+  if (condition === INCONCLUSIVE_CONDITION_TEXT) return { pattern: "no_concluyente", modelConfidence: null };
+  if (condition === LEGACY_NORMAL_OR_INCONCLUSIVE) {
+    const inconclusive = (analysis.summary ?? "").startsWith(LEGACY_INCONCLUSIVE_SUMMARY_PREFIX);
+    return { pattern: inconclusive ? "no_concluyente" : "normal", modelConfidence: inconclusive ? null : modelConfidence };
+  }
+  const match = GAIT_CLASS_ORDER.find((key) => ASSOCIATED_CONDITION_TEXT[key] === condition);
+  return { pattern: match ?? null, modelConfidence: match ? modelConfidence : null };
+}
+
+export const STORED_PATTERN_LABEL: Record<StoredPattern, string> = {
+  normal: "Normal",
+  parkinson: "Parkinson",
+  esclerosis_multiple: "Esclerosis múltiple",
+  riesgo_caida: "Riesgo de caída",
+  no_concluyente: "No concluyente",
+};
+
+export function storedPatternStatus(pattern: StoredPattern | null | undefined): string {
+  if (pattern === "no_concluyente") return INCONCLUSIVE_STATUS;
+  return pattern ? EXPERIMENTAL_CLASSIFICATION_STATUS : "Sin clasificar";
+}
+
+export function storedPatternTitle(pattern: StoredPattern | null | undefined): string {
+  if (pattern === "no_concluyente") return "Análisis no concluyente por calidad del video";
+  if (pattern && isGaitClassKey(pattern)) return GAIT_CLASS_INFO[pattern].label;
+  return "Análisis de marcha";
 }
 
 export function isGaitClassKey(value: unknown): value is GaitClassKey {
@@ -153,4 +220,10 @@ export function alteredProbabilityFrom(
 ): number | null {
   if (!probabilities || typeof probabilities.normal !== "number") return null;
   return Math.max(0, Math.min(1, 1 - probabilities.normal));
+}
+
+// En los informes, `pattern` ya es el texto guardado: la clase va en `patternKey`.
+export function reportPatternFields(analysis: StoredAnalysisLike) {
+  const { pattern, modelConfidence } = storedPatternOf(analysis);
+  return { patternKey: pattern, modelConfidence };
 }

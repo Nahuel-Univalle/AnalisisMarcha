@@ -1,3 +1,5 @@
+import type { StoredPattern } from "@/lib/analysis/conditionLabels";
+
 export type AlertLevel = "Bajo" | "Medio" | "Alto";
 export type SignalSeverity = AlertLevel | "Info";
 
@@ -153,6 +155,9 @@ export type SavedReport = {
   analysisType?: string;
   pattern?: string;
   patternStatus?: string;
+  /** Clase del modelo (4 clases) o "no_concluyente"; null si el registro no permite saberlo. */
+  patternKey?: StoredPattern | null;
+  modelConfidence?: number | null;
   userEmail?: string;
   userName?: string;
   originalVideoUrl?: string;

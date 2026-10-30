@@ -25,8 +25,15 @@ import {
   alteredProbabilityFrom,
   associatedConditionText,
   detectedClassFrom,
+  EXPERIMENTAL_CLASSIFICATION_STATUS,
   gaitClassInfo,
   GaitClassKey,
+  INCONCLUSIVE_CONDITION_TEXT,
+  INCONCLUSIVE_STATUS,
+  isGaitClassKey,
+  MODEL_CLASS_PARAMETER,
+  MODEL_CONFIDENCE_PARAMETER,
+  MODEL_VERSION_PARAMETER,
   normalizeClassProbabilities,
   sortedClassProbabilities,
 } from "@/lib/analysis/conditionLabels";
@@ -70,7 +77,7 @@ const SENSOR_VIDEO_MODEL_MESSAGE =
 const VIDEO_FEATURE_PREDICTION_FAILED =
   "No se pudieron extraer suficientes métricas visuales compatibles para aplicar el modelo.";
 const DEEP_GAIT_V4EXP_VERSION =
-  "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f";
+  "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1";
 const EXPERIMENTAL_MODEL_UNAVAILABLE =
   "No fue posible realizar la clasificación experimental de patrones de marcha: el modelo de 4 clases no está disponible en este momento. No se utilizó ningún otro modelo en su lugar. Intente nuevamente más tarde.";
 
@@ -100,7 +107,7 @@ function deepGaitModelArtifactPaths() {
     `${DEEP_GAIT_V4EXP_VERSION}_config.json`,
     `${DEEP_GAIT_V4EXP_VERSION}_feature_scaler.json`,
     `${DEEP_GAIT_V4EXP_VERSION}_label_map.json`,
-  ].map((fileName) => projectPath("models", "gait_deep_v4exp", fileName));
+  ].map((fileName) => projectPath("models", "gait_deep_v4exp_bn_candidate_v1", fileName));
 }
 
 function hasDeepGaitModelArtifacts() {
@@ -601,9 +608,7 @@ function buildModelDrivenEvaluation(
       : detected === "parkinson"
         ? "posible_parkinson"
         : "posible_alteracion_marcha",
-    title: isNormal
-      ? "Resultado orientativo sin alerta principal en la marcha"
-      : `Resultado orientativo: ${info.label}`,
+    title: `Resultado orientativo: ${info.label}`,
     summary: isNormal
       ? "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
       : `${orientationText} Este resultado no confirma una enfermedad y requiere valoración por un profesional de salud.`,
@@ -677,6 +682,8 @@ type SaveAnalysisInput = {
   framesAnalyzed: number;
   framesWithPose: number;
   videoMetrics: VideoGaitMetrics;
+  // Resultado del modelo V4 (null si el análisis no es concluyente).
+  modelResult: { confidence: number | null; version: string | null } | null;
 };
 
 async function saveAnalysisToDatabase({
@@ -692,6 +699,7 @@ async function saveAnalysisToDatabase({
   framesAnalyzed,
   framesWithPose,
   videoMetrics,
+  modelResult,
 }: SaveAnalysisInput) {
   if (!userEmail) return null;
 
@@ -706,12 +714,40 @@ async function saveAnalysisToDatabase({
     originalUpload?.secureUrl ?? localOriginalVideoUrl ?? null;
   const effectiveProcessedUrl =
     processedUpload?.secureUrl ?? localProcessedVideoUrl ?? null;
+  const detectedClass =
+    modelResult && isGaitClassKey(evaluation.detectedCondition)
+      ? evaluation.detectedCondition
+      : null;
   const parameters = buildStoredParameters({
     poseDetectionRate,
     framesAnalyzed,
     framesWithPose,
     videoMetrics,
   });
+  // Clase, confianza y versión del modelo V4 como filas de parámetros (sin
+  // cambio de esquema): el historial y los informes las leen de aquí.
+  if (detectedClass && modelResult) {
+    parameters.push(
+      {
+        name: MODEL_CLASS_PARAMETER,
+        value: gaitClassInfo(detectedClass).shortLabel,
+        state: detectedClass,
+      },
+      {
+        name: MODEL_CONFIDENCE_PARAMETER,
+        value:
+          modelResult.confidence === null
+            ? "Sin dato"
+            : `${Math.round(modelResult.confidence * 100)}%`,
+        state: "Confianza del modelo en la clase predicha; no es certeza clínica",
+      },
+      {
+        name: MODEL_VERSION_PARAMETER,
+        value: modelResult.version ?? "Sin dato",
+        state: "Clasificación experimental de 4 clases",
+      }
+    );
+  }
 
   const videoRecord = await prisma.videoMarcha.create({
     data: {
@@ -762,14 +798,13 @@ async function saveAnalysisToDatabase({
           {
             // Texto dependiente de la CLASE REALMENTE DETECTADA por el modelo
             // (normal / parkinson / esclerosis_multiple / riesgo_caida).
-            condition:
-              evaluation.possibleCondition === "sin_alerta"
-                ? "Sin alerta específica"
-                : associatedConditionText(evaluation.detectedCondition),
-            status:
-              evaluation.possibleCondition === "sin_alerta"
-                ? "Sin alerta específica"
-                : "Alerta orientativa",
+            // Un análisis no concluyente (pose insuficiente) no se guarda como normal.
+            condition: detectedClass
+              ? associatedConditionText(detectedClass)
+              : INCONCLUSIVE_CONDITION_TEXT,
+            status: detectedClass
+              ? EXPERIMENTAL_CLASSIFICATION_STATUS
+              : INCONCLUSIVE_STATUS,
             description: evaluation.summary,
           },
         ],
@@ -804,6 +839,15 @@ const SPRINT4_VALID_CATEGORIES = new Set([
 ]);
 const SPRINT4_POSE_SAMPLES = "300";
 const SPRINT4_TIMEOUT_MS = 150_000;
+
+// Paso 16: el pipeline Sprint 4 escribe en outputs/gait_features_dataset.csv y
+// regenera data/{train,validation,test}.csv con la categoría del formulario
+// ("control" para todo usuario no admin). No interviene en el modelo V4 ni en
+// la respuesta visible, así que queda FUERA del flujo de producción salvo que
+// se active explícitamente para investigación.
+function legacySprint4DatasetEnabled() {
+  return process.env.ENABLE_LEGACY_SPRINT4_DATASET === "true";
+}
 
 function scriptPath(name: string) {
   return projectPath("scripts", name);
@@ -892,6 +936,11 @@ async function runSprint4Pipeline({
     },
     error: null as string | null,
   };
+
+  if (!legacySprint4DatasetEnabled()) {
+    evidence.error = "disabled: ENABLE_LEGACY_SPRINT4_DATASET no está activado";
+    return evidence;
+  }
 
   try {
     const analysisDir = projectPath("outputs", "analysis", analysisId);
@@ -998,7 +1047,7 @@ export async function POST(request: NextRequest) {
       return Response.json(
         {
           success: false,
-          message: "Debes iniciar sesiÃ³n para guardar y analizar videos.",
+          message: "Debes iniciar sesión para guardar y analizar videos.",
           analysis: null,
         },
         { status: 401 }
@@ -1182,7 +1231,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Sprint 4 (Iteraciones 7 y 8) sobre el VIDEO SUBIDO (no fatal: si falla, el
-    // análisis principal igual responde 200). tempVideoPath es el video del usuario.
+    // análisis principal igual responde 200). Desactivado por defecto: ver
+    // legacySprint4DatasetEnabled().
     const sprint4Evidence = await runSprint4Pipeline({
       pythonCommand: findPythonCommand() as string,
       analysisId,
@@ -1436,6 +1486,15 @@ export async function POST(request: NextRequest) {
         framesAnalyzed,
         framesWithPose,
         videoMetrics,
+        modelResult: effModelUsed
+          ? {
+              confidence: effConfidence,
+              version:
+                typeof videoPrediction.modelVersion === "string"
+                  ? videoPrediction.modelVersion
+                  : null,
+            }
+          : null,
       });
 
       if (userEmail && !databaseRecord) {

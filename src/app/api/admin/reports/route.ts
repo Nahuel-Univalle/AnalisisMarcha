@@ -1,5 +1,6 @@
 import { requireAdmin } from "@/lib/auth/guards";
 import { prisma } from "@/lib/prisma";
+import { reportPatternFields } from "@/lib/analysis/conditionLabels";
 
 export const runtime = "nodejs";
 
@@ -18,7 +19,7 @@ export async function GET() {
     include: {
       user: { select: { email: true, name: true } },
       analysis: {
-        include: { video: true, conditions: true },
+        include: { video: true, conditions: true, parameters: true },
       },
     },
   });
@@ -33,6 +34,7 @@ export async function GET() {
       patternStatus: report.analysis.conditions[0]?.status ?? null,
       date: report.createdAt.toISOString().split("T")[0],
       alertLevel: fromPrismaAlert(report.analysis.alert),
+      ...reportPatternFields(report.analysis),
       analysisId: report.analysisId,
       userEmail: report.user.email,
       userName: report.user.name,

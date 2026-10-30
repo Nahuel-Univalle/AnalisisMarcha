@@ -33,7 +33,10 @@ métricas); nunca `font-black`.
 ## Componentes base
 
 `PageHeader`/`SectionHeader`/`Eyebrow`, `MetricBlock`, `AlertBadge` +
-`LevelMeter` (nivel = ícono + palabra + 3 segmentos, nunca solo color),
+`LevelMeter` (nivel = ícono + palabra + 3 segmentos, nunca solo color; SOLO
+severidad de una señal observada), `PatternBadge` (clase del modelo de 4 clases
+o "No concluyente"; neutro a propósito — nunca representar la clase del modelo
+con `AlertBadge` ni como "Nivel de alerta"/Alto/Medio/Bajo),
 `MedicalDisclaimer` (neutro, variantes `inline`/`block`), `StepIndicator`,
 `FilterTabs`, `EmptyState`/`Skeleton`, `VideoStage` (todo video), `GaitFigure`
 (firma visual, siempre sobre navy). Layout autenticado: `AppShell` =

@@ -1,5 +1,6 @@
 import { requireUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/prisma";
+import { storedPatternOf } from "@/lib/analysis/conditionLabels";
 
 export const runtime = "nodejs";
 
@@ -31,6 +32,7 @@ export async function GET() {
       id: analysis.id,
       date: analysis.createdAt.toISOString().split("T")[0],
       alertLevel: fromPrismaAlert(analysis.alert),
+      ...storedPatternOf(analysis),
       summary: analysis.summary,
       reportId: analysis.report?.id ?? null,
       video: {

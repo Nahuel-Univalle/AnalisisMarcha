@@ -36,9 +36,9 @@ from deep_common import (  # noqa: E402
 )
 from video_training_common import CLASS_HUMAN_LABEL, NO_DIAGNOSIS_NOTE, build_feature_row  # noqa: E402
 
-MODEL_DIR = PROJECT_ROOT / "models" / "gait_deep_v4exp"
-VERSION = "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f"
-EXPECTED_SHA256 = "d7323250d26fa81c9306660ada47bc00c2aa1bd9bba374e2e87b3619c5213048"
+MODEL_DIR = PROJECT_ROOT / "models" / "gait_deep_v4exp_bn_candidate_v1"
+VERSION = "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1"
+EXPECTED_SHA256 = "7b4ac547ff80367b74ddf93c95a9deae82c44f36f3c671f63eb5a4a82c53400d"
 WINDOW_S = 5.03          # ventana del Dataset V4 (Paso 4)
 GRID_FPS = 15.0
 EPS = 1e-6
@@ -50,13 +50,14 @@ POSE_MIN = 0.50          # puerta de calidad existente del proyecto
 DISCLAIMER = ("Este análisis constituye una orientación basada en patrones de movimiento y no representa un "
               "diagnóstico médico. Los resultados corresponden a una clasificación experimental de patrones de "
               "marcha y requieren valoración por un profesional de salud.")
-# Rendimiento OOF del Paso 12 (validacion agrupada por sujeto, 5 folds x 5 repeticiones). Solo trazabilidad:
-# la interfaz no muestra metricas del modelo.
-OOF = {"accuracy": 0.834, "macro_f1": 0.725, "macro_precision": 0.727, "macro_recall": 0.734,
-       "per_class": {"normal": {"precision": 0.996, "recall": 0.914, "f1": 0.953},
-                     "parkinson": {"precision": 0.752, "recall": 0.969, "f1": 0.846},
-                     "esclerosis_multiple": {"precision": 0.772, "recall": 0.709, "f1": 0.739},
-                     "riesgo_caida": {"precision": 0.389, "recall": 0.345, "f1": 0.363}}}
+# Rendimiento OOF del candidato BN (Paso 18, variante B: modelos de fold del Paso 12 con BatchNorm recalibrada
+# solo con el TRAIN de cada fold; validacion agrupada por sujeto, 5 folds x 5 repeticiones;
+# outputs/dataset_v4_4class/step18_bn/oof_comparison.json). Solo trazabilidad: la interfaz no muestra metricas.
+OOF = {"accuracy": 0.851, "macro_f1": 0.744, "macro_precision": 0.742, "macro_recall": 0.751,
+       "per_class": {"normal": {"precision": 0.993, "recall": 0.934, "f1": 0.963},
+                     "parkinson": {"precision": 0.813, "recall": 0.962, "f1": 0.881},
+                     "esclerosis_multiple": {"precision": 0.767, "recall": 0.745, "f1": 0.755},
+                     "riesgo_caida": {"precision": 0.396, "recall": 0.364, "f1": 0.378}}}
 SHORT_LABEL = {"normal": "Marcha normal", "parkinson": "Parkinson", "esclerosis_multiple": "Esclerosis múltiple",
                "riesgo_caida": "Riesgo de caída"}
 
@@ -230,7 +231,7 @@ def main() -> int:
         "modelPrecision": OOF["macro_precision"],
         "modelRecall": OOF["macro_recall"],
         "modelF1Score": OOF["macro_f1"],
-        "validationMethod": "StratifiedGroupKFold por sujeto, 5 folds x 5 repeticiones, epocas por validacion interna anidada",
+        "validationMethod": "StratifiedGroupKFold por sujeto, 5 folds x 5 repeticiones, epocas por validacion interna anidada; BatchNorm recalibrada con el TRAIN de cada fold (Paso 18)",
         "modelSamples": 117,
         "modelControlSamples": 58,
         "modelParkinsonSamples": 26,

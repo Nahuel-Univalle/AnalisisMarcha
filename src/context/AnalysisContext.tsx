@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { AnalysisResult, SavedReport, VideoMeta } from "@/types";
 import { mockAnalysisResult } from "@/data/mockAnalysis";
-import { associatedConditionText } from "@/lib/analysis/conditionLabels";
+import { associatedConditionText, isGaitClassKey } from "@/lib/analysis/conditionLabels";
 import { useAuth } from "@/context/AuthContext";
 
 type AnalysisContextValue = {
@@ -94,6 +94,13 @@ export function AnalysisProvider({ children }: { children: React.ReactNode }) {
           : result.detectedClass
             ? associatedConditionText(result.detectedClass)
             : undefined,
+      patternKey:
+        result.analysisReliable === false
+          ? "no_concluyente"
+          : isGaitClassKey(result.detectedClass)
+            ? result.detectedClass
+            : null,
+      modelConfidence: result.confidence ?? null,
       originalVideoUrl: result.originalVideoUrl,
       processedVideoUrl:
         result.processedVideoUrl ||

@@ -1,5 +1,6 @@
 import { requireAdmin } from "@/lib/auth/guards";
 import { prisma } from "@/lib/prisma";
+import { storedPatternOf } from "@/lib/analysis/conditionLabels";
 
 export const runtime = "nodejs";
 
@@ -19,6 +20,8 @@ export async function GET() {
       user: { select: { email: true, name: true } },
       video: true,
       report: true,
+      conditions: true,
+      parameters: true,
     },
   });
 
@@ -30,6 +33,7 @@ export async function GET() {
       userName: analysis.user.name,
       date: analysis.createdAt.toISOString().split("T")[0],
       alertLevel: fromPrismaAlert(analysis.alert),
+      ...storedPatternOf(analysis),
       summary: analysis.summary,
       reportId: analysis.report?.id ?? null,
       video: {

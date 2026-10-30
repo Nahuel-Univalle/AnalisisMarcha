@@ -5,6 +5,8 @@ import { Search } from "lucide-react";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { HistoryTimeline, HistoryItem } from "@/components/analysis/HistoryTimeline";
 import { SavedReport } from "@/types";
+import { storedPatternStatus, storedPatternTitle } from "@/lib/analysis/conditionLabels";
+import { formatPercent } from "@/lib/formatPercent";
 
 /**
  * Informes guardados: misma carga que tenía /seguimiento
@@ -51,14 +53,17 @@ export function SavedReportsList({ admin, refreshKey = 0 }: { admin: boolean; re
       .map((report) => ({
         id: report.id,
         date: report.date,
-        title: report.pattern || report.title,
-        alertLevel: report.alertLevel,
+        title: report.patternKey !== undefined ? storedPatternTitle(report.patternKey) : report.pattern || report.title,
+        pattern: report.patternKey ?? null,
         subtitle: admin && report.userEmail ? `${report.userName} · ${report.userEmail}` : undefined,
         meta: [
           ["Tipo", report.analysisType || "Análisis de marcha"],
-          ["Estado", report.patternStatus || "Completado"],
+          ["Estado", storedPatternStatus(report.patternKey)],
+          ...(report.modelConfidence !== null && report.modelConfidence !== undefined
+            ? ([["Confianza del modelo", formatPercent(report.modelConfidence)]] as Array<[string, string]>)
+            : []),
           ["Fecha", report.date],
-        ],
+        ] as Array<[string, string]>,
         summary: report.summary,
         originalSrc: report.originalVideoUrl || report.localOriginalVideoUrl,
         processedSrc: report.processedVideoUrl || report.localProcessedVideoUrl,

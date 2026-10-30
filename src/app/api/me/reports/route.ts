@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/prisma";
+import { reportPatternFields } from "@/lib/analysis/conditionLabels";
 
 export const runtime = "nodejs";
 
@@ -19,6 +20,7 @@ function reportPayload(report: {
     alert: "BAJO" | "MEDIO" | "ALTO";
     summary: string;
     conditions: { condition: string; status: string }[];
+    parameters: { name: string; value: string; state: string }[];
     video: {
       originalVideoUrl: string | null;
       processedVideoUrl: string | null;
@@ -39,6 +41,7 @@ function reportPayload(report: {
     patternStatus: primaryCondition?.status ?? null,
     date: report.createdAt.toISOString().split("T")[0],
     alertLevel: fromPrismaAlert(report.analysis.alert),
+    ...reportPatternFields(report.analysis),
     analysisId: report.analysisId,
     videoRecordId: report.analysis.video.id,
     originalVideoUrl: report.analysis.video.originalVideoUrl ?? undefined,
@@ -62,6 +65,7 @@ export async function GET() {
         include: {
           video: true,
           conditions: true,
+          parameters: true,
         },
       },
     },
@@ -115,6 +119,7 @@ export async function POST(request: Request) {
         include: {
           video: true,
           conditions: true,
+          parameters: true,
         },
       },
     },

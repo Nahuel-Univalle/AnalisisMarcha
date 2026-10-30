@@ -3,7 +3,8 @@
 import { CSSProperties, useEffect, useState } from "react";
 import { Database, Files } from "lucide-react";
 import { LinkButton } from "@/components/ui/LinkButton";
-import { AlertBadge } from "@/components/ui/AlertBadge";
+import { PatternBadge } from "@/components/ui/PatternBadge";
+import { StoredPattern } from "@/lib/analysis/conditionLabels";
 import { PageHeader, SectionHeader } from "@/components/ui/PageHeader";
 import { Skeleton } from "@/components/ui/EmptyState";
 import { cn } from "@/lib/utils";
@@ -28,7 +29,7 @@ type AdminSummary = {
     userEmail: string;
     userName: string;
     date: string;
-    alertLevel: string;
+    pattern: StoredPattern | null;
     summary: string;
   }>;
   recentReports: Array<{
@@ -37,7 +38,7 @@ type AdminSummary = {
     userName: string;
     title: string;
     date: string;
-    alertLevel: string;
+    pattern: StoredPattern | null;
     summary: string;
   }>;
   recentUsers: Array<{
@@ -173,7 +174,7 @@ export function AdminDashboard() {
             primary: analysis.userName,
             secondary: analysis.userEmail,
             date: analysis.date,
-            badge: <AlertBadge level={analysis.alertLevel} size="sm" />,
+            badge: <PatternBadge pattern={analysis.pattern} />,
           }))}
         />
         <ActivityList
@@ -185,7 +186,7 @@ export function AdminDashboard() {
             primary: report.title,
             secondary: report.userEmail,
             date: report.date,
-            badge: <AlertBadge level={report.alertLevel} size="sm" />,
+            badge: <PatternBadge pattern={report.pattern} />,
           }))}
         />
         <ActivityList

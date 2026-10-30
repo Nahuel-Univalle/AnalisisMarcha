@@ -11,7 +11,7 @@ type FilterTabsProps = {
   onChange: (value: string) => void;
 };
 
-/** Control segmentado para filtros excluyentes (p. ej. nivel de alerta). */
+/** Control segmentado para filtros excluyentes (p. ej. patrón de marcha). */
 export function FilterTabs({ label, options, value, onChange }: FilterTabsProps) {
   return (
     <div role="group" aria-label={label} className="inline-flex max-w-full flex-wrap gap-1 rounded-lg bg-surface-subtle p-1">

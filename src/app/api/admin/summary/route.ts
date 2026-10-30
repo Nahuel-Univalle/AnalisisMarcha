@@ -1,6 +1,7 @@
 import { requireAdmin } from "@/lib/auth/guards";
-import { getModelStatusDetails } from "@/lib/ml/modelMetrics";
+import { EXPERIMENTAL_V4_OOF_METRICS, hasExperimentalV4Model } from "@/lib/ml/modelMetrics";
 import { prisma } from "@/lib/prisma";
+import { storedPatternOf } from "@/lib/analysis/conditionLabels";
 
 export const runtime = "nodejs";
 
@@ -24,7 +25,6 @@ export async function GET() {
     recentAnalyses,
     recentReports,
     recentUsers,
-    modelStatus,
   ] = await Promise.all([
     prisma.user.count(),
     prisma.gaitAnalysis.count(),
@@ -35,14 +35,20 @@ export async function GET() {
     prisma.gaitAnalysis.findMany({
       orderBy: { createdAt: "desc" },
       take: 5,
-      include: { user: { select: { email: true, name: true } } },
+      include: {
+        user: { select: { email: true, name: true } },
+        conditions: true,
+        parameters: true,
+      },
     }),
     prisma.medicalReport.findMany({
       orderBy: { createdAt: "desc" },
       take: 5,
       include: {
         user: { select: { email: true, name: true } },
-        analysis: { select: { alert: true, summary: true } },
+        analysis: {
+          select: { alert: true, summary: true, conditions: true, parameters: true },
+        },
       },
     }),
     prisma.user.findMany({
@@ -50,8 +56,9 @@ export async function GET() {
       take: 5,
       select: { email: true, name: true, role: true, createdAt: true },
     }),
-    getModelStatusDetails(),
   ]);
+
+  const experimentalModelAvailable = hasExperimentalV4Model();
 
   return Response.json({
     totalUsers,
@@ -62,13 +69,17 @@ export async function GET() {
       datasetRecords,
       rawSamples,
     },
+    // Estado y métricas OOF del modelo que usa producción (V4, 4 clases), no de
+    // los modelos históricos que lee getModelStatusDetails().
     modelStatus: {
-      available: modelStatus.modelAvailable,
-      metricsAvailable: modelStatus.metricsAvailable,
-      accuracy: modelStatus.accuracy,
-      message: modelStatus.modelAvailable
-        ? "Modelo disponible"
-        : "Modelo no disponible",
+      available: experimentalModelAvailable,
+      metricsAvailable: experimentalModelAvailable,
+      accuracy: EXPERIMENTAL_V4_OOF_METRICS.accuracy,
+      macroF1: EXPERIMENTAL_V4_OOF_METRICS.macroF1,
+      modelVersion: EXPERIMENTAL_V4_OOF_METRICS.modelVersion,
+      message: experimentalModelAvailable
+        ? "Modelo experimental de 4 clases disponible"
+        : "Modelo experimental de 4 clases no disponible",
     },
     recentAnalyses: recentAnalyses.map((analysis) => ({
       id: analysis.id,
@@ -76,6 +87,7 @@ export async function GET() {
       userName: analysis.user.name,
       date: analysis.createdAt.toISOString().split("T")[0],
       alertLevel: fromPrismaAlert(analysis.alert),
+      ...storedPatternOf(analysis),
       summary: analysis.summary,
     })),
     recentReports: recentReports.map((report) => ({
@@ -85,6 +97,7 @@ export async function GET() {
       title: report.title,
       date: report.createdAt.toISOString().split("T")[0],
       alertLevel: fromPrismaAlert(report.analysis.alert),
+      ...storedPatternOf(report.analysis),
       summary: report.analysis.summary,
     })),
     recentUsers: recentUsers.map((user) => ({
