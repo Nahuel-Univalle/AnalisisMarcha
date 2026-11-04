@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Database, FileText, Files, History, House, LogOut, ScanLine, type LucideIcon } from "lucide-react";
+import { FileText, Files, History, House, LogOut, ScanLine, type LucideIcon } from "lucide-react";
 import { BrandMark } from "@/components/brand/BrandMark";
 import { useAuth } from "@/context/AuthContext";
 import { cn } from "@/lib/utils";
@@ -21,7 +21,6 @@ const USER_NAV: NavItem[] = [
 
 const ADMIN_NAV: NavItem[] = [
   { label: "Inicio", href: "/dashboard", icon: House, match: (p) => p === "/dashboard" },
-  { label: "Datasets", href: "/datasets/parkinson", icon: Database, match: (p) => p.startsWith("/datasets") },
   { label: "Informes globales", href: "/seguimiento", icon: Files, match: (p) => p.startsWith("/seguimiento") },
 ];
 

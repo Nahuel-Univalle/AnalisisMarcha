@@ -1,7 +1,5 @@
 import {
-  ArrowLeftRight,
   Footprints,
-  Gauge,
   Hand,
   LucideIcon,
   Repeat,
@@ -12,21 +10,18 @@ import type { UserCharacteristicCard } from "@/lib/analysis/resultPresentation";
 
 /**
  * Perfil de movimiento: las mismas "características observadas" que produce
- * userCharacteristicCards(), agrupadas en Ritmo / Simetría / Movimiento /
- * Estabilidad y con íconos lucide (en lugar de emoji). Agrupar es solo
+ * userCharacteristicCards(), agrupadas en Ritmo / Movimiento / Estabilidad y
+ * con íconos lucide (en lugar de emoji). Agrupar es solo
  * presentación: los textos no se alteran.
  */
 
-const GROUP_ORDER = ["Ritmo", "Simetría", "Movimiento", "Estabilidad"] as const;
+const GROUP_ORDER = ["Ritmo", "Movimiento", "Estabilidad"] as const;
 type GroupTitle = (typeof GROUP_ORDER)[number];
 
 const CHARACTERISTIC_MAP: Record<string, { group: GroupTitle; icon: LucideIcon }> = {
   "Ritmo de la caminata": { group: "Ritmo", icon: Timer },
   "Regularidad de la marcha": { group: "Ritmo", icon: Repeat },
-  "Simetría del movimiento": { group: "Simetría", icon: ArrowLeftRight },
-  "Velocidad al caminar": { group: "Movimiento", icon: Gauge },
   "Movimiento de los brazos": { group: "Movimiento", icon: Hand },
-  "Movimiento de las piernas": { group: "Movimiento", icon: Footprints },
   "Estabilidad corporal": { group: "Estabilidad", icon: Scale },
 };
 
@@ -39,15 +34,13 @@ export function MovementProfile({ cards }: { cards: UserCharacteristicCard[] }) 
   })).filter((group) => group.items.length > 0);
 
   return (
-    <div className="grid overflow-hidden rounded-xl border border-line bg-surface md:grid-cols-2">
+    <div className="grid overflow-hidden rounded-xl border border-line bg-surface md:grid-cols-3">
       {groups.map((group, index) => (
         <section
           key={group.title}
           className={[
             "p-5",
-            index > 0 ? "border-t border-line" : "",
-            index === 1 ? "md:border-t-0 md:border-l" : "",
-            index === 3 ? "md:border-l" : "",
+            index > 0 ? "border-t border-line md:border-t-0 md:border-l" : "",
           ].join(" ")}
         >
           <h3 className="text-[11px] font-bold uppercase tracking-[0.09em] text-accent-cyan-ink">

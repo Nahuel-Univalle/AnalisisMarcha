@@ -39,8 +39,9 @@ o "No concluyente"; neutro a propósito — nunca representar la clase del model
 con `AlertBadge` ni como "Nivel de alerta"/Alto/Medio/Bajo),
 `MedicalDisclaimer` (neutro, variantes `inline`/`block`), `StepIndicator`,
 `FilterTabs`, `EmptyState`/`Skeleton`, `VideoStage` (todo video), `GaitFigure`
-(firma visual, siempre sobre navy). Layout autenticado: `AppShell` =
-`Sidebar` (240px navy) + `TopBar` (64px), menú deslizante < 1024px.
+(firma visual, siempre sobre navy). Layout autenticado: `AppShell` delega según
+el rol. Usuario: `TopBar` horizontal. Administrador: `AdminShell` = barra lateral
+blanca (248px) + barra superior (64px), menú lateral en `<dialog>` < 1024px.
 
 ---
 

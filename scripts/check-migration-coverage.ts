@@ -3,46 +3,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const checks: Record<string, { table?: string; columns?: string[]; indexes?: string[] }> = {
-  "20260601000000_dataset_parkinson_postgres": {
-    table: "ParkinsonDatasetRecord",
-    columns: [
-      "id",
-      "sourceFile",
-      "subjectId",
-      "condition",
-      "parkinsonBinary",
-      "walkNumber",
-      "recordedSpeed",
-      "meanForceAsymmetryAbs",
-      "meanForceAsymmetryIndex",
-      "createdAt",
-    ],
-    indexes: [
-      "ParkinsonDatasetRecord_sourceFile_subjectId_walkNumber_key",
-      "ParkinsonDatasetRecord_condition_idx",
-      "ParkinsonDatasetRecord_parkinsonBinary_idx",
-      "ParkinsonDatasetRecord_subjectId_idx",
-    ],
-  },
-  "20260601000000_dataset_import_log": {
-    table: "DatasetImportLog",
-    columns: ["id", "datasetName", "filePath", "rowsImported", "rowsSkipped", "status", "createdAt"],
-  },
-  "20260601010000_sync_existing_dataset_tables": {
-    table: "ParkinsonDatasetRecord",
-    columns: ["stdLeftTotal", "stdRightTotal", "leftStepEvents", "rightStepEvents"],
-  },
-  "20260601190000_add_parkinson_raw_samples": {
-    table: "ParkinsonRawSample",
-    columns: ["id", "sourceFile", "subjectId", "sampleIndex", "leftTotal", "rightTotal", "createdAt"],
-    indexes: [
-      "ParkinsonRawSample_sourceFile_subjectId_walkNumber_sampleIndex_key",
-      "ParkinsonRawSample_sourceFile_idx",
-      "ParkinsonRawSample_subjectId_idx",
-      "ParkinsonRawSample_condition_idx",
-      "ParkinsonRawSample_parkinsonBinary_idx",
-    ],
-  },
   "20260601220000_add_cloudinary_video_storage": {
     table: "VideoMarcha",
     columns: [

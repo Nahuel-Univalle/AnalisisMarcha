@@ -2,20 +2,39 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { Loader2, RefreshCw } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import { AdminShell } from "@/components/admin/AdminShell";
+import { Button } from "@/components/ui/Button";
+import { InlineAlert } from "@/components/ui/InlineAlert";
 import { cn } from "@/lib/utils";
 import { TopBar } from "./TopBar";
 
 export function AppShell({ children, className }: { children: React.ReactNode; className?: string }) {
   const router = useRouter();
-  const { user, ready } = useAuth();
+  const { user, ready, sessionError, retrySession } = useAuth();
 
   useEffect(() => {
-    if (ready && !user) {
-      router.push("/login");
+    if (ready && !user && !sessionError) {
+      router.replace("/login");
     }
-  }, [ready, user, router]);
+  }, [ready, user, sessionError, router]);
+
+  if (ready && !user && sessionError) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-background px-4">
+        <div className="grid w-full max-w-md gap-4">
+          <InlineAlert tone="error">
+            No se pudo verificar tu sesión. Puede ser un problema temporal del servidor o de la conexión.
+          </InlineAlert>
+          <Button className="justify-self-start" onClick={retrySession}>
+            <RefreshCw aria-hidden />
+            Reintentar
+          </Button>
+        </div>
+      </main>
+    );
+  }
 
   if (!ready || !user) {
     return (
@@ -26,6 +45,10 @@ export function AppShell({ children, className }: { children: React.ReactNode; c
         </p>
       </main>
     );
+  }
+
+  if (user.role === "ADMIN") {
+    return <AdminShell>{children}</AdminShell>;
   }
 
   return (

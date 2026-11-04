@@ -7,9 +7,6 @@ const TABLES_TO_CHECK = [
   "GaitAnalysis",
   "MedicalReport",
   "VideoMarcha",
-  "ParkinsonDatasetRecord",
-  "ParkinsonRawSample",
-  "DatasetImportLog",
   "Video",
   "VideoMatcha",
 ];

@@ -132,7 +132,6 @@ type ApiAnalysis = {
       description: string;
     }>;
     recommendations: string[];
-    datasetWarnings: string[];
     possibleCondition: string;
   };
 };
@@ -382,20 +381,8 @@ function dedupeStrings(values: string[]) {
 }
 
 function mapSignalDescription(name: string, description: string) {
-  if (name === "Marcha lenta") {
-    return "El sistema observó una velocidad de desplazamiento reducida durante la caminata.";
-  }
-
   if (name === "Balanceo de brazos reducido o asimétrico") {
     return "El sistema observó menor movimiento o diferencia entre ambos brazos durante la caminata. Esta señal puede aparecer en distintas alteraciones de la marcha.";
-  }
-
-  if (name === "Asimetría de marcha") {
-    return "El sistema observó diferencias entre el movimiento del lado izquierdo y derecho del cuerpo.";
-  }
-
-  if (name === "Estabilidad reducida") {
-    return "El sistema observó variaciones en la postura o en el control del cuerpo durante la caminata.";
   }
 
   if (name === "Postura alterada") {
@@ -409,7 +396,6 @@ function mapEvaluationToAnalysisResult(analysis: ApiAnalysis): AnalysisResult {
   const evaluation = analysis.evaluation;
   const alertLevel = toAlertLevel(evaluation.alertLevel);
   const warnings = dedupeStrings(analysis.warnings ?? []);
-  const datasetWarnings = dedupeStrings(evaluation.datasetWarnings ?? []);
   const modelDetectedAlteration =
     analysis.modelUsed === true &&
     evaluation.possibleCondition !== "sin_alerta" &&
@@ -528,8 +514,7 @@ function mapEvaluationToAnalysisResult(analysis: ApiAnalysis): AnalysisResult {
     visualSignals: analysis.visualSignals ?? analysis.signals ?? [],
     signalEmptyMessage: observedSignalResult.emptyMessage,
     signalDecision: observedSignalResult.signalDecision,
-    analysisWarnings: warnings.filter((warning) => !datasetWarnings.includes(warning)),
-    datasetWarnings,
+    analysisWarnings: warnings,
     recommendations: dedupeStrings(evaluation.recommendations ?? []),
     signals: observedSignalResult.signals.map((signal) => ({
       name: signal.title,

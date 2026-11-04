@@ -97,14 +97,6 @@ function hasFeatureSupport(signalName: string, metrics: VideoGaitMetrics | null 
 
   const normalizedName = signalName.toLowerCase();
 
-  if (normalizedName.includes("marcha lenta")) {
-    return finiteNumber(metrics.walkingSpeed) !== null;
-  }
-
-  if (normalizedName.includes("asimetr")) {
-    return finiteNumber(metrics.asymmetryIndex) !== null;
-  }
-
   if (normalizedName.includes("ritmo") || normalizedName.includes("paso")) {
     return (
       finiteNumber(metrics.cadence) !== null ||
@@ -117,13 +109,6 @@ function hasFeatureSupport(signalName: string, metrics: VideoGaitMetrics | null 
     return (
       finiteNumber(metrics.armSwingScore) !== null ||
       finiteNumber(metrics.armSwingAsymmetry) !== null
-    );
-  }
-
-  if (normalizedName.includes("estabilidad")) {
-    return (
-      finiteNumber(metrics.doubleSupportRatio) !== null ||
-      finiteNumber(metrics.stepRegularity) !== null
     );
   }
 

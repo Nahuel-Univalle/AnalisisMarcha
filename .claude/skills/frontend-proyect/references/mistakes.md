@@ -108,6 +108,20 @@ Rule / decisión pendiente (Fase I, señalada al usuario, no resuelta unilateral
 
 ✅ Resuelto (a pedido explícito del usuario, tras confirmar mediante búsqueda exhaustiva — imports, enlaces de navegación, redirects, docs, config, git history — que no existe ninguna dependencia real ni propósito funcional distinto): `src/app/referencias/page.tsx` ahora es un redirect server-side (`redirect("/datasets/parkinson")` de `next/navigation`) en vez de renderizar una copia del componente. `/datasets/parkinson` sigue siendo la única fuente de verdad; la URL `/referencias` se conserva para no romper accesos directos existentes. La protección de rol admin la sigue resolviendo `src/proxy.ts` antes de llegar a la página, así que el redirect no necesita repetir esa verificación.
 
+Actualización: `/referencias` y `/datasets/parkinson` se eliminaron junto con el dataset antiguo PhysioNet (sensores en plantillas), que la aplicación ya no usa.
+
+## Lesson: un fallo temporal no es "sin sesión"
+
+Problem: `AuthContext` trataba cualquier fallo de `/api/auth/me` (500, red, petición abortada) como usuario no autenticado. `AppShell` redirigía a `/login`, `proxy.ts` devolvía a `/dashboard` porque la cookie seguía siendo válida, y la pantalla quedaba en "Cargando…" hasta recargar.
+
+Rule: solo 401 significa "sin sesión". Un error temporal se reintenta y, si persiste, se muestra un estado de error con acción de recuperación. Ninguna pantalla de carga puede ser infinita.
+
+## Lesson: la ausencia de una regla no demuestra normalidad
+
+Problem: "Perfil de movimiento" afirmaba "dentro de lo esperado" o "lados similares" cuando una regla no se disparaba, y esas reglas comparaban métricas de video con umbrales de sensores (unidades incompatibles).
+
+Rule: no mostrar una afirmación sobre el paciente si no hay una medición válida que la respalde. Sin evidencia, se elimina la afirmación; se muestra la medición, no una conclusión.
+
 ## Nota (Fase J): estados de foco reforzados
 
 Dos inputs (`select` de categoría en `subir-video`, filtro de usuario en `seguimiento`) solo cambiaban el color del borde al enfocar, sin anillo de foco — un indicador de foco débil para navegación por teclado. Se alinearon con el patrón ya usado en `FormField`/`datasets/parkinson` (`focus:ring-2 focus:ring-blue-400 focus:ring-offset-2`). También se agregó `aria-expanded` al botón de menú móvil de `AppHeader`, que antes solo tenía un `aria-label` fijo ("Abrir menú") sin reflejar el estado abierto/cerrado.

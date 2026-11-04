@@ -53,8 +53,7 @@ export default function ResultPage() {
   const classification = experimentalClassification(result);
   const qualityWarnings = modelQualityWarnings(result);
 
-  // Solo advertencias del analisis del video; las de la base de referencia
-  // son metadatos internos y no se muestran en la vista medica.
+  // Solo advertencias del analisis del video.
   const observations = dedupeStrings(result.analysisWarnings ?? []);
   const processedVideoUrl =
     result.processedVideoUrl ||

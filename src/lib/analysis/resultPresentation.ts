@@ -369,9 +369,7 @@ export function modelQualityWarnings(result: AnalysisResult): {
 //  La descripción es NEUTRAL: no atribuye la señal a una enfermedad concreta.
 
 type FindingKind =
-  | "marcha_lenta"
   | "ritmo_irregular"
-  | "asimetria"
   | "brazos"
   | "estabilidad"
   | "postura";
@@ -380,27 +378,12 @@ const FINDING_LIBRARY: Record<
   FindingKind,
   { title: string; relevance: string; user: string; medical: string }
 > = {
-  marcha_lenta: {
-    title: "Marcha lenta",
-    relevance: "Velocidad de desplazamiento",
-    user: "El sistema observó una velocidad de desplazamiento reducida.",
-    medical:
-      "El desplazamiento del cuerpo durante la caminata fue menor al de un patrón de marcha típico en el conjunto de referencia.",
-  },
   ritmo_irregular: {
     title: "Ritmo de marcha irregular",
     relevance: "Regularidad temporal",
     user: "Se observaron variaciones en la regularidad de los pasos.",
     medical:
       "El intervalo entre pasos no se mantuvo constante a lo largo del video (mayor variabilidad de ritmo).",
-  },
-  asimetria: {
-    title: "Movimiento desigual entre ambos lados",
-    relevance: "Simetría izquierda/derecha",
-    user:
-      "Se observaron diferencias entre el movimiento del lado izquierdo y derecho del cuerpo.",
-    medical:
-      "Se observó una diferencia entre el movimiento de las extremidades del lado izquierdo y del derecho.",
   },
   brazos: {
     title: "Movimiento de brazos reducido o asimétrico",
@@ -429,10 +412,8 @@ const FINDING_LIBRARY: Record<
 
 function findingKindFor(name: string): FindingKind | null {
   const n = name.toLowerCase();
-  if (n.includes("marcha lenta") || n.includes("lenta")) return "marcha_lenta";
   if (n.includes("ritmo") || n.includes("paso irregular") || n.includes("pasos irregular"))
     return "ritmo_irregular";
-  if (n.includes("asimetr")) return "asimetria";
   if (n.includes("brazo")) return "brazos";
   if (n.includes("estabilidad") || n.includes("soltura")) return "estabilidad";
   if (n.includes("postura")) return "postura";
@@ -500,13 +481,6 @@ export function userCharacteristicCards(
 
   const cards: UserCharacteristicCard[] = [
     {
-      icon: "🚶",
-      title: "Velocidad al caminar",
-      description: hasFinding(findings, "marcha_lenta")
-        ? "Se observó una velocidad de desplazamiento reducida durante la caminata."
-        : "El desplazamiento del cuerpo durante la caminata se observó dentro de lo esperado.",
-    },
-    {
       icon: "🔄",
       title: "Ritmo de la caminata",
       description:
@@ -525,25 +499,11 @@ export function userCharacteristicCards(
         : "El control del cuerpo durante la caminata se observó estable.",
     },
     {
-      icon: "↔️",
-      title: "Simetría del movimiento",
-      description: hasFinding(findings, "asimetria")
-        ? "Se observaron diferencias entre el lado izquierdo y el derecho del cuerpo."
-        : "Los movimientos de ambos lados del cuerpo se observaron similares.",
-    },
-    {
       icon: "💪",
       title: "Movimiento de los brazos",
       description: hasFinding(findings, "brazos")
         ? "Se observó una diferencia o una reducción en el movimiento de ambos brazos."
         : "El movimiento de ambos brazos se observó sin diferencias marcadas.",
-    },
-    {
-      icon: "🦵",
-      title: "Movimiento de las piernas",
-      description: hasFinding(findings, "asimetria")
-        ? "Se observaron diferencias en el movimiento de ambas piernas durante la caminata."
-        : "El movimiento de ambas piernas se observó dentro de lo esperado.",
     },
     {
       icon: "⏱️",

@@ -20,8 +20,7 @@ export async function GET() {
     totalAnalyses,
     totalReports,
     totalVideos,
-    datasetRecords,
-    rawSamples,
+    storedPatterns,
     recentAnalyses,
     recentReports,
     recentUsers,
@@ -30,8 +29,13 @@ export async function GET() {
     prisma.gaitAnalysis.count(),
     prisma.medicalReport.count(),
     prisma.videoMarcha.count(),
-    prisma.parkinsonDatasetRecord.count(),
-    prisma.parkinsonRawSample.count(),
+    prisma.gaitAnalysis.findMany({
+      select: {
+        summary: true,
+        conditions: { select: { condition: true } },
+        parameters: { select: { name: true, value: true, state: true } },
+      },
+    }),
     prisma.gaitAnalysis.findMany({
       orderBy: { createdAt: "desc" },
       take: 5,
@@ -60,23 +64,27 @@ export async function GET() {
 
   const experimentalModelAvailable = hasExperimentalV4Model();
 
+  // Resultados guardados por patrón; "sin_clasificar" si el registro no permite saberlo.
+  const patternCounts: Record<string, number> = {};
+  for (const analysis of storedPatterns) {
+    const key = storedPatternOf(analysis).pattern ?? "sin_clasificar";
+    patternCounts[key] = (patternCounts[key] ?? 0) + 1;
+  }
+
   return Response.json({
     totalUsers,
     totalAnalyses,
     totalReports,
     totalVideos,
-    datasetSummary: {
-      datasetRecords,
-      rawSamples,
-    },
-    // Estado y métricas OOF del modelo que usa producción (V4, 4 clases), no de
-    // los modelos históricos que lee getModelStatusDetails().
+    patternCounts,
+    // Estado y métricas OOF del modelo que usa producción (V4, 4 clases).
     modelStatus: {
       available: experimentalModelAvailable,
-      metricsAvailable: experimentalModelAvailable,
       accuracy: EXPERIMENTAL_V4_OOF_METRICS.accuracy,
       macroF1: EXPERIMENTAL_V4_OOF_METRICS.macroF1,
       modelVersion: EXPERIMENTAL_V4_OOF_METRICS.modelVersion,
+      trainingVideos: EXPERIMENTAL_V4_OOF_METRICS.trainingVideos,
+      trainingSubjects: EXPERIMENTAL_V4_OOF_METRICS.trainingSubjects,
       message: experimentalModelAvailable
         ? "Modelo experimental de 4 clases disponible"
         : "Modelo experimental de 4 clases no disponible",

@@ -52,8 +52,6 @@ __pycache__/
 outputs/
 tmp/
 uploads/tmp/
-dataset/parkinson/raw/
-dataset/parkinson/raw/gait_parkinson_dataset_raw_merged.csv
 public/processed-videos/*.mp4
 !public/processed-videos/.gitkeep
 

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Activity, ArrowRight, FileText, History, Plus, ShieldCheck } from "lucide-react";
@@ -10,55 +9,9 @@ import { AdminDashboard } from "@/components/admin/AdminDashboard";
 import { useAuth } from "@/context/AuthContext";
 import styles from "./dashboard.module.css";
 
-// Solo los campos que Inicio usa de los endpoints existentes.
-type Summary = { totalAnalyses: number; totalReports: number };
-type LatestAnalysis = {
-  id: string;
-  date: string;
-  alertLevel: string;
-  summary: string;
-  video: { originalVideoUrl: string | null };
-  conditions: Array<{ condition: string }>;
-};
-
 export default function DashboardPage() {
   const { user } = useAuth();
   const admin = user?.role === "ADMIN";
-  // La carga existente se conserva; Inicio ya no presenta datos de seguimiento.
-  const [, setSummary] = useState<Summary>({ totalAnalyses: 0, totalReports: 0 });
-  const [, setLatest] = useState<LatestAnalysis | null>(null);
-  const [, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (admin) return;
-
-    let active = true;
-
-    async function load() {
-      try {
-        const [summaryResponse, analysesResponse] = await Promise.all([
-          fetch("/api/me/summary"),
-          fetch("/api/me/analyses"),
-        ]);
-        if (summaryResponse.ok) {
-          const payload = (await summaryResponse.json()) as Summary;
-          if (active) setSummary(payload);
-        }
-        if (analysesResponse.ok) {
-          const payload = (await analysesResponse.json()) as { analyses: LatestAnalysis[] };
-          if (active) setLatest(payload.analyses[0] ?? null);
-        }
-      } finally {
-        if (active) setLoading(false);
-      }
-    }
-
-    load();
-
-    return () => {
-      active = false;
-    };
-  }, [admin]);
 
   if (admin) {
     return (

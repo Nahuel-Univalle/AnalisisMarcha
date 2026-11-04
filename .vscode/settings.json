@@ -7,8 +7,7 @@
     "**/venv/**": true,
     "**/__pycache__/**": true,
     "**/outputs/**": true,
-    "**/tmp/**": true,
-    "**/dataset/parkinson/raw/**": true
+    "**/tmp/**": true
   },
   "search.exclude": {
     "**/.next": true,
@@ -18,7 +17,6 @@
     "**/venv": true,
     "**/__pycache__": true,
     "**/outputs": true,
-    "**/tmp": true,
-    "**/dataset/parkinson/raw": true
+    "**/tmp": true
   }
 }

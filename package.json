@@ -13,10 +13,6 @@
     "audit:user-data": "tsx scripts/audit-user-data.ts",
     "db:fix-auth": "tsx scripts/apply-safe-auth-patch.ts",
     "repair:orphan-user-data": "tsx scripts/repair-orphan-user-data.ts",
-    "reset:parkinson": "node scripts/reset-parkinson-dataset.js",
-    "import:parkinson": "node scripts/import-parkinson-features.js",
-    "import:parkinson:raw": "node scripts/import-parkinson-raw.js",
-    "audit:parkinson": "node scripts/audit-parkinson-dataset.js",
     "check:python": "node scripts/check-python-env.js",
     "check:python-env": "python test_entorno.py",
     "check:cloudinary": "node scripts/check-cloudinary-config.js",
@@ -38,7 +34,6 @@
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "recharts": "^3.8.1",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {

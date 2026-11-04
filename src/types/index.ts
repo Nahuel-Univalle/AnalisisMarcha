@@ -53,7 +53,6 @@ export type AnalysisResult = {
   parameters: GaitParameter[];
   conditions: ConditionEvaluation[];
   recommendations?: string[];
-  datasetWarnings?: string[];
   videoMetrics?: Record<string, number | null>;
   annotatedVideoUrl?: string;
   originalVideoUrl?: string;

@@ -56,13 +56,13 @@ Estados: loading (placeholder `"..."` en las cifras), empty (`totalAnalyses === 
 
 ## Panel administrativo
 
-Route: `/dashboard` (rama admin) — Source: `src/components/admin/AdminDashboard.tsx`
+Route: `/dashboard` (rama admin) — Source: `src/components/admin/AdminDashboard.tsx`, dentro de `AdminShell`.
 Purpose: resumen operativo para el rol ADMIN.
-Layout: grid de 6 métricas, accesos rápidos, 3 columnas de "últimos X" (análisis/informes/usuarios).
-Datos: `GET /api/admin/summary`.
-Estados: loading, empty por cada una de las 3 listas.
+Layout: encabezado → aviso → 5 KPI → distribución por patrón + modelo actual → actividad reciente + últimos informes.
+Datos: `GET /api/admin/summary` (un solo fetch compartido con el estado de la barra superior vía `AdminSummaryProvider`) y `GET /api/admin/analyses`.
+Estados: loading, empty y error con "Reintentar". El estado "Sistema operativo" se deriva de la respuesta real; nunca es fijo.
 
-✅ Actualizado (Fase E): "Accesos rápidos" usa `LinkButton` en vez de `<Link>` con clases copiadas. Se quitó el hover-lift de las 3 listas de "últimos X" (no son filas clickeables).
+Otras pantallas de admin: `/admin/analisis` (`ActivityTable` completa) y `/admin` (usuarios, `GET /api/admin/users`). `/seguimiento` es "Informes globales". No existe vista de un informe individual: "Ver informe" lleva a `/seguimiento`.
 
 ## Subir video
 
@@ -130,17 +130,11 @@ Datos: `GET /api/me/reports` o `GET /api/admin/reports`.
 
 ✅ Actualizado (Fase H): el color `focus:border-cyan-500` del input de filtro se reemplazó por `focus:border-accent` + anillo de foco. El chip de filtro activo pasó de `bg-slate-950` (negro puro, sin relación con la paleta) a `bg-primary`. Se quitó el hover-lift de cada fila de informe (no es toda la fila la que es clickeable, solo el botón "Ver informe" interno). Se evaluó convertir la lista a una `<table>` real (instrucción de Fase H), pero cada fila incluye videos embebidos y texto largo — contenido no puramente tabular — por lo que se mantuvo como lista de bloques, decisión ya justificada en el propio layout.
 
-## Datasets (Parkinson) / Referencias
-
-Route: `/datasets/parkinson` (source: `src/app/datasets/parkinson/page.tsx`) — exclusivo admin, **única fuente de verdad**. KPIs reales (conteos de registros/muestras desde la API), gráfico de barras real con `recharts` (datos reales, no decorativos), tabla paginada de registros de referencia.
-
-✅ Resuelto (limpieza post-implementación): `/referencias` (`src/app/referencias/page.tsx`) ya no renderiza una copia de `ParkinsonDatasetPage`. Se confirmó mediante búsqueda exhaustiva (imports, enlaces de navegación, redirects, docs, config, historial de git) que no tenía ningún propósito funcional distinto ni ninguna dependencia real apuntando a ella — no estaba enlazada desde ninguna navegación (`AppHeader` solo enlaza "Datasets" → `/datasets/parkinson` e "Informes globales" → `/seguimiento`). Ahora es un redirect server-side (`redirect("/datasets/parkinson")`) para no romper accesos directos existentes a esa URL, sin duplicar contenido. La protección de rol admin la resuelve `src/proxy.ts` antes de llegar a la página.
-
 ---
 
 # Rutas verificadas (build real, `next build`)
 
-`/`, `/login`, `/registro`, `/dashboard`, `/datasets/parkinson`, `/referencias`, `/seguimiento`, `/analisis/subir-video`, `/analisis/validacion`, `/analisis/movimiento`, `/analisis/resultado`, `/analisis/evaluacion`, `/analisis/informe` — 13 páginas de UI, todas dentro de `AppShell` excepto `/`, `/login`, `/registro`.
+`/`, `/login`, `/registro`, `/dashboard`, `/seguimiento`, `/analisis/subir-video`, `/analisis/validacion`, `/analisis/movimiento`, `/analisis/resultado`, `/analisis/evaluacion`, `/analisis/informe` — 11 páginas de UI, todas dentro de `AppShell` excepto `/`, `/login`, `/registro`.
 
 Protección de rutas: doble capa — `src/proxy.ts` (server-side, equivalente a middleware en Next.js 16) + `AppShell` (client-side, redirige si `!user` tras cargar `AuthContext`). No hay layouts anidados adicionales bajo `src/app/` (un único `src/app/layout.tsx` raíz).
 
@@ -159,7 +153,6 @@ Protección de rutas: doble capa — `src/proxy.ts` (server-side, equivalente a 
 - `/analisis/evaluacion`: documento técnico (A–D) con tabla de hallazgos.
 - `/analisis/informe`: hoja A4 sobre "escritorio"; "Guardar en seguimiento" / "Descargar PDF" con estados de carga; "Fecha de emisión" (el resultado en memoria no trae la fecha del análisis).
 - `/seguimiento`: línea de tiempo por mes, `FilterTabs` con conteos, videos en área desplegable.
-- `/datasets/parkinson`: KPIs en superficie dividida, gráfico con tokens, tabla con cabecera fija.
 
 Pendiente que requiere backend: "Ver informe" en seguimiento abre el análisis en memoria, no el informe guardado.
 

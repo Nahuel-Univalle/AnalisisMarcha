@@ -18,7 +18,6 @@ const eslintConfig = defineConfig([
     "__pycache__/**",
     "outputs/**",
     "tmp/**",
-    "dataset/parkinson/raw/**",
   ]),
 ]);
 

@@ -47,9 +47,6 @@ export const mockAnalysisResult: AnalysisResult = {
     "No tomar decisiones médicas solo con este informe.",
     "Repetir el análisis si el video no fue claro.",
   ],
-  datasetWarnings: [
-    "El análisis se basa en patrones de referencia disponibles. Para una valoración más precisa, el resultado debe ser revisado por un profesional de salud.",
-  ],
 };
 
 export const mockReports: SavedReport[] = [

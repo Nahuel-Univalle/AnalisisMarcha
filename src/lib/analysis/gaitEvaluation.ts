@@ -1,5 +1,3 @@
-import { getParkinsonDatasetStatsForEvaluation } from "@/lib/datasets/parkinsonDataset";
-
 export type VideoGaitMetrics = {
   walkingSpeed?: number | null;
   asymmetryIndex?: number | null;
@@ -27,19 +25,7 @@ export type GaitEvaluationResult = {
   }>;
   explanation: string;
   recommendations: string[];
-  datasetWarnings: string[];
 };
-
-const FALLBACK_CONTROL = {
-  averageSpeed: 1,
-  averageAsymmetry: 0.12,
-  averageCadence: 105,
-  averageDoubleSupport: 0.22,
-};
-
-function valueOrFallback(value: number | null | undefined, fallback: number) {
-  return typeof value === "number" && Number.isFinite(value) ? value : fallback;
-}
 
 function dedupeStrings(values: string[]) {
   return Array.from(new Set(values.filter(Boolean).map((value) => value.trim())));
@@ -55,41 +41,12 @@ function pushSignal(
   signals.push({ name, relevance, description });
 }
 
-export async function evaluateGaitAgainstParkinsonDataset(
+// Observaciones complementarias a partir de métricas del propio video. No
+// intervienen en la clase ni en la confianza, que provienen solo del modelo.
+export function evaluateVideoGaitObservations(
   metrics: VideoGaitMetrics
-): Promise<GaitEvaluationResult> {
-  const datasetStats = await getParkinsonDatasetStatsForEvaluation();
-  const reference = datasetStats.control ?? datasetStats.overall ?? FALLBACK_CONTROL;
-  const datasetWarnings = [...datasetStats.warnings];
-
-  if (datasetStats.totalRecords === 0) {
-    datasetWarnings.push(
-      "El análisis se basa en patrones de referencia disponibles. Para una valoración más precisa, el resultado debe ser revisado por un profesional de salud."
-    );
-  }
-
-  const averageSpeed = valueOrFallback(
-    reference.averageSpeed,
-    FALLBACK_CONTROL.averageSpeed
-  );
-  const averageAsymmetry = valueOrFallback(
-    reference.averageAsymmetry,
-    FALLBACK_CONTROL.averageAsymmetry
-  );
-  const averageCadence = valueOrFallback(
-    reference.averageCadence,
-    FALLBACK_CONTROL.averageCadence
-  );
-  const averageDoubleSupport = valueOrFallback(
-    reference.averageDoubleSupport,
-    FALLBACK_CONTROL.averageDoubleSupport
-  );
-
+): GaitEvaluationResult {
   const signals: GaitEvaluationResult["detectedSignals"] = [];
-  const walkingSpeed = metrics.walkingSpeed ?? null;
-  const asymmetry = metrics.asymmetryIndex ?? null;
-  const cadence = metrics.cadence ?? null;
-  const doubleSupport = metrics.doubleSupportRatio ?? null;
   const reducedArmSwing =
     metrics.armSwingScore !== null &&
     metrics.armSwingScore !== undefined &&
@@ -98,42 +55,6 @@ export async function evaluateGaitAgainstParkinsonDataset(
     metrics.armSwingAsymmetry !== null &&
     metrics.armSwingAsymmetry !== undefined &&
     metrics.armSwingAsymmetry > 0.25;
-
-  if (walkingSpeed !== null && walkingSpeed < averageSpeed * 0.82) {
-    pushSignal(
-      signals,
-      "Marcha lenta",
-      "ALTO",
-      "El sistema observó una velocidad de desplazamiento reducida durante la caminata."
-    );
-  }
-
-  if (asymmetry !== null && asymmetry > Math.max(averageAsymmetry * 1.5, 0.18)) {
-    pushSignal(
-      signals,
-      "Asimetría de marcha",
-      "MEDIO",
-      "El sistema observó diferencias entre el movimiento del lado izquierdo y derecho del cuerpo."
-    );
-  }
-
-  if (cadence !== null && cadence < averageCadence * 0.85) {
-    pushSignal(
-      signals,
-      "Ritmo de marcha irregular",
-      "MEDIO",
-      "El sistema observó que el ritmo de la caminata no fue suficientemente regular."
-    );
-  }
-
-  if (doubleSupport !== null && doubleSupport > averageDoubleSupport * 1.3) {
-    pushSignal(
-      signals,
-      "Estabilidad reducida",
-      "MEDIO",
-      "El sistema observó variaciones en la postura o en el control del cuerpo durante la caminata."
-    );
-  }
 
   if (reducedArmSwing || asymmetricArmSwing) {
     pushSignal(
@@ -197,6 +118,5 @@ export async function evaluateGaitAgainstParkinsonDataset(
       "Repetir el análisis si el video no muestra el cuerpo completo o tiene mala iluminación.",
       "No tomar decisiones médicas ni iniciar tratamientos solo con este resultado.",
     ]),
-    datasetWarnings: dedupeStrings(datasetWarnings),
   };
 }

@@ -6,12 +6,10 @@ const protectedRoutes = [
   "/analisis",
   "/seguimiento",
   "/informes",
-  "/referencias",
-  "/datasets",
   "/admin",
 ];
 const authRoutes = ["/login", "/registro"];
-const adminRoutes = ["/referencias", "/datasets", "/admin"];
+const adminRoutes = ["/admin"];
 const userOnlyRoutes = ["/analisis"];
 
 function startsWithAny(pathname: string, routes: string[]) {
@@ -55,8 +53,6 @@ export const config = {
     "/analisis/:path*",
     "/seguimiento/:path*",
     "/informes/:path*",
-    "/referencias/:path*",
-    "/datasets/:path*",
     "/admin/:path*",
     "/login",
     "/registro",

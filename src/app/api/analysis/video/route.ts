@@ -13,7 +13,7 @@ import path from "node:path";
 import { AlertLevel as PrismaAlertLevel, VideoStatus } from "@prisma/client";
 import { NextRequest } from "next/server";
 import {
-  evaluateGaitAgainstParkinsonDataset,
+  evaluateVideoGaitObservations,
   GaitEvaluationResult,
   VideoGaitMetrics,
 } from "@/lib/analysis/gaitEvaluation";
@@ -43,7 +43,7 @@ import {
   deleteCloudinaryVideo,
   uploadVideoToCloudinary,
 } from "@/lib/cloudinary";
-import { getModelStatusDetails } from "@/lib/ml/modelMetrics";
+import { hasExperimentalV4Model } from "@/lib/ml/modelMetrics";
 import { requireUser } from "@/lib/auth/guards";
 import { getSessionUser } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
@@ -72,8 +72,6 @@ const PYTHON_ANALYSIS_FAILED =
   "No se pudo completar el análisis de movimiento. Revise que el video sea claro y vuelva a intentarlo.";
 const CLOUDINARY_FALLBACK_WARNING =
   "El análisis se completó, pero no se pudo guardar el video en la nube. Se mostrará una versión temporal.";
-const SENSOR_VIDEO_MODEL_MESSAGE =
-  "El modelo de referencia usa datos de sensores de marcha. El video actual se evaluó mediante análisis visual.";
 const VIDEO_FEATURE_PREDICTION_FAILED =
   "No se pudieron extraer suficientes métricas visuales compatibles para aplicar el modelo.";
 const DEEP_GAIT_V4EXP_VERSION =
@@ -1298,11 +1296,11 @@ export async function POST(request: NextRequest) {
       ? (processedUpload as CloudinaryVideoUploadOk).publicId
       : null;
     const videoMetrics = normalizePythonMetrics(pythonOutput);
-    const [evaluation, modelStatus, videoPrediction] = await Promise.all([
-      evaluateGaitAgainstParkinsonDataset(videoMetrics),
-      getModelStatusDetails(),
-      runVideoFeaturePrediction(tempVideoPath, videoPredictionJsonPath),
-    ]);
+    const evaluation = evaluateVideoGaitObservations(videoMetrics);
+    const videoPrediction = await runVideoFeaturePrediction(
+      tempVideoPath,
+      videoPredictionJsonPath
+    );
 
     // Fallo del modelo experimental: error controlado (sin modelo de respaldo).
     // La pose insuficiente NO es un fallo del modelo: sigue el flujo existente
@@ -1446,7 +1444,6 @@ export async function POST(request: NextRequest) {
     const warnings = dedupeStrings(
       [
         ...((pythonOutput.warnings as string[] | undefined) ?? []),
-        ...modelAlignedEvaluation.datasetWarnings,
         cadenceWarning,
         cloudinaryUploadOk ? null : CLOUDINARY_FALLBACK_WARNING,
       ].filter((warning): warning is string => Boolean(warning))
@@ -1563,7 +1560,7 @@ export async function POST(request: NextRequest) {
         analysisReliable && typeof videoPrediction.modelVersion === "string"
           ? videoPrediction.modelVersion
           : null,
-      modelKind: modelStatus.modelKind,
+      modelKind: "deep_multiclass",
       // Clasificación experimental (modelo V4): advertencias estructuradas y
       // textos de contexto. Se anulan si el análisis no es concluyente.
       experimentalClassification: effModelUsed && videoPrediction.experimental === true,
@@ -1591,9 +1588,7 @@ export async function POST(request: NextRequest) {
       probabilityNormal: effProbabilityNormal,
       riskLevel: effRiskLevel,
       confidence: effConfidence,
-      modelMacroF1:
-        numberFrom(videoPrediction.modelMacroF1) ??
-        (modelStatus.metricsAvailable ? modelStatus.macroF1 ?? null : null),
+      modelMacroF1: numberFrom(videoPrediction.modelMacroF1),
       modelUsed: effModelUsed,
       modelUsedForVideo: effModelUsed && Boolean(videoPrediction.modelUsedForVideo ?? videoPrediction.modelUsed),
       predictionLabel:
@@ -1613,77 +1608,27 @@ export async function POST(request: NextRequest) {
       modelPredictionMessage:
         typeof videoPrediction.message === "string"
           ? videoPrediction.message
-          : Boolean(videoPrediction.modelUsed)
-            ? null
-            : SENSOR_VIDEO_MODEL_MESSAGE,
-      modelAccuracy:
-        numberFrom(videoPrediction.modelAccuracy) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.accuracy
-          : null),
-      modelPrecision:
-        numberFrom(videoPrediction.modelPrecision) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.precision
-          : null),
-      modelRecall:
-        numberFrom(videoPrediction.modelRecall) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.recall
-          : null),
-      modelF1Score:
-        numberFrom(videoPrediction.modelF1Score) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.f1Score
-          : null),
+          : null,
+      modelAccuracy: numberFrom(videoPrediction.modelAccuracy),
+      modelPrecision: numberFrom(videoPrediction.modelPrecision),
+      modelRecall: numberFrom(videoPrediction.modelRecall),
+      modelF1Score: numberFrom(videoPrediction.modelF1Score),
       modelWarning:
-        (typeof videoPrediction.modelWarning === "string"
+        typeof videoPrediction.modelWarning === "string"
           ? videoPrediction.modelWarning
-          : null) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.warning
-          : null),
+          : null,
       validationMethod:
-        (typeof videoPrediction.validationMethod === "string"
+        typeof videoPrediction.validationMethod === "string"
           ? videoPrediction.validationMethod
-          : null) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.validationMethod
-          : null),
-      modelSamples:
-        numberFrom(videoPrediction.modelSamples) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.samples
-          : null),
-      modelControlSamples:
-        numberFrom(videoPrediction.modelControlSamples) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.controlSamples
-          : null),
-      modelParkinsonSamples:
-        numberFrom(videoPrediction.modelParkinsonSamples) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.parkinsonSamples
-          : null),
-      modelTrainSize:
-        numberFrom(videoPrediction.modelTrainSize) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.trainSize
-          : null),
-      modelTestSize:
-        numberFrom(videoPrediction.modelTestSize) ??
-        (modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? modelStatus.testSize
-          : null),
-      modelMetricsAvailable:
-        modelStatus.modelAvailable && modelStatus.metricsAvailable,
-      modelAvailable: modelStatus.modelAvailable,
-      modelMessage:
-        modelStatus.modelAvailable && modelStatus.metricsAvailable
-          ? "Modelo inicial entrenado con datos de referencia."
-          : modelStatus.modelAvailable
-            ? "El modelo aún no tiene métricas de entrenamiento disponibles."
-            : "Aún no existe modelo entrenado disponible.",
+          : null,
+      modelSamples: numberFrom(videoPrediction.modelSamples),
+      modelControlSamples: numberFrom(videoPrediction.modelControlSamples),
+      modelParkinsonSamples: numberFrom(videoPrediction.modelParkinsonSamples),
+      modelTrainSize: numberFrom(videoPrediction.modelTrainSize),
+      modelTestSize: numberFrom(videoPrediction.modelTestSize),
+      modelMetricsAvailable: numberFrom(videoPrediction.modelMacroF1) !== null,
+      modelAvailable: hasExperimentalV4Model(),
+      modelMessage: "Clasificación experimental de 4 clases.",
       evaluation: modelAlignedEvaluation,
       observedSignals: observedSignalResult.signals,
       signalEmptyMessage: observedSignalResult.emptyMessage,
@@ -1696,7 +1641,6 @@ export async function POST(request: NextRequest) {
       decisionSource: modelAlignedEvaluation.decisionSource,
       modelControlProbability: modelAlignedEvaluation.modelControlProbability,
       modelParkinsonProbability: modelAlignedEvaluation.modelParkinsonProbability,
-      datasetWarnings: modelAlignedEvaluation.datasetWarnings,
       savedToDatabase: Boolean(databaseRecord),
       rawPythonOutput: pythonOutput,
     };
