@@ -14,6 +14,7 @@ function fromPrismaAlert(alert: "BAJO" | "MEDIO" | "ALTO") {
 function reportPayload(report: {
   id: string;
   title: string;
+  pdfUrl?: string | null;
   createdAt: Date;
   analysisId: string;
   analysis: {
@@ -35,6 +36,7 @@ function reportPayload(report: {
   return {
     id: report.id,
     title: report.title,
+    pdfUrl: report.pdfUrl ?? null,
     summary: report.analysis.summary,
     analysisType: "Análisis de marcha",
     pattern: primaryCondition?.condition ?? null,

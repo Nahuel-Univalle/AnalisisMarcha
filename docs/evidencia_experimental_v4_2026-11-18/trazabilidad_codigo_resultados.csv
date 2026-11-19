@@ -1,0 +1,120 @@
+﻿Archivo,Función o bloque,Línea inicial,Línea final,Tipo
+scripts/video_training/deep/22_source_bias.py,video_metadata,59,95,Función original localizada
+scripts/video_training/deep/22_source_bias.py,person_bbox_frac,98,116,Función original localizada
+scripts/video_training/deep/22_source_bias.py,grouped_probe,119,149,Función original localizada
+scripts/video_training/deep/22_source_bias.py,main,161,251,Función original localizada
+scripts/video_training/deep/22_source_bias.py,Salida -> models/gait_deep/audit/source_bias_report.json  (+ CSV de metadatos),28,28,Declaración o escritura original
+scripts/video_training/deep/22_source_bias.py,META_COLS = [,51,51,Declaración o escritura original
+scripts/video_training/deep/22_source_bias.py,probes = {},219,219,Declaración o escritura original
+scripts/video_training/deep/22_source_bias.py,"write_json(AUDIT_DIR / ""source_bias_report.json"", report)",243,243,Declaración o escritura original
+scripts/video_training/deep/22_source_bias.py,"print(f""\n-> {AUDIT_DIR / 'source_bias_report.json'}"")",250,250,Declaración o escritura original
+scripts/video_training/deep/deep_common.py,frames_to_sequence,204,276,Función original localizada
+scripts/video_training/deep/deep_common.py,augment_sample,381,425,Función original localizada
+scripts/video_training/deep/deep_common.py,classification_metrics,517,591,Función original localizada
+scripts/video_training/deep/deep_common.py,load_dataset,612,620,Función original localizada
+scripts/video_training/deep/deep_common.py,forward,477,484,Función original localizada
+scripts/video_training/deep/deep_common.py,"DATASET_PATH = DEEP_DATA_DIR / ""dataset.npz""",54,54,Declaración o escritura original
+scripts/video_training/deep/deep_common.py,"path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding=""utf-8"")",625,625,Declaración o escritura original
+scripts/video_training/deep/23_experiments.py,inner_split,143,151,Función original localizada
+scripts/video_training/deep/23_experiments.py,train_fold,154,202,Función original localizada
+scripts/video_training/deep/23_experiments.py,_cv_once,205,218,Función original localizada
+scripts/video_training/deep/23_experiments.py,run_cv,221,238,Función original localizada
+scripts/video_training/deep/23_experiments.py,_baseline_once,241,265,Función original localizada
+scripts/video_training/deep/23_experiments.py,run_baseline,268,282,Función original localizada
+scripts/video_training/deep/23_experiments.py,main,285,370,Función original localizada
+scripts/video_training/deep/24_normalized_reextract.py,extract_normalized,55,124,Función original localizada
+scripts/video_training/deep/24_normalized_reextract.py,main,127,219,Función original localizada
+scripts/video_training/deep/24_normalized_reextract.py,TARGET_FPS = 15.0,48,48,Declaración o escritura original
+scripts/video_training/deep/24_normalized_reextract.py,MAX_DIM = 720,49,49,Declaración o escritura original
+outputs/dataset_v3/_shortcut_learning_audit.py,main,149,221,Función original localizada
+outputs/dataset_v3/_shortcut_learning_audit.py,"OUT_JSON = ROOT / ""outputs"" / ""dataset_v3"" / ""shortcut_learning_final_report.json""",64,64,Declaración o escritura original
+outputs/dataset_v3/_shortcut_learning_audit.py,META_COLS = [,67,67,Declaración o escritura original
+outputs/dataset_v3/_shortcut_learning_audit.py,"OUT_JSON.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding=""utf-8"")",218,218,Declaración o escritura original
+outputs/dataset_v3/_shortcut_learning_audit_normalized.py,load_meta_common,80,95,Función original localizada
+outputs/dataset_v3/_shortcut_learning_audit_normalized.py,verify_same_splits,98,114,Función original localizada
+outputs/dataset_v3/_shortcut_learning_audit_normalized.py,main,125,214,Función original localizada
+outputs/dataset_v3/_shortcut_learning_audit_normalized.py,"OUT_JSON = ROOT / ""outputs"" / ""dataset_v3"" / ""shortcut_learning_normalized_report.json""",50,50,Declaración o escritura original
+outputs/dataset_v3/_shortcut_learning_audit_normalized.py,COMMON_META_COLS = [,54,54,Declaración o escritura original
+outputs/dataset_v3/_shortcut_learning_audit_normalized.py,FULL_META_COLS = COMMON_META_COLS[:-2] + [,59,59,Declaración o escritura original
+outputs/dataset_v3/_shortcut_learning_audit_normalized.py,"OUT_JSON.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding=""utf-8"")",212,212,Declaración o escritura original
+outputs/dataset_v3/_shortcut_learning_metadata_ablation.py,main,125,171,Función original localizada
+outputs/dataset_v3/_shortcut_learning_metadata_ablation.py,"OUT_JSON = ROOT / ""outputs"" / ""dataset_v3"" / ""shortcut_learning_metadata_ablation_report.json""",60,60,Declaración o escritura original
+outputs/dataset_v3/_shortcut_learning_metadata_ablation.py,"OUT_JSON.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding=""utf-8"")",169,169,Declaración o escritura original
+outputs/dataset_v4_ms28/_resolution_shortcut_audit.py,main,87,255,Función original localizada
+outputs/dataset_v4_ms28/_resolution_shortcut_audit.py,"OUT_JSON = OUT_DIR / f""{ARGS.output_prefix}.json""",43,43,Declaración o escritura original
+outputs/dataset_v4_ms28/_resolution_shortcut_audit.py,"OUT_JSON.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding=""utf-8"")",228,228,Declaración o escritura original
+outputs/dataset_v4_ms28/_resolution_shortcut_audit.py,"OUT_MD.write_text(""\n"".join(md), encoding=""utf-8"")",249,249,Declaración o escritura original
+outputs/dataset_v4_ms28/_shortcut_learning_audit_preview.py,classical_cv_eval,152,217,Función original localizada
+outputs/dataset_v4_ms28/_shortcut_learning_audit_preview.py,"OUT_JSON = OUT_DIR / f""{ARGS.output_prefix}.json""",56,56,Declaración o escritura original
+outputs/dataset_v4_ms28/_shortcut_learning_audit_preview.py,"OUT_JSON.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding=""utf-8"")",364,364,Declaración o escritura original
+outputs/dataset_v4_ms28/_shortcut_learning_audit_preview.py,"OUT_MD.write_text(""\n"".join(md_lines), encoding=""utf-8"")",391,391,Declaración o escritura original
+outputs/dataset_v4_4class/audit_shortcuts_v4.py,load,95,112,Función original localizada
+outputs/dataset_v4_4class/audit_shortcuts_v4.py,design,146,158,Función original localizada
+outputs/dataset_v4_4class/audit_shortcuts_v4.py,probe,161,178,Función original localizada
+outputs/dataset_v4_4class/audit_shortcuts_v4.py,"SEEDS = [0, 1, 2]",52,52,Declaración o escritura original
+outputs/dataset_v4_4class/audit_shortcuts_v4.py,"(HERE / ""subject_leakage_v4.json"").write_text(json.dumps(leakage, indent=2, ensure_ascii=False), encoding=""utf-8"")",290,290,Declaración o escritura original
+outputs/dataset_v4_4class/audit_shortcuts_v4.py,"(HERE / ""audit_summary_v4.json"").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding=""utf-8"")",305,305,Declaración o escritura original
+outputs/dataset_v4_4class/build_manifest_v4.py,main,107,221,Función original localizada
+outputs/dataset_v4_4class/build_manifest_v4.py,source_of,120,126,Función original localizada
+outputs/dataset_v4_4class/build_dataset_v4_preview.py,main,64,146,Función original localizada
+outputs/dataset_v4_4class/build_dataset_v4_preview.py,TARGET_FPS = 15.0,60,60,Declaración o escritura original
+outputs/dataset_v4_4class/build_dataset_v4_preview.py,"(HERE / ""dataset_v4_preview_meta.json"").write_text(json.dumps(meta, indent=2, ensure_ascii=False), encoding=""utf-8"")",143,143,Declaración o escritura original
+outputs/dataset_v4_4class/step5/build_variants_step5.py,build,79,134,Función original localizada
+outputs/dataset_v4_4class/step5/build_variants_step5.py,main,137,154,Función original localizada
+outputs/dataset_v4_4class/step5/build_variants_step5.py,TARGET_FPS = 15.0,55,55,Declaración o escritura original
+outputs/dataset_v4_4class/step5/build_variants_step5.py,"(HERE / ""build_summary_step5.json"").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding=""utf-8"")",153,153,Declaración o escritura original
+outputs/dataset_v4_4class/step5/audit_variants_step5.py,main,143,245,Función original localizada
+outputs/dataset_v4_4class/step5/audit_variants_step5.py,"(HERE / ""audit_variants_step5.json"").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding=""utf-8"")",243,243,Declaración o escritura original
+outputs/dataset_v4_4class/step5/within_source_step5.py,probe_detail,57,77,Función original localizada
+outputs/dataset_v4_4class/step5/within_source_step5.py,permutation_test,80,102,Función original localizada
+outputs/dataset_v4_4class/step5/within_source_step5.py,comparison,105,132,Función original localizada
+outputs/dataset_v4_4class/step5/within_source_step5.py,main,135,202,Función original localizada
+outputs/dataset_v4_4class/step5/within_source_step5.py,SEEDS = S4.SEEDS,54,54,Declaración o escritura original
+outputs/dataset_v4_4class/step6/d1_duration_vs_gait.py,per_video,54,122,Función original localizada
+outputs/dataset_v4_4class/step6/d1_duration_vs_gait.py,rho,129,133,Función original localizada
+outputs/dataset_v4_4class/step6/d1_duration_vs_gait.py,within_group_rho,136,148,Función original localizada
+outputs/dataset_v4_4class/step6/d1_duration_vs_gait.py,main,157,228,Función original localizada
+outputs/dataset_v4_4class/step6/d1_duration_vs_gait.py,"Salidas: D1_duration_vs_gait.csv (por video), d1_correlations.csv, d1_summary.json",20,20,Declaración o escritura original
+outputs/dataset_v4_4class/step6/d1_duration_vs_gait.py,"with (HERE / ""d1_correlations.csv"").open(""w"", encoding=""utf-8"", newline="""") as fh:",188,188,Declaración o escritura original
+outputs/dataset_v4_4class/step6/d1_duration_vs_gait.py,"(HERE / ""d1_summary.json"").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding=""utf-8"")",221,221,Declaración o escritura original
+outputs/dataset_v4_4class/step6/d2_camera_measurement.py,bbox_px,48,52,Función original localizada
+outputs/dataset_v4_4class/step6/d2_camera_measurement.py,measure,55,150,Función original localizada
+outputs/dataset_v4_4class/step6/d2_camera_measurement.py,main,153,172,Función original localizada
+outputs/dataset_v4_4class/step6/d3_combined_shortcut_test.py,main,55,140,Función original localizada
+outputs/dataset_v4_4class/step6/d3_combined_shortcut_test.py,add,83,96,Función original localizada
+outputs/dataset_v4_4class/step6/d3_combined_shortcut_test.py,"(HERE / ""d3_summary.json"").write_text(json.dumps({""probes"": out, ""fps_desde_marcha_dentro_de_clase"": sess},",138,138,Declaración o escritura original
+outputs/dataset_v4_4class/step7/em_background_motion.py,main,76,139,Función original localizada
+outputs/dataset_v4_4class/step7/analyze_four_class.py,oof_confusion,63,69,Función original localizada
+outputs/dataset_v4_4class/step7/analyze_four_class.py,main,72,244,Función original localizada
+outputs/dataset_v4_4class/step7/analyze_four_class.py,probes = {,187,187,Declaración o escritura original
+outputs/dataset_v4_4class/step7/analyze_four_class.py,"(HERE / ""step7_summary.json"").write_text(json.dumps(summary, indent=2, ensure_ascii=False, default=str), encoding=""utf-8"")",243,243,Declaración o escritura original
+outputs/dataset_v4_4class/step8/build_inventory_step8.py,main,64,183,Función original localizada
+outputs/dataset_v4_4class/step8/build_inventory_step8.py,"(HERE / ""coverage_step8.json"").write_text(json.dumps(cov, indent=2, ensure_ascii=False), encoding=""utf-8"")",179,179,Declaración o escritura original
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,sgkf,78,79,Función original localizada
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,train_fixed,82,119,Función original localizada
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,choose_epoch,122,128,Función original localizada
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,run_variant,131,185,Función original localizada
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,probe_oof,188,198,Función original localizada
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,summarize,201,218,Función original localizada
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,main,229,298,Función original localizada
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,final_model,301,332,Función original localizada
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,"(HERE / ""config_protocol_v2.json"").write_text(json.dumps(CFG, indent=2, ensure_ascii=False), encoding=""utf-8"")",231,231,Declaración o escritura original
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,"probes = {""metadatos_tecnicos"": [""video_duration_s"", ""src_frame_count"", ""src_fps"", ""width"", ""height"", ""aspect_ratio"", ""file_size_mb""],",267,267,Declaración o escritura original
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,"(res_dir / ""inner_curves.json"").write_text(json.dumps(store[""curves""]), encoding=""utf-8"")",292,292,Declaración o escritura original
+outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,"(res_dir / ""metrics_protocol_v2.json"").write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding=""utf-8"")",293,293,Declaración o escritura original
+outputs/dataset_v4_4class/step13_audit/audit_oof_m1.py,main,52,240,Función original localizada
+outputs/dataset_v4_4class/step13_audit/audit_oof_m1.py,"step12_training/results/metrics_protocol_v2.json, step10_training/results/metrics_cv.json",6,6,Declaración o escritura original
+outputs/dataset_v4_4class/step13_audit/audit_oof_m1.py,"m12 = json.loads((V4 / ""step12_training"" / ""results"" / ""metrics_protocol_v2.json"").read_text(encoding=""utf-8""))",71,71,Declaración o escritura original
+outputs/dataset_v4_4class/step13_audit/audit_oof_m1.py,"wcsv(""source_audit.csv"", src_rows)",144,144,Declaración o escritura original
+outputs/dataset_v4_4class/step13_audit/audit_oof_m1.py,"(HERE / ""audit_summary.json"").write_text(json.dumps(summ, indent=2, ensure_ascii=False), encoding=""utf-8"")",230,230,Declaración o escritura original
+outputs/dataset_v4_4class/step18_bn/bn_recal.py,recalibrate,54,77,Función original localizada
+outputs/dataset_v4_4class/step18_bn/bn_recal.py,oof,158,210,Función original localizada
+outputs/dataset_v4_4class/step18_bn/bn_recal.py,"SEEDS = TP.CFG[""partition_seeds""]",40,40,Declaración o escritura original
+outputs/dataset_v4_4class/step18_bn/bn_recal.py,"(HERE / name).write_text(json.dumps(obj, indent=1, ensure_ascii=False, default=float), encoding=""utf-8"")",45,45,Declaración o escritura original
+outputs/dataset_v4_4class/step18_bn/bn_recal.py,"with (HERE / ""oof_per_video.csv"").open(""w"", newline="""", encoding=""utf-8"") as fh:",199,199,Declaración o escritura original
+outputs/dataset_v4_4class/step18_bn/bn_recal.py,"dump(""oof_comparison.json"", summ)",245,245,Declaración o escritura original
+outputs/dataset_v4_4class/step19_candidate/build_candidate.py,build,67,122,Función original localizada
+outputs/dataset_v4_4class/step19_candidate/build_candidate.py,evaluate,144,212,Función original localizada
+outputs/dataset_v4_4class/step19_candidate/build_candidate.py,"(HERE / name).write_text(json.dumps(obj, indent=1, ensure_ascii=False, default=float), encoding=""utf-8"")",45,45,Declaración o escritura original
+outputs/dataset_v4_4class/step19_candidate/build_candidate.py,"(HERE / f""{CAND_VER}_config.json"").write_text(json.dumps(new_cfg, indent=2, ensure_ascii=False), encoding=""utf-8"")",92,92,Declaración o escritura original
+outputs/dataset_v4_4class/step6/d1_speed_explains_duration.json,Generador de este JSON no localizado en los scripts/logs consultados,,,Resultado existente con trazabilidad de generación incompleta

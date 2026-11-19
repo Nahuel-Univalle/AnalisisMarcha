@@ -1,7 +1,7 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-export async function downloadElementAsPdf(elementId: string, fileName: string) {
+export async function downloadElementAsPdf(elementId: string, fileName: string, download = true) {
   const element = document.getElementById(elementId);
 
   if (!element) {
@@ -37,5 +37,6 @@ export async function downloadElementAsPdf(elementId: string, fileName: string) 
     heightLeft -= pdfHeight;
   }
 
-  pdf.save(fileName);
+  if (download) pdf.save(fileName);
+  return pdf.output("blob");
 }

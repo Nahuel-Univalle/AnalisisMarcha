@@ -1,0 +1,41 @@
+﻿Categoría,Videos,Campo,Verificados,Faltantes
+Normal,58,ID video,58,0
+Normal,58,ID sujeto (grupo),58,0
+Normal,58,Categoría,58,0
+Normal,58,Origen (atribución documentada),0,58
+Normal,58,Duración,58,0
+Normal,58,Resolución,58,0
+Normal,58,Etiqueta registrada,58,0
+Normal,58,Validación clínica individual,0,58
+Normal,58,URL original,0,58
+Normal,58,Plataforma documentada sin atribución original,0,58
+Parkinson,26,ID video,26,0
+Parkinson,26,ID sujeto (grupo),26,0
+Parkinson,26,Categoría,26,0
+Parkinson,26,Origen (atribución documentada),0,26
+Parkinson,26,Duración,26,0
+Parkinson,26,Resolución,26,0
+Parkinson,26,Etiqueta registrada,26,0
+Parkinson,26,Validación clínica individual,0,26
+Parkinson,26,URL original,0,26
+Parkinson,26,Plataforma documentada sin atribución original,0,26
+Esclerosis múltiple,22,ID video,22,0
+Esclerosis múltiple,22,ID sujeto (grupo),22,0
+Esclerosis múltiple,22,Categoría,22,0
+Esclerosis múltiple,22,Origen (atribución documentada),0,22
+Esclerosis múltiple,22,Duración,22,0
+Esclerosis múltiple,22,Resolución,22,0
+Esclerosis múltiple,22,Etiqueta registrada,22,0
+Esclerosis múltiple,22,Validación clínica individual,0,22
+Esclerosis múltiple,22,URL original,0,22
+Esclerosis múltiple,22,Plataforma documentada sin atribución original,0,22
+Riesgo de caída,11,ID video,11,0
+Riesgo de caída,11,ID sujeto (grupo),11,0
+Riesgo de caída,11,Categoría,11,0
+Riesgo de caída,11,Origen (atribución documentada),5,6
+Riesgo de caída,11,Duración,11,0
+Riesgo de caída,11,Resolución,11,0
+Riesgo de caída,11,Etiqueta registrada,11,0
+Riesgo de caída,11,Validación clínica individual,0,11
+Riesgo de caída,11,URL original,0,11
+Riesgo de caída,11,Plataforma documentada sin atribución original,4,7

@@ -1,3 +1,4 @@
+import { persistCanonicalAnalysis } from "@/lib/analysis/canonicalAnalysis";
 import { spawn, spawnSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
 import { existsSync } from "node:fs";
@@ -47,14 +48,10 @@ import { hasExperimentalV4Model } from "@/lib/ml/modelMetrics";
 import { requireUser } from "@/lib/auth/guards";
 import { getSessionUser } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
+import { isAcceptedVideoType, VIDEO_FORMAT_ERROR } from "@/lib/analysis/videoFormats";
 
 export const runtime = "nodejs";
 
-const ALLOWED_VIDEO_TYPES = new Set([
-  "video/mp4",
-  "video/webm",
-  "video/quicktime",
-]);
 const MAX_VIDEO_BYTES = 120 * 1024 * 1024;
 const DEEP_GAIT_MODEL_SOURCE = "gait_deep_model";
 const VIDEO_PARKINSON_MODEL_SOURCE = "video_parkinson_model";
@@ -1107,11 +1104,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!ALLOWED_VIDEO_TYPES.has(video.type)) {
+    if (!isAcceptedVideoType(video.type)) {
       return Response.json(
         {
           success: false,
-          message: "El archivo debe ser un video válido.",
+          message: VIDEO_FORMAT_ERROR,
         },
         { status: 400 }
       );
@@ -1157,8 +1154,8 @@ export async function POST(request: NextRequest) {
     const originalStem = `${safeFileStem(video.name)}-${analysisId}`;
     const tempUploadDir = projectPath("tmp", "uploads");
     const resultDir = projectPath("tmp", "results");
-    const processedDir = projectPath("public", "processed-videos");
-    const localOriginalDir = projectPath("public", "uploads-temp");
+    const processedDir = projectPath("private-videos", "processed-videos");
+    const localOriginalDir = projectPath("private-videos", "uploads-temp");
 
     await Promise.all([
       mkdir(tempUploadDir, { recursive: true }),
@@ -1694,6 +1691,11 @@ export async function POST(request: NextRequest) {
 
     await writeDebugLastAnalysis(debugPayload);
     console.log("GAIT_DEBUG_LAST_ANALYSIS", JSON.stringify(debugPayload));
+
+    if (databaseRecord) {
+      try { await persistCanonicalAnalysis(analysis); }
+      catch { allWarnings.push("El análisis se guardó, pero el registro canónico del PDF no está disponible."); }
+    }
 
     return Response.json({
       success: true,

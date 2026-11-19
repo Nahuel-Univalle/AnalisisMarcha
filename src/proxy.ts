@@ -26,6 +26,11 @@ async function readSessionUser(request: NextRequest) {
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  if (pathname.startsWith("/uploads-temp/") || pathname.startsWith("/processed-videos/")) {
+    const parts = pathname.split("/");
+    if (parts.length !== 3) return new NextResponse(null, { status: 404 });
+    return NextResponse.rewrite(new URL(`/api/private-video/${parts[1]}/${parts[2]}`, request.url));
+  }
   const user = await readSessionUser(request);
 
   if (startsWithAny(pathname, authRoutes) && user) {
@@ -49,6 +54,8 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
+    "/uploads-temp/:path*",
+    "/processed-videos/:path*",
     "/dashboard/:path*",
     "/analisis/:path*",
     "/seguimiento/:path*",

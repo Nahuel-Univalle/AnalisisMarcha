@@ -1,0 +1,10 @@
+﻿Procedimiento,Videos,Grupos,Semillas,Exactitud media,Exactitud DE,Macro-F1 media,Macro-F1 DE,Fuente
+M1 base: secuencia + características,117,67,42;43;44;45;46,0.8342,0.0097,0.7252,0.0143,outputs/dataset_v4_4class/step12_training/results/metrics_protocol_v2.json
+M1 + BatchNorm B: procedimiento del candidato,117,67,42;43;44;45;46,0.8512820512820513,0.009745089103411434,0.7442250902622842,0.010382210034439909,outputs/dataset_v4_4class/step18_bn/oof_comparison.json
+M3: preprocesamiento experimental c3 + bs5,117,67,42;43;44;45;46,0.8444,0.0237,0.7505,0.0265,outputs/dataset_v4_4class/step12_training/results/metrics_protocol_v2.json
+Sonda: 7 metadatos técnicos (LR),117,67,42;43;44;45;46,0.8632,0.0181,0.7773,0.0288,outputs/dataset_v4_4class/step12_training/results/metrics_protocol_v2.json
+Sonda: 7 metadatos técnicos (RF),117,67,42;43;44;45;46,0.8769,0.0143,0.7864,0.0234,outputs/dataset_v4_4class/step12_training/results/metrics_protocol_v2.json
+Sonda: metadatos + estrato/vista/fondo (LR),117,67,42;43;44;45;46,0.906,0.006,0.8585,0.012,outputs/dataset_v4_4class/step12_training/results/metrics_protocol_v2.json
+Sonda: metadatos + estrato/vista/fondo (RF),117,67,42;43;44;45;46,0.8889,0.0105,0.825,0.0203,outputs/dataset_v4_4class/step12_training/results/metrics_protocol_v2.json
+Referencia: 36 características (LR),117,67,42;43;44;45;46,0.7521,0.016,0.6222,0.0282,outputs/dataset_v4_4class/step12_training/results/metrics_protocol_v2.json
+Referencia: 36 características (RF),117,67,42;43;44;45;46,0.759,0.0273,0.6359,0.0372,outputs/dataset_v4_4class/step12_training/results/metrics_protocol_v2.json

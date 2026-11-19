@@ -1,0 +1,60 @@
+{
+  "source_legacy_metadata_npz_same136": true,
+  "v4_exact_saved_partitions_reconstructed": 25,
+  "subject_intersections_train_test": 0,
+  "recomputed_saved_metric_entries": 50,
+  "all_saved_metric_entries_matched": true,
+  "bn25_saved_leakage_checks_all_zero": true,
+  "new_training": false,
+  "new_inference": false,
+  "new_video_processing": false,
+  "method": "Only parse existing JSON/CSV/NPZ, reconstruct splits without estimators, recompute metrics from saved labels, aggregate, hash and plot. No project module imported.",
+  "source_files_sha256_rechecked": 72,
+  "source_files_unchanged": true,
+  "v3_same86_ids_subjects_labels_after_alignment": true,
+  "v3_normalized86_fps15_resolution720x405": true,
+  "figures": [
+    {
+      "file": "figura_4_4_1_comparacion_v4.png",
+      "width": 8100,
+      "height": 4440,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    {
+      "file": "figura_4_4_2_normalizacion_v3.png",
+      "width": 7080,
+      "height": 3960,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    {
+      "file": "figura_4_4_3_duracion_velocidad.png",
+      "width": 5100,
+      "height": 3720,
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    }
+  ],
+  "figures_only_saved_or_descriptive_measured_values": true,
+  "no_generated_or_simulated_performance_values": true,
+  "unavailable_original_oof_predictions": [
+    "historical metadata probe P22",
+    "metadata/reference probes P12"
+  ],
+  "unlocated_generator": [
+    "outputs/dataset_v4_4class/step6/d1_speed_explains_duration.json"
+  ],
+  "figures_visually_reviewed_all3": true,
+  "all_figure_aggregate_values_match_saved_repetition_statistics": true,
+  "code_function_line_ranges_validated_with_ast": true,
+  "seven_technical_metadata_columns_all117_finite": true,
+  "candidate_weight_hash_matches_config": true,
+  "originals_unchanged_final_recheck": true
+}

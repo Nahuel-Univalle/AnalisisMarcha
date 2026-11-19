@@ -15,7 +15,7 @@ import { formatPercent } from "@/lib/formatPercent";
  */
 export function SavedReportsList({ admin, refreshKey = 0 }: { admin: boolean; refreshKey?: number }) {
   const searchId = useId();
-  const [reports, setReports] = useState<SavedReport[]>([]);
+  const [reports, setReports] = useState<Array<SavedReport & { pdfUrl?: string | null }>>([]);
   const [loading, setLoading] = useState(true);
   const [userFilter, setUserFilter] = useState("");
 
@@ -27,7 +27,7 @@ export function SavedReportsList({ admin, refreshKey = 0 }: { admin: boolean; re
       try {
         const response = await fetch(admin ? "/api/admin/reports" : "/api/me/reports");
         if (!response.ok) return;
-        const payload = (await response.json()) as { reports: SavedReport[] };
+        const payload = (await response.json()) as { reports: Array<SavedReport & { pdfUrl?: string | null }> };
         if (active) setReports(payload.reports);
       } finally {
         if (active) setLoading(false);
@@ -71,6 +71,7 @@ export function SavedReportsList({ admin, refreshKey = 0 }: { admin: boolean; re
   }, [admin, reports, userFilter]);
 
   return (
+    <>
     <HistoryTimeline
       items={items}
       loading={loading}
@@ -100,5 +101,16 @@ export function SavedReportsList({ admin, refreshKey = 0 }: { admin: boolean; re
         ) : undefined
       }
     />
+    {!admin && reports.some((report) => report.pdfUrl) && (
+      <div className="grid gap-3 rounded-xl border border-line bg-surface p-4">
+        {reports.filter((report) => report.pdfUrl).map((report) => (
+          <div key={report.id} className="flex flex-wrap items-center justify-between gap-3">
+            <span className="text-sm">{report.title} · {report.date}</span>
+            <a href={report.pdfUrl ?? undefined} download className="font-semibold text-primary underline">Descargar PDF guardado</a>
+          </div>
+        ))}
+      </div>
+    )}
+    </>
   );
 }

@@ -14,16 +14,7 @@ import { useAuth } from "@/context/AuthContext";
 import { cn } from "@/lib/utils";
 import styles from "./upload.module.css";
 
-// Mismos tipos que el atributo `accept` del input. Se usan también para el
-// arrastre, que el navegador no filtra por sí solo.
-const ACCEPT = "video/mp4,video/quicktime,video/x-msvideo";
-const ACCEPTED_TYPES = ACCEPT.split(",");
-const ACCEPTED_EXTENSIONS = [".mp4", ".mov", ".avi"];
-
-function isAcceptedVideo(file: File) {
-  const name = file.name.toLowerCase();
-  return ACCEPTED_TYPES.includes(file.type) || ACCEPTED_EXTENSIONS.some((ext) => name.endsWith(ext));
-}
+import { VIDEO_ACCEPT, VIDEO_FORMAT_LABELS, VIDEO_FORMAT_ERROR, isAcceptedVideoType } from "@/lib/analysis/videoFormats";
 
 function formatDuration(seconds: number) {
   if (!Number.isFinite(seconds) || seconds <= 0) return null;
@@ -35,20 +26,26 @@ function formatDuration(seconds: number) {
 export default function UploadVideoPage() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const { setVideo, videoUrl, videoMeta, category, setCategory } = useAnalysis();
+  const { setVideo, clearVideo, videoUrl, videoMeta, category, setCategory } = useAnalysis();
   const { isAdmin } = useAuth();
   const [dragging, setDragging] = useState(false);
   const [dropError, setDropError] = useState<string | null>(null);
   // Duración real leída de los metadatos del video de vista previa.
   const [duration, setDuration] = useState<{ url: string; text: string | null } | null>(null);
 
+  const acceptVideo = (file: File) => {
+    if (!isAcceptedVideoType(file.type)) {
+      clearVideo();
+      setDropError(VIDEO_FORMAT_ERROR);
+      return;
+    }
+    setDropError(null);
+    setVideo(file);
+  };
+
   const handleFile = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-
-    if (file) {
-      setDropError(null);
-      setVideo(file);
-    }
+    if (file) acceptVideo(file);
     event.target.value = "";
   };
 
@@ -56,13 +53,7 @@ export default function UploadVideoPage() {
     event.preventDefault();
     setDragging(false);
     const file = event.dataTransfer.files?.[0];
-    if (!file) return;
-    if (!isAcceptedVideo(file)) {
-      setDropError("Formato no compatible. Selecciona un video MP4, MOV o AVI.");
-      return;
-    }
-    setDropError(null);
-    setVideo(file);
+    if (file) acceptVideo(file);
   };
 
   const openPicker = () => inputRef.current?.click();
@@ -84,7 +75,7 @@ export default function UploadVideoPage() {
             <input
               ref={inputRef}
               type="file"
-              accept={ACCEPT}
+              accept={VIDEO_ACCEPT}
               className="sr-only"
               tabIndex={-1}
               aria-hidden
@@ -119,7 +110,7 @@ export default function UploadVideoPage() {
                   {dragging ? "Suelta el video para cargarlo" : "Arrastra tu video aquí o selecciona un archivo"}
                 </h2>
                 <div className="mt-3 flex items-center gap-1.5">
-                  {["MP4", "MOV", "AVI"].map((format) => (
+                  {VIDEO_FORMAT_LABELS.map((format) => (
                     <span
                       key={format}
                       className="rounded-md border border-line bg-surface-subtle px-1.5 py-0.5 font-mono text-[11px] text-ink-muted"

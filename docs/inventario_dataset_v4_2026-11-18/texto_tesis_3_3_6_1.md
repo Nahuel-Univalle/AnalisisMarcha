@@ -1,0 +1,11 @@
+# Texto propuesto para el apartado 3.3.6.1
+
+El inventario técnico del dataset V4 se reconstruyó mediante la conciliación del archivo `dataset_v4_preview.npz`, los manifiestos de preparación y la configuración del modelo `gait_deep_v4exp_M1_BN_recalibrated_candidate_v1`. Se identificaron 117 videos únicos: 58 con etiqueta normal, 26 de Parkinson, 22 de esclerosis múltiple y 11 de riesgo de caída. Estos registros se distribuyen en 67 grupos de sujeto, correspondientes a 30, 7, 21 y 9 grupos por categoría, respectivamente. Los identificadores se conservaron conforme a los archivos del proyecto. De los 67 grupos, 27 tienen carácter provisional; por ello, el número de grupos no equivale a una cantidad de participantes cuyas identidades hayan sido acreditadas independientemente.
+
+Se localizaron los 117 archivos originales utilizados por el pipeline y se obtuvieron su duración y resolución mediante FFprobe. Las mediciones corresponden al flujo de video completo y a sus dimensiones originales, diferenciadas del redimensionamiento máximo a 720 píxeles y de la ventana temporal aplicada durante el preprocesamiento. La comprobación de identificadores, etiquetas y agrupaciones no mostró discordancias entre los artefactos consultados. La comparación mediante SHA-256 no encontró duplicados exactos de archivos, sin descartar posibles semejanzas, recortes o reediciones del contenido.
+
+La documentación permite atribuir cinco videos a Mission Gait mediante referencias a marcas de agua y reconocer TikTok como plataforma en otros cuatro, sin acreditar su fuente original. Los demás registros se consignaron como «Origen no acreditado». Aunque los 117 videos poseen una etiqueta registrada en el dataset, no se encontraron documentos que respalden una validación clínica individual vinculada a cada registro. Esta distinción delimita el alcance experimental del conjunto y evita interpretar sus etiquetas como diagnósticos clínicos certificados.
+
+---
+
+Soporte documental: `ficha_tecnica_y_fuentes.md`, `inventario_v4.xlsx` y `auditoria_verificable.json`, generados mediante inspección local el 18 de noviembre de 2026. El texto se entrega para incorporación manual y no modifica el documento de tesis.

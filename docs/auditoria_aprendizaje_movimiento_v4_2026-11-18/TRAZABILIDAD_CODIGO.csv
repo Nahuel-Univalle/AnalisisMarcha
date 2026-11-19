@@ -1,0 +1,38 @@
+﻿etapa,archivo,funcion,lineas,descripcion
+Lectura de video + MediaPipe (producción V4),scripts/video_training/deep/24_normalized_reextract.py,extract_normalized,55-124,"Lectura secuencial, rejilla 15 fps (48,82-96), reescalado <=720 px (49,75,100-101), MediaPipe model_complexity=1 (85-86), landmarks x,y,z,visibility (108-113), exige 8 CORE_LANDMARKS (114), timestamps ts=out_k·step (103)"
+"Lectura de video + MediaPipe (pipeline histórico, no usado en V4)",scripts/video_training/video_training_common.py,extract_video_features,834-971,"frame_step fijo, MediaPipe, puerta de calidad core_visibility>=0.35 (923); no se usa en producción V4"
+Constantes de secuencia,scripts/video_training/deep/deep_common.py,"SEQUENCE_LENGTH, MIN_VALID_FRAMES, FRAME_STEP",74-78,"96 pasos, 12 cuadros mínimos"
+Canales 68,scripts/video_training/deep/deep_common.py,POSITION_CHANNELS/VELOCITY_CHANNELS/CHANNEL_NAMES,81-84,17 landmarks x 2 ejes x (posición + velocidad) = 68
+Landmarks usados,scripts/video_training/video_training_common.py,"SELECTED_LANDMARKS, CORE_LANDMARKS",203-232,17 y 8
+Punto crudo,scripts/video_training/deep/deep_common.py,_raw_point,170-180,No filtra por visibilidad
+Interpolación de NaN,scripts/video_training/deep/deep_common.py,_interpolate_nan_columns,187-201,Interpolación lineal por columna
+Secuencia temporal 68x96,scripts/video_training/deep/deep_common.py,frames_to_sequence,204-276,"Cuadro válido requiere 4 puntos de tronco (224); origen = centro de cadera (242-243); escala por cuadro = max(tronco, hombros, caderas) (233) y mediana del clip (257-258); tiempo normalizado 0-1 sobre el span válido (260-263); remuestreo a 96 (264-268); velocidad = diferencia entre pasos de 96 (270-272)"
+Vector de 36 características,scripts/video_training/deep/deep_common.py,extract_feature_vector,294-303,"Orden FEATURE_COLUMNS, NaN para no finitos"
+Escalado de características,scripts/video_training/deep/deep_common.py,FeatureScaler,309-346,Imputación por mediana + z-score; ajustado con TRAIN por fold (train_protocol_v2.py:87)
+Cálculo de las 36 características,scripts/video_training/video_training_common.py,build_feature_row,640-806,"body_scale (657-658), series (661-690), picos y cadencia (692-699), tronco (701-717), variabilidad y estabilidad (719-731), fila (740-802)"
+Escala corporal de las características,scripts/video_training/video_training_common.py,frame_body_scale,509-524,"Mediana de {ancho hombros, ancho caderas, tronco}"
+Distancia y desplazamiento,scripts/video_training/video_training_common.py,point_distance; motion_values,474-475; 557-561,Distancia en coordenadas normalizadas sin corrección de aspecto; sin dt
+Rango y asimetría,scripts/video_training/video_training_common.py,value_range; asymmetry,568-578,max-min/escala; |L-R|/max
+Ángulo de tronco,scripts/video_training/video_training_common.py,trunk_angle_deg,581-590,"atan2(dx,dy) en coordenadas normalizadas"
+Picos de paso,scripts/video_training/video_training_common.py,find_signal_peaks; regularity_from_peaks,593-623,"Umbral media+0.2·std; distancia mínima max(2, 0.25·fps)"
+Suavidad,scripts/video_training/video_training_common.py,smoothness_from_series,626-637,1/(1+std jerk)
+Modelo,scripts/video_training/deep/deep_common.py,build_model / GaitTemporalModel,431-486,"Rama de secuencia: 3 Conv1d (kernel 5, 3 dil.2, 3 dil.4) con BN y GELU (448-455), pooling media+máx (456, 481); rama de características: Linear 36→24→16 con BN (461-466); fusión y cabeza (471-475); forward(seq, feat) (477-484)"
+Configuración del modelo,scripts/video_training/deep/deep_common.py,default_model_config,489-511,"in_channels 68, num_features 36, num_classes 4"
+Aumentación (solo entrenamiento),scripts/video_training/deep/deep_common.py,augment_sample; _POS_X_IDX; _build_mirror_perms,"352, 358-378, 381-425","Recorte (397-402), roll (405-408), escala (411-413), ruido (416-417), espejo (420-423); hallazgos A1 y A5"
+Construcción de lotes con aumentación,scripts/video_training/deep/11_train_deep_model.py,build_batch,116-130,Aumenta solo si augment=True
+Construcción del dataset V4,outputs/dataset_v4_4class/build_dataset_v4_preview.py,main,64-146,"Segmento, ancla, ventana 5.03 s (74-81), frames_to_sequence (82), build_feature_row con W_eff (88), política (136-141)"
+Variantes de mitigación,outputs/dataset_v4_4class/step5/build_variants_step5.py,build,79-134,c3 (x·W/H) y bs5; usadas en M3
+Entrenamiento y CV V4,outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,train_fixed; run_variant; sgkf,78-185,"Scaler por TRAIN (87), pesos de clase (90-93), épocas fijas E*, CV externa 5x5 con aserciones (138-145)"
+Sondas comparables,outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,probe_oof; main,"188-198, 267-277",RF 300 árboles; LR; 36 características con imputación global (270-271)
+Modelo final,outputs/dataset_v4_4class/step12_training/train_protocol_v2.py,final_model,301-329,"SGKF(3) seed 4200, E*=71, T=0.9022"
+Recalibración BN,outputs/dataset_v4_4class/step18_bn/bn_recal.py,recalibrate; oof,"54-77, 158-210","Solo capas BN, sin etiquetas ni aumentación; OOF con TRAIN solo"
+Construcción del candidato,outputs/dataset_v4_4class/step19_candidate/build_candidate.py,build; evaluate,"67-122, 144-212",Congelación y evaluación
+Inferencia de producción V4,scripts/video_training/deep/14_predict_deep_video_v4exp.py,main,130-245,"Extracción (149-152), ventana (153-158), secuencia (162), características (165-168), forward (170-172), temperatura (173-176)"
+Carga del artefacto,scripts/video_training/deep/14_predict_deep_video_v4exp.py,load_artifact,86-102,Verifica SHA-256 de pesos; escalador del config
+Advertencias de producción,scripts/video_training/deep/14_predict_deep_video_v4exp.py,build_warnings,105-127,"Vertical, cámara móvil, pose baja, EM/Riesgo experimentales"
+Sonda histórica 22_source_bias,scripts/video_training/deep/22_source_bias.py,video_metadata; person_bbox_frac; grouped_probe,"59-95, 98-116, 119-149",15 metadatos; RF 0.8971 sobre 136 videos históricos
+Diseño de matrices de sondas,outputs/dataset_v4_4class/audit_shortcuts_v4.py,design,146-158,Imputación y codificación globales (B7)
+Normalización FPS/resolución (V3),scripts/video_training/deep/24_normalized_reextract.py,extract_normalized,55-124,Antecedente de la comparación en 86 videos
+Auditoría de estratos,outputs/dataset_v4_4class/step13_audit/audit_oof_m1.py,main,52-240,Rendimiento descriptivo por estrato
+Métricas,scripts/video_training/deep/deep_common.py,classification_metrics,517-591,"Exactitud, F1 macro, AUC OvR"
+Carga de dataset,scripts/video_training/deep/deep_common.py,load_dataset,612-620,np.load con allow_pickle=True

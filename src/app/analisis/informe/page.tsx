@@ -11,7 +11,7 @@ import { MedicalReport } from "@/components/report/MedicalReport";
 import { isPlaceholderResult } from "@/components/analysis/NoAnalysisState";
 import { SavedReportsList } from "@/components/analysis/SavedReportsList";
 import { useAnalysis } from "@/context/AnalysisContext";
-import { downloadElementAsPdf } from "@/utils/generatePdf";
+
 
 export default function ReportPage() {
   const { addReport, result } = useAnalysis();
@@ -27,15 +27,34 @@ export default function ReportPage() {
     setDownloading(true);
 
     try {
-      await downloadElementAsPdf(
-        "medical-report-content",
-        "informe_analisis_marcha.pdf"
-      );
+      const recordResponse = await fetch("/api/me/reports", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ analysisId: result.id, title: result.title || "Informe de análisis de marcha" }),
+      });
+      const record = await recordResponse.json();
+      if (!recordResponse.ok || !record.report?.id) throw new Error("No se pudo registrar el informe.");
+      const url = `/api/me/reports/${record.report.id}/pdf`;
+      let existing = await fetch(url, { cache: "no-store" });
+      let pdfBlob: Blob;
+      if (existing.ok) {
+        pdfBlob = await existing.blob();
+      } else {
+        if (existing.status !== 404) throw new Error("No se pudo consultar el PDF.");
+        const generation = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+        if (!generation.ok) throw new Error("No se pudo generar el PDF canónico en el servidor.");
+        existing = await fetch(url, { cache: "no-store" });
+        if (!existing.ok) throw new Error("No se pudo recuperar el PDF canónico.");
+        pdfBlob = await existing.blob();
+      }
+      const objectUrl = URL.createObjectURL(pdfBlob);
+      const link = document.createElement("a"); link.href = objectUrl; link.download = "informe_analisis_marcha.pdf";
+      document.body.appendChild(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(objectUrl), 30000);
+      setSaved(true);
+      setSavedCount((count) => count + 1);
     } catch {
       setDownloadError(
-        "No se pudo generar el PDF automáticamente. Se abrirá la impresión del navegador para guardar como PDF."
+        "No se pudo completar la generación o el guardado del PDF. Si el archivo ya se descargó, consérvalo; su descarga posterior podría no estar disponible."
       );
-      window.print();
     } finally {
       setDownloading(false);
     }
