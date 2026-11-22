@@ -1,0 +1,154 @@
+{
+  "checks": [
+    {
+      "name": "original protected: src/app/api/analysis/video/route.ts",
+      "passed": true
+    },
+    {
+      "name": "original protected: src/lib/ml/modelMetrics.ts",
+      "passed": true
+    },
+    {
+      "name": "original protected: src/app/api/admin/summary/route.ts",
+      "passed": true
+    },
+    {
+      "name": "original protected: scripts/video_training/deep/14_predict_deep_video_v4exp.py",
+      "passed": true
+    },
+    {
+      "name": "original protected: scripts/video_training/deep/deep_common.py",
+      "passed": true
+    },
+    {
+      "name": "original protected: scripts/video_training/deep/24_normalized_reextract.py",
+      "passed": true
+    },
+    {
+      "name": "original protected: models/gait_deep_v4exp_bn_candidate_v1/README.md",
+      "passed": true
+    },
+    {
+      "name": "original protected: models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1.pt",
+      "passed": true
+    },
+    {
+      "name": "original protected: models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1_config.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1_feature_scaler.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1_label_map.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f.pt",
+      "passed": true
+    },
+    {
+      "name": "original protected: models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f_config.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f_feature_scaler.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f_label_map.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: models/gait_deep/gait_deep_model.pt",
+      "passed": true
+    },
+    {
+      "name": "original protected: docs/mejora_modelo_v5_experimental_2026-11-19/checkpoints/gait_deep_v5exp_V5P_f8bc0617a0ef.pt",
+      "passed": true
+    },
+    {
+      "name": "original protected: docs/mejora_modelo_v5_experimental_2026-11-19/checkpoints/gait_deep_v5exp_V5S_e96039e2a654.pt",
+      "passed": true
+    },
+    {
+      "name": "original protected: docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe.pt",
+      "passed": true
+    },
+    {
+      "name": "original protected: docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe_config.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe_feature_scaler.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe_label_map.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442.pt",
+      "passed": true
+    },
+    {
+      "name": "original protected: docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442_config.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442_feature_scaler.json",
+      "passed": true
+    },
+    {
+      "name": "original protected: docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442_label_map.json",
+      "passed": true
+    },
+    {
+      "name": "Claude backup: route.ts",
+      "passed": true
+    },
+    {
+      "name": "Claude backup: src_app_api_analysis_video/route.ts",
+      "passed": true
+    },
+    {
+      "name": "Claude backup: src_lib_ml/modelMetrics.ts",
+      "passed": true
+    },
+    {
+      "name": "Claude backup: scripts_deep/14_predict_deep_video_v4exp.py",
+      "passed": true
+    },
+    {
+      "name": "deployment metadata: only config.status changed",
+      "passed": true
+    },
+    {
+      "name": "deployment metadata: only feature_scaler.columns changed",
+      "passed": true
+    },
+    {
+      "name": "deployment exact copy: .pt",
+      "passed": true
+    },
+    {
+      "name": "deployment exact copy: _label_map.json",
+      "passed": true
+    },
+    {
+      "name": "preprocessor AST: all original functions unchanged in v5_preproc.py",
+      "passed": true
+    },
+    {
+      "name": "preprocessor AST: all original functions unchanged in v5c_preproc.py",
+      "passed": true
+    },
+    {
+      "name": "preprocessor AST: all original functions unchanged in v5cr_preproc.py",
+      "passed": true
+    }
+  ],
+  "passed": 37,
+  "failed": 0
+}

@@ -1,0 +1,286 @@
+{
+ "version": "v4",
+ "n_modelos": 25,
+ "reproduccion_OOF_guardado": {
+  "coincidencia_prediccion": 1.0
+ },
+ "linea_base": {
+  "macro_f1_media": 0.7252,
+  "accuracy_media": 0.8342
+ },
+ "pruebas": [
+  {
+   "prueba": "rama de caracteristicas neutralizada (solo secuencia)",
+   "tipo": "ablacion",
+   "macro_f1": 0.5909,
+   "delta_macro_f1": -0.1343,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.1973,
+    -0.0581
+   ],
+   "accuracy": 0.7368,
+   "acuerdo_con_prediccion_original": 0.8256,
+   "nota": "entrada neutra = media de entrenamiento; sin reentrenar"
+  },
+  {
+   "prueba": "rama de secuencia neutralizada (solo caracteristicas)",
+   "tipo": "ablacion",
+   "macro_f1": 0.197,
+   "delta_macro_f1": -0.5282,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.6055,
+    -0.4465
+   ],
+   "accuracy": 0.2803,
+   "acuerdo_con_prediccion_original": 0.3521,
+   "nota": "idem"
+  },
+  {
+   "prueba": "permutar grupo 'desplazamiento_global' (7 caract.)",
+   "tipo": "permutacion",
+   "macro_f1": 0.6604,
+   "delta_macro_f1": -0.0648,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.093,
+    -0.0334
+   ],
+   "accuracy": 0.7624,
+   "acuerdo_con_prediccion_original": 0.8889,
+   "nota": "media de 10 permutaciones; IC solo de la 1a"
+  },
+  {
+   "prueba": "permutar grupo 'piernas_relativas' (11 caract.)",
+   "tipo": "permutacion",
+   "macro_f1": 0.7389,
+   "delta_macro_f1": 0.0137,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0256,
+    0.054
+   ],
+   "accuracy": 0.8205,
+   "acuerdo_con_prediccion_original": 0.9197,
+   "nota": "media de 10 permutaciones; IC solo de la 1a"
+  },
+  {
+   "prueba": "permutar grupo 'brazos' (6 caract.)",
+   "tipo": "permutacion",
+   "macro_f1": 0.6421,
+   "delta_macro_f1": -0.083,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.1214,
+    -0.0401
+   ],
+   "accuracy": 0.7402,
+   "acuerdo_con_prediccion_original": 0.8342,
+   "nota": "media de 10 permutaciones; IC solo de la 1a"
+  },
+  {
+   "prueba": "permutar grupo 'tronco_postura' (5 caract.)",
+   "tipo": "permutacion",
+   "macro_f1": 0.6746,
+   "delta_macro_f1": -0.0505,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0929,
+    -0.0134
+   ],
+   "accuracy": 0.7778,
+   "acuerdo_con_prediccion_original": 0.9179,
+   "nota": "media de 10 permutaciones; IC solo de la 1a"
+  },
+  {
+   "prueba": "permutar grupo 'ritmo_pasos' (5 caract.)",
+   "tipo": "permutacion",
+   "macro_f1": 0.7045,
+   "delta_macro_f1": -0.0206,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0427,
+    -0.0012
+   ],
+   "accuracy": 0.8103,
+   "acuerdo_con_prediccion_original": 0.9299,
+   "nota": "media de 10 permutaciones; IC solo de la 1a"
+  },
+  {
+   "prueba": "permutar grupo 'proxies_de_vista' (2 caract.)",
+   "tipo": "permutacion",
+   "macro_f1": 0.7241,
+   "delta_macro_f1": -0.001,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0223,
+    0.0274
+   ],
+   "accuracy": 0.8291,
+   "acuerdo_con_prediccion_original": 0.959,
+   "nota": "media de 10 permutaciones; IC solo de la 1a"
+  },
+  {
+   "prueba": "secuencia: filtro pasa-bajos (media movil, velocidades recalculadas)",
+   "tipo": "perturbacion temporal",
+   "macro_f1": 0.6695,
+   "delta_macro_f1": -0.0556,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0905,
+    -0.0267
+   ],
+   "accuracy": 0.747,
+   "acuerdo_con_prediccion_original": 0.8991,
+   "nota": "fisicamente plausible (suaviza la dinamica fina)"
+  },
+  {
+   "prueba": "secuencia: tiempo invertido (velocidades recalculadas)",
+   "tipo": "perturbacion temporal",
+   "macro_f1": 0.7166,
+   "delta_macro_f1": -0.0085,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0313,
+    0.0108
+   ],
+   "accuracy": 0.8205,
+   "acuerdo_con_prediccion_original": 0.9624,
+   "nota": "cinematica invertida; coherente pero poco natural"
+  },
+  {
+   "prueba": "secuencia: fases aleatorias por canal (conserva espectro de amplitud)",
+   "tipo": "perturbacion temporal",
+   "macro_f1": 0.379,
+   "delta_macro_f1": -0.3461,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.4384,
+    -0.2482
+   ],
+   "accuracy": 0.4393,
+   "acuerdo_con_prediccion_original": 0.5128,
+   "nota": "NO fisica (rompe la coordinacion entre articulaciones): solo informativa"
+  },
+  {
+   "prueba": "secuencia: bloques temporales barajados (8 bloques)",
+   "tipo": "perturbacion temporal",
+   "macro_f1": 0.7232,
+   "delta_macro_f1": -0.002,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0154,
+    0.0113
+   ],
+   "accuracy": 0.8274,
+   "acuerdo_con_prediccion_original": 0.9795,
+   "nota": "NO fisica (saltos entre bloques): solo informativa"
+  },
+  {
+   "prueba": "espejo horizontal con la transformacion de V4 (no invierte vx)",
+   "tipo": "espejo",
+   "macro_f1": 0.7162,
+   "delta_macro_f1": -0.009,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0274,
+    0.008
+   ],
+   "accuracy": 0.8274,
+   "acuerdo_con_prediccion_original": 0.9573,
+   "nota": "la usada en la aumentacion de entrenamiento V4"
+  },
+  {
+   "prueba": "espejo horizontal fisicamente correcto (invierte x y vx)",
+   "tipo": "espejo",
+   "macro_f1": 0.7183,
+   "delta_macro_f1": -0.0068,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0267,
+    0.013
+   ],
+   "accuracy": 0.8291,
+   "acuerdo_con_prediccion_original": 0.9521,
+   "nota": "V4 se entreno con la version defectuosa"
+  },
+  {
+   "prueba": "aspecto: escena grabada en 4:3 en lugar de 16:9 (x * 1.333)",
+   "tipo": "grabacion",
+   "macro_f1": 0.7337,
+   "delta_macro_f1": 0.0085,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0442,
+    0.0615
+   ],
+   "accuracy": 0.8376,
+   "acuerdo_con_prediccion_original": 0.8906,
+   "nota": "V5 recibe la relacion de aspecto real; V4 no la usa"
+  },
+  {
+   "prueba": "aspecto: x * 0.75",
+   "tipo": "grabacion",
+   "macro_f1": 0.629,
+   "delta_macro_f1": -0.0962,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.1411,
+    -0.0578
+   ],
+   "accuracy": 0.6872,
+   "acuerdo_con_prediccion_original": 0.8222,
+   "nota": ""
+  },
+  {
+   "prueba": "zoom x1.3 (persona mas grande en el cuadro)",
+   "tipo": "grabacion",
+   "macro_f1": 0.7252,
+   "delta_macro_f1": 0.0,
+   "IC95_delta_(bootstrap por sujeto)": [
+    0.0,
+    0.0
+   ],
+   "accuracy": 0.8342,
+   "acuerdo_con_prediccion_original": 1.0,
+   "nota": ""
+  },
+  {
+   "prueba": "paneo de camara 0.05 /s (ancho de imagen)",
+   "tipo": "grabacion",
+   "macro_f1": 0.6934,
+   "delta_macro_f1": -0.0318,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0618,
+    -0.0019
+   ],
+   "accuracy": 0.7932,
+   "acuerdo_con_prediccion_original": 0.9282,
+   "nota": "camara acompanando"
+  },
+  {
+   "prueba": "jitter de landmarks sigma=0.005 (peor resolucion)",
+   "tipo": "grabacion",
+   "macro_f1": 0.7172,
+   "delta_macro_f1": -0.008,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0627,
+    0.0397
+   ],
+   "accuracy": 0.8171,
+   "acuerdo_con_prediccion_original": 0.9333,
+   "nota": ""
+  },
+  {
+   "prueba": "jitter de landmarks sigma=0.01",
+   "tipo": "grabacion",
+   "macro_f1": 0.7005,
+   "delta_macro_f1": -0.0247,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.0901,
+    0.0293
+   ],
+   "accuracy": 0.8034,
+   "acuerdo_con_prediccion_original": 0.8991,
+   "nota": ""
+  },
+  {
+   "prueba": "perdida aleatoria del 20 % de los cuadros con pose",
+   "tipo": "grabacion",
+   "macro_f1": 0.7358,
+   "delta_macro_f1": 0.0107,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.012,
+    0.0379
+   ],
+   "accuracy": 0.8376,
+   "acuerdo_con_prediccion_original": 0.9624,
+   "nota": ""
+  }
+ ]
+}

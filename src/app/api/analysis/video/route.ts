@@ -44,7 +44,7 @@ import {
   deleteCloudinaryVideo,
   uploadVideoToCloudinary,
 } from "@/lib/cloudinary";
-import { hasExperimentalV4Model } from "@/lib/ml/modelMetrics";
+import { activeGaitModel, hasActiveGaitModel } from "@/lib/ml/modelMetrics";
 import { requireUser } from "@/lib/auth/guards";
 import { getSessionUser } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
@@ -71,8 +71,6 @@ const CLOUDINARY_FALLBACK_WARNING =
   "El análisis se completó, pero no se pudo guardar el video en la nube. Se mostrará una versión temporal.";
 const VIDEO_FEATURE_PREDICTION_FAILED =
   "No se pudieron extraer suficientes métricas visuales compatibles para aplicar el modelo.";
-const DEEP_GAIT_V4EXP_VERSION =
-  "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1";
 const EXPERIMENTAL_MODEL_UNAVAILABLE =
   "No fue posible realizar la clasificación experimental de patrones de marcha: el modelo de 4 clases no está disponible en este momento. No se utilizó ningún otro modelo en su lugar. Intente nuevamente más tarde.";
 
@@ -84,29 +82,18 @@ function findPythonScript() {
   return projectPath("python_analysis", "analyze_video.py");
 }
 
-// Modelo experimental de 4 clases (Dataset V4, M1, protocolo V2). Su script
-// reproduce el preprocesamiento de entrenamiento; 13_predict_deep_video.py NO
-// debe usarse con este modelo (usa otro pipeline de entrada).
+// Each frozen model uses its own training-compatible predictor; no silent fallback.
 function findDeepGaitPredictionScript() {
   return projectPath(
     "scripts",
     "video_training",
     "deep",
-    "14_predict_deep_video_v4exp.py"
+    activeGaitModel().predictor
   );
 }
 
-function deepGaitModelArtifactPaths() {
-  return [
-    `${DEEP_GAIT_V4EXP_VERSION}.pt`,
-    `${DEEP_GAIT_V4EXP_VERSION}_config.json`,
-    `${DEEP_GAIT_V4EXP_VERSION}_feature_scaler.json`,
-    `${DEEP_GAIT_V4EXP_VERSION}_label_map.json`,
-  ].map((fileName) => projectPath("models", "gait_deep_v4exp_bn_candidate_v1", fileName));
-}
-
 function hasDeepGaitModelArtifacts() {
-  return deepGaitModelArtifactPaths().every((filePath) => existsSync(filePath));
+  return hasActiveGaitModel();
 }
 
 function normalizeExecutable(value: string) {
@@ -386,13 +373,45 @@ function parsePredictionStdout(stdout: string) {
   }
 }
 
+// The model predictor needs its own budget: pose extraction + model load are CPU
+// bound and share the machine with the web server. The old shared 150 s limit
+// (Sprint 4 pipeline) turned a slow-but-working inference into a "model
+// unavailable" error.
+const MODEL_PREDICTION_TIMEOUT_MS = Number(process.env.GAIT_MODEL_TIMEOUT_MS) > 0 ? Number(process.env.GAIT_MODEL_TIMEOUT_MS) : 300_000;
+
+type ModelFailureKind =
+  | "model_unavailable"
+  | "timeout"
+  | "crash"
+  | "invalid_output"
+  | "spawn_error";
+
+function modelFailure(kind: ModelFailureKind, detail: string) {
+  return { modelUsed: false, modelSource: DEEP_GAIT_MODEL_SOURCE, failureKind: kind, failureDetail: detail };
+}
+
+// On Windows the venv python.exe is a launcher: killing it leaves the real
+// interpreter running. Kill the whole tree.
+function killProcessTree(pid: number | undefined, child: { kill: (signal?: NodeJS.Signals) => boolean }) {
+  if (process.platform === "win32" && pid) {
+    spawnSync("taskkill", ["/pid", String(pid), "/T", "/F"], { windowsHide: true, timeout: 5000 });
+  } else {
+    child.kill("SIGKILL");
+  }
+}
+
 function runDeepGaitPrediction(videoPath: string, predictionJsonPath: string) {
-  return new Promise<Record<string, unknown> | null>((resolve) => {
+  return new Promise<Record<string, unknown>>((resolve) => {
     const scriptPath = findDeepGaitPredictionScript();
     const pythonCommand = findPythonCommand();
 
     if (!existsSync(scriptPath) || !pythonCommand || !hasDeepGaitModelArtifacts()) {
-      resolve(null);
+      resolve(
+        modelFailure(
+          "model_unavailable",
+          `script=${existsSync(scriptPath)} python=${Boolean(pythonCommand)} artifacts=${hasDeepGaitModelArtifacts()}`
+        )
+      );
       return;
     }
 
@@ -410,10 +429,19 @@ function runDeepGaitPrediction(videoPath: string, predictionJsonPath: string) {
 
     let stdout = "";
     let stderr = "";
+    let timedOut = false;
+    let settled = false;
+    const finish = (value: Record<string, unknown>) => {
+      if (settled) return;
+      settled = true;
+      resolve(value);
+    };
     const timeout = setTimeout(() => {
-      child.kill("SIGTERM");
-      resolve(null);
-    }, SPRINT4_TIMEOUT_MS);
+      timedOut = true;
+      killProcessTree(child.pid, child);
+      console.error("DEEP_GAIT_MODEL_TIMEOUT", `${MODEL_PREDICTION_TIMEOUT_MS} ms`, stderr.trim().slice(-1500));
+      finish(modelFailure("timeout", `sin respuesta en ${MODEL_PREDICTION_TIMEOUT_MS / 1000} s`));
+    }, MODEL_PREDICTION_TIMEOUT_MS);
 
     child.stdout.on("data", (data) => {
       stdout += data.toString();
@@ -421,21 +449,28 @@ function runDeepGaitPrediction(videoPath: string, predictionJsonPath: string) {
     child.stderr.on("data", (data) => {
       stderr += data.toString();
     });
-    child.on("error", () => {
+    child.on("error", (error) => {
       clearTimeout(timeout);
-      resolve(null);
+      console.error("DEEP_GAIT_MODEL_SPAWN_ERROR", String(error));
+      finish(modelFailure("spawn_error", String(error)));
     });
-    child.on("close", () => {
+    child.on("close", (code, signal) => {
       clearTimeout(timeout);
+      if (timedOut) return;
       try {
         const parsed = parsePredictionStdout(stdout);
-        resolve({
+        finish({
           ...parsed,
           modelSource: parsed.modelSource ?? DEEP_GAIT_MODEL_SOURCE,
         });
       } catch {
-        console.error("DEEP_GAIT_MODEL_ERROR", stderr.trim());
-        resolve(null);
+        // No JSON result: the process crashed (native fault, killed, OOM...).
+        console.error(
+          "DEEP_GAIT_MODEL_ERROR",
+          `exit=${code} signal=${signal}`,
+          stderr.trim().slice(-2000)
+        );
+        finish(modelFailure("crash", `exit=${code} signal=${signal}`));
       }
     });
   });
@@ -447,22 +482,44 @@ function runDeepGaitPrediction(videoPath: string, predictionJsonPath: string) {
 // existente de "análisis no concluyente").
 async function runVideoFeaturePrediction(videoPath: string, predictionJsonPath: string) {
   const deepPrediction = await runDeepGaitPrediction(videoPath, predictionJsonPath);
-  if (deepPrediction && deepPrediction.modelUsed) {
+  if (deepPrediction.modelUsed) {
     return deepPrediction;
   }
   console.error(
     "EXPERIMENTAL_GAIT_MODEL_FAILED",
-    deepPrediction && typeof deepPrediction.message === "string"
+    String(deepPrediction.failureKind ?? "sin_clasificar"),
+    typeof deepPrediction.message === "string"
       ? deepPrediction.message
-      : "sin respuesta del script de inferencia"
+      : String(deepPrediction.failureDetail ?? "")
   );
   return {
     ...unavailableVideoPrediction(EXPERIMENTAL_MODEL_UNAVAILABLE),
     failureKind:
-      deepPrediction && typeof deepPrediction.failureKind === "string"
+      typeof deepPrediction.failureKind === "string"
         ? deepPrediction.failureKind
         : "model_unavailable",
   };
+}
+
+// Distinct user-facing causes: a timeout or a crash is NOT "model unavailable".
+function modelFailureResponse(kind: string) {
+  if (kind === "timeout") {
+    return {
+      status: 504,
+      errorCode: "MODEL_TIMEOUT",
+      message:
+        "El análisis del patrón de marcha superó el tiempo máximo. El modelo está instalado: pruebe con un video más corto o de menor resolución, o vuelva a intentarlo. No se utilizó ningún otro modelo en su lugar.",
+    };
+  }
+  if (kind === "crash" || kind === "invalid_output" || kind === "inference_failed" || kind === "spawn_error") {
+    return {
+      status: 500,
+      errorCode: "MODEL_INFERENCE_ERROR",
+      message:
+        "El modelo de 4 clases está instalado, pero la inferencia terminó con un error interno al procesar este video. No se utilizó ningún otro modelo en su lugar. El detalle técnico quedó registrado en el servidor.",
+    };
+  }
+  return { status: 503, errorCode: "EXPERIMENTAL_MODEL_UNAVAILABLE", message: EXPERIMENTAL_MODEL_UNAVAILABLE };
 }
 
 function safeFileStem(name: string) {
@@ -677,7 +734,7 @@ type SaveAnalysisInput = {
   framesAnalyzed: number;
   framesWithPose: number;
   videoMetrics: VideoGaitMetrics;
-  // Resultado del modelo V4 (null si el análisis no es concluyente).
+  // Resultado del modelo seleccionado (null si el análisis no es concluyente).
   modelResult: { confidence: number | null; version: string | null } | null;
 };
 
@@ -719,7 +776,7 @@ async function saveAnalysisToDatabase({
     framesWithPose,
     videoMetrics,
   });
-  // Clase, confianza y versión del modelo V4 como filas de parámetros (sin
+  // Clase, confianza y versión del modelo usado como filas de parámetros (sin
   // cambio de esquema): el historial y los informes las leen de aquí.
   if (detectedClass && modelResult) {
     parameters.push(
@@ -837,7 +894,7 @@ const SPRINT4_TIMEOUT_MS = 150_000;
 
 // Paso 16: el pipeline Sprint 4 escribe en outputs/gait_features_dataset.csv y
 // regenera data/{train,validation,test}.csv con la categoría del formulario
-// ("control" para todo usuario no admin). No interviene en el modelo V4 ni en
+// ("control" para todo usuario no admin). No interviene en el modelo ni en
 // la respuesta visible, así que queda FUERA del flujo de producción salvo que
 // se active explícitamente para investigación.
 function legacySprint4DatasetEnabled() {
@@ -1310,14 +1367,15 @@ export async function POST(request: NextRequest) {
       if (processedUpload.ok) await deleteCloudinaryVideo(processedUpload.publicId);
       preserveLocalFallback = false;
       if (outputVideoPath) await rm(outputVideoPath, { force: true }).catch(() => undefined);
+      const failure = modelFailureResponse(experimentalFailureKind);
       return Response.json(
         {
           success: false,
-          errorCode: "EXPERIMENTAL_MODEL_UNAVAILABLE",
-          message: EXPERIMENTAL_MODEL_UNAVAILABLE,
+          errorCode: failure.errorCode,
+          message: failure.message,
           analysis: null,
         },
-        { status: 503 }
+        { status: failure.status }
       );
     }
 
@@ -1558,7 +1616,7 @@ export async function POST(request: NextRequest) {
           ? videoPrediction.modelVersion
           : null,
       modelKind: "deep_multiclass",
-      // Clasificación experimental (modelo V4): advertencias estructuradas y
+      // Clasificación experimental: advertencias estructuradas y
       // textos de contexto. Se anulan si el análisis no es concluyente.
       experimentalClassification: effModelUsed && videoPrediction.experimental === true,
       modelVariant:
@@ -1589,12 +1647,12 @@ export async function POST(request: NextRequest) {
       modelUsed: effModelUsed,
       modelUsedForVideo: effModelUsed && Boolean(videoPrediction.modelUsedForVideo ?? videoPrediction.modelUsed),
       predictionLabel:
-        typeof videoPrediction.predictionLabel === "string"
+        analysisReliable && typeof videoPrediction.predictionLabel === "string"
           ? videoPrediction.predictionLabel
           : null,
-      predictionConfidence: numberFrom(videoPrediction.predictionConfidence),
+      predictionConfidence: analysisReliable ? numberFrom(videoPrediction.predictionConfidence) : null,
       classProbabilities:
-        typeof videoPrediction.classProbabilities === "object" &&
+        analysisReliable && typeof videoPrediction.classProbabilities === "object" &&
         videoPrediction.classProbabilities !== null
           ? videoPrediction.classProbabilities
           : null,
@@ -1624,7 +1682,7 @@ export async function POST(request: NextRequest) {
       modelTrainSize: numberFrom(videoPrediction.modelTrainSize),
       modelTestSize: numberFrom(videoPrediction.modelTestSize),
       modelMetricsAvailable: numberFrom(videoPrediction.modelMacroF1) !== null,
-      modelAvailable: hasExperimentalV4Model(),
+      modelAvailable: hasActiveGaitModel(),
       modelMessage: "Clasificación experimental de 4 clases.",
       evaluation: modelAlignedEvaluation,
       observedSignals: observedSignalResult.signals,

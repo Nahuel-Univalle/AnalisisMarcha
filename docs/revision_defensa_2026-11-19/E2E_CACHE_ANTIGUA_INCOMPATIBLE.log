@@ -1,0 +1,6 @@
+PASS setup: schema in isolated database on port 55432
+PASS setup: isolated Next.js server
+PASS regression: unauthenticated admin denied
+PASS e2e: login with test account
+FAIL regression: legacy PDF remains downloadable and unchanged
+regression: legacy PDF remains downloadable and unchanged

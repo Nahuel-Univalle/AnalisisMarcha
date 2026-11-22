@@ -1,0 +1,12 @@
+PASS unit: default is accepted V5-CR
+PASS integrated: selected artifact files exist
+PASS regression: explicit V4 rollback retains original predictor
+PASS unit: invalid selection fails closed
+PASS integrated: V5-CR symmetry presented from actual relative feature
+PASS integrated: rhythm describes 2.6-second peak estimate
+PASS integrated: relative legs and angular arms included
+PASS regression: no global translation feature presented
+PASS integrated: presentation preserves all four probabilities
+PASS integrated: insufficient pose has no metrics/probabilities in presentation
+PASS regression: historical parameters retain V4 version
+PASS regression: stored pattern uses record content

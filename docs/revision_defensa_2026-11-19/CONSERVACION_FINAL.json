@@ -1,0 +1,207 @@
+{
+  "habitualDatabaseUnchanged": false,
+  "tables": {
+    "User": [
+      {
+        "count": 18,
+        "fingerprint": "9732dc2eae0193127e13ec50dac7e9f9"
+      }
+    ],
+    "VideoMarcha": [
+      {
+        "count": 177,
+        "fingerprint": "fea2b9069675ad2880fc54e99031bd90"
+      }
+    ],
+    "PosePoint": [
+      {
+        "count": 0,
+        "fingerprint": "d751713988987e9331980363e24189ce"
+      }
+    ],
+    "GaitAnalysis": [
+      {
+        "count": 173,
+        "fingerprint": "5641a5240f5f9182dd9afb9c8a9bf6a1"
+      }
+    ],
+    "GaitParameter": [
+      {
+        "count": 1126,
+        "fingerprint": "60da240e355430df184cdfcb5323d2d2"
+      }
+    ],
+    "DetectedSignal": [
+      {
+        "count": 431,
+        "fingerprint": "bf6ffec53dafe8dd533b7913d6699748"
+      }
+    ],
+    "AssociatedCondition": [
+      {
+        "count": 173,
+        "fingerprint": "a79b4edc7ba3cedfdca09a2d664b5485"
+      }
+    ],
+    "MedicalReport": [
+      {
+        "count": 81,
+        "fingerprint": "a805a250c5a19e4f83522ca0b432a9f0"
+      }
+    ],
+    "SystemLog": [
+      {
+        "count": 245,
+        "fingerprint": "57d1528f5873c6224db038129ae6b109"
+      }
+    ]
+  },
+  "modelArtifacts": [
+    {
+      "path": "models/gait_deep_v4exp_bn_candidate_v1/README.md",
+      "expected": "acb2e605b053faf0728ea9839cd313c9eb63a045c29103d6c1591ac0bfe13767",
+      "actual": "acb2e605b053faf0728ea9839cd313c9eb63a045c29103d6c1591ac0bfe13767"
+    },
+    {
+      "path": "models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1.pt",
+      "expected": "7b4ac547ff80367b74ddf93c95a9deae82c44f36f3c671f63eb5a4a82c53400d",
+      "actual": "7b4ac547ff80367b74ddf93c95a9deae82c44f36f3c671f63eb5a4a82c53400d"
+    },
+    {
+      "path": "models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1_config.json",
+      "expected": "d5bcac4f60141da036c5195a2280cfcbe6c1354669a8976dcdb1b9846b72bdac",
+      "actual": "d5bcac4f60141da036c5195a2280cfcbe6c1354669a8976dcdb1b9846b72bdac"
+    },
+    {
+      "path": "models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1_feature_scaler.json",
+      "expected": "a6c96a7929c2af329f3470245c76534c0de52ce403d1a7550b145da68d3822a6",
+      "actual": "a6c96a7929c2af329f3470245c76534c0de52ce403d1a7550b145da68d3822a6"
+    },
+    {
+      "path": "models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1_label_map.json",
+      "expected": "c96c82a18d16787c96a209869b12de355b77b0a1a22490b84a38d982edf3dace",
+      "actual": "c96c82a18d16787c96a209869b12de355b77b0a1a22490b84a38d982edf3dace"
+    },
+    {
+      "path": "models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f.pt",
+      "expected": "d7323250d26fa81c9306660ada47bc00c2aa1bd9bba374e2e87b3619c5213048",
+      "actual": "d7323250d26fa81c9306660ada47bc00c2aa1bd9bba374e2e87b3619c5213048"
+    },
+    {
+      "path": "models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f_config.json",
+      "expected": "032f205d15e27edaf6146accbe4acdb10455f59e0ff2524cc81d332fe23d419c",
+      "actual": "032f205d15e27edaf6146accbe4acdb10455f59e0ff2524cc81d332fe23d419c"
+    },
+    {
+      "path": "models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f_feature_scaler.json",
+      "expected": "a6c96a7929c2af329f3470245c76534c0de52ce403d1a7550b145da68d3822a6",
+      "actual": "a6c96a7929c2af329f3470245c76534c0de52ce403d1a7550b145da68d3822a6"
+    },
+    {
+      "path": "models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f_label_map.json",
+      "expected": "c96c82a18d16787c96a209869b12de355b77b0a1a22490b84a38d982edf3dace",
+      "actual": "c96c82a18d16787c96a209869b12de355b77b0a1a22490b84a38d982edf3dace"
+    },
+    {
+      "path": "models/gait_deep/gait_deep_model.pt",
+      "expected": "eb10429885a298c179e522cfc5d9940d1ccad534f3986cb9bff1693a2676f947",
+      "actual": "eb10429885a298c179e522cfc5d9940d1ccad534f3986cb9bff1693a2676f947"
+    },
+    {
+      "path": "docs/mejora_modelo_v5_experimental_2026-11-19/checkpoints/gait_deep_v5exp_V5P_f8bc0617a0ef.pt",
+      "expected": "f8bc0617a0ef2e3c0d8dd9e918be8f488717fd45e6616398903f4c1b16b4b349",
+      "actual": "f8bc0617a0ef2e3c0d8dd9e918be8f488717fd45e6616398903f4c1b16b4b349"
+    },
+    {
+      "path": "docs/mejora_modelo_v5_experimental_2026-11-19/checkpoints/gait_deep_v5exp_V5S_e96039e2a654.pt",
+      "expected": "e96039e2a6540dbfafc6df717815b833c29c3d3c4af24ebe46becdc33100a3dc",
+      "actual": "e96039e2a6540dbfafc6df717815b833c29c3d3c4af24ebe46becdc33100a3dc"
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe.pt",
+      "expected": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+      "actual": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade"
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe_config.json",
+      "expected": "f7b03c7f3e440fc4462ae74994a48639ec904b1af39b4cf44db54426b64223c8",
+      "actual": "f7b03c7f3e440fc4462ae74994a48639ec904b1af39b4cf44db54426b64223c8"
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe_feature_scaler.json",
+      "expected": "3af47c7e03639426a6da13104b2df7d28b0c801090b55939832d2a5e37b4645b",
+      "actual": "3af47c7e03639426a6da13104b2df7d28b0c801090b55939832d2a5e37b4645b"
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe_label_map.json",
+      "expected": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986",
+      "actual": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986"
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442.pt",
+      "expected": "fdb5ace914428f4ba95ab6dce1bc282a9b235b1c36c052f9a71fdc17f20ef3c0",
+      "actual": "fdb5ace914428f4ba95ab6dce1bc282a9b235b1c36c052f9a71fdc17f20ef3c0"
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442_config.json",
+      "expected": "f48a83311c8408f5cc1d1c8f15feb159e3964fb54fae9e4118ded670da53bc50",
+      "actual": "f48a83311c8408f5cc1d1c8f15feb159e3964fb54fae9e4118ded670da53bc50"
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442_feature_scaler.json",
+      "expected": "21ee82d118fb54dba6806e0c9b4fbb324043489c28eeb5891acdbf47b228d496",
+      "actual": "21ee82d118fb54dba6806e0c9b4fbb324043489c28eeb5891acdbf47b228d496"
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442_label_map.json",
+      "expected": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986",
+      "actual": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986"
+    },
+    {
+      "path": "models/gait_deep_v5cr/deployment_manifest.json",
+      "expected": "124a1c638b60acb65e98e101dfa6d06e026244ca2d8e5a280925da55c073f5cc",
+      "actual": "124a1c638b60acb65e98e101dfa6d06e026244ca2d8e5a280925da55c073f5cc"
+    },
+    {
+      "path": "models/gait_deep_v5cr/gait_deep_v5exp_V5CR_7e9ed60965fe.pt",
+      "expected": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+      "actual": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade"
+    },
+    {
+      "path": "models/gait_deep_v5cr/gait_deep_v5exp_V5CR_7e9ed60965fe_config.json",
+      "expected": "4128ef87955874a9fb822214019603b687d37ab82b1787e1843b68f2ec994076",
+      "actual": "4128ef87955874a9fb822214019603b687d37ab82b1787e1843b68f2ec994076"
+    },
+    {
+      "path": "models/gait_deep_v5cr/gait_deep_v5exp_V5CR_7e9ed60965fe_feature_scaler.json",
+      "expected": "ba91a6a6af0c7c24cf41ef0a5c7fab568f5bbcb8ce3876840f3b46d8594431d2",
+      "actual": "ba91a6a6af0c7c24cf41ef0a5c7fab568f5bbcb8ce3876840f3b46d8594431d2"
+    },
+    {
+      "path": "models/gait_deep_v5cr/gait_deep_v5exp_V5CR_7e9ed60965fe_label_map.json",
+      "expected": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986",
+      "actual": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986"
+    },
+    {
+      "path": "models/gait_deep_v5cr/README.md",
+      "expected": "cc50fb886c50c71e543fbeccf384df524e8e63c8842ddaecfd9223e2ba6e5ca5",
+      "actual": "cc50fb886c50c71e543fbeccf384df524e8e63c8842ddaecfd9223e2ba6e5ca5"
+    }
+  ],
+  "allModelArtifactsUnchanged": true,
+  "canonicalScientificValidationUnchanged": true,
+  "modifiedFiles": [
+    {
+      "path": "src/lib/analysis/canonicalPdf.ts",
+      "sha256": "a04886bac70e432a49406e57d680ff5376619d1b0eb3d62616b97dfcb1c5d49c"
+    },
+    {
+      "path": "src/app/api/me/reports/[id]/pdf/route.ts",
+      "sha256": "f597098e8891cd7b4e9dd11f319d509edcd0ab338d9bdb68bb6e8f703518b2dc"
+    },
+    {
+      "path": "src/lib/analysis/pdfPresentation.ts",
+      "sha256": "12ca56bcfd066a49906fd6e134649b5cd5b22ef4f3a7c04fa2527f8919ef00bb"
+    }
+  ]
+}

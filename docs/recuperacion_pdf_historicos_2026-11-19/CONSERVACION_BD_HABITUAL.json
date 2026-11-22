@@ -1,0 +1,116 @@
+{
+  "unchanged": true,
+  "before": {
+    "User": [
+      {
+        "count": 18,
+        "fingerprint": "9732dc2eae0193127e13ec50dac7e9f9"
+      }
+    ],
+    "VideoMarcha": [
+      {
+        "count": 173,
+        "fingerprint": "e74c91a9e4673f53a12c2ee10d7dbe3f"
+      }
+    ],
+    "PosePoint": [
+      {
+        "count": 0,
+        "fingerprint": "d751713988987e9331980363e24189ce"
+      }
+    ],
+    "GaitAnalysis": [
+      {
+        "count": 169,
+        "fingerprint": "777b3ae4d989649538bd3fc060655f8c"
+      }
+    ],
+    "GaitParameter": [
+      {
+        "count": 1094,
+        "fingerprint": "e627b45adc88c122a42adadb1f288c47"
+      }
+    ],
+    "DetectedSignal": [
+      {
+        "count": 423,
+        "fingerprint": "0ed23d1aa713b0081f576353152722ac"
+      }
+    ],
+    "AssociatedCondition": [
+      {
+        "count": 169,
+        "fingerprint": "4e1af26eae37f7e499d643666173c52b"
+      }
+    ],
+    "MedicalReport": [
+      {
+        "count": 79,
+        "fingerprint": "2aff9e177545e4561b18f1d0f78d75a3"
+      }
+    ],
+    "SystemLog": [
+      {
+        "count": 240,
+        "fingerprint": "4a37cd7aa221d5e5aa2ec808befe4e40"
+      }
+    ]
+  },
+  "after": {
+    "User": [
+      {
+        "count": 18,
+        "fingerprint": "9732dc2eae0193127e13ec50dac7e9f9"
+      }
+    ],
+    "VideoMarcha": [
+      {
+        "count": 173,
+        "fingerprint": "e74c91a9e4673f53a12c2ee10d7dbe3f"
+      }
+    ],
+    "PosePoint": [
+      {
+        "count": 0,
+        "fingerprint": "d751713988987e9331980363e24189ce"
+      }
+    ],
+    "GaitAnalysis": [
+      {
+        "count": 169,
+        "fingerprint": "777b3ae4d989649538bd3fc060655f8c"
+      }
+    ],
+    "GaitParameter": [
+      {
+        "count": 1094,
+        "fingerprint": "e627b45adc88c122a42adadb1f288c47"
+      }
+    ],
+    "DetectedSignal": [
+      {
+        "count": 423,
+        "fingerprint": "0ed23d1aa713b0081f576353152722ac"
+      }
+    ],
+    "AssociatedCondition": [
+      {
+        "count": 169,
+        "fingerprint": "4e1af26eae37f7e499d643666173c52b"
+      }
+    ],
+    "MedicalReport": [
+      {
+        "count": 79,
+        "fingerprint": "2aff9e177545e4561b18f1d0f78d75a3"
+      }
+    ],
+    "SystemLog": [
+      {
+        "count": 240,
+        "fingerprint": "4a37cd7aa221d5e5aa2ec808befe4e40"
+      }
+    ]
+  },
+  "initialAuditAlsoMatches": true
+}

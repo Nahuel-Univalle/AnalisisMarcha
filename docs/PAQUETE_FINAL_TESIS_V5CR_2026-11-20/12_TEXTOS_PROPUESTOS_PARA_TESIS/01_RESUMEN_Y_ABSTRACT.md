@@ -1,0 +1,23 @@
+# Resumen y Abstract (propuesta)
+
+Leyenda de cada bloque: **A** texto nuevo propuesto · **B** información histórica que se conserva · **C** texto anterior que se reemplaza · **D** figuras/tablas · **E** fuentes técnicas.
+
+## A. Texto nuevo propuesto — Resumen
+El presente proyecto desarrolla un sistema web de apoyo al análisis de la marcha humana basado en Deep Learning, orientado a la identificación temprana de posibles alteraciones motoras. A partir de un video del usuario caminando, el sistema estima 17 puntos corporales con una red de estimación de pose preentrenada (MediaPipe Pose) y clasifica el patrón observado en cuatro categorías experimentales —marcha normal, patrón asociado a Parkinson, a esclerosis múltiple y a riesgo de caída— mediante un clasificador propio, una red convolucional unidimensional de dos ramas (secuencia de 68 canales por 40 muestras y 33 características de marcha; 17 788 parámetros entrenables) y una calibración por temperatura. El modelo se construyó y evaluó con 117 videos agrupados en 67 grupos técnicos de sujeto, mediante validación cruzada agrupada por sujeto con cinco semillas. La versión final, V5-CR, corrigió defectos de preprocesamiento detectados en la versión anterior (V4) e incorporó una interpolación de los puntos corporales relativa a la cadera que hace al modelo invariante al desplazamiento global de la cámara. En la evaluación interna obtuvo una exactitud de 0,860 y un F1 macro de 0,785 (V4 activo: 0,851 y 0,744); la mejora global no resultó estadísticamente concluyente, y solo la clase riesgo de caída mostró una mejora respaldada (F1 de 0,378 a 0,581). La aplicación incluye carga y reproducción de videos, resultado con probabilidades por clase y advertencias, informe PDF en formato A4, historial de análisis y de informes, y panel de administración. Los resultados corresponden a una validación interna de un prototipo; no existe validación clínica ni externa, y la salida es una orientación, no un diagnóstico médico.
+
+**Palabras clave (sin cambios respecto al original salvo revisión):** análisis de marcha, aprendizaje profundo, estimación de pose, clasificación experimental, aplicación web.
+
+## A. Texto nuevo propuesto — Abstract
+This project develops a web-based system to support human gait analysis using Deep Learning, aimed at the early identification of possible motor alterations. From a video of a person walking, the system estimates 17 body landmarks with a pretrained pose-estimation network (MediaPipe Pose) and classifies the observed pattern into four experimental categories —normal gait and patterns associated with Parkinson's disease, multiple sclerosis and fall risk— using an in-house classifier: a two-branch one-dimensional convolutional network (a 68-channel by 40-sample sequence and 33 gait features; 17,788 trainable parameters) with temperature calibration. The model was built and evaluated on 117 videos grouped into 67 technical subject groups, using subject-grouped cross-validation with five seeds. The final version, V5-CR, corrected preprocessing defects found in the previous version (V4) and added a hip-relative interpolation of the body landmarks that makes the model invariant to global camera translation. In internal evaluation it reached an accuracy of 0.860 and a macro F1 of 0.785 (active V4: 0.851 and 0.744); the overall improvement was not statistically conclusive, and only the fall-risk class showed a supported improvement (F1 from 0.378 to 0.581). The application provides video upload and playback, a result with per-class probabilities and warnings, an A4 PDF report, an analysis and report history, and an administration panel. The results come from an internal validation of a prototype; there is no clinical or external validation, and the output is guidance, not a medical diagnosis.
+
+## B. Se conserva
+Objetivo general, el carácter de apoyo orientativo y no diagnóstico, y la mención del desarrollo web (arquitectura, base de datos). Si el resumen original cita resultados de V4, conservarlos únicamente rotulados como versión previa.
+
+## C. Se reemplaza
+Las frases que describan V4 como modelo final: «36 características», «secuencias de 68 × 96», «ventana de 5,03 s», «exactitud 0,851/F1 macro 0,744» como resultado del sistema, y cualquier afirmación de identificación de enfermedades.
+
+## D. Figuras/tablas
+Ninguna en el resumen.
+
+## E. Fuentes
+`models/gait_deep_v5cr/…_config.json` (dimensiones, parámetros, T); `04_METRICAS_Y_COMPARACIONES/METRICAS_VERIFICADAS_POR_MODELO.csv`, `DIFERENCIAS_V5CR_VS_OTROS.csv` (IC95 de F1 macro V5-CR − V4 activo: −0,029 a 0,102; F1 riesgo de caída +0,203 [0,023; 0,356]); `03_DATASET_Y_METODOLOGIA/RESUMEN_DATASET_POR_CLASE.csv`.

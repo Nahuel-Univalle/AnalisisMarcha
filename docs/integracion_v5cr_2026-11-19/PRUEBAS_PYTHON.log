@@ -1,0 +1,39 @@
+PASS unit: frozen checkpoint SHA-256
+PASS unit: reject altered checkpoint, no fallback
+PASS unit: feature order (bank/config/preprocessor/scaler)
+PASS unit: statistics unchanged
+PASS unit: exact imputation/normalization
+PASS unit: NaN/inf imputed with original medians
+PASS unit: reject wrong dimensions
+PASS unit: reject wrong dimensions
+PASS integrated: scaler statistics reproduced from training evaluation windows (no model training)
+PASS integrated: window selection on 117 original segments
+PASS integrated: training bank sequence equality
+PASS integrated: training bank feature equality
+PASS integrated: evaluator/deployment logits
+PASS integrated: evaluator/deployment temperature probabilities
+PASS unit on 633 real windows: horizontal camera translation
+PASS unit on 633 real windows: aspect correction
+PASS unit: no prediction without pose
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1795117944.473002   31780 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795117944.495826   31780 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+C:\Users\fnahu\Desktop\GITMarcha\AnalisisMarcha\.venv311\Lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+PASS integrated: real video normal horizontal
+W0000 00:00:1795117948.361060   15012 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795117948.384287   13468 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+PASS integrated: real video parkinson horizontal
+W0000 00:00:1795117957.991582   17276 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795117958.015165   27940 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+PASS integrated: real video esclerosis_multiple vertical
+W0000 00:00:1795117978.794231   15260 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795117978.820739   23112 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+PASS integrated: real video riesgo_caida horizontal
+PASS integrated: negative fixture corrupt.mp4
+W0000 00:00:1795117987.484929   14908 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795117987.507572   28300 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+PASS integrated: negative fixture empty.mp4
+PASS integrated: negative fixture missing.mp4
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0000022dc1940f40] moov atom not found

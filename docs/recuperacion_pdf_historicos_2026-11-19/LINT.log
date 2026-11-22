@@ -1,0 +1,9 @@
+
+c:\Users\fnahu\Desktop\GITMarcha\AnalisisMarcha\scripts\audit-historical-report-records.mjs
+  3:17  warning  'readFile' is defined but never used  @typescript-eslint/no-unused-vars
+
+c:\Users\fnahu\Desktop\GITMarcha\AnalisisMarcha\scripts\test-historical-pdf-recovery.mjs
+  42:10  warning  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+

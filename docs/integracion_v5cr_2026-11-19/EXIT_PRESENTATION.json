@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/tsx/dist/cli.mjs",
+    "scripts/test-v5cr-presentation.ts"
+  ],
+  "started": "2026-11-19T19:54:55.842Z",
+  "finished": "2026-11-19T19:54:56.500Z",
+  "exitCode": 0,
+  "signal": null
+}

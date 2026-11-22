@@ -1,6 +1,7 @@
 import { requireAdmin } from "@/lib/auth/guards";
 import { prisma } from "@/lib/prisma";
 import { reportPatternFields } from "@/lib/analysis/conditionLabels";
+import { reportPdfAvailability } from "@/lib/analysis/reportPdfStorage";
 
 export const runtime = "nodejs";
 
@@ -25,7 +26,7 @@ export async function GET() {
   });
 
   return Response.json({
-    reports: reports.map((report) => ({
+    reports: await Promise.all(reports.map(async (report) => ({
       id: report.id,
       title: report.title,
       summary: report.analysis.summary,
@@ -46,6 +47,7 @@ export async function GET() {
         report.analysis.video.processedVideoUrl ??
         report.analysis.video.localProcessedVideoUrl,
       videoProvider: report.analysis.video.videoProvider,
-    })),
+      pdfAvailability: await reportPdfAvailability(report.id, report.userId, report.analysisId),
+    }))),
   });
 }

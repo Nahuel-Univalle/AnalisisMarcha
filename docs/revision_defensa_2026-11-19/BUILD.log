@@ -1,0 +1,70 @@
+▲ Next.js 16.2.6 (Turbopack)
+- Environments: .env.local, .env
+
+  Creating an optimized production build ...
+Turbopack build encountered 1 warnings:
+./next.config.ts
+Encountered unexpected file in NFT list
+A file was traced that indicates that the whole project was traced unintentionally. Somewhere in the import trace below, there are:
+- filesystem operations (like path.join, path.resolve or fs.readFile), or
+- very dynamic requires (like require('./' + foo)).
+To resolve this, you can
+- remove them if possible, or
+- only use them in development, or
+- make sure they are statically scoped to some subfolder: path.join(process.cwd(), 'data', bar), or
+- add ignore comments: path.join(/*turbopackIgnore: true*/ process.cwd(), bar)
+
+Import trace:
+  App Route:
+    ./next.config.ts
+    ./src/app/api/me/reports/[id]/pdf/route.ts
+
+
+✓ Compiled successfully in 11.6s
+  Running TypeScript ...
+  Finished TypeScript in 7.4s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/28) ...
+  Generating static pages using 11 workers (7/28) 
+  Generating static pages using 11 workers (14/28) 
+  Generating static pages using 11 workers (21/28) 
+✓ Generating static pages using 11 workers (28/28) in 692ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /admin
+├ ○ /admin/analisis
+├ ○ /analisis/evaluacion
+├ ○ /analisis/informe
+├ ○ /analisis/movimiento
+├ ○ /analisis/resultado
+├ ○ /analisis/subir-video
+├ ○ /analisis/validacion
+├ ƒ /api/admin/analyses
+├ ƒ /api/admin/reports
+├ ƒ /api/admin/summary
+├ ƒ /api/admin/users
+├ ƒ /api/analysis/video
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/me
+├ ƒ /api/auth/register
+├ ƒ /api/me/analyses
+├ ƒ /api/me/reports
+├ ƒ /api/me/reports/[id]/pdf
+├ ƒ /api/me/summary
+├ ƒ /api/me/videos
+├ ƒ /api/private-video/[kind]/[name]
+├ ○ /dashboard
+├ ○ /login
+├ ○ /registro
+└ ○ /seguimiento
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

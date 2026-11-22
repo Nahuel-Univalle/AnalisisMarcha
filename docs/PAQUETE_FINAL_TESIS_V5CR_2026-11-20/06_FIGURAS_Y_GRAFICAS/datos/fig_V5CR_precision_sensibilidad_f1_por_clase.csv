@@ -1,0 +1,13 @@
+﻿modelo,metrica,clase,valor
+V5-CR,Precisión,normal,0.9789
+V5-CR,Precisión,parkinson,0.8786
+V5-CR,Precisión,esclerosis_multiple,0.7812
+V5-CR,Precisión,riesgo_caida,0.5066
+V5-CR,Sensibilidad,normal,0.9345
+V5-CR,Sensibilidad,parkinson,0.9692
+V5-CR,Sensibilidad,esclerosis_multiple,0.6182
+V5-CR,Sensibilidad,riesgo_caida,0.6909
+V5-CR,F1,normal,0.9557
+V5-CR,F1,parkinson,0.9207
+V5-CR,F1,esclerosis_multiple,0.6839
+V5-CR,F1,riesgo_caida,0.5806

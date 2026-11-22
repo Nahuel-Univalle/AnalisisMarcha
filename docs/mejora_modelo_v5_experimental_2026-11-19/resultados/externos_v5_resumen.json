@@ -1,0 +1,49 @@
+{
+ "n": 20,
+ "V4_BN_A": 12,
+ "V4_base_B": 8,
+ "V5P": 12,
+ "V5S": 13,
+ "por_clase_n": {
+  "normal": 1,
+  "parkinson": 4,
+  "esclerosis_multiple": 6,
+  "riesgo_caida": 9
+ },
+ "por_clase_aciertos_V5P": {
+  "normal": 1,
+  "parkinson": 2,
+  "esclerosis_multiple": 4,
+  "riesgo_caida": 5
+ },
+ "por_clase_aciertos_V4_BN": {
+  "normal": 1,
+  "parkinson": 3,
+  "esclerosis_multiple": 3,
+  "riesgo_caida": 5
+ },
+ "por_clase_aciertos_V4_base": {
+  "normal": 1,
+  "parkinson": 0,
+  "esclerosis_multiple": 6,
+  "riesgo_caida": 1
+ },
+ "predicciones_V5P": {
+  "normal": 1,
+  "parkinson": 3,
+  "esclerosis_multiple": 7,
+  "riesgo_caida": 9
+ },
+ "predicciones_V4_BN": {
+  "normal": 2,
+  "parkinson": 3,
+  "esclerosis_multiple": 6,
+  "riesgo_caida": 9
+ },
+ "predicciones_V4_base": {
+  "normal": 1,
+  "parkinson": 0,
+  "esclerosis_multiple": 15,
+  "riesgo_caida": 4
+ }
+}

@@ -1,0 +1,134 @@
+{
+  "totalUsers": 2,
+  "totalAnalyses": 12,
+  "totalReports": 4,
+  "totalVideos": 12,
+  "patternCounts": {
+    "sin_clasificar": 6,
+    "normal": 4,
+    "no_concluyente": 2
+  },
+  "modelStatus": {
+    "available": true,
+    "accuracy": 0.8598,
+    "macroF1": 0.7852,
+    "modelVersion": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+    "weightsSha256": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+    "trainingVideos": 117,
+    "trainingSubjects": 67,
+    "validationScope": "Validación interna agrupada por sujeto (5x5), sin validación clínica ni externa",
+    "message": "Modelo experimental de 4 clases disponible"
+  },
+  "recentAnalyses": [
+    {
+      "id": "cmwnyxuh40004ul3wc6dmv5my",
+      "userEmail": "v5cr-test@example.invalid",
+      "userName": "Prueba técnica V5-CR",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "normal",
+      "modelConfidence": 0.95,
+      "summary": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+    },
+    {
+      "id": "cmwnyxb290002ul0szntwwnbh",
+      "userEmail": "v5cr-test@example.invalid",
+      "userName": "Prueba técnica V5-CR",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": null,
+      "modelConfidence": null,
+      "summary": "REGISTRO TÉCNICO: compatibilidad de versión histórica V4; sin paciente ni inferencia"
+    },
+    {
+      "id": "cmwnyszfy000mulbkhjycavyj",
+      "userEmail": "v5cr-test@example.invalid",
+      "userName": "Prueba técnica V5-CR",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "no_concluyente",
+      "modelConfidence": null,
+      "summary": "El video no contiene información corporal suficiente para un análisis confiable. Suba un video con la persona de cuerpo completo, buena iluminación, cámara estable y varios pasos visibles."
+    },
+    {
+      "id": "cmwnysmit0004ulbkax0wo889",
+      "userEmail": "v5cr-test@example.invalid",
+      "userName": "Prueba técnica V5-CR",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "normal",
+      "modelConfidence": 0.95,
+      "summary": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+    },
+    {
+      "id": "cmwnys2620002ulooevduou6v",
+      "userEmail": "v5cr-test@example.invalid",
+      "userName": "Prueba técnica V5-CR",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": null,
+      "modelConfidence": null,
+      "summary": "REGISTRO TÉCNICO: compatibilidad de versión histórica V4; sin paciente ni inferencia"
+    }
+  ],
+  "recentReports": [
+    {
+      "id": "cmwnyxuop000gul3wzk1tqc3c",
+      "userEmail": "v5cr-test@example.invalid",
+      "userName": "Prueba técnica V5-CR",
+      "title": "PRUEBA TÉCNICA V5-CR — video existente de investigación",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "normal",
+      "modelConfidence": 0.95,
+      "summary": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+    },
+    {
+      "id": "cmwnysmr1000gulbkdz79d3b1",
+      "userEmail": "v5cr-test@example.invalid",
+      "userName": "Prueba técnica V5-CR",
+      "title": "PRUEBA TÉCNICA V5-CR — video existente de investigación",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "normal",
+      "modelConfidence": 0.95,
+      "summary": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+    },
+    {
+      "id": "cmwnyg7ub000gul5g0qzbevg4",
+      "userEmail": "v5cr-test@example.invalid",
+      "userName": "Prueba técnica V5-CR",
+      "title": "PRUEBA TÉCNICA V5-CR — video existente de investigación",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "normal",
+      "modelConfidence": 0.95,
+      "summary": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+    },
+    {
+      "id": "cmwnyda6v000gula493ngp1ss",
+      "userEmail": "v5cr-test@example.invalid",
+      "userName": "Prueba técnica V5-CR",
+      "title": "PRUEBA TÉCNICA V5-CR — video existente de investigación",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "normal",
+      "modelConfidence": 0.95,
+      "summary": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+    }
+  ],
+  "recentUsers": [
+    {
+      "email": "v5cr-admin@example.invalid",
+      "name": "Administrador de prueba V5-CR",
+      "role": "ADMIN",
+      "date": "2026-11-19"
+    },
+    {
+      "email": "v5cr-test@example.invalid",
+      "name": "Prueba técnica V5-CR",
+      "role": "USER",
+      "date": "2026-11-19"
+    }
+  ]
+}

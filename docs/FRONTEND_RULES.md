@@ -290,3 +290,16 @@ Use actual links for navigation.
 Inputs must have associated labels.
 
 Important information should not depend exclusively on color.
+---
+
+## Informe médico: pantalla y PDF comparten datos (lección 2026-11-19)
+
+El PDF descargado era una plantilla de texto plano independiente del informe en pantalla, con contenido distinto
+(id del análisis, claves internas, mediciones auxiliares). Ahora:
+
+- **Contenido:** `src/lib/analysis/reportModel.ts` (`buildReportModel`) es la única fuente de datos. Un cambio de
+  texto, orden o datos del informe se hace allí.
+- **Diseño:** `src/components/report/MedicalReport.tsx` (pantalla) y `src/lib/analysis/reportPdf.ts` (PDF A4, texto
+  seleccionable, fuentes en `assets/pdf-fonts/`) dibujan ese modelo. Un cambio de diseño debe replicarse en ambos.
+- No añadir al PDF identificadores, códigos de advertencia ni valores que la pantalla no muestre.
+- Los PDF ya generados no se tocan: el generador actual escribe en la caché `canonical-v6-report` (ver `pdfPresentation.ts`).

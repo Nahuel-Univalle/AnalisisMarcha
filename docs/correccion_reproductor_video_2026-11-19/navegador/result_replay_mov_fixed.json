@@ -1,0 +1,348 @@
+{
+ "scenario": "replay_mov_fixed",
+ "video": "analysis_074132c1-68da-4605-9664-ff4d1aa073e7.MOV",
+ "checks": [
+  {
+   "name": "upload page shows the preview <video>",
+   "passed": true
+  },
+  {
+   "name": "continue to validation",
+   "passed": true
+  },
+  {
+   "name": "start analysis",
+   "passed": true
+  },
+  {
+   "name": "player present at processing start",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/d1a22d4a-c13a",
+    "err": null,
+    "rs": 4,
+    "paused": true,
+    "ended": false,
+    "ct": 0,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "analysis running while we test",
+   "passed": true
+  },
+  {
+   "name": "first play()",
+   "passed": true
+  },
+  {
+   "name": "first playback finished (ended, or recoverable end-of-file notice)",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/d1a22d4a-c13a",
+    "err": null,
+    "rs": 4,
+    "paused": true,
+    "ended": false,
+    "ct": 0,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": true,
+    "notice": "El navegador reportó un aviso al leer el final del archivo. El video está listo para reproducirse de nuevo.",
+    "processing": true
+   }
+  },
+  {
+   "name": "analysis still running at end of first playback",
+   "passed": true,
+   "detail": {
+    "sinceStartS": 3
+   }
+  },
+  {
+   "name": "second play() after ended succeeds",
+   "passed": true,
+   "detail": "ok"
+  },
+  {
+   "name": "after replay: no <video> error and no \"no pudo reproducirse\" message",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/d1a22d4a-c13a",
+    "err": null,
+    "rs": 4,
+    "paused": false,
+    "ended": false,
+    "ct": 1.44,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "after replay: same <video> element (not remounted)",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/d1a22d4a-c13a",
+    "err": null,
+    "rs": 4,
+    "paused": false,
+    "ended": false,
+    "ct": 1.44,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "after replay: it is playing/advancing",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/d1a22d4a-c13a",
+    "err": null,
+    "rs": 4,
+    "paused": false,
+    "ended": false,
+    "ct": 1.44,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "analysis finished",
+   "passed": true
+  },
+  {
+   "name": "after analysis: player present, no error",
+   "passed": true,
+   "detail": {
+    "sameEl": false,
+    "hasVideo": true,
+    "src": "http://127.0.0.1:3054/processed-videos/a",
+    "err": null,
+    "rs": 4,
+    "paused": true,
+    "ended": false,
+    "ct": 0,
+    "dur": 10,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": false
+   }
+  },
+  {
+   "name": "after analysis: play works",
+   "passed": true,
+   "detail": {
+    "sameEl": false,
+    "hasVideo": true,
+    "src": "http://127.0.0.1:3054/processed-videos/a",
+    "err": null,
+    "rs": 4,
+    "paused": false,
+    "ended": false,
+    "ct": 1.01,
+    "dur": 10,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": false
+   }
+  },
+  {
+   "name": "go to result",
+   "passed": true
+  }
+ ],
+ "notes": [
+  {
+   "tabsAfterAnalysis": [
+    "Puntos clave",
+    "Original"
+   ]
+  },
+  {
+   "resultText": "Ir al contenido\nAnálisis de Marcha IA\nInicio\nNuevo análisis\nSeguimiento\nInformes\nPR\n\nPrueba reproductor\n\nUsuario\nCerrar sesión\nVideo\n(completado)\nRevisión\n(completado)\nAnálisis\n(completado)\n4\nResultado\n\nCLASIFICACIÓN EXPERIMENTAL\n\nPatrón compatible con alteración asociada a Parkinson.\n\nClasificación experimental: patrón «Patrón compatible con alteración asociada a Parkinson». Es una clasificación "
+  }
+ ],
+ "events": [
+  {
+   "n": "play",
+   "t": 10616,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  },
+  {
+   "n": "error",
+   "t": 13545,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "abort",
+   "t": 13548,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "emptied",
+   "t": 13549,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "loadedmetadata",
+   "t": 13572,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  },
+  {
+   "n": "canplay",
+   "t": 13573,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  },
+  {
+   "n": "play",
+   "t": 13722,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  },
+  {
+   "n": "error",
+   "t": 25423,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "abort",
+   "t": 25425,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "emptied",
+   "t": 25426,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "loadedmetadata",
+   "t": 25447,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  },
+  {
+   "n": "canplay",
+   "t": 25447,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  }
+ ],
+ "console": [
+  "warning: VideoStage: error de reproducción Object",
+  "warning: VideoStage: error de reproducción Object"
+ ],
+ "netErrors": [
+  {
+   "requestId": "17480.111",
+   "timestamp": 627037.800968,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "blobResponse": 206
+  },
+  {
+   "blobResponse": 206
+  },
+  {
+   "requestId": "17480.113",
+   "timestamp": 627049.54868,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "blobResponse": 206
+  },
+  {
+   "blobResponse": 206
+  },
+  {
+   "requestId": "17480.115",
+   "timestamp": 627049.684474,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "requestId": "17480.116",
+   "timestamp": 627075.989128,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "requestId": "17480.118",
+   "timestamp": 627076.342593,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "requestId": "17480.124",
+   "timestamp": 627079.637821,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  }
+ ]
+}

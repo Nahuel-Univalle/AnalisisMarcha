@@ -1,12 +1,21 @@
 "use client";
 
 import { useEffect, useId, useMemo, useState } from "react";
-import { Search } from "lucide-react";
+import { FileDown, FileText, Search } from "lucide-react";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { HistoryTimeline, HistoryItem } from "@/components/analysis/HistoryTimeline";
 import { SavedReport } from "@/types";
 import { storedPatternStatus, storedPatternTitle } from "@/lib/analysis/conditionLabels";
 import { formatPercent } from "@/lib/formatPercent";
+import { Button } from "@/components/ui/Button";
+import { InlineAlert } from "@/components/ui/InlineAlert";
+import { fetchReportPdfBlob } from "@/lib/analysis/pdfDownload";
+
+function pdfStatusText(availability: SavedReport["pdfAvailability"], admin: boolean) {
+  if (!availability) return "Disponibilidad del archivo sin verificar";
+  if (!admin && availability.status === "not_generated") return "Disponible; se genera al abrirlo o descargarlo";
+  return availability.message;
+}
 
 /**
  * Informes guardados: misma carga que tenía /seguimiento
@@ -18,6 +27,45 @@ export function SavedReportsList({ admin, refreshKey = 0 }: { admin: boolean; re
   const [reports, setReports] = useState<Array<SavedReport & { pdfUrl?: string | null }>>([]);
   const [loading, setLoading] = useState(true);
   const [userFilter, setUserFilter] = useState("");
+  const [busy, setBusy] = useState<{ id: string; action: "view" | "download" } | null>(null);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
+
+  // Abre (pestaña nueva) o descarga el PDF de un informe por las rutas canónicas. Si todavía no se
+  // generó, el servidor lo genera una sola vez a petición del usuario; un informe histórico sin
+  // archivo nunca se reconstruye (se muestra el motivo).
+  async function openOrDownload(id: string, action: "view" | "download") {
+    setDownloadError(null);
+    setBusy({ id, action });
+    // La pestaña se abre dentro del clic (si no, el navegador bloquea la ventana emergente).
+    const viewer = action === "view" ? window.open("", "_blank") : null;
+    if (action === "view" && !viewer) {
+      setDownloadError("El navegador bloqueó la nueva pestaña. Permita las ventanas emergentes para este sitio o use «Descargar PDF».");
+      setBusy(null);
+      return;
+    }
+    try {
+      const { blob, generated } = await fetchReportPdfBlob(id);
+      const url = URL.createObjectURL(blob);
+      if (viewer) {
+        viewer.location.href = url;
+      } else {
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "informe_analisis_marcha.pdf";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      }
+      setTimeout(() => URL.revokeObjectURL(url), 5 * 60_000);
+      if (generated) setReloadKey((n) => n + 1); // el registro pasa a «PDF disponible»
+    } catch (error) {
+      viewer?.close();
+      setDownloadError(error instanceof Error ? error.message : "El PDF de este informe no está disponible.");
+    } finally {
+      setBusy(null);
+    }
+  }
 
   useEffect(() => {
     let active = true;
@@ -39,7 +87,7 @@ export function SavedReportsList({ admin, refreshKey = 0 }: { admin: boolean; re
     return () => {
       active = false;
     };
-  }, [admin, refreshKey]);
+  }, [admin, refreshKey, reloadKey]);
 
   const items = useMemo<HistoryItem[]>(() => {
     return reports
@@ -63,12 +111,49 @@ export function SavedReportsList({ admin, refreshKey = 0 }: { admin: boolean; re
             ? ([["Confianza del modelo", formatPercent(report.modelConfidence)]] as Array<[string, string]>)
             : []),
           ["Fecha", report.date],
+          ["PDF", pdfStatusText(report.pdfAvailability, admin)],
         ] as Array<[string, string]>,
         summary: report.summary,
         originalSrc: report.originalVideoUrl || report.localOriginalVideoUrl,
         processedSrc: report.processedVideoUrl || report.localProcessedVideoUrl,
+        actions: admin ? undefined : pdfActions(report),
       }));
-  }, [admin, reports, userFilter]);
+  }, [admin, reports, userFilter, busy]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function pdfActions(report: SavedReport) {
+    const status = report.pdfAvailability?.status;
+    if (status !== "available" && status !== "not_generated") {
+      return <p className="self-center text-xs font-semibold text-ink-subtle">PDF no disponible</p>;
+    }
+    const label = `${report.title}, ${report.date}`;
+    const working = busy?.id === report.id ? busy.action : null;
+    return (
+      <>
+        <Button
+          variant="outline"
+          size="sm"
+          aria-label={`Ver informe — ${label}`}
+          loading={working === "view"}
+          disabled={busy !== null}
+          onClick={() => openOrDownload(report.id, "view")}
+        >
+          {working !== "view" && <FileText aria-hidden />}
+          Ver informe
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          aria-label={`Descargar PDF — ${label}`}
+          loading={working === "download"}
+          disabled={busy !== null}
+          onClick={() => openOrDownload(report.id, "download")}
+        >
+          {working !== "download" && <FileDown aria-hidden />}
+          Descargar PDF
+        </Button>
+      </>
+    );
+  }
 
   return (
     <>
@@ -101,16 +186,7 @@ export function SavedReportsList({ admin, refreshKey = 0 }: { admin: boolean; re
         ) : undefined
       }
     />
-    {!admin && reports.some((report) => report.pdfUrl) && (
-      <div className="grid gap-3 rounded-xl border border-line bg-surface p-4">
-        {reports.filter((report) => report.pdfUrl).map((report) => (
-          <div key={report.id} className="flex flex-wrap items-center justify-between gap-3">
-            <span className="text-sm">{report.title} · {report.date}</span>
-            <a href={report.pdfUrl ?? undefined} download className="font-semibold text-primary underline">Descargar PDF guardado</a>
-          </div>
-        ))}
-      </div>
-    )}
+    {downloadError && <InlineAlert tone="warning" role="alert">{downloadError}</InlineAlert>}
     </>
   );
 }

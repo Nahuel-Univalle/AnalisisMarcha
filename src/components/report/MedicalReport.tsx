@@ -4,24 +4,7 @@ import { Activity } from "lucide-react";
 import { ClassificationBreakdown } from "@/components/analysis/ClassificationBreakdown";
 import { useAnalysis } from "@/context/AnalysisContext";
 import { useAuth } from "@/context/AuthContext";
-import {
-  EXPERIMENTAL_DISCLAIMER,
-  MODEL_CONFIDENCE_NOTE,
-  ORIENTATION_DISCLAIMER,
-  analysisQuality,
-  experimentalClassification,
-  modelQualityWarnings,
-  isReliable,
-  keyGaitMetricGroups,
-  medicalContextNote,
-  patternPresentation,
-  presentedFindings,
-  NO_FINDINGS_TEXT,
-} from "@/lib/analysis/resultPresentation";
-
-function dedupeStrings(values: string[]) {
-  return Array.from(new Set(values.filter(Boolean).map((value) => value.trim())));
-}
+import { buildReportModel } from "@/lib/analysis/reportModel";
 
 function ReportSection({ number, title, children }: { number: number; title: string; children: React.ReactNode }) {
   return (
@@ -35,26 +18,20 @@ function ReportSection({ number, title, children }: { number: number; title: str
   );
 }
 
-// Informe de apoyo para el profesional de salud. Este mismo componente es el
-// que se captura para el PDF (`downloadElementAsPdf`), por lo que la vista web
-// y el PDF muestran exactamente la misma información. Solo usa tokens HEX
-// (html2canvas no interpreta oklch()).
+// Informe de apoyo para el profesional de salud. La vista web y el PDF
+// descargable (`reportPdf.ts`, generado en el servidor con texto seleccionable)
+// se construyen desde el MISMO modelo de datos (`buildReportModel`), por lo que
+// muestran exactamente la misma información. Solo usa tokens HEX.
 export function MedicalReport() {
   const { user } = useAuth();
   const { result } = useAnalysis();
 
-  const reliable = isReliable(result);
-  const pattern = patternPresentation(result);
-  const quality = analysisQuality(result);
-  const findings = presentedFindings(result);
-  const keyMetricGroups = keyGaitMetricGroups(result);
-  const contextNote = reliable ? medicalContextNote(pattern.classKey) : "";
-  const recommendations = dedupeStrings(result.recommendations ?? []);
-  const classification = experimentalClassification(result);
-  const qualityWarnings = modelQualityWarnings(result);
   // El resultado en memoria no trae la fecha del análisis; la fecha mostrada
   // es la de emisión del documento.
-  const issuedAt = new Date().toLocaleDateString("es-BO");
+  const report = buildReportModel(result, {
+    userName: user?.name || "Usuario",
+    issuedAt: new Date().toLocaleDateString("es-BO"),
+  });
 
   let n = 0;
   const next = () => ++n;
@@ -77,7 +54,7 @@ export function MedicalReport() {
           <p className="mt-1 text-[13px] text-ink-muted">Documento orientativo para profesionales de salud</p>
         </div>
         <p className="shrink-0 rounded-md border border-line px-2 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
-          {classification.available ? "Clasificación experimental" : "Resultado orientativo"}
+          {report.badge}
         </p>
       </header>
 
@@ -85,43 +62,43 @@ export function MedicalReport() {
         <dl className="grid gap-4 sm:grid-cols-3">
           <div>
             <dt className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">Usuario evaluado</dt>
-            <dd className="mt-1 text-[15px] font-semibold">{user?.name || "Usuario"}</dd>
+            <dd className="mt-1 text-[15px] font-semibold">{report.userName}</dd>
           </div>
           <div>
             <dt className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">Fecha de emisión</dt>
-            <dd className="mt-1 font-mono text-[14px] font-medium">{issuedAt}</dd>
+            <dd className="mt-1 font-mono text-[14px] font-medium">{report.issuedAt}</dd>
           </div>
           <div>
             <dt className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">Confianza del modelo</dt>
-            <dd className="mt-1 font-mono text-[15px] font-bold tabular-nums">{classification.confidenceText}</dd>
+            <dd className="mt-1 font-mono text-[15px] font-bold tabular-nums">{report.confidenceText}</dd>
           </div>
         </dl>
       </ReportSection>
 
       <ReportSection number={next()} title="Resultado">
         <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">
-          {classification.available ? "Clasificación experimental de patrones de marcha" : "Patrón de marcha observado"}
+          {report.resultLabel}
         </p>
         <p className="mt-1 text-[18px] font-semibold leading-7">
-          {reliable ? pattern.phrase : "Análisis no concluyente por calidad del video"}
+          {report.headline}
         </p>
-        {classification.caveat && (
+        {report.caveat && (
           <p className="mt-3 border-l-2 border-warning-line bg-warning-bg px-3 py-2 text-[13px] font-semibold leading-6 text-warning">
-            {classification.caveat}
+            {report.caveat}
           </p>
         )}
-        {classification.available && (
-          <ClassificationBreakdown rows={classification.rows} className="mt-4 max-w-md" />
+        {report.showBreakdown && (
+          <ClassificationBreakdown rows={report.rows} className="mt-4 max-w-md" />
         )}
         <p className="mt-3 text-[13px] leading-6 text-ink-muted">
-          {reliable ? MODEL_CONFIDENCE_NOTE : quality.explanation}
+          {report.confidenceNote}
         </p>
-        {reliable && (qualityWarnings.alerts.length > 0 || qualityWarnings.notes.length > 0) && (
+        {report.warnings.length > 0 && (
           <div className="mt-4">
-            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">Advertencias sobre el video</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">{report.warningsTitle}</p>
             <ul className="mt-1.5 space-y-1">
-              {[...qualityWarnings.alerts, ...qualityWarnings.notes].map((warning) => (
-                <li key={warning.code} className="text-[13px] leading-6 text-ink-muted">
+              {report.warnings.map((warning) => (
+                <li key={warning.title} className="text-[13px] leading-6 text-ink-muted">
                   <span className="font-semibold text-ink">{warning.title}.</span> {warning.message}
                 </li>
               ))}
@@ -130,28 +107,28 @@ export function MedicalReport() {
         )}
       </ReportSection>
 
-      {reliable && (
+      {report.reliable && (
         <>
           <ReportSection number={next()} title="Observaciones del movimiento">
-            {findings.length > 0 ? (
+            {report.findings.length > 0 ? (
               <ol className="divide-y divide-line">
-                {findings.map((finding, index) => (
-                  <li key={finding.kind} className="grid grid-cols-[28px_1fr] gap-x-2 py-3 first:pt-0 last:pb-0">
+                {report.findings.map((finding, index) => (
+                  <li key={finding.title} className="grid grid-cols-[28px_1fr] gap-x-2 py-3 first:pt-0 last:pb-0">
                     <span className="font-mono text-[13px] text-ink-subtle">{String(index + 1).padStart(2, "0")}</span>
                     <div>
                       <p className="text-[15px] font-semibold">{finding.title}</p>
                       <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-subtle">{finding.relevance}</p>
-                      <p className="mt-1 text-[13px] leading-6 text-ink-muted">{finding.medicalText}</p>
+                      <p className="mt-1 text-[13px] leading-6 text-ink-muted">{finding.text}</p>
                     </div>
                   </li>
                 ))}
               </ol>
             ) : (
-              <p className="text-[13px] text-ink-muted">{NO_FINDINGS_TEXT}</p>
+              <p className="text-[13px] text-ink-muted">{report.noFindingsText}</p>
             )}
           </ReportSection>
 
-          {keyMetricGroups.length > 0 && (
+          {report.metrics.length > 0 && (
             <ReportSection number={next()} title="Parámetros de marcha">
               <table className="w-full text-left text-[13px]">
                 <thead>
@@ -162,15 +139,12 @@ export function MedicalReport() {
                   </tr>
                 </thead>
                 <tbody>
-                  {keyMetricGroups
-                    .flatMap((group) => group.params)
-                    .map((param) => (
+                  {report.metrics.map((param) => (
                       <tr key={param.label} className="border-b border-line align-top last:border-b-0">
                         <td className="py-2.5 pr-4 font-semibold text-ink">{param.label}</td>
                         <td className="py-2.5 pr-4 text-ink-muted">{param.explanation}</td>
                         <td className="w-36 py-2.5 text-right font-mono font-medium text-ink">
                           {param.value}
-                          {param.unit ? ` ${param.unit}` : ""}
                         </td>
                       </tr>
                     ))}
@@ -180,7 +154,7 @@ export function MedicalReport() {
           )}
 
           <ReportSection number={next()} title="Interpretación">
-            {contextNote && <p className="text-[14px] leading-7 text-ink">{contextNote}</p>}
+            {report.contextNote && <p className="text-[14px] leading-7 text-ink">{report.contextNote}</p>}
             <p className="mt-2 text-[14px] leading-7 text-ink-muted">
               Este resultado no confirma una enfermedad y requiere valoración
               por un profesional de salud.
@@ -188,9 +162,9 @@ export function MedicalReport() {
           </ReportSection>
 
           <ReportSection number={next()} title="Recomendaciones">
-            {recommendations.length > 0 ? (
+            {report.recommendations.length > 0 ? (
               <ul className="space-y-1.5">
-                {recommendations.map((recommendation) => (
+                {report.recommendations.map((recommendation) => (
                   <li key={recommendation} className="flex gap-2.5 text-[14px] leading-6 text-ink-muted">
                     <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-navy-700" aria-hidden />
                     {recommendation}
@@ -199,7 +173,7 @@ export function MedicalReport() {
               </ul>
             ) : (
               <p className="text-[14px] leading-6 text-ink-muted">
-                Se recomienda que un profesional de salud revise este resultado.
+                {report.fallbackRecommendation}
               </p>
             )}
           </ReportSection>
@@ -208,9 +182,7 @@ export function MedicalReport() {
 
       <ReportSection number={next()} title="Advertencia">
         <p className="border-l-2 border-navy-900 bg-surface-subtle px-4 py-3 text-[13px] leading-6 text-ink">
-          {classification.available
-            ? EXPERIMENTAL_DISCLAIMER
-            : `${ORIENTATION_DISCLAIMER} La interpretación clínica debe ser realizada por un profesional de salud.`}
+          {report.closing}
         </p>
       </ReportSection>
     </div>

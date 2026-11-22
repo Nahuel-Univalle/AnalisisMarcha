@@ -166,5 +166,6 @@ export type SavedReport = {
   videoProvider?: string;
   videoRecordId?: string | null;
   analysisId?: string | null;
+  pdfAvailability?: { status: "available" | "not_generated" | "unavailable"; message: string };
 };
 

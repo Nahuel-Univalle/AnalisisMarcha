@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\.venv311\\Scripts\\python.exe",
+    "scripts/video_training/deep/test_v5cr_deployment.py",
+    "--real-videos"
+  ],
+  "started": "2026-11-19T19:51:08.656Z",
+  "finished": "2026-11-19T19:53:09.800Z",
+  "exitCode": 0,
+  "signal": null
+}

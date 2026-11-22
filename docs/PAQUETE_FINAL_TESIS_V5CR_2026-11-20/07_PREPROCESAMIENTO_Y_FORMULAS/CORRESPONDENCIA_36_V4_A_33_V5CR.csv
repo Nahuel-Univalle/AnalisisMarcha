@@ -1,0 +1,37 @@
+﻿posicion_en_V4,nombre_V4,nombre_V5_(P),estado_en_V5-CR
+1,body_motion_mean,body_motion_mean,redefinida en V5-CR (relativa a la cadera; sin avance horizontal)
+2,body_motion_std,body_motion_std,redefinida en V5-CR (relativa a la cadera; sin avance horizontal)
+3,hip_center_motion_mean,hip_center_motion_mean,ELIMINADA en V5-CR (dependía del desplazamiento global de la imagen / de la cámara)
+4,shoulder_center_motion_mean,shoulder_center_motion_mean,ELIMINADA en V5-CR (dependía del desplazamiento global de la imagen / de la cámara)
+5,vertical_motion_mean,vertical_motion_mean,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+6,horizontal_motion_mean,horizontal_motion_mean,ELIMINADA en V5-CR (dependía del desplazamiento global de la imagen / de la cámara)
+7,left_ankle_motion_mean,left_ankle_rel_motion_mean,renombrada y redefinida respecto a V4
+8,right_ankle_motion_mean,right_ankle_rel_motion_mean,renombrada y redefinida respecto a V4
+9,left_knee_motion_mean,left_knee_rel_motion_mean,renombrada y redefinida respecto a V4
+10,right_knee_motion_mean,right_knee_rel_motion_mean,renombrada y redefinida respecto a V4
+11,leg_motion_asymmetry,leg_rel_motion_asymmetry,renombrada y redefinida respecto a V4
+12,ankle_vertical_range_left,ankle_rel_vrange_left,renombrada y redefinida respecto a V4
+13,ankle_vertical_range_right,ankle_rel_vrange_right,renombrada y redefinida respecto a V4
+14,ankle_vertical_asymmetry,ankle_rel_vrange_asymmetry,renombrada y redefinida respecto a V4
+15,knee_vertical_range_left,knee_rel_vrange_left,renombrada y redefinida respecto a V4
+16,knee_vertical_range_right,knee_rel_vrange_right,renombrada y redefinida respecto a V4
+17,step_regularity_score,step_regularity_score,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+18,left_wrist_motion_mean,left_wrist_rel_motion_mean,renombrada y redefinida respecto a V4
+19,right_wrist_motion_mean,right_wrist_rel_motion_mean,renombrada y redefinida respecto a V4
+20,arm_swing_mean,arm_swing_angle_mean,renombrada y redefinida respecto a V4
+21,arm_swing_asymmetry,arm_swing_angle_asymmetry,renombrada y redefinida respecto a V4
+22,left_arm_range,left_arm_swing_angle,renombrada y redefinida respecto a V4
+23,right_arm_range,right_arm_swing_angle,renombrada y redefinida respecto a V4
+24,shoulder_width_mean,shoulder_width_mean,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+25,hip_width_mean,hip_width_mean,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+26,trunk_inclination_mean,trunk_inclination_mean,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+27,trunk_inclination_std,trunk_inclination_std,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+28,trunk_sway_mean,trunk_sway_mean,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+29,trunk_sway_std,trunk_sway_std,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+30,posture_stability_score,posture_stability_score,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+31,estimated_step_count,estimated_step_count,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+32,estimated_cadence_steps_per_min,estimated_cadence_steps_per_min,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+33,step_frequency_hz,step_frequency_hz,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"
+34,gait_variability,gait_variability,redefinida en V5-CR (relativa a la cadera; sin avance horizontal)
+35,motion_smoothness,motion_smoothness,redefinida en V5-CR (relativa a la cadera; sin avance horizontal)
+36,rhythm_variability,rhythm_variability,"se conserva (cálculo en tiempo físico, coordenadas isotrópicas)"

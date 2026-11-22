@@ -1,0 +1,613 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 4183
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.071 0.31 0.282 rg
+45.354330708661422 785.1970866141732586 Td
+(Análisis de Marcha IA) Tj
+ET
+BT
+/F2 20 Tf
+23. TL
+0.071 0.31 0.282 rg
+45.354330708661422 756.8506299212598378 Td
+(Informe de análisis de marcha) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.071 0.31 0.282 rg
+45.354330708661422 728.5041732283464171 Td
+(Documento orientativo. No constituye diagnóstico médico.) Tj
+ET
+0.07 0.31 0.28 RG
+45.354330708661422 704.4096850393700606 m
+549.9212598425197029 704.4096850393700606 l
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.071 0.31 0.282 rg
+45.354330708661422 678.8978740157480161 Td
+(1. Datos del análisis) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 650.5514173228345953 Td
+(Usuario evaluado: Prueba técnica V5-CR) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 626.4569291338582389 Td
+(Fecha del registro: 2026-11-19) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 602.3624409448818824 Td
+(Análisis: cmwnyxuh40004ul3wc6dmv5my) Tj
+ET
+0.07 0.31 0.28 RG
+45.354330708661422 578.2679527559054122 m
+549.9212598425197029 578.2679527559054122 l
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.071 0.31 0.282 rg
+45.354330708661422 552.7561417322833677 Td
+(2. Resultado) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 524.4096850393700606 Td
+(El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 508.8191338582676622 Td
+(información complementaria y no constituyen un diagnóstico.) Tj
+ET
+BT
+/F2 11 Tf
+12.6499999999999986 TL
+0.137 0.216 0.216 rg
+45.354330708661422 484.7246456692913057 Td
+(Confianza del modelo: 95%) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 456.378188976377885 Td
+(Marcha normal: 95%) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 432.2837007874015285 Td
+(Parkinson: 1%) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 408.1892125984251152 Td
+(Esclerosis múltiple: 2%) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 384.0947244094487587 Td
+(Riesgo de caída: 2%) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 360.0002362204724022 Td
+(La confianza expresa la salida del modelo, no la probabilidad de padecer una enfermedad.) Tj
+ET
+0.07 0.31 0.28 RG
+45.354330708661422 335.9057480314959889 m
+549.9212598425197029 335.9057480314959889 l
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.071 0.31 0.282 rg
+45.354330708661422 310.3939370078740012 Td
+(3. Advertencias del resultado) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 282.0474803149605805 Td
+(VISTA_NO_VERIFICADA: Vista de la cámara no verificada. El sistema no verifica automáticamente la vista; se) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 266.4569291338582389 Td
+(entrenó principalmente con video lateral de cuerpo completo. Validación interna sobre 117 videos, sin validación) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 250.8663779527557836 Td
+(clínica ni externa.) Tj
+ET
+0.07 0.31 0.28 RG
+45.354330708661422 226.7718897637794271 m
+549.9212598425197029 226.7718897637794271 l
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.071 0.31 0.282 rg
+45.354330708661422 201.2600787401573825 Td
+(4. Características de marcha presentadas) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 172.9136220472439618 Td
+(Ritmo estimado por picos: 270 picos/min. Picos de altura de ambos tobillos por minuto, calculados en la primera) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 157.3230708661416202 Td
+(ventana seleccionada de 2,6 s. No es un conteo de pasos validado clínicamente.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 133.2285826771652637 Td
+(Simetría del movimiento de las piernas: 3 %. Diferencia relativa entre ambos lados, calculada respecto a la cadera) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 117.6380314960629221 Td
+(\(piernas\) o al hombro \(muñecas\); 0 indica igualdad, sin umbral clínico. Primera ventana seleccionada.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 4005
+>>
+stream
+0.5670000000000001 w
+0.07 0.31 0.28 RG
+0.07 0.31 0.28 RG
+45.354330708661422 785.1970866141731449 m
+549.9212598425197029 785.1970866141731449 l
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.071 0.31 0.282 rg
+45.354330708661422 759.6852755905511003 Td
+(Mediciones auxiliares guardadas) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 731.3388188976377933 Td
+(El ritmo por picos V5-CR se estima con el movimiento de los tobillos en la primera ventana seleccionada de 2,6 s) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 715.7482677165354517 Td
+(y se expresa en picos/min. No es un conteo de pasos validado clínicamente.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 691.6537795275589815 Td
+(Los valores auxiliares siguientes proceden del procesador visual legado, con otro cálculo y tramo de video. Su) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 676.0632283464566399 Td
+(ritmo no es la misma magnitud que el ritmo por picos V5-CR y no debe compararse directamente con él. No son) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 660.4726771653542983 Td
+(las características que alimentan el clasificador V5-CR.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 636.3781889763779418 Td
+(Cuerpo detectado en el video: 75%. Seguimiento visual del cuerpo durante el video) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 612.2837007874015853 Td
+(Momentos analizados: 118. 88 momentos con seguimiento correcto) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 588.1892125984251152 Td
+(Velocidad de marcha: 0,092. Medición orientativa del desplazamiento observado) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 564.0947244094487587 Td
+(Asimetría: 0,115. Diferencia lateral observada) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 540.0002362204724022 Td
+(Ritmo de la marcha: 61. Medición usada solo como apoyo si el movimiento fue estable) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 515.9057480314959321 Td
+(Clase predicha por el modelo experimental: Marcha normal) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 491.8112598425196325 Td
+(Confianza del modelo: 95%) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 467.716771653543276 Td
+(Versión del modelo: gait_deep_v5exp_V5CR_7e9ed60965fe. Clasificación experimental de 4 clases) Tj
+ET
+0.07 0.31 0.28 RG
+45.354330708661422 443.6222834645668627 m
+549.9212598425197029 443.6222834645668627 l
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.071 0.31 0.282 rg
+45.354330708661422 418.1104724409448181 Td
+(5. Observaciones guardadas) Tj
+ET
+0.07 0.31 0.28 RG
+45.354330708661422 389.7640157480313974 m
+549.9212598425197029 389.7640157480313974 l
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.071 0.31 0.282 rg
+45.354330708661422 364.2522047244094097 Td
+(6. Recomendaciones registradas) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 335.9057480314959889 Td
+(Revisar el resultado con un profesional de salud.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 311.8112598425195756 Td
+(Repetir el análisis si el video no muestra el cuerpo completo o tiene mala iluminación.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 287.7167716535432191 Td
+(No tomar decisiones médicas ni iniciar tratamientos solo con este resultado.) Tj
+ET
+0.07 0.31 0.28 RG
+45.354330708661422 263.6222834645668627 m
+549.9212598425197029 263.6222834645668627 l
+S
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.071 0.31 0.282 rg
+45.354330708661422 238.1104724409448181 Td
+(7. Advertencia) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 209.7640157480313974 Td
+(Clasificación experimental de patrones de marcha. No confirma una enfermedad. Requiere valoración por un) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.137 0.216 0.216 rg
+45.354330708661422 194.1734645669290558 Td
+(profesional de salud.) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R ]
+/Count 2
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+8 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+9 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+10 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+19 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+20 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 7 0 R
+/F2 8 0 R
+/F3 9 0 R
+/F4 10 0 R
+/F5 11 0 R
+/F6 12 0 R
+/F7 13 0 R
+/F8 14 0 R
+/F9 15 0 R
+/F10 16 0 R
+/F11 17 0 R
+/F12 18 0 R
+/F13 19 0 R
+/F14 20 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+21 0 obj
+<<
+/Producer (jsPDF 4.2.1)
+/CreationDate (D:20261119080000-04'00')
+>>
+endobj
+22 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 23
+0000000000 65535 f 
+0000008581 00000 n 
+0000010406 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000004387 00000 n 
+0000004524 00000 n 
+0000008644 00000 n 
+0000008769 00000 n 
+0000008899 00000 n 
+0000009032 00000 n 
+0000009170 00000 n 
+0000009294 00000 n 
+0000009423 00000 n 
+0000009555 00000 n 
+0000009691 00000 n 
+0000009819 00000 n 
+0000009946 00000 n 
+0000010075 00000 n 
+0000010208 00000 n 
+0000010310 00000 n 
+0000010656 00000 n 
+0000010742 00000 n 
+trailer
+<<
+/Size 23
+/Root 22 0 R
+/Info 21 0 R
+/ID [ <5D8A5FE4376356F09DBD603511C9CBAD> <5D8A5FE4376356F09DBD603511C9CBAD> ]
+>>
+startxref
+10846
+%%EOF

@@ -1,0 +1,97 @@
+﻿comparacion (primero - segundo),metrica,diferencia_observada,IC95_inf,IC95_sup,interpretacion_IC
+V5-C - V5-P,exactitud,-0.0393,-0.0744,-0.0062,excluye 0
+V5-C - V5-P,f1_macro,-0.0283,-0.0794,0.015,incluye 0
+V5-C - V5-P,ece_sin_calibrar,-0.0176,-0.0383,0.0083,incluye 0
+V5-C - V5-P,f1_normal,-0.0381,-0.071,-0.0142,excluye 0
+V5-C - V5-P,f1_parkinson,-0.0504,-0.1122,-0.0114,excluye 0
+V5-C - V5-P,f1_esclerosis_multiple,-0.0431,-0.128,0.034,incluye 0
+V5-C - V5-P,f1_riesgo_caida,0.0183,-0.1091,0.1066,incluye 0
+V5-C - V5-P,sensibilidad_normal,-0.0517,-0.1,-0.0148,excluye 0
+V5-C - V5-P,sensibilidad_parkinson,-0.0308,-0.0824,0.0154,incluye 0
+V5-C - V5-P,sensibilidad_esclerosis_multiple,-0.0727,-0.1778,0.019,incluye 0
+V5-C - V5-P,sensibilidad_riesgo_caida,0.0727,-0.1112,0.2,incluye 0
+V5-C - V5-P,mcnemar_voto_mayoritario(solo_primero/solo_segundo/p_exacto),1/4,,,p=0.375
+V5-C - V4 BN (activo),exactitud,-0.0103,-0.0679,0.0464,incluye 0
+V5-C - V4 BN (activo),f1_macro,0.0274,-0.0486,0.0938,incluye 0
+V5-C - V4 BN (activo),ece_sin_calibrar,0.0625,0.0129,0.0877,excluye 0
+V5-C - V4 BN (activo),f1_normal,-0.0238,-0.0666,0.0196,incluye 0
+V5-C - V4 BN (activo),f1_parkinson,0.0001,-0.0785,0.0949,incluye 0
+V5-C - V4 BN (activo),f1_esclerosis_multiple,-0.0684,-0.1841,0.0433,incluye 0
+V5-C - V4 BN (activo),f1_riesgo_caida,0.2016,0.0105,0.3485,excluye 0
+V5-C - V4 BN (activo),sensibilidad_normal,-0.031,-0.098,0.0434,incluye 0
+V5-C - V4 BN (activo),sensibilidad_parkinson,-0.0077,-0.075,0.0625,incluye 0
+V5-C - V4 BN (activo),sensibilidad_esclerosis_multiple,-0.1364,-0.2947,0.0,incluye 0
+V5-C - V4 BN (activo),sensibilidad_riesgo_caida,0.3455,0.1111,0.5455,excluye 0
+V5-C - V4 BN (activo),mcnemar_voto_mayoritario(solo_primero/solo_segundo/p_exacto),10/4,,,p=0.1796
+V5-C - V4 base,exactitud,0.0068,-0.051,0.0637,incluye 0
+V5-C - V4 base,f1_macro,0.0464,-0.0237,0.1147,incluye 0
+V5-C - V4 base,ece_sin_calibrar,0.0342,-0.0068,0.0625,incluye 0
+V5-C - V4 base,f1_normal,-0.0143,-0.0577,0.0349,incluye 0
+V5-C - V4 base,f1_parkinson,0.0349,-0.0426,0.1527,incluye 0
+V5-C - V4 base,f1_esclerosis_multiple,-0.0516,-0.1695,0.061,incluye 0
+V5-C - V4 base,f1_riesgo_caida,0.2168,0.0498,0.3552,excluye 0
+V5-C - V4 base,sensibilidad_normal,-0.0103,-0.0786,0.075,incluye 0
+V5-C - V4 base,sensibilidad_parkinson,-0.0154,-0.1,0.0625,incluye 0
+V5-C - V4 base,sensibilidad_esclerosis_multiple,-0.1,-0.2589,0.0364,incluye 0
+V5-C - V4 base,sensibilidad_riesgo_caida,0.3636,0.15,0.5429,excluye 0
+V5-C - V4 base,mcnemar_voto_mayoritario(solo_primero/solo_segundo/p_exacto),10/4,,,p=0.1796
+V5-P - V4 BN (activo),exactitud,0.0291,-0.0148,0.0745,incluye 0
+V5-P - V4 BN (activo),f1_macro,0.0557,-0.0064,0.1143,incluye 0
+V5-P - V4 BN (activo),ece_sin_calibrar,0.0801,0.034,0.0996,excluye 0
+V5-P - V4 BN (activo),f1_normal,0.0143,-0.0066,0.0487,incluye 0
+V5-P - V4 BN (activo),f1_parkinson,0.0505,-0.0071,0.15,incluye 0
+V5-P - V4 BN (activo),f1_esclerosis_multiple,-0.0254,-0.124,0.0658,incluye 0
+V5-P - V4 BN (activo),f1_riesgo_caida,0.1833,0.0269,0.3172,excluye 0
+V5-P - V4 BN (activo),sensibilidad_normal,0.0207,-0.0167,0.0844,incluye 0
+V5-P - V4 BN (activo),sensibilidad_parkinson,0.0231,-0.025,0.1,incluye 0
+V5-P - V4 BN (activo),sensibilidad_esclerosis_multiple,-0.0636,-0.2083,0.0546,incluye 0
+V5-P - V4 BN (activo),sensibilidad_riesgo_caida,0.2727,0.1125,0.4286,excluye 0
+V5-P - V4 BN (activo),mcnemar_voto_mayoritario(solo_primero/solo_segundo/p_exacto),10/1,,,p=0.0117
+V5-CR - V5-C,exactitud,0.0188,-0.0187,0.0563,incluye 0
+V5-CR - V5-C,f1_macro,0.0136,-0.0324,0.0618,incluye 0
+V5-CR - V5-C,ece_sin_calibrar,0.0016,-0.0269,0.0323,incluye 0
+V5-CR - V5-C,f1_normal,0.0168,-0.0112,0.0498,incluye 0
+V5-CR - V5-C,f1_parkinson,0.0399,-0.0227,0.1311,incluye 0
+V5-CR - V5-C,f1_esclerosis_multiple,-0.0031,-0.0893,0.0815,incluye 0
+V5-CR - V5-C,f1_riesgo_caida,0.0009,-0.0971,0.1104,incluye 0
+V5-CR - V5-C,sensibilidad_normal,0.031,-0.0167,0.0862,incluye 0
+V5-CR - V5-C,sensibilidad_parkinson,0.0154,-0.0333,0.077,incluye 0
+V5-CR - V5-C,sensibilidad_esclerosis_multiple,0.0091,-0.1,0.1182,incluye 0
+V5-CR - V5-C,sensibilidad_riesgo_caida,-0.0182,-0.1556,0.1274,incluye 0
+V5-CR - V5-C,mcnemar_voto_mayoritario(solo_primero/solo_segundo/p_exacto),2/2,,,p=1
+V5-CR - V5-P,exactitud,-0.0205,-0.0448,0.0033,incluye 0
+V5-CR - V5-P,f1_macro,-0.0147,-0.0518,0.0204,incluye 0
+V5-CR - V5-P,ece_sin_calibrar,-0.0161,-0.0353,0.0106,incluye 0
+V5-CR - V5-P,f1_normal,-0.0213,-0.0416,-0.0037,excluye 0
+V5-CR - V5-P,f1_parkinson,-0.0105,-0.058,0.0391,incluye 0
+V5-CR - V5-P,f1_esclerosis_multiple,-0.0462,-0.1138,0.0174,incluye 0
+V5-CR - V5-P,f1_riesgo_caida,0.0192,-0.0833,0.1045,incluye 0
+V5-CR - V5-P,sensibilidad_normal,-0.0207,-0.0491,0.0036,incluye 0
+V5-CR - V5-P,sensibilidad_parkinson,-0.0154,-0.05,0.0214,incluye 0
+V5-CR - V5-P,sensibilidad_esclerosis_multiple,-0.0636,-0.1462,0.0174,incluye 0
+V5-CR - V5-P,sensibilidad_riesgo_caida,0.0545,-0.05,0.1501,incluye 0
+V5-CR - V5-P,mcnemar_voto_mayoritario(solo_primero/solo_segundo/p_exacto),0/3,,,p=0.25
+V5-CR - V4 BN (activo),exactitud,0.0085,-0.0386,0.0531,incluye 0
+V5-CR - V4 BN (activo),f1_macro,0.041,-0.0288,0.1023,incluye 0
+V5-CR - V4 BN (activo),ece_sin_calibrar,0.0641,0.0223,0.0849,excluye 0
+V5-CR - V4 BN (activo),f1_normal,-0.0069,-0.0299,0.019,incluye 0
+V5-CR - V4 BN (activo),f1_parkinson,0.04,-0.0206,0.133,incluye 0
+V5-CR - V4 BN (activo),f1_esclerosis_multiple,-0.0715,-0.1818,0.0272,incluye 0
+V5-CR - V4 BN (activo),f1_riesgo_caida,0.2025,0.0233,0.3558,excluye 0
+V5-CR - V4 BN (activo),sensibilidad_normal,0.0,-0.0318,0.0433,incluye 0
+V5-CR - V4 BN (activo),sensibilidad_parkinson,0.0077,-0.0556,0.0875,incluye 0
+V5-CR - V4 BN (activo),sensibilidad_esclerosis_multiple,-0.1273,-0.2692,-0.0,incluye 0
+V5-CR - V4 BN (activo),sensibilidad_riesgo_caida,0.3273,0.1249,0.525,excluye 0
+V5-CR - V4 BN (activo),mcnemar_voto_mayoritario(solo_primero/solo_segundo/p_exacto),9/3,,,p=0.146
+V5-CR - V4 base,exactitud,0.0256,-0.0231,0.0739,incluye 0
+V5-CR - V4 base,f1_macro,0.0601,-0.0068,0.1242,incluye 0
+V5-CR - V4 base,ece_sin_calibrar,0.0357,0.0001,0.0593,excluye 0
+V5-CR - V4 base,f1_normal,0.0025,-0.0247,0.0342,incluye 0
+V5-CR - V4 base,f1_parkinson,0.0748,0.0093,0.1932,excluye 0
+V5-CR - V4 base,f1_esclerosis_multiple,-0.0547,-0.1718,0.0587,incluye 0
+V5-CR - V4 base,f1_riesgo_caida,0.2177,0.0591,0.3598,excluye 0
+V5-CR - V4 base,sensibilidad_normal,0.0207,-0.0193,0.073,incluye 0
+V5-CR - V4 base,sensibilidad_parkinson,-0.0,-0.0615,0.0819,incluye 0
+V5-CR - V4 base,sensibilidad_esclerosis_multiple,-0.0909,-0.2462,0.0533,incluye 0
+V5-CR - V4 base,sensibilidad_riesgo_caida,0.3455,0.1714,0.5333,excluye 0
+V5-CR - V4 base,mcnemar_voto_mayoritario(solo_primero/solo_segundo/p_exacto),9/3,,,p=0.146

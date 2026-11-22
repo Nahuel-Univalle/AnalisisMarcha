@@ -1,0 +1,20 @@
+﻿serie,intervalo_confianza,n_predicciones,confianza_media,exactitud_observada
+V5-CR sin calibrar,0.3-0.4,13,0.3702,0.4615
+V5-CR sin calibrar,0.4-0.5,40,0.4568,0.475
+V5-CR sin calibrar,0.5-0.6,50,0.5566,0.64
+V5-CR sin calibrar,0.6-0.7,92,0.6584,0.837
+V5-CR sin calibrar,0.7-0.8,113,0.7569,0.9381
+V5-CR sin calibrar,0.8-0.9,152,0.847,0.9803
+V5-CR sin calibrar,0.9-1.0,124,0.9516,0.9113
+V5-CR calibrado (temperatura por partición),0.4-0.5,26,0.4491,0.4231
+V5-CR calibrado (temperatura por partición),0.5-0.6,39,0.5514,0.5385
+V5-CR calibrado (temperatura por partición),0.6-0.7,46,0.6544,0.7391
+V5-CR calibrado (temperatura por partición),0.7-0.8,78,0.7496,0.8333
+V5-CR calibrado (temperatura por partición),0.8-0.9,114,0.8533,0.9298
+V5-CR calibrado (temperatura por partición),0.9-1.0,276,0.9591,0.9529
+V4 activo (probabilidades OOF guardadas),0.4-0.5,15,0.4642,0.4667
+V4 activo (probabilidades OOF guardadas),0.5-0.6,43,0.5484,0.6279
+V4 activo (probabilidades OOF guardadas),0.6-0.7,51,0.6533,0.7059
+V4 activo (probabilidades OOF guardadas),0.7-0.8,82,0.7551,0.878
+V4 activo (probabilidades OOF guardadas),0.8-0.9,188,0.8576,0.9043
+V4 activo (probabilidades OOF guardadas),0.9-1.0,201,0.9486,0.9154

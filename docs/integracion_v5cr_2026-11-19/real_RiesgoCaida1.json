@@ -1,0 +1,230 @@
+{
+  "modelUsed": true,
+  "modelUsedForVideo": true,
+  "modelSource": "gait_deep_model",
+  "modelVariant": "v5cr",
+  "modelVersion": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+  "weightsSha256": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+  "experimental": true,
+  "predictionBasis": "experimental_v5cr_temporal_cnn_hip_relative_interpolation_mean_window_logits",
+  "video": "RiesgoCaida1.mp4",
+  "detectedClass": "riesgo_caida",
+  "detectedClassLabel": "Patrón compatible con inestabilidad / riesgo de caída",
+  "predicted_label": "riesgo_caida_pattern",
+  "predictionLabel": "possible_riesgo_caida",
+  "classProbabilities": {
+    "normal": 4.464337362798864e-05,
+    "parkinson": 0.0011572372685902453,
+    "esclerosis_multiple": 0.0580218748274516,
+    "riesgo_caida": 0.9407762445303302
+  },
+  "classProbabilitiesList": [
+    {
+      "key": "riesgo_caida",
+      "label": "Patrón compatible con inestabilidad / riesgo de caída",
+      "shortLabel": "Riesgo de caída",
+      "probability": 0.9407762445303302
+    },
+    {
+      "key": "esclerosis_multiple",
+      "label": "Patrón compatible con alteración asociada a Esclerosis Múltiple",
+      "shortLabel": "Esclerosis múltiple",
+      "probability": 0.0580218748274516
+    },
+    {
+      "key": "parkinson",
+      "label": "Patrón compatible con alteración asociada a Parkinson",
+      "shortLabel": "Parkinson",
+      "probability": 0.0011572372685902453
+    },
+    {
+      "key": "normal",
+      "label": "Marcha dentro de patrones esperados",
+      "shortLabel": "Marcha normal",
+      "probability": 4.464337362798864e-05
+    }
+  ],
+  "confidence": 0.9407762445303302,
+  "predictionConfidence": 0.9407762445303302,
+  "confidenceMeaning": "Confianza del modelo en la clase predicha; no es la probabilidad de tener una enfermedad.",
+  "orientationText": "Clasificación experimental: patrón «Patrón compatible con inestabilidad / riesgo de caída». Es una clasificación de patrones de marcha, no un diagnóstico.",
+  "poseDetectionRate": 1.0,
+  "framesAnalyzed": 166,
+  "framesWithPose": 166,
+  "validSequenceFrames": 40,
+  "analysisWindowSeconds": 2.6,
+  "windowSelection": {
+    "anchor": 0.0,
+    "effective_seconds": 5.03,
+    "accepted_windows": 7,
+    "selected_indices": [
+      0,
+      2,
+      3,
+      4,
+      6
+    ],
+    "windows": [
+      {
+        "t0": 0.0,
+        "n_valid": 40,
+        "scale": 0.21872602111236936
+      },
+      {
+        "t0": 0.8,
+        "n_valid": 40,
+        "scale": 0.21977499305138337
+      },
+      {
+        "t0": 1.2000000000000002,
+        "n_valid": 40,
+        "scale": 0.22203670503022066
+      },
+      {
+        "t0": 1.6,
+        "n_valid": 40,
+        "scale": 0.22073025431404292
+      },
+      {
+        "t0": 2.4,
+        "n_valid": 40,
+        "scale": 0.2199508474864776
+      }
+    ]
+  },
+  "temperature": 0.6615,
+  "gaitFeatures": {
+    "body_motion_mean": 0.03750449791550636,
+    "body_motion_std": 0.04316440224647522,
+    "vertical_motion_mean": 0.005798826925456524,
+    "left_ankle_rel_motion_mean": 0.05683624744415283,
+    "right_ankle_rel_motion_mean": 0.07039197534322739,
+    "left_knee_rel_motion_mean": 0.024923525750637054,
+    "right_knee_rel_motion_mean": 0.03352602198719978,
+    "leg_rel_motion_asymmetry": 0.19257491827011108,
+    "ankle_rel_vrange_left": 0.17001982033252716,
+    "ankle_rel_vrange_right": 0.1918344348669052,
+    "ankle_rel_vrange_asymmetry": 0.11371590197086334,
+    "knee_rel_vrange_left": 0.07668280601501465,
+    "knee_rel_vrange_right": 0.07605207711458206,
+    "step_regularity_score": 0.5115334987640381,
+    "left_wrist_rel_motion_mean": 0.03637334704399109,
+    "right_wrist_rel_motion_mean": 0.06480762362480164,
+    "arm_swing_angle_mean": 0.6388010382652283,
+    "arm_swing_angle_asymmetry": 0.3068392276763916,
+    "left_arm_swing_angle": 0.5230357646942139,
+    "right_arm_swing_angle": 0.7545663118362427,
+    "shoulder_width_mean": 0.12263480573892593,
+    "hip_width_mean": 0.05114684998989105,
+    "trunk_inclination_mean": 6.769618988037109,
+    "trunk_inclination_std": 2.439957857131958,
+    "trunk_sway_mean": 0.11881958693265915,
+    "trunk_sway_std": 0.04221055284142494,
+    "posture_stability_score": 0.912049412727356,
+    "estimated_step_count": 7.0,
+    "estimated_cadence_steps_per_min": 157.5,
+    "step_frequency_hz": 2.625,
+    "gait_variability": 0.043463174253702164,
+    "motion_smoothness": 0.9749583601951599,
+    "rhythm_variability": 0.954906165599823
+  },
+  "featureHighlights": [
+    {
+      "concept": "piernas",
+      "label": "Movimiento relativo de las piernas",
+      "values": {
+        "left_ankle_rel_motion_mean": 0.05683624744415283,
+        "right_ankle_rel_motion_mean": 0.07039197534322739,
+        "left_knee_rel_motion_mean": 0.024923525750637054,
+        "right_knee_rel_motion_mean": 0.03352602198719978,
+        "leg_rel_motion_asymmetry": 0.19257491827011108,
+        "ankle_rel_vrange_left": 0.17001982033252716,
+        "ankle_rel_vrange_right": 0.1918344348669052,
+        "ankle_rel_vrange_asymmetry": 0.11371590197086334,
+        "knee_rel_vrange_left": 0.07668280601501465,
+        "knee_rel_vrange_right": 0.07605207711458206
+      },
+      "note": "Mediciones de la primera ventana seleccionada, en escala corporal; sin umbrales diagnósticos."
+    },
+    {
+      "concept": "brazos",
+      "label": "Movimiento de los brazos",
+      "values": {
+        "left_wrist_rel_motion_mean": 0.03637334704399109,
+        "right_wrist_rel_motion_mean": 0.06480762362480164,
+        "arm_swing_angle_mean": 0.6388010382652283,
+        "arm_swing_angle_asymmetry": 0.3068392276763916,
+        "left_arm_swing_angle": 0.5230357646942139,
+        "right_arm_swing_angle": 0.7545663118362427
+      },
+      "note": "Mediciones de la primera ventana seleccionada, en escala corporal; sin umbrales diagnósticos."
+    },
+    {
+      "concept": "postura",
+      "label": "Postura del tronco",
+      "values": {
+        "trunk_inclination_mean": 6.769618988037109,
+        "trunk_inclination_std": 2.439957857131958,
+        "trunk_sway_mean": 0.11881958693265915,
+        "trunk_sway_std": 0.04221055284142494,
+        "posture_stability_score": 0.912049412727356
+      },
+      "note": "Mediciones de la primera ventana seleccionada, en escala corporal; sin umbrales diagnósticos."
+    },
+    {
+      "concept": "ritmo",
+      "label": "Ritmo de los pasos",
+      "values": {
+        "estimated_step_count": 7.0,
+        "estimated_cadence_steps_per_min": 157.5,
+        "step_frequency_hz": 2.625,
+        "gait_variability": 0.043463174253702164,
+        "motion_smoothness": 0.9749583601951599,
+        "rhythm_variability": 0.954906165599823
+      },
+      "note": "Mediciones de la primera ventana seleccionada, en escala corporal; sin umbrales diagnósticos."
+    }
+  ],
+  "qualityInfo": {
+    "orientation": "horizontal",
+    "sourceWidth": 720,
+    "sourceHeight": 405,
+    "backgroundMotion15fps": 0.00197,
+    "windowPoseRate": 1.0
+  },
+  "warnings": [
+    {
+      "code": "CAMARA_MOVIL",
+      "severity": "media",
+      "message": "Se detectó movimiento de cámara. V5-CR corrige la traslación horizontal y la interpolación relativa; no se ha validado toda rotación, perspectiva, desenfoque u oclusión."
+    },
+    {
+      "code": "CLASE_RIESGO_NO_VALIDADA",
+      "severity": "alta",
+      "message": "Clase experimental, con confusión entre esclerosis múltiple y riesgo de caída y dependencia de la fuente de grabación; sin validación clínica."
+    },
+    {
+      "code": "VISTA_NO_VERIFICADA",
+      "severity": "info",
+      "message": "El sistema no verifica automáticamente la vista; se entrenó principalmente con video lateral de cuerpo completo. Validación interna sobre 117 videos, sin validación clínica ni externa."
+    }
+  ],
+  "validationReference": {
+    "predictedClass": {
+      "f1": 0.5806
+    },
+    "method": "validación interna agrupada por sujeto (5x5); sin validación clínica"
+  },
+  "modelAccuracy": 0.8598,
+  "modelMacroF1": 0.7852,
+  "modelF1Score": 0.7852,
+  "validationMethod": "StratifiedGroupKFold por sujeto, 5 folds x 5 semillas; selección anidada de épocas y temperatura; mismos 117 videos usados para desarrollar las variantes; sin validación externa",
+  "modelSamples": 117,
+  "modelControlSamples": 58,
+  "modelParkinsonSamples": 26,
+  "modelTrainSize": 117,
+  "modelWarning": "Modelo experimental orientativo; validación interna, sin validación clínica.",
+  "notes": "Este analisis constituye una orientacion basada en patrones de movimiento y no representa un diagnostico medico. Identifica patrones de marcha que pueden asociarse a marcha normal, Parkinson, Esclerosis Multiple o riesgo de caida, y siempre requiere valoracion por un profesional de salud.",
+  "disclaimer": "Este análisis constituye una orientación basada en patrones de movimiento y no representa un diagnóstico médico. Los resultados corresponden a una clasificación experimental de patrones de marcha y requieren valoración por un profesional de salud.",
+  "inferenceSeconds": 8.76
+}

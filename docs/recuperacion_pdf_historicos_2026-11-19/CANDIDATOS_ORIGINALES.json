@@ -1,0 +1,62 @@
+[
+  {
+    "file": "C:/Users/fnahu/Downloads/informe_analisis_marcha.pdf",
+    "sha256": "e7bc09a744c53df2ed100533465a6dffbd024c34e52c07381e4db7c4f74e6a41",
+    "pdfType": "raster_html2canvas_no_embedded_analysis_id",
+    "producer": "jsPDF 4.2.1",
+    "creationDate": "D:20261030002846-04'00'",
+    "emissionDay": "2026-10-30",
+    "observedClass": "parkinson",
+    "observedRoundedConfidence": "89%",
+    "cadenceVisible": 167,
+    "symmetryPercentVisible": 4,
+    "matchingOwnerIds": [
+      "cmpu9wmub0000ulc8ek8ub7tj",
+      "d8a5a90f-3bb5-4b0a-8158-a268729dc920"
+    ],
+    "reportsOwned": 3,
+    "ownedReportSummaries": [
+      {
+        "reportId": "cmpxgj4oh000gul801oeh4b4l",
+        "createdAt": "2026-06-03T02:38:38.705Z",
+        "class": null,
+        "confidence": null
+      },
+      {
+        "reportId": "cmqensbet000ful0ocsx5xqzs",
+        "createdAt": "2026-06-15T03:33:49.638Z",
+        "class": null,
+        "confidence": null
+      },
+      {
+        "reportId": "cmu4ilzip000wul10w851plps",
+        "createdAt": "2026-09-16T19:50:03.794Z",
+        "class": null,
+        "confidence": null
+      }
+    ],
+    "candidateReportIds": [],
+    "candidateDetails": [],
+    "mappingConfirmed": false,
+    "reason": "No corresponding MedicalReport with matching current owner/class/confidence"
+  },
+  {
+    "file": "C:/Users/fnahu/Downloads/informe_analisis_marchaprueba.pdf",
+    "sha256": "c7590a7bed82643116b6a5b7e582854079531de012b5884717e74ee59ddd8bf1",
+    "pdfType": "raster_html2canvas_no_embedded_analysis_id",
+    "producer": "jsPDF 4.2.1",
+    "creationDate": "D:20261105181716-04'00'",
+    "emissionDay": "2026-11-05",
+    "observedClass": "riesgo_caida",
+    "observedRoundedConfidence": "70%",
+    "cadenceVisible": 72,
+    "symmetryPercentVisible": 5,
+    "matchingOwnerIds": [],
+    "reportsOwned": 0,
+    "ownedReportSummaries": [],
+    "candidateReportIds": [],
+    "candidateDetails": [],
+    "mappingConfirmed": false,
+    "reason": "No corresponding MedicalReport with matching current owner/class/confidence"
+  }
+]

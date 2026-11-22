@@ -1,0 +1,6 @@
+﻿clase,videos,grupos,grupos_provisionales,grupos_con_identidad_registrada,fuentes,orientacion,duracion_media_s,duracion_min_s,duracion_max_s
+normal,58,30,0,30,"{""laboratorio (trípode, 1920x1080)"": 58}","{""horizontal"": 58}",4.85,3.4,12.867
+parkinson,26,7,0,7,"{""laboratorio (trípode, 1920x1080)"": 26}","{""horizontal"": 26}",12.99,6.733,19.98
+esclerosis_multiple,22,21,20,1,"{""redes sociales (vertical)"": 20, ""clínica / repositorio clínico (848x478, 60 fps)"": 2}","{""vertical"": 20, ""horizontal"": 2}",18.61,7.233,43.833
+riesgo_caida,11,9,7,2,"{""clínica / repositorio clínico (848x478, 60 fps)"": 6, ""redes sociales (vertical)"": 5}","{""horizontal"": 6, ""vertical"": 5}",13.59,5.694,26.017
+TOTAL,117,67,27,40,,,,,

@@ -1,0 +1,98 @@
+{
+  "schema": "pdf_recovery_1795138459017_9d5113",
+  "habitualDatabaseUsed": false,
+  "inferenceExecuted": false,
+  "source": "Copies of existing real-video technical records; no new patient or scientific prediction",
+  "checks": [
+    {
+      "name": "setup: fresh test schema, never public or habitual",
+      "passed": true
+    },
+    {
+      "name": "setup: isolated schema created",
+      "passed": true
+    },
+    {
+      "name": "setup: original real-video technical result exists",
+      "passed": true
+    },
+    {
+      "name": "setup: actual previous technical PDF exists",
+      "passed": true
+    },
+    {
+      "name": "setup: third existing technical record for missing-artifact fixture",
+      "passed": true
+    },
+    {
+      "name": "setup: previous PDF checksum matches its original manifest",
+      "passed": true
+    },
+    {
+      "name": "setup: test server ready",
+      "passed": true
+    },
+    {
+      "name": "auth: unauthenticated request rejected",
+      "passed": true
+    },
+    {
+      "name": "auth: another account cannot read the report",
+      "passed": true
+    },
+    {
+      "name": "http: missing historical artifact has explicit 404 JSON",
+      "passed": true
+    },
+    {
+      "name": "http: cannot silently reconstruct a missing historical record",
+      "passed": true
+    },
+    {
+      "name": "integrity: unavailable report row was not changed",
+      "passed": true
+    },
+    {
+      "name": "http: history distinguishes unavailable and ungenerated PDF",
+      "passed": true
+    },
+    {
+      "name": "http: complete source is distinguished from missing history",
+      "passed": true
+    },
+    {
+      "name": "http: new PDF generated from unchanged original technical data",
+      "passed": true
+    },
+    {
+      "name": "http: new PDF downloaded with valid MIME and header",
+      "passed": true
+    },
+    {
+      "name": "http: repeated download is byte-identical",
+      "passed": true
+    },
+    {
+      "name": "http: compatible legacy cache downloaded byte-for-byte",
+      "passed": true
+    },
+    {
+      "name": "http: history only marks validated PDFs as available",
+      "passed": true
+    },
+    {
+      "name": "http: admin list includes true PDF availability",
+      "passed": true
+    },
+    {
+      "name": "integrity: previous original PDF file untouched",
+      "passed": true
+    },
+    {
+      "name": "integrity: source technical records unchanged",
+      "passed": true
+    }
+  ],
+  "passed": 22,
+  "failed": 0
+}

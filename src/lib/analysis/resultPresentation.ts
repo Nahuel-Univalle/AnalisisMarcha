@@ -1,7 +1,7 @@
 // Capa de PRESENTACIÓN de resultados de marcha.
 //
 // No calcula nada nuevo ni cambia la predicción: traduce los datos que ya
-// produce el análisis (clase detectada, coincidencia, calidad, 36 features,
+// produce el análisis (clase detectada, coincidencia, calidad, características,
 // señales) a dos niveles de lectura:
 //
 //   Nivel 1  -> "Resumen del análisis"     (usuario general, lenguaje simple)
@@ -267,7 +267,7 @@ export function classDistribution(
 }
 
 // ---------------------------------------------------------------------------
-//  Clasificación experimental de 4 clases (modelo V4)
+//  Clasificación experimental de 4 clases
 // ---------------------------------------------------------------------------
 //
 //  La confianza se muestra tal cual la produce el modelo, SIN umbrales de
@@ -485,7 +485,9 @@ export function userCharacteristicCards(
       title: "Ritmo de la caminata",
       description:
         (cadence !== null
-          ? `Ritmo estimado de aproximadamente ${Math.round(cadence)} pasos por minuto. `
+          ? isV5CR(result)
+            ? `Estimación por picos del movimiento de tobillos: ${Math.round(cadence)} por minuto, calculada en la primera ventana seleccionada de 2,6 segundos; no es un conteo de pasos validado clínicamente. `
+            : `Ritmo estimado de aproximadamente ${Math.round(cadence)} pasos por minuto. `
           : "") +
         (hasFinding(findings, "ritmo_irregular")
           ? "Se observaron variaciones en la regularidad de los pasos."
@@ -542,6 +544,67 @@ type ParamSpec = {
   digits?: number;
   explanation: string;
 };
+
+function isV5CR(result: AnalysisResult) {
+  return result.modelVariant === "v5cr" || result.modelVersion?.startsWith("gait_deep_v5exp_V5CR_") === true;
+}
+
+// V5-CR quantities retain their actual names/units. Historical V4 records keep
+// their original descriptions. This maps display specs, never model inputs.
+const V5CR_FEATURE_NAMES: Record<string, string> = {
+  left_ankle_motion_mean: "left_ankle_rel_motion_mean",
+  right_ankle_motion_mean: "right_ankle_rel_motion_mean",
+  left_knee_motion_mean: "left_knee_rel_motion_mean",
+  right_knee_motion_mean: "right_knee_rel_motion_mean",
+  leg_motion_asymmetry: "leg_rel_motion_asymmetry",
+  ankle_vertical_range_left: "ankle_rel_vrange_left",
+  ankle_vertical_range_right: "ankle_rel_vrange_right",
+  ankle_vertical_asymmetry: "ankle_rel_vrange_asymmetry",
+  knee_vertical_range_left: "knee_rel_vrange_left",
+  knee_vertical_range_right: "knee_rel_vrange_right",
+  left_wrist_motion_mean: "left_wrist_rel_motion_mean",
+  right_wrist_motion_mean: "right_wrist_rel_motion_mean",
+  arm_swing_mean: "arm_swing_angle_mean",
+  arm_swing_asymmetry: "arm_swing_angle_asymmetry",
+  left_arm_range: "left_arm_swing_angle",
+  right_arm_range: "right_arm_swing_angle",
+};
+
+function modelParamSpec(result: AnalysisResult, spec: ParamSpec): ParamSpec {
+  if (!isV5CR(result)) return spec;
+  const feature = V5CR_FEATURE_NAMES[spec.feature] ?? spec.feature;
+  let explanation = spec.explanation;
+  let unit = spec.unit;
+  let label = spec.label;
+  if (feature === "estimated_cadence_steps_per_min") {
+    label = "Ritmo estimado por picos";
+    unit = "picos/min";
+    explanation = "Picos de altura de ambos tobillos por minuto, calculados en la primera ventana seleccionada de 2,6 s. No es un conteo de pasos validado clínicamente.";
+  } else if (feature === "estimated_step_count") {
+    label = "Picos de tobillos en la ventana";
+    unit = "picos";
+    explanation = "Conteo interno de picos en 40 muestras a 15 FPS; no equivale a pasos clínicamente verificados.";
+  } else if (feature.includes("arm_swing_angle") && !feature.endsWith("asymmetry")) {
+    unit = "rad";
+    explanation = "Rango angular percentil 95–5 del brazo respecto al eje del tronco; primera ventana seleccionada.";
+  } else if (feature.includes("trunk_inclination")) {
+    unit = "°";
+    explanation += " Calculado en coordenadas corregidas por aspecto, en la primera ventana seleccionada.";
+  } else if (feature.includes("_rel_motion_") || feature.includes("_rel_vrange_")) {
+    explanation = feature.includes("asymmetry")
+      ? "Diferencia relativa entre ambos lados, calculada respecto a la cadera (piernas) o al hombro (muñecas); 0 indica igualdad, sin umbral clínico. Primera ventana seleccionada."
+      : "Movimiento respecto a la cadera (piernas) o al hombro del mismo lado (muñecas), normalizado por la longitud del torso. Primera ventana seleccionada.";
+  } else if (feature === "body_motion_mean" || feature === "body_motion_std") {
+    explanation = "Movimiento de hombros, rodillas y tobillos respecto a la cadera, por muestra de 1/15 s y normalizado por el torso; primera ventana seleccionada.";
+  } else if (feature === "motion_smoothness") {
+    explanation = "Índice interno calculado a partir de diferencias del movimiento vertical de cadera; sin umbral clínico. Primera ventana seleccionada.";
+  } else if (feature === "gait_variability") {
+    explanation = "Media de variaciones del movimiento relativo de tobillos y del movimiento vertical de cadera, normalizada por el torso; primera ventana seleccionada.";
+  } else {
+    explanation += " Primera ventana seleccionada de 2,6 s; sin umbral clínico validado.";
+  }
+  return { ...spec, feature, explanation, unit, label };
+}
 
 const PARAM_GROUPS: Array<{ title: string; specs: ParamSpec[] }> = [
   {
@@ -828,7 +891,8 @@ export function quantitativeGroups(
   const groups: QuantGroup[] = [];
   for (const group of PARAM_GROUPS) {
     const params: QuantParam[] = [];
-    for (const spec of group.specs) {
+    for (const originalSpec of group.specs) {
+      const spec = modelParamSpec(result, originalSpec);
       if (!(spec.feature in features)) continue;
       if (excludeFeatures?.has(spec.feature)) continue;
       params.push({
@@ -913,13 +977,14 @@ export function keyGaitMetricGroups(result: AnalysisResult): QuantGroup[] {
   const groups: QuantGroup[] = [];
   for (const group of KEY_METRIC_GROUPS) {
     const params: QuantParam[] = [];
-    for (const spec of group.specs) {
+    for (const originalSpec of group.specs) {
+      const spec = modelParamSpec(result, originalSpec);
       if (!(spec.feature in features)) continue;
       // `leg_motion_asymmetry` se calcula como una proporción (0-1); se
       // multiplica por 100 solo para mostrarla como porcentaje — es un
       // cambio de formato, no una interpretación clínica nueva.
       const rawValue =
-        spec.feature === "leg_motion_asymmetry"
+        (spec.feature === "leg_motion_asymmetry" || spec.feature === "leg_rel_motion_asymmetry")
           ? (() => {
               const fraction = num(features[spec.feature]);
               return fraction === null ? null : fraction * 100;
@@ -946,7 +1011,7 @@ export function keyGaitMetrics(result: AnalysisResult): QuantParam[] {
 
 /** Features ya cubiertas por el subconjunto comprensible — para no repetirlas en una lista técnica completa. */
 export const KEY_METRIC_FEATURE_KEYS = new Set(
-  KEY_METRIC_GROUPS.flatMap((group) => group.specs.map((spec) => spec.feature))
+  KEY_METRIC_GROUPS.flatMap((group) => group.specs.flatMap((spec) => [spec.feature, V5CR_FEATURE_NAMES[spec.feature] ?? spec.feature]))
 );
 
 // Explicación por categoría para la vista médica (contexto, no diagnóstico).

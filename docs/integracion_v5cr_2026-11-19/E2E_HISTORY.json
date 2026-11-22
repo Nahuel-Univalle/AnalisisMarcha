@@ -1,0 +1,664 @@
+{
+  "analyses": [
+    {
+      "id": "cmwnyxuh40004ul3wc6dmv5my",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "normal",
+      "modelConfidence": 0.95,
+      "summary": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico.",
+      "reportId": null,
+      "video": {
+        "id": "cmwnyxugx0002ul3wiq7w9x7k",
+        "name": "real-existing-research-video.MOV",
+        "originalVideoUrl": "/uploads-temp/analysis_89aa1d6a-4ca1-46f2-a411-e0f63f37330e.MOV",
+        "processedVideoUrl": "/processed-videos/analysis_89aa1d6a-4ca1-46f2-a411-e0f63f37330e_pose.mp4"
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnyxuh40005ul3wwtpootml",
+          "analysisId": "cmwnyxuh40004ul3wc6dmv5my",
+          "name": "Cuerpo detectado en el video",
+          "value": "75%",
+          "state": "Seguimiento visual del cuerpo durante el video",
+          "description": null
+        },
+        {
+          "id": "cmwnyxuh40006ul3w05o2q3fn",
+          "analysisId": "cmwnyxuh40004ul3wc6dmv5my",
+          "name": "Momentos analizados",
+          "value": "118",
+          "state": "88 momentos con seguimiento correcto",
+          "description": null
+        },
+        {
+          "id": "cmwnyxuh40007ul3wwd03ofg8",
+          "analysisId": "cmwnyxuh40004ul3wc6dmv5my",
+          "name": "Velocidad de marcha",
+          "value": "0.092",
+          "state": "Medición orientativa del desplazamiento observado",
+          "description": null
+        },
+        {
+          "id": "cmwnyxuh40008ul3w95yhr6g6",
+          "analysisId": "cmwnyxuh40004ul3wc6dmv5my",
+          "name": "Asimetría",
+          "value": "0.115",
+          "state": "Diferencia lateral observada",
+          "description": null
+        },
+        {
+          "id": "cmwnyxuh40009ul3wsh7m4ca2",
+          "analysisId": "cmwnyxuh40004ul3wc6dmv5my",
+          "name": "Ritmo de la marcha",
+          "value": "61.017",
+          "state": "Medición usada solo como apoyo si el movimiento fue estable",
+          "description": null
+        },
+        {
+          "id": "cmwnyxuh4000aul3wxb85kck3",
+          "analysisId": "cmwnyxuh40004ul3wc6dmv5my",
+          "name": "Clase predicha por el modelo experimental",
+          "value": "Marcha normal",
+          "state": "normal",
+          "description": null
+        },
+        {
+          "id": "cmwnyxuh4000bul3w99wi9pio",
+          "analysisId": "cmwnyxuh40004ul3wc6dmv5my",
+          "name": "Confianza del modelo",
+          "value": "95%",
+          "state": "Confianza del modelo en la clase predicha; no es certeza clínica",
+          "description": null
+        },
+        {
+          "id": "cmwnyxuh4000cul3w8omytb63",
+          "analysisId": "cmwnyxuh40004ul3wc6dmv5my",
+          "name": "Versión del modelo",
+          "value": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+          "state": "Clasificación experimental de 4 clases",
+          "description": null
+        }
+      ],
+      "conditions": [
+        {
+          "id": "cmwnyxuh4000dul3wrkw61cze",
+          "analysisId": "cmwnyxuh40004ul3wc6dmv5my",
+          "condition": "Patrón de marcha normal",
+          "status": "Clasificación experimental",
+          "description": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+        }
+      ]
+    },
+    {
+      "id": "cmwnyxb290002ul0szntwwnbh",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": null,
+      "modelConfidence": null,
+      "summary": "REGISTRO TÉCNICO: compatibilidad de versión histórica V4; sin paciente ni inferencia",
+      "reportId": null,
+      "video": {
+        "id": "cmwnyxb290004ul0s06q822jf",
+        "name": "fixture-version-v4",
+        "originalVideoUrl": null,
+        "processedVideoUrl": null
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnyxb290005ul0skx5kkbam",
+          "analysisId": "cmwnyxb290002ul0szntwwnbh",
+          "name": "Versión del modelo",
+          "value": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+          "state": "Referencia",
+          "description": null
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "id": "cmwnyszfy000mulbkhjycavyj",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "no_concluyente",
+      "modelConfidence": null,
+      "summary": "El video no contiene información corporal suficiente para un análisis confiable. Suba un video con la persona de cuerpo completo, buena iluminación, cámara estable y varios pasos visibles.",
+      "reportId": null,
+      "video": {
+        "id": "cmwnyszfs000kulbk5in9luxu",
+        "name": "no-person.mp4",
+        "originalVideoUrl": "/uploads-temp/analysis_652582bc-8e84-4ea6-9196-c0baac30397b.mp4",
+        "processedVideoUrl": "/processed-videos/analysis_652582bc-8e84-4ea6-9196-c0baac30397b_pose.mp4"
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnyszfz000nulbkzbhktuq4",
+          "analysisId": "cmwnyszfy000mulbkhjycavyj",
+          "name": "Cuerpo detectado en el video",
+          "value": "0%",
+          "state": "Seguimiento visual del cuerpo durante el video",
+          "description": null
+        },
+        {
+          "id": "cmwnyszfz000oulbk4gw3n5ad",
+          "analysisId": "cmwnyszfy000mulbkhjycavyj",
+          "name": "Momentos analizados",
+          "value": "60",
+          "state": "0 momentos con seguimiento correcto",
+          "description": null
+        },
+        {
+          "id": "cmwnyszfz000pulbke3bayhu8",
+          "analysisId": "cmwnyszfy000mulbkhjycavyj",
+          "name": "Velocidad de marcha",
+          "value": "0",
+          "state": "Medición orientativa del desplazamiento observado",
+          "description": null
+        },
+        {
+          "id": "cmwnyszfz000qulbklt1n653m",
+          "analysisId": "cmwnyszfy000mulbkhjycavyj",
+          "name": "Asimetría",
+          "value": "0",
+          "state": "Diferencia lateral observada",
+          "description": null
+        },
+        {
+          "id": "cmwnyszfz000rulbk2i6hgcze",
+          "analysisId": "cmwnyszfy000mulbkhjycavyj",
+          "name": "Ritmo de la marcha",
+          "value": "Sin dato",
+          "state": "Medición usada solo como apoyo si el movimiento fue estable",
+          "description": null
+        }
+      ],
+      "conditions": [
+        {
+          "id": "cmwnyszfz000sulbkosle0jjv",
+          "analysisId": "cmwnyszfy000mulbkhjycavyj",
+          "condition": "Análisis no concluyente por calidad del video",
+          "status": "No concluyente",
+          "description": "El video no contiene información corporal suficiente para un análisis confiable. Suba un video con la persona de cuerpo completo, buena iluminación, cámara estable y varios pasos visibles."
+        }
+      ]
+    },
+    {
+      "id": "cmwnysmit0004ulbkax0wo889",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "normal",
+      "modelConfidence": 0.95,
+      "summary": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico.",
+      "reportId": "cmwnysmr1000gulbkdz79d3b1",
+      "video": {
+        "id": "cmwnysmim0002ulbki66nicnf",
+        "name": "real-existing-research-video.MOV",
+        "originalVideoUrl": "/uploads-temp/analysis_781495da-6192-43e0-89d3-bae64de7b2ba.MOV",
+        "processedVideoUrl": "/processed-videos/analysis_781495da-6192-43e0-89d3-bae64de7b2ba_pose.mp4"
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnysmit0005ulbkjqnorm91",
+          "analysisId": "cmwnysmit0004ulbkax0wo889",
+          "name": "Cuerpo detectado en el video",
+          "value": "75%",
+          "state": "Seguimiento visual del cuerpo durante el video",
+          "description": null
+        },
+        {
+          "id": "cmwnysmit0006ulbkv6rxq7br",
+          "analysisId": "cmwnysmit0004ulbkax0wo889",
+          "name": "Momentos analizados",
+          "value": "118",
+          "state": "88 momentos con seguimiento correcto",
+          "description": null
+        },
+        {
+          "id": "cmwnysmit0007ulbkuvv5m68t",
+          "analysisId": "cmwnysmit0004ulbkax0wo889",
+          "name": "Velocidad de marcha",
+          "value": "0.092",
+          "state": "Medición orientativa del desplazamiento observado",
+          "description": null
+        },
+        {
+          "id": "cmwnysmit0008ulbk1zksp4ra",
+          "analysisId": "cmwnysmit0004ulbkax0wo889",
+          "name": "Asimetría",
+          "value": "0.115",
+          "state": "Diferencia lateral observada",
+          "description": null
+        },
+        {
+          "id": "cmwnysmit0009ulbkr60haug6",
+          "analysisId": "cmwnysmit0004ulbkax0wo889",
+          "name": "Ritmo de la marcha",
+          "value": "61.017",
+          "state": "Medición usada solo como apoyo si el movimiento fue estable",
+          "description": null
+        },
+        {
+          "id": "cmwnysmit000aulbkmg3azv3w",
+          "analysisId": "cmwnysmit0004ulbkax0wo889",
+          "name": "Clase predicha por el modelo experimental",
+          "value": "Marcha normal",
+          "state": "normal",
+          "description": null
+        },
+        {
+          "id": "cmwnysmit000bulbkhkb0v9ub",
+          "analysisId": "cmwnysmit0004ulbkax0wo889",
+          "name": "Confianza del modelo",
+          "value": "95%",
+          "state": "Confianza del modelo en la clase predicha; no es certeza clínica",
+          "description": null
+        },
+        {
+          "id": "cmwnysmit000culbkpzrz67a7",
+          "analysisId": "cmwnysmit0004ulbkax0wo889",
+          "name": "Versión del modelo",
+          "value": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+          "state": "Clasificación experimental de 4 clases",
+          "description": null
+        }
+      ],
+      "conditions": [
+        {
+          "id": "cmwnysmit000dulbk36w0qchm",
+          "analysisId": "cmwnysmit0004ulbkax0wo889",
+          "condition": "Patrón de marcha normal",
+          "status": "Clasificación experimental",
+          "description": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+        }
+      ]
+    },
+    {
+      "id": "cmwnys2620002ulooevduou6v",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": null,
+      "modelConfidence": null,
+      "summary": "REGISTRO TÉCNICO: compatibilidad de versión histórica V4; sin paciente ni inferencia",
+      "reportId": null,
+      "video": {
+        "id": "cmwnys2620004ulooejltm2c2",
+        "name": "fixture-version-v4",
+        "originalVideoUrl": null,
+        "processedVideoUrl": null
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnys2620005uloohsyzki8q",
+          "analysisId": "cmwnys2620002ulooevduou6v",
+          "name": "Versión del modelo",
+          "value": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+          "state": "Referencia",
+          "description": null
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "id": "cmwnykuhj0002ullo0v7f517n",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": null,
+      "modelConfidence": null,
+      "summary": "REGISTRO TÉCNICO: compatibilidad de versión histórica V4; sin paciente ni inferencia",
+      "reportId": null,
+      "video": {
+        "id": "cmwnykuhj0004ulloakune32k",
+        "name": "fixture-version-v4",
+        "originalVideoUrl": null,
+        "processedVideoUrl": null
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnykuhj0005ullolp50pdu9",
+          "analysisId": "cmwnykuhj0002ullo0v7f517n",
+          "name": "Versión del modelo",
+          "value": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+          "state": "Referencia",
+          "description": null
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "id": "cmwnygmwe000mul5gm9zj7230",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "no_concluyente",
+      "modelConfidence": null,
+      "summary": "El video no contiene información corporal suficiente para un análisis confiable. Suba un video con la persona de cuerpo completo, buena iluminación, cámara estable y varios pasos visibles.",
+      "reportId": null,
+      "video": {
+        "id": "cmwnygmvn000kul5g4t6hphu6",
+        "name": "no-person.mp4",
+        "originalVideoUrl": "/uploads-temp/analysis_12e6578f-a55e-474f-a7b9-a3d34336a70c.mp4",
+        "processedVideoUrl": "/processed-videos/analysis_12e6578f-a55e-474f-a7b9-a3d34336a70c_pose.mp4"
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnygmwe000nul5g9iz9f3aa",
+          "analysisId": "cmwnygmwe000mul5gm9zj7230",
+          "name": "Cuerpo detectado en el video",
+          "value": "0%",
+          "state": "Seguimiento visual del cuerpo durante el video",
+          "description": null
+        },
+        {
+          "id": "cmwnygmwe000oul5go22a83dj",
+          "analysisId": "cmwnygmwe000mul5gm9zj7230",
+          "name": "Momentos analizados",
+          "value": "60",
+          "state": "0 momentos con seguimiento correcto",
+          "description": null
+        },
+        {
+          "id": "cmwnygmwe000pul5gpy3ys75o",
+          "analysisId": "cmwnygmwe000mul5gm9zj7230",
+          "name": "Velocidad de marcha",
+          "value": "0",
+          "state": "Medición orientativa del desplazamiento observado",
+          "description": null
+        },
+        {
+          "id": "cmwnygmwe000qul5goaafkfh4",
+          "analysisId": "cmwnygmwe000mul5gm9zj7230",
+          "name": "Asimetría",
+          "value": "0",
+          "state": "Diferencia lateral observada",
+          "description": null
+        },
+        {
+          "id": "cmwnygmwe000rul5g8ul20b7k",
+          "analysisId": "cmwnygmwe000mul5gm9zj7230",
+          "name": "Ritmo de la marcha",
+          "value": "Sin dato",
+          "state": "Medición usada solo como apoyo si el movimiento fue estable",
+          "description": null
+        }
+      ],
+      "conditions": [
+        {
+          "id": "cmwnygmwe000sul5ga0djrptx",
+          "analysisId": "cmwnygmwe000mul5gm9zj7230",
+          "condition": "Análisis no concluyente por calidad del video",
+          "status": "No concluyente",
+          "description": "El video no contiene información corporal suficiente para un análisis confiable. Suba un video con la persona de cuerpo completo, buena iluminación, cámara estable y varios pasos visibles."
+        }
+      ]
+    },
+    {
+      "id": "cmwnyg7jg0004ul5g0cf0y7yu",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "normal",
+      "modelConfidence": 0.95,
+      "summary": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico.",
+      "reportId": "cmwnyg7ub000gul5g0qzbevg4",
+      "video": {
+        "id": "cmwnyg7j70002ul5gjvnbkohk",
+        "name": "real-existing-research-video.MOV",
+        "originalVideoUrl": "/uploads-temp/analysis_f23e215f-3bb3-415d-a056-5e8dd8a83a60.MOV",
+        "processedVideoUrl": "/processed-videos/analysis_f23e215f-3bb3-415d-a056-5e8dd8a83a60_pose.mp4"
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnyg7jh0005ul5gys86im7q",
+          "analysisId": "cmwnyg7jg0004ul5g0cf0y7yu",
+          "name": "Cuerpo detectado en el video",
+          "value": "75%",
+          "state": "Seguimiento visual del cuerpo durante el video",
+          "description": null
+        },
+        {
+          "id": "cmwnyg7jh0006ul5gx10teayx",
+          "analysisId": "cmwnyg7jg0004ul5g0cf0y7yu",
+          "name": "Momentos analizados",
+          "value": "118",
+          "state": "88 momentos con seguimiento correcto",
+          "description": null
+        },
+        {
+          "id": "cmwnyg7jh0007ul5ghi06y1md",
+          "analysisId": "cmwnyg7jg0004ul5g0cf0y7yu",
+          "name": "Velocidad de marcha",
+          "value": "0.092",
+          "state": "Medición orientativa del desplazamiento observado",
+          "description": null
+        },
+        {
+          "id": "cmwnyg7jh0008ul5g40ieu3vg",
+          "analysisId": "cmwnyg7jg0004ul5g0cf0y7yu",
+          "name": "Asimetría",
+          "value": "0.115",
+          "state": "Diferencia lateral observada",
+          "description": null
+        },
+        {
+          "id": "cmwnyg7jh0009ul5g597d5oqz",
+          "analysisId": "cmwnyg7jg0004ul5g0cf0y7yu",
+          "name": "Ritmo de la marcha",
+          "value": "61.017",
+          "state": "Medición usada solo como apoyo si el movimiento fue estable",
+          "description": null
+        },
+        {
+          "id": "cmwnyg7jh000aul5g63eqj1ic",
+          "analysisId": "cmwnyg7jg0004ul5g0cf0y7yu",
+          "name": "Clase predicha por el modelo experimental",
+          "value": "Marcha normal",
+          "state": "normal",
+          "description": null
+        },
+        {
+          "id": "cmwnyg7jh000bul5gngtscr3x",
+          "analysisId": "cmwnyg7jg0004ul5g0cf0y7yu",
+          "name": "Confianza del modelo",
+          "value": "95%",
+          "state": "Confianza del modelo en la clase predicha; no es certeza clínica",
+          "description": null
+        },
+        {
+          "id": "cmwnyg7jh000cul5g0oi0465z",
+          "analysisId": "cmwnyg7jg0004ul5g0cf0y7yu",
+          "name": "Versión del modelo",
+          "value": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+          "state": "Clasificación experimental de 4 clases",
+          "description": null
+        }
+      ],
+      "conditions": [
+        {
+          "id": "cmwnyg7jh000dul5g3uoezchi",
+          "analysisId": "cmwnyg7jg0004ul5g0cf0y7yu",
+          "condition": "Patrón de marcha normal",
+          "status": "Clasificación experimental",
+          "description": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+        }
+      ]
+    },
+    {
+      "id": "cmwnyf88f0002ultcqs5ntjz0",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": null,
+      "modelConfidence": null,
+      "summary": "REGISTRO TÉCNICO: compatibilidad de versión histórica V4; sin paciente ni inferencia",
+      "reportId": null,
+      "video": {
+        "id": "cmwnyf88f0004ultcinfi02mz",
+        "name": "fixture-version-v4",
+        "originalVideoUrl": null,
+        "processedVideoUrl": null
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnyf88f0005ultc1h1jupui",
+          "analysisId": "cmwnyf88f0002ultcqs5ntjz0",
+          "name": "Versión del modelo",
+          "value": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+          "state": "Referencia",
+          "description": null
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "id": "cmwnyd8qk0004ula46u50ikcy",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": "normal",
+      "modelConfidence": 0.95,
+      "summary": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico.",
+      "reportId": "cmwnyda6v000gula493ngp1ss",
+      "video": {
+        "id": "cmwnyd8q90002ula4g45uuy9e",
+        "name": "real-existing-research-video.MOV",
+        "originalVideoUrl": "/uploads-temp/analysis_78bf0e51-47ed-4b1f-a444-85e5f5d72043.MOV",
+        "processedVideoUrl": "/processed-videos/analysis_78bf0e51-47ed-4b1f-a444-85e5f5d72043_pose.mp4"
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnyd8qk0005ula4d57htemx",
+          "analysisId": "cmwnyd8qk0004ula46u50ikcy",
+          "name": "Cuerpo detectado en el video",
+          "value": "75%",
+          "state": "Seguimiento visual del cuerpo durante el video",
+          "description": null
+        },
+        {
+          "id": "cmwnyd8qk0006ula4mf8rqawk",
+          "analysisId": "cmwnyd8qk0004ula46u50ikcy",
+          "name": "Momentos analizados",
+          "value": "118",
+          "state": "88 momentos con seguimiento correcto",
+          "description": null
+        },
+        {
+          "id": "cmwnyd8qk0007ula44ictr9oz",
+          "analysisId": "cmwnyd8qk0004ula46u50ikcy",
+          "name": "Velocidad de marcha",
+          "value": "0.092",
+          "state": "Medición orientativa del desplazamiento observado",
+          "description": null
+        },
+        {
+          "id": "cmwnyd8qk0008ula4pp87gtnb",
+          "analysisId": "cmwnyd8qk0004ula46u50ikcy",
+          "name": "Asimetría",
+          "value": "0.115",
+          "state": "Diferencia lateral observada",
+          "description": null
+        },
+        {
+          "id": "cmwnyd8qk0009ula4vxo88s5x",
+          "analysisId": "cmwnyd8qk0004ula46u50ikcy",
+          "name": "Ritmo de la marcha",
+          "value": "61.017",
+          "state": "Medición usada solo como apoyo si el movimiento fue estable",
+          "description": null
+        },
+        {
+          "id": "cmwnyd8qk000aula4d0enfk4m",
+          "analysisId": "cmwnyd8qk0004ula46u50ikcy",
+          "name": "Clase predicha por el modelo experimental",
+          "value": "Marcha normal",
+          "state": "normal",
+          "description": null
+        },
+        {
+          "id": "cmwnyd8qk000bula48kuueor4",
+          "analysisId": "cmwnyd8qk0004ula46u50ikcy",
+          "name": "Confianza del modelo",
+          "value": "95%",
+          "state": "Confianza del modelo en la clase predicha; no es certeza clínica",
+          "description": null
+        },
+        {
+          "id": "cmwnyd8qk000cula4hm2o28m5",
+          "analysisId": "cmwnyd8qk0004ula46u50ikcy",
+          "name": "Versión del modelo",
+          "value": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+          "state": "Clasificación experimental de 4 clases",
+          "description": null
+        }
+      ],
+      "conditions": [
+        {
+          "id": "cmwnyd8qk000dula4673p2qax",
+          "analysisId": "cmwnyd8qk0004ula46u50ikcy",
+          "condition": "Patrón de marcha normal",
+          "status": "Clasificación experimental",
+          "description": "El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complementaria y no constituyen un diagnóstico."
+        }
+      ]
+    },
+    {
+      "id": "cmwnyci8h0002ulmox1t5s1wc",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": null,
+      "modelConfidence": null,
+      "summary": "REGISTRO TÉCNICO: compatibilidad de versión histórica V4; sin paciente ni inferencia",
+      "reportId": null,
+      "video": {
+        "id": "cmwnyci8h0004ulmov6f9c19y",
+        "name": "fixture-version-v4",
+        "originalVideoUrl": null,
+        "processedVideoUrl": null
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnyci8i0005ulmoj0d2v4ib",
+          "analysisId": "cmwnyci8h0002ulmox1t5s1wc",
+          "name": "Versión del modelo",
+          "value": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+          "state": "Referencia",
+          "description": null
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "id": "cmwnybktt0001ulokt559h26h",
+      "date": "2026-11-19",
+      "alertLevel": "Bajo",
+      "pattern": null,
+      "modelConfidence": null,
+      "summary": "REGISTRO TÉCNICO: compatibilidad de versión histórica V4; sin paciente ni inferencia",
+      "reportId": null,
+      "video": {
+        "id": "cmwnybktt0003ulokog25plfj",
+        "name": "fixture-version-v4",
+        "originalVideoUrl": null,
+        "processedVideoUrl": null
+      },
+      "signals": [],
+      "parameters": [
+        {
+          "id": "cmwnybktt0004ulokwns6gdqs",
+          "analysisId": "cmwnybktt0001ulokt559h26h",
+          "name": "Versión del modelo",
+          "value": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+          "state": "Referencia",
+          "description": null
+        }
+      ],
+      "conditions": []
+    }
+  ]
+}

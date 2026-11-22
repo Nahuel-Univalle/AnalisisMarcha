@@ -1,0 +1,23 @@
+{
+ "videos_por_clase": {
+  "normal": 58,
+  "parkinson": 26,
+  "esclerosis_multiple": 22,
+  "riesgo_caida": 11
+ },
+ "videos_total": 117,
+ "semillas": [
+  42,
+  43,
+  44,
+  45,
+  46
+ ],
+ "predicciones_por_video": 5,
+ "predicciones_totales_en_suma": 585,
+ "suma5semillas_enteros": "suma de las 5 matrices por semilla; denominadores por clase = videos_por_clase x 5; las 5 predicciones de un video NO son independientes",
+ "promedio_por_semilla": "media de las 5 matrices (cada una suma 117); valores fraccionarios, no son conteos de videos",
+ "tasa_por_clase_verdadera": "media de las 5 matrices normalizadas por fila (clase verdadera); coincide con la sensibilidad media por clase",
+ "voto_mayoritario_por_video_enteros": "cada video recibe la clase más votada por las 5 semillas (desempate: menor índice de clase); 117 videos, conteos enteros reales",
+ "regla": "no se crean conteos enteros a partir de promedios"
+}

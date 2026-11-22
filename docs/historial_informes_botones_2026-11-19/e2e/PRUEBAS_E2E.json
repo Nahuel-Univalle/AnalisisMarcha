@@ -1,0 +1,98 @@
+{
+  "environment": "Dedicated PostgreSQL container, database gait_v5cr_test, port 55432; only technical test accounts and existing research videos",
+  "checks": [
+    {
+      "name": "setup: schema in isolated database on port 55432",
+      "passed": true
+    },
+    {
+      "name": "setup: isolated Next.js server",
+      "passed": true
+    },
+    {
+      "name": "regression: unauthenticated admin denied",
+      "passed": true
+    },
+    {
+      "name": "e2e: login with test account",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "regression: legacy PDF remains downloadable and unchanged",
+      "passed": true
+    },
+    {
+      "name": "e2e: missing video rejected",
+      "passed": true
+    },
+    {
+      "name": "e2e: real upload, pose extraction, V5-CR inference",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "e2e: actual version and valid probabilities",
+      "passed": true
+    },
+    {
+      "name": "e2e: PostgreSQL persistence",
+      "passed": true
+    },
+    {
+      "name": "integrated: version stored per analysis",
+      "passed": true
+    },
+    {
+      "name": "e2e: history includes real analysis",
+      "passed": true
+    },
+    {
+      "name": "regression: historical V4 identity preserved",
+      "passed": true
+    },
+    {
+      "name": "e2e: save report",
+      "passed": true
+    },
+    {
+      "name": "e2e: canonical PDF generation",
+      "passed": true,
+      "status": 200,
+      "response": "{\"success\":true,\"reused\":false}"
+    },
+    {
+      "name": "e2e: PDF download",
+      "passed": true,
+      "bytes": 35962
+    },
+    {
+      "name": "regression: ordinary user cannot read admin summary",
+      "passed": true
+    },
+    {
+      "name": "e2e: test administrator login",
+      "passed": true
+    },
+    {
+      "name": "e2e: admin active version/internal metrics",
+      "passed": true
+    },
+    {
+      "name": "e2e: corrupt upload rejected",
+      "passed": true,
+      "status": 400
+    },
+    {
+      "name": "setup: empty video is a negative code fixture",
+      "passed": true
+    },
+    {
+      "name": "e2e: no-person video has no fabricated prediction",
+      "passed": true,
+      "status": 200
+    }
+  ],
+  "passed": 21,
+  "failed": 0
+}

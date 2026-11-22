@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "node_modules/next/dist/bin/next",
+    "build"
+  ],
+  "started": "2026-11-19T19:55:16.299Z",
+  "finished": "2026-11-19T19:55:40.501Z",
+  "exitCode": 0,
+  "signal": null
+}

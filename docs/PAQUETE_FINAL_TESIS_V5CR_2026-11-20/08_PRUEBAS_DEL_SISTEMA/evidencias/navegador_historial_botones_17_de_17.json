@@ -1,0 +1,132 @@
+{
+ "scenario": "hist",
+ "video": "analysis_5184ba1b-3b52-493c-8d9d-80ee4b4b7e6d.mp4",
+ "checks": [
+  {
+   "name": "upload page shows the preview <video>",
+   "passed": true
+  },
+  {
+   "name": "continue to validation",
+   "passed": true
+  },
+  {
+   "name": "start analysis",
+   "passed": true
+  },
+  {
+   "name": "analysis finished",
+   "passed": true
+  },
+  {
+   "name": "go to result",
+   "passed": true
+  },
+  {
+   "name": "go to report page",
+   "passed": true
+  },
+  {
+   "name": "save report in tracking",
+   "passed": true
+  },
+  {
+   "name": "two records listed",
+   "passed": true,
+   "detail": 2
+  },
+  {
+   "name": "record with PDF has Ver informe + Descargar PDF + Videos",
+   "passed": true,
+   "detail": [
+    "Ver informe|Ver informe — Resultado orientativo: Marcha dentro de patrones esperados, 2026-11-20|false",
+    "Descargar PDF|Descargar PDF — Resultado orientativo: Marcha dentro de patrones esperados, 2026-11-20|false",
+    "Videos||false"
+   ]
+  },
+  {
+   "name": "record without PDF: explicit \"no disponible\", no PDF buttons, record kept",
+   "passed": true,
+   "detail": "20 NOV Análisis de marcha Sin clasificar Tipo: Análisis de marcha Estado: Sin clasificar Fecha: 2026-11-20 PDF: El archivo histórico de este informe no está disponible. El registro se conserva; no se han reconstruido ni sustituido sus resultados. REGISTRO TECNICO DE PRUEBA: informe historico sin arc"
+  },
+  {
+   "name": "category filter still present",
+   "passed": true
+  },
+  {
+   "name": "real mouse click on Ver informe",
+   "passed": true
+  },
+  {
+   "name": "Ver informe opened a new tab and navigated it to the PDF blob (or the PDF was handed to the browser)",
+   "passed": true,
+   "detail": [
+    "036E about:blank",
+    "036E blob:http://127.0.0.1:3056/53c6757a-7bb0-4b6b-9577"
+   ]
+  },
+  {
+   "name": "real mouse click on Descargar PDF",
+   "passed": true
+  },
+  {
+   "name": "PDF downloaded from history",
+   "passed": true,
+   "detail": "informe_analisis_marcha.pdf"
+  },
+  {
+   "name": "ownership: other account 404, anonymous 401",
+   "passed": true,
+   "detail": [
+    404,
+    401
+   ]
+  },
+  {
+   "name": "historical record without file: explicit 404 JSON, nothing generated",
+   "passed": true,
+   "detail": "HISTORICAL_PDF_UNAVAILABLE"
+  }
+ ],
+ "notes": [
+  {
+   "list": [
+    {
+     "text": "20 NOV Análisis de marcha Sin clasificar Tipo: Análisis de marcha Estado: Sin clasificar Fecha: 2026-11-20 PDF: El archivo histórico de este informe no está disponible. El registro se conserva; no se han reconstruido ni sustituido sus resultados. REGISTRO TECNICO DE PRUEBA: informe historico sin arc",
+     "buttons": []
+    },
+    {
+     "text": "20 NOV Marcha dentro de patrones esperados Normal Tipo: Análisis de marcha Estado: Clasificación experimental Confianza del modelo: 83% Fecha: 2026-11-20 PDF: Disponible; se genera al abrirlo o descargarlo El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan ",
+     "buttons": [
+      "Ver informe|Ver informe — Resultado orientativo: Marcha dentro de patrones esperados, 2026-11-20|false",
+      "Descargar PDF|Descargar PDF — Resultado orientativo: Marcha dentro de patrones esperados, 2026-11-20|false",
+      "Videos||false"
+     ]
+    }
+   ]
+  },
+  {
+   "tabsSeenDuringView": [
+    "036E about:blank",
+    "036E blob:http://127.0.0.1:3056/53c6757a-7bb0-4b6b-9577"
+   ],
+   "filesInViewDownloadDir": []
+  },
+  {
+   "afterView": [
+    {
+     "text": "20 NOV Análisis de marcha Sin clasificar Tipo: Análisis de marcha Estado: Sin clasificar Fecha: 2026-11-20 PDF: El archivo histórico de este informe no está disponible. El registro se conserva; no se han reconstruido ni sustituido sus resultados. REGISTRO TECNICO DE PRUEBA: informe historico sin arc",
+     "buttons": []
+    },
+    {
+     "text": "20 NOV Marcha dentro de patrones esperados Normal Tipo: Análisis de marcha Estado: Clasificación experimental Confianza del modelo: 83% Fecha: 2026-11-20 PDF: PDF disponible El modelo identificó patrones de marcha dentro de lo esperado. Las observaciones se presentan solo como información complement",
+     "buttons": [
+      "Ver informe|Ver informe — Resultado orientativo: Marcha dentro de patrones esperados, 2026-11-20|false",
+      "Descargar PDF|Descargar PDF — Resultado orientativo: Marcha dentro de patrones esperados, 2026-11-20|false",
+      "Videos||false"
+     ]
+    }
+   ]
+  }
+ ]
+}

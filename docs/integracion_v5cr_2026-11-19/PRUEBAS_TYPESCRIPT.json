@@ -1,0 +1,54 @@
+{
+  "checks": [
+    {
+      "name": "unit: default is accepted V5-CR",
+      "passed": true
+    },
+    {
+      "name": "integrated: selected artifact files exist",
+      "passed": true
+    },
+    {
+      "name": "regression: explicit V4 rollback retains original predictor",
+      "passed": true
+    },
+    {
+      "name": "unit: invalid selection fails closed",
+      "passed": true
+    },
+    {
+      "name": "integrated: V5-CR symmetry presented from actual relative feature",
+      "passed": true
+    },
+    {
+      "name": "integrated: rhythm describes 2.6-second peak estimate",
+      "passed": true
+    },
+    {
+      "name": "integrated: relative legs and angular arms included",
+      "passed": true
+    },
+    {
+      "name": "regression: no global translation feature presented",
+      "passed": true
+    },
+    {
+      "name": "integrated: presentation preserves all four probabilities",
+      "passed": true
+    },
+    {
+      "name": "integrated: insufficient pose has no metrics/probabilities in presentation",
+      "passed": true
+    },
+    {
+      "name": "regression: historical parameters retain V4 version",
+      "passed": true
+    },
+    {
+      "name": "regression: stored pattern uses record content",
+      "passed": true
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}

@@ -1,0 +1,15 @@
+{
+ "ventanas": 633,
+ "ventanas_con_diferencia_en_secuencia(>1e-6)": 370,
+ "de_ellas_con_landmarks_enmascarados_o_cuadros_interpolados": 370,
+ "ventanas_SIN_enmascarados": 137,
+ "de_estas_con_diferencia": 0,
+ "max_dif_secuencia": 6.1971,
+ "mediana_dif_secuencia_en_ventanas_con_fuga": 1.0965,
+ "fraccion_con_fuga_por_clase": {
+  "normal": 0.846,
+  "parkinson": 0.57,
+  "esclerosis_multiple": 0.287,
+  "riesgo_caida": 0.429
+ }
+}

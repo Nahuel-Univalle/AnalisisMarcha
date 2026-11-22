@@ -1,0 +1,171 @@
+{
+ "dataset": {
+  "n_videos": 117,
+  "n_groups": 67,
+  "videos_por_clase": [
+   58,
+   26,
+   22,
+   11
+  ],
+  "grupos_por_clase": [
+   30,
+   7,
+   21,
+   9
+  ],
+  "X_seq": [
+   117,
+   68,
+   96
+  ],
+  "X_feat": [
+   117,
+   36
+  ],
+  "features": [
+   "body_motion_mean",
+   "body_motion_std",
+   "hip_center_motion_mean",
+   "shoulder_center_motion_mean",
+   "vertical_motion_mean",
+   "horizontal_motion_mean",
+   "left_ankle_motion_mean",
+   "right_ankle_motion_mean",
+   "left_knee_motion_mean",
+   "right_knee_motion_mean",
+   "leg_motion_asymmetry",
+   "ankle_vertical_range_left",
+   "ankle_vertical_range_right",
+   "ankle_vertical_asymmetry",
+   "knee_vertical_range_left",
+   "knee_vertical_range_right",
+   "step_regularity_score",
+   "left_wrist_motion_mean",
+   "right_wrist_motion_mean",
+   "arm_swing_mean",
+   "arm_swing_asymmetry",
+   "left_arm_range",
+   "right_arm_range",
+   "shoulder_width_mean",
+   "hip_width_mean",
+   "trunk_inclination_mean",
+   "trunk_inclination_std",
+   "trunk_sway_mean",
+   "trunk_sway_std",
+   "posture_stability_score",
+   "estimated_step_count",
+   "estimated_cadence_steps_per_min",
+   "step_frequency_hz",
+   "gait_variability",
+   "motion_smoothness",
+   "rhythm_variability"
+  ],
+  "nan_en_X_feat": 53,
+  "estado_grupos": {
+   "confirmed": 40,
+   "provisional": 27
+  },
+  "grupos_provisionales_por_clase": {
+   "esclerosis_multiple": 20,
+   "riesgo_caida": 7
+  },
+  "valores_subject_status": [
+   "confirmed",
+   "provisional"
+  ]
+ },
+ "metricas_reproducidas": {
+  "M1_base": {
+   "macro_f1_mean": 0.7252,
+   "accuracy_mean": 0.8342,
+   "f1_por_clase": [
+    0.9532,
+    0.8458,
+    0.7387,
+    0.363
+   ],
+   "recall_por_clase": [
+    0.9138,
+    0.9692,
+    0.7091,
+    0.3455
+   ],
+   "conf_suma": [
+    [
+     265,
+     25,
+     0,
+     0
+    ],
+    [
+     1,
+     126,
+     0,
+     3
+    ],
+    [
+     0,
+     4,
+     78,
+     28
+    ],
+    [
+     0,
+     13,
+     23,
+     19
+    ]
+   ]
+  },
+  "M1_BN_candidato": {
+   "macro_f1_mean": 0.7442,
+   "accuracy_mean": 0.8513,
+   "f1_por_clase": [
+    0.9626,
+    0.8806,
+    0.7555,
+    0.3781
+   ],
+   "recall_por_clase": [
+    0.9345,
+    0.9615,
+    0.7455,
+    0.3636
+   ],
+   "conf_suma": [
+    [
+     271,
+     19,
+     0,
+     0
+    ],
+    [
+     1,
+     125,
+     0,
+     4
+    ],
+    [
+     0,
+     1,
+     82,
+     27
+    ],
+    [
+     1,
+     9,
+     25,
+     20
+    ]
+   ]
+  },
+  "coincide_oof_csv_paso12_con_npz": {
+   "42": true,
+   "43": true,
+   "44": true,
+   "45": true,
+   "46": true
+  }
+ }
+}

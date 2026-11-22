@@ -1,0 +1,592 @@
+{
+ "scenario": "full_mov_sinaviso",
+ "video": "analysis_074132c1-68da-4605-9664-ff4d1aa073e7.MOV",
+ "checks": [
+  {
+   "name": "upload page shows the preview <video>",
+   "passed": true
+  },
+  {
+   "name": "continue to validation",
+   "passed": true
+  },
+  {
+   "name": "start analysis",
+   "passed": true
+  },
+  {
+   "name": "player present at processing start",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/e98370d6-399e",
+    "err": null,
+    "rs": 4,
+    "paused": true,
+    "ended": false,
+    "ct": 0,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "analysis running while we test",
+   "passed": true
+  },
+  {
+   "name": "first play()",
+   "passed": true
+  },
+  {
+   "name": "first playback finished (ended, or silently recovered at start)",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/e98370d6-399e",
+    "err": null,
+    "rs": 4,
+    "paused": true,
+    "ended": false,
+    "ct": 0,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "no end-of-file notice text in the UI",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/e98370d6-399e",
+    "err": null,
+    "rs": 4,
+    "paused": true,
+    "ended": false,
+    "ct": 0,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "analysis still running at end of first playback",
+   "passed": true,
+   "detail": {
+    "sinceStartS": 3
+   }
+  },
+  {
+   "name": "second play() after ended succeeds",
+   "passed": true,
+   "detail": "ok"
+  },
+  {
+   "name": "after replay: no <video> error and no \"no pudo reproducirse\" message",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/e98370d6-399e",
+    "err": null,
+    "rs": 4,
+    "paused": false,
+    "ended": false,
+    "ct": 1.44,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "after replay: same <video> element (not remounted)",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/e98370d6-399e",
+    "err": null,
+    "rs": 4,
+    "paused": false,
+    "ended": false,
+    "ct": 1.44,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "after replay: it is playing/advancing",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/e98370d6-399e",
+    "err": null,
+    "rs": 4,
+    "paused": false,
+    "ended": false,
+    "ct": 1.44,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "pause/resume x4",
+   "passed": true
+  },
+  {
+   "name": "seek forward/back",
+   "passed": true
+  },
+  {
+   "name": "unrecoverable load failure shows error + Reintentar button (not hidden)",
+   "passed": true,
+   "detail": {
+    "sameEl": false,
+    "hasVideo": false,
+    "src": null,
+    "err": null,
+    "rs": null,
+    "paused": null,
+    "ended": null,
+    "ct": null,
+    "dur": null,
+    "msgShown": true,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "analysis still running during the player failure",
+   "passed": true
+  },
+  {
+   "name": "Reintentar restores the player with the original URL",
+   "passed": true,
+   "detail": {
+    "sameEl": false,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/e98370d6-399e",
+    "err": null,
+    "rs": 4,
+    "paused": true,
+    "ended": false,
+    "ct": 0,
+    "dur": 11.89,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": true
+   }
+  },
+  {
+   "name": "play after Reintentar",
+   "passed": true
+  },
+  {
+   "name": "analysis finished",
+   "passed": true
+  },
+  {
+   "name": "after analysis: player present, no error",
+   "passed": true,
+   "detail": {
+    "sameEl": false,
+    "hasVideo": true,
+    "src": "http://127.0.0.1:3054/processed-videos/a",
+    "err": null,
+    "rs": 4,
+    "paused": true,
+    "ended": false,
+    "ct": 0,
+    "dur": 10,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": false
+   }
+  },
+  {
+   "name": "after analysis: play works",
+   "passed": true,
+   "detail": {
+    "sameEl": false,
+    "hasVideo": true,
+    "src": "http://127.0.0.1:3054/processed-videos/a",
+    "err": null,
+    "rs": 4,
+    "paused": false,
+    "ended": false,
+    "ct": 1.01,
+    "dur": 10,
+    "msgShown": false,
+    "noticeShown": false,
+    "notice": null,
+    "processing": false
+   }
+  },
+  {
+   "name": "go to result",
+   "passed": true
+  }
+ ],
+ "notes": [
+  {
+   "consoleAfterFirstPlayback": [
+    "warning: VideoStage: error de reproducción Object"
+   ]
+  },
+  {
+   "tabsAfterAnalysis": [
+    "Puntos clave",
+    "Original"
+   ]
+  },
+  {
+   "resultText": "Ir al contenido\nAnálisis de Marcha IA\nInicio\nNuevo análisis\nSeguimiento\nInformes\nPR\n\nPrueba reproductor\n\nUsuario\nCerrar sesión\nVideo\n(completado)\nRevisión\n(completado)\nAnálisis\n(completado)\n4\nResultado\n\nCLASIFICACIÓN EXPERIMENTAL\n\nPatrón compatible con alteración asociada a Parkinson.\n\nClasificación experimental: patrón «Patrón compatible con alteración asociada a Parkinson». Es una clasificación "
+  }
+ ],
+ "events": [
+  {
+   "n": "play",
+   "t": 10704,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0.01
+  },
+  {
+   "n": "error",
+   "t": 13625,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "abort",
+   "t": 13627,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "emptied",
+   "t": 13627,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "loadedmetadata",
+   "t": 13644,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  },
+  {
+   "n": "canplay",
+   "t": 13644,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  },
+  {
+   "n": "play",
+   "t": 13804,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  },
+  {
+   "n": "pause",
+   "t": 15316,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 1.44
+  },
+  {
+   "n": "play",
+   "t": 15528,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 1.5
+  },
+  {
+   "n": "pause",
+   "t": 15734,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 1.64
+  },
+  {
+   "n": "play",
+   "t": 15936,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 1.7
+  },
+  {
+   "n": "pause",
+   "t": 16156,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 1.86
+  },
+  {
+   "n": "play",
+   "t": 16373,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 1.92
+  },
+  {
+   "n": "pause",
+   "t": 16593,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 2.08
+  },
+  {
+   "n": "play",
+   "t": 16813,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 2.14
+  },
+  {
+   "n": "seeking",
+   "t": 17029,
+   "err": null,
+   "msg": null,
+   "rs": 1,
+   "ct": 9.52
+  },
+  {
+   "n": "seeked",
+   "t": 17058,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 9.52
+  },
+  {
+   "n": "canplay",
+   "t": 17058,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 9.52
+  },
+  {
+   "n": "seeking",
+   "t": 17545,
+   "err": null,
+   "msg": null,
+   "rs": 1,
+   "ct": 2.38
+  },
+  {
+   "n": "seeked",
+   "t": 17679,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 2.38
+  },
+  {
+   "n": "canplay",
+   "t": 17679,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 2.38
+  },
+  {
+   "n": "seeking",
+   "t": 18052,
+   "err": null,
+   "msg": null,
+   "rs": 1,
+   "ct": 7.14
+  },
+  {
+   "n": "seeked",
+   "t": 18163,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 7.14
+  },
+  {
+   "n": "canplay",
+   "t": 18163,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 7.14
+  },
+  {
+   "n": "seeking",
+   "t": 18566,
+   "err": null,
+   "msg": null,
+   "rs": 1,
+   "ct": 0
+  },
+  {
+   "n": "seeked",
+   "t": 18568,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  },
+  {
+   "n": "canplay",
+   "t": 18568,
+   "err": null,
+   "msg": null,
+   "rs": 4,
+   "ct": 0
+  },
+  {
+   "n": "abort",
+   "t": 19083,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "emptied",
+   "t": 19083,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "error",
+   "t": 19089,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "emptied",
+   "t": 19090,
+   "err": null,
+   "msg": null,
+   "rs": 0,
+   "ct": 0
+  },
+  {
+   "n": "error",
+   "t": 19099,
+   "err": 4,
+   "msg": "MEDIA_ELEMENT_ERROR: Format error",
+   "rs": 0,
+   "ct": 0
+  }
+ ],
+ "console": [
+  "warning: VideoStage: error de reproducción Object",
+  "warning: VideoStage: error de reproducción Object",
+  "warning: VideoStage: error de reproducción Object",
+  "warning: VideoStage: error de reproducción Object"
+ ],
+ "netErrors": [
+  {
+   "requestId": "12280.117",
+   "timestamp": 628474.791853,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "blobResponse": 206
+  },
+  {
+   "requestId": "12280.118",
+   "timestamp": 628477.629575,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "blobResponse": 206
+  },
+  {
+   "blobResponse": 206
+  },
+  {
+   "requestId": "12280.120",
+   "timestamp": 628477.71232,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "requestId": "12280.121",
+   "timestamp": 628506.907714,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "requestId": "12280.123",
+   "timestamp": 628507.267691,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "requestId": "12280.132",
+   "timestamp": 628509.646491,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  },
+  {
+   "requestId": "12280.134",
+   "timestamp": 628509.983746,
+   "type": "Media",
+   "errorText": "net::ERR_ABORTED",
+   "canceled": true
+  }
+ ]
+}

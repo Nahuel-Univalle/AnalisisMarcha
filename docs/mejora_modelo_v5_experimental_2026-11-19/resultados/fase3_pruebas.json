@@ -1,0 +1,146 @@
+[
+ {
+  "prueba": "espejo V5 aplicado dos veces = original (secuencia)",
+  "resultado": "PASS",
+  "detalle": 0.0
+ },
+ {
+  "prueba": "espejo V5 aplicado dos veces = original (caracteristicas)",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "espejo V5 de la secuencia == secuencia de los landmarks reflejados (posiciones Y velocidades)",
+  "resultado": "PASS",
+  "detalle": "max|dif|=1.78e-15"
+ },
+ {
+  "prueba": "espejo V5 de las caracteristicas == caracteristicas de los landmarks reflejados",
+  "resultado": "PASS",
+  "detalle": "max|dif|=9.80e-16"
+ },
+ {
+  "prueba": "espejo V5: los componentes horizontales de velocidad cambian de signo",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "V4 DEFECTO A1: error del espejo de V4 en canales vx (vs landmarks reflejados)",
+  "resultado": "DEMOSTRACION_V4",
+  "detalle": "max|dif| vx = 0.2407; en posiciones = 5.46e-16"
+ },
+ {
+  "prueba": "V5: velocidad = diferencia de posiciones (exacto)",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "V5: aumentacion (ruido + espejo) mantiene velocidad = diff(posicion)",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "V4 DEFECTO A5: tras aumentacion V4, |vel - diff(pos)| (max)",
+  "resultado": "DEMOSTRACION_V4",
+  "detalle": "0.1058 (deberia ser 0)"
+ },
+ {
+  "prueba": "sin valores invalidos (NaN/inf en secuencia, inf en caracteristicas) en 633 ventanas reales",
+  "resultado": "PASS",
+  "detalle": "ventanas con valores invalidos=0"
+ },
+ {
+  "prueba": "rangos y asimetrias no negativos en ventanas reales",
+  "resultado": "PASS",
+  "detalle": []
+ },
+ {
+  "prueba": "NaN por ventana (caracteristicas no calculables, se imputan con mediana del TRAIN)",
+  "resultado": "DEMOSTRACION_V4",
+  "detalle": "media=0.69, max=6, ventanas con algun NaN=139/633"
+ },
+ {
+  "prueba": "36 caracteristicas V5 coinciden en numero con la arquitectura (36)",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "V5 invariante a traslacion del encuadre (secuencia y caracteristicas)",
+  "resultado": "PASS",
+  "detalle": "6.7e-16/3.3e-16"
+ },
+ {
+  "prueba": "V5 invariante al zoom (escala aparente de la persona)",
+  "resultado": "PASS",
+  "detalle": "8.5e-16/0.0e+00"
+ },
+ {
+  "prueba": "V4: cambio relativo maximo de sus 36 caracteristicas ante zoom x1.3",
+  "resultado": "DEMOSTRACION_V4",
+  "detalle": "0.000"
+ },
+ {
+  "prueba": "V5: la misma escena en 16:9, 4:3, 1:1 y 9:16 produce las mismas entradas",
+  "resultado": "PASS",
+  "detalle": {
+   "1.333": "2.2e-16/3.3e-16",
+   "0.562": "4.4e-16/0.0e+00",
+   "1.0": "2.2e-16/3.3e-16"
+  }
+ },
+ {
+  "prueba": "V4 DEFECTO A4: cambio relativo maximo de sus 36 caracteristicas entre 16:9 y 9:16 (misma escena)",
+  "resultado": "DEMOSTRACION_V4",
+  "detalle": "15.198; secuencia max|dif|=0.749"
+ },
+ {
+  "prueba": "V5: ventana de 2.6 s calculable con un clip de 2.7 s",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "V5: mismas entradas aunque el video dure 2.7 s o 20 s (sin dependencia de la duracion del clip)",
+  "resultado": "PASS",
+  "detalle": "0.0e+00"
+ },
+ {
+  "prueba": "V5: ventana con < 20 cuadros validos se rechaza (None)",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "V4 DEFECTO B3: diferencia de la secuencia V4 entre un clip de 2.7 s y de 20 s con el MISMO movimiento",
+  "resultado": "DEMOSTRACION_V4",
+  "detalle": "max|dif|=0.418 (velocidades dependen de la duracion)"
+ },
+ {
+  "prueba": "V5: el conteo de pasos aumenta con la cadencia sintetica (0.8 vs 1.3 Hz)",
+  "resultado": "PASS",
+  "detalle": "8 -> 12"
+ },
+ {
+  "prueba": "V5: balanceo de brazos = 0 con brazos inmoviles aunque la persona se desplace",
+  "resultado": "PASS",
+  "detalle": "0.0000/0.0000"
+ },
+ {
+  "prueba": "V5: balanceo de brazos crece con la amplitud real (0 -> 20 deg)",
+  "resultado": "PASS",
+  "detalle": "rango angular=0.680 rad (esperado ~ 2*20 deg*0.9 = 0.6)"
+ },
+ {
+  "prueba": "V4 DEFECTO C: 'left_arm_range' con brazos INMOVILES y velocidad de traslacion 0.12 vs 0.5",
+  "resultado": "DEMOSTRACION_V4",
+  "detalle": "15.867 -> 66.111 (mide desplazamiento global, no balanceo)"
+ },
+ {
+  "prueba": "V5: rango vertical del tobillo relativo = ~0 con piernas inmoviles, y crece con la amplitud de la zancada",
+  "resultado": "PASS",
+  "detalle": "0.000/0.000/0.093; esperado analitico ~0.09-0.10 (0.14*(1-cos30)+0.14*(cos6-cos15)=0.024 /torso 0.25). Umbral inicial 0.1 era un error de calculo del esperado; corregido ANTES de entrenar"
+ },
+ {
+  "prueba": "V5: secuencia y caracteristicas RELATIVAS (piernas, brazos, tronco) invariantes al paneo de camara",
+  "resultado": "PASS",
+  "detalle": "6.7e-16/6.5e-16"
+ }
+]

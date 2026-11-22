@@ -1,5 +1,5 @@
 import { requireAdmin } from "@/lib/auth/guards";
-import { EXPERIMENTAL_V4_OOF_METRICS, hasExperimentalV4Model } from "@/lib/ml/modelMetrics";
+import { activeGaitModel, hasActiveGaitModel } from "@/lib/ml/modelMetrics";
 import { prisma } from "@/lib/prisma";
 import { storedPatternOf } from "@/lib/analysis/conditionLabels";
 
@@ -62,7 +62,8 @@ export async function GET() {
     }),
   ]);
 
-  const experimentalModelAvailable = hasExperimentalV4Model();
+  const experimentalModelAvailable = hasActiveGaitModel();
+  const model = activeGaitModel();
 
   // Resultados guardados por patrón; "sin_clasificar" si el registro no permite saberlo.
   const patternCounts: Record<string, number> = {};
@@ -77,14 +78,16 @@ export async function GET() {
     totalReports,
     totalVideos,
     patternCounts,
-    // Estado y métricas OOF del modelo que usa producción (V4, 4 clases).
+    // Internal OOF metrics of the selected model, never clinical performance.
     modelStatus: {
       available: experimentalModelAvailable,
-      accuracy: EXPERIMENTAL_V4_OOF_METRICS.accuracy,
-      macroF1: EXPERIMENTAL_V4_OOF_METRICS.macroF1,
-      modelVersion: EXPERIMENTAL_V4_OOF_METRICS.modelVersion,
-      trainingVideos: EXPERIMENTAL_V4_OOF_METRICS.trainingVideos,
-      trainingSubjects: EXPERIMENTAL_V4_OOF_METRICS.trainingSubjects,
+      accuracy: model.accuracy,
+      macroF1: model.macroF1,
+      modelVersion: model.version,
+      weightsSha256: model.weightsSha256,
+      trainingVideos: model.trainingVideos,
+      trainingSubjects: model.trainingSubjects,
+      validationScope: "Validación interna agrupada por sujeto (5x5), sin validación clínica ni externa",
       message: experimentalModelAvailable
         ? "Modelo experimental de 4 clases disponible"
         : "Modelo experimental de 4 clases no disponible",

@@ -1,0 +1,45 @@
+{
+ "videos": 117,
+ "ventanas": 633,
+ "ventanas_por_video": {
+  "min": 1,
+  "mediana": 6.0,
+  "max": 7
+ },
+ "ventanas_medias_por_clase": {
+  "normal": 3.91,
+  "parkinson": 6.88,
+  "esclerosis_multiple": 6.82,
+  "riesgo_caida": 7.0
+ },
+ "ventanas_rechazadas_por_pose_insuficiente": [
+  [
+   "024_NM_02",
+   2.4
+  ],
+  [
+   "003_PD_01_MD",
+   1.6
+  ],
+  [
+   "003_PD_01_MD",
+   2.0
+  ],
+  [
+   "003_PD_01_MD",
+   2.4
+  ]
+ ],
+ "fraccion_interpolada_media": 0.0297,
+ "X_seq": [
+  633,
+  68,
+  40
+ ],
+ "X_feat": [
+  633,
+  36
+ ],
+ "nan_en_X_feat": 437,
+ "ventanas_con_nan": 139
+}

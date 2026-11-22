@@ -1,0 +1,27 @@
+{
+ "V4_spearman_aspecto": {
+  "n_caract": 36,
+  "|rho|>0.5 (117 videos)": 21,
+  "|rho|>0.65 (117 videos)": 19,
+  "|rho| mediano (117)": 0.653,
+  "|rho|>0.5 dentro de EM+Riesgo (n=33)": 2,
+  "|rho| mediano dentro EM+Riesgo": 0.215
+ },
+ "V5_spearman_aspecto": {
+  "n_caract": 36,
+  "|rho|>0.5 (117 videos)": 16,
+  "|rho|>0.65 (117 videos)": 8,
+  "|rho| mediano (117)": 0.42,
+  "|rho|>0.5 dentro de EM+Riesgo (n=33)": 0,
+  "|rho| mediano dentro EM+Riesgo": 0.154
+ },
+ "V4_sonda_AUC": {
+  "orientacion vertical vs horizontal (dentro de EM+Riesgo; n=33)": 0.944,
+  "fps>=40 vs 30 (dentro de Normal+Parkinson; n=84)": 0.555
+ },
+ "V5_sonda_AUC": {
+  "orientacion vertical vs horizontal (dentro de EM+Riesgo; n=33)": 0.719,
+  "fps>=40 vs 30 (dentro de Normal+Parkinson; n=84)": 0.627
+ },
+ "nota": "AUC 0.5 = las caracteristicas no codifican esa propiedad; 1.0 = la codifican perfectamente. n pequeno: usar solo como indicador."
+}

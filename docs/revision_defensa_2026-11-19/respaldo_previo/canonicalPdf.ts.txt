@@ -1,0 +1,47 @@
+import { mapEvaluationToAnalysisResult } from "./mapApiAnalysis";
+import { keyGaitMetricGroups, modelQualityWarnings, analysisQuality, experimentalClassification } from "./resultPresentation";
+import { readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { jsPDF } from "jspdf";
+import { canonicalAnalysisPath } from "./canonicalAnalysis";
+import { prisma } from "@/lib/prisma";
+
+export async function canonicalDocument(reportId: string, userId: string) {
+ const report = await prisma.medicalReport.findFirst({ where: { id: reportId, userId }, include: { user: true, analysis: { include: { parameters: true, signals: true, conditions: true } } } });
+ if (!report || report.analysis.userId !== userId) return null;
+ const parsed = JSON.parse(await readFile(canonicalAnalysisPath(report.analysisId), "utf8"));
+ const analysis: { id: string; detectedClass: string | null; confidence: number | null; analysisReliable: boolean; evaluation: { summary: string; recommendations?: string[] }; videoMetrics?: Record<string, number | null>; classProbabilitiesList: Array<{ key: string; shortLabel: string; probability: number }>; modelWarnings: Array<{ code: string; message: string }> } = parsed.analysis;
+ const storedClass = report.analysis.parameters.find(p => p.name === "Clase predicha por el modelo experimental");
+ const storedConfidence = report.analysis.parameters.find(p => p.name === "Confianza del modelo");
+ if (analysis.id !== report.analysisId || analysis.evaluation.summary !== report.analysis.summary || (storedClass?.state ?? null) !== analysis.detectedClass) throw new Error("El archivo canónico no coincide con el registro");
+ if (analysis.analysisReliable && (analysis.confidence === null || storedConfidence?.value !== `${Math.round(analysis.confidence * 100)}%` || analysis.classProbabilitiesList.length !== 4 || analysis.classProbabilitiesList.some(p => !Number.isFinite(p.probability) || p.probability < 0 || p.probability > 1) || Math.abs(analysis.classProbabilitiesList.reduce((s,p)=>s+p.probability,0)-1)>0.001)) throw new Error("Probabilidades canónicas incompletas");
+ if (analysis.analysisReliable) {
+  const expected = ["normal", "parkinson", "esclerosis_multiple", "riesgo_caida"];
+  if (new Set(analysis.classProbabilitiesList.map(p => p.key)).size !== 4 || expected.some(k => !analysis.classProbabilitiesList.some(p => p.key === k))) throw new Error("Clases inconsistentes");
+  const best = [...analysis.classProbabilitiesList].sort((a,b) => b.probability-a.probability)[0];
+  if (best.key !== analysis.detectedClass || Math.abs(best.probability-(analysis.confidence ?? -1))>1e-6) throw new Error("Clase o confianza inconsistente");
+ } else if (analysis.detectedClass !== null || analysis.confidence !== null || analysis.classProbabilitiesList.length !== 0) throw new Error("Resultado no concluyente inconsistente");
+ const ui = mapEvaluationToAnalysisResult(parsed.analysis);
+ const qualityWarnings = modelQualityWarnings(ui);
+ const uiData = { metrics: keyGaitMetricGroups(ui), warnings: [...qualityWarnings.alerts, ...qualityWarnings.notes], confidence: experimentalClassification(ui).confidenceText, caveat: experimentalClassification(ui).caveat, quality: analysisQuality(ui).explanation };
+ const data = { version: "canonical-v4", ui: uiData, reportId, analysisId: report.analysisId, name: report.user.name, date: report.createdAt.toISOString(), summary: report.analysis.summary, parameters: [...report.analysis.parameters].sort((a,b)=>a.name.localeCompare(b.name)), signals: [...report.analysis.signals].sort((a,b)=>a.name.localeCompare(b.name)), conditions: report.analysis.conditions, analysis };
+ const hash = createHash("sha256").update(JSON.stringify(data)).digest("hex"); return { data, hash };
+}
+export function renderCanonicalPdf(doc: NonNullable<Awaited<ReturnType<typeof canonicalDocument>>>) {
+ const pdf = new jsPDF(); pdf.setCreationDate(new Date(doc.data.date)); pdf.setFileId(doc.hash.slice(0,32)); let y = 20;
+ function text(s: string, size = 10, bold = false) { pdf.setFont("helvetica", bold ? "bold" : "normal");pdf.setFontSize(size);const lines: string[] = pdf.splitTextToSize(s, 178); for (const line of lines) { if(y>277){pdf.addPage();y=20;}pdf.text(line,16,y);y+=size===10?5.5:7;} y+=3; }
+ function section(s: string) { if(y>255){pdf.addPage();y=20;}pdf.setDrawColor(18,79,72);pdf.line(16,y,194,y);y+=9;pdf.setTextColor(18,79,72);text(s,12,true);pdf.setTextColor(35,55,55); }
+ pdf.setTextColor(18,79,72);text("Análisis de Marcha IA",12,true);text("Informe de análisis de marcha",20,true);text("Documento orientativo. No constituye diagnóstico médico.");
+ section("1. Datos del análisis");text(`Usuario evaluado: ${doc.data.name}`);text(`Fecha del registro: ${doc.data.date.slice(0,10)}`);text(`Análisis: ${doc.data.analysisId}`);
+ section("2. Resultado");text(doc.data.summary);text(doc.data.analysis.analysisReliable ? `Confianza del modelo: ${doc.data.ui.confidence} (valor registrado: ${doc.data.analysis.confidence})` : "Análisis no concluyente por calidad del video. Sin clasificación ni confianza.",11,true);
+ if(doc.data.ui.caveat) text(doc.data.ui.caveat);
+ if(doc.data.analysis.analysisReliable) for(const key of ["normal","parkinson","esclerosis_multiple","riesgo_caida"]){const p=doc.data.analysis.classProbabilitiesList.find(p=>p.key===key);if(!p)throw new Error("Clase ausente");text(`${p.shortLabel}: ${Math.round(p.probability*100)}% (${p.probability})`);}
+ text("La confianza expresa la salida del modelo, no la probabilidad de padecer una enfermedad.");
+ section("3. Advertencias del resultado");if(!doc.data.analysis.analysisReliable)text(doc.data.ui.quality);for(const w of doc.data.ui.warnings)text(`${w.code}: ${w.title}. ${w.message}`);
+ section("4. Características de marcha presentadas");for(const group of doc.data.ui.metrics)for(const p of group.params)text(`${p.label}: ${p.value}${p.unit ? " " + p.unit : ""}. ${p.explanation}`);
+ section("Registro técnico de persistencia (valores legados)");for(const p of doc.data.parameters)text(`${p.name}: ${p.value}. ${p.state}`);
+ section("5. Observaciones guardadas");for(const s of doc.data.signals)text(`${s.name}: ${s.description}`);
+ section("6. Recomendaciones registradas");for(const recommendation of doc.data.analysis.evaluation.recommendations ?? [])text(recommendation);
+ section("7. Advertencia");text("Clasificación experimental de patrones de marcha. No confirma una enfermedad. Requiere valoración por un profesional de salud.");
+ return Buffer.from(pdf.output("arraybuffer"));
+}

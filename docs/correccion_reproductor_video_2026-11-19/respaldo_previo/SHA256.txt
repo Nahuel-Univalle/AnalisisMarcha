@@ -1,0 +1,2 @@
+e484b9a4c3025eda7825aa82dce7aeb67f44261c42de12f3f54967c0dd667806 *docs/correccion_reproductor_video_2026-11-19/respaldo_previo/AnalysisContext.tsx
+362c9ae22cf88cc1595130c275ddb514719306b72b635c3f91bc2efbc42baa9a *docs/correccion_reproductor_video_2026-11-19/respaldo_previo/VideoStage.tsx

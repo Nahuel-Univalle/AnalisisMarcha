@@ -1,0 +1,146 @@
+{
+ "scenario": "replay_mov",
+ "video": "analysis_074132c1-68da-4605-9664-ff4d1aa073e7.MOV",
+ "checks": [
+  {
+   "name": "upload page shows the preview <video>",
+   "passed": true
+  },
+  {
+   "name": "continue to validation",
+   "passed": true
+  },
+  {
+   "name": "start analysis",
+   "passed": true
+  },
+  {
+   "name": "player present at processing start",
+   "passed": true,
+   "detail": {
+    "sameEl": true,
+    "hasVideo": true,
+    "src": "blob:http://127.0.0.1:3054/2b94f5e7-d0c5",
+    "err": null,
+    "rs": 4,
+    "paused": true,
+    "ended": false,
+    "ct": 0,
+    "dur": 11.89,
+    "msgShown": false,
+    "processing": true
+   }
+  },
+  {
+   "name": "analysis running while we test",
+   "passed": true
+  },
+  {
+   "name": "first play()",
+   "passed": true
+  },
+  {
+   "name": "video reached the end",
+   "passed": false,
+   "detail": {
+    "sameEl": false,
+    "hasVideo": false,
+    "src": null,
+    "err": null,
+    "rs": null,
+    "paused": null,
+    "ended": null,
+    "ct": null,
+    "dur": null,
+    "msgShown": true,
+    "processing": true
+   }
+  },
+  {
+   "name": "analysis still running at end of first playback",
+   "passed": true,
+   "detail": {
+    "sinceStartS": 21
+   }
+  }
+ ],
+ "notes": [],
+ "error": "{\"exceptionId\":1,\"text\":\"Uncaught\",\"lineNumber\":0,\"columnNumber\":31,\"scriptId\":\"35\",\"stackTrace\":{\"callFrames\":[{\"functionName\":\"\",\"scriptId\":\"35\",\"url\":\"\",\"lineNumber\":0,\"columnNumber\":31}]},\"exception\":{\"type\":\"object\",\"subtype\":\"error\",\"className\":\"TypeError\",\"description\":\"TypeError: Cannot read",
+ "dump": {
+  "ev": [
+   {
+    "n": "play",
+    "t": 10633,
+    "err": null,
+    "msg": null,
+    "rs": 4,
+    "ct": 0
+   },
+   {
+    "n": "error",
+    "t": 13572,
+    "err": 3,
+    "msg": "PipelineStatus::PIPELINE_ERROR_DECODE: Failed to send audio packet for decoding: {timestamp=11882667 duration=11708 size=282 is_key_frame=1 encrypted=0}",
+    "rs": 4,
+    "ct": 11.42
+   },
+   {
+    "n": "pause",
+    "t": 13575,
+    "err": 3,
+    "msg": "PipelineStatus::PIPELINE_ERROR_DECODE: Failed to send audio packet for decoding: {timestamp=11882667 duration=11708 size=282 is_key_frame=1 encrypted=0}",
+    "rs": 4,
+    "ct": 11.42
+   }
+  ],
+  "console": [],
+  "net": [
+   {
+    "requestId": "22488.84",
+    "timestamp": 626637.767587,
+    "type": "Media",
+    "errorText": "net::ERR_ABORTED",
+    "canceled": true
+   },
+   {
+    "blobResponse": 206
+   },
+   {
+    "blobResponse": 206
+   },
+   {
+    "requestId": "22488.94",
+    "timestamp": 626639.324351,
+    "type": "Media",
+    "errorText": "net::ERR_ABORTED",
+    "canceled": true
+   },
+   {
+    "blobResponse": 206
+   },
+   {
+    "blobResponse": 206
+   },
+   {
+    "requestId": "22488.101",
+    "timestamp": 626641.876165,
+    "type": "Media",
+    "errorText": "net::ERR_ABORTED",
+    "canceled": true
+   },
+   {
+    "blobResponse": 206
+   },
+   {
+    "blobResponse": 206
+   },
+   {
+    "requestId": "22488.108",
+    "timestamp": 626644.392641,
+    "type": "Media",
+    "errorText": "net::ERR_ABORTED",
+    "canceled": true
+   }
+  ]
+ }
+}

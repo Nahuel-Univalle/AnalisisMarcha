@@ -1,0 +1,147 @@
+{
+  "environment": {
+    "host": "127.0.0.1",
+    "port": "5433",
+    "database": "/analisis_marcha_db"
+  },
+  "selectedModel": {
+    "key": "v5cr",
+    "version": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+    "directory": "gait_deep_v5cr",
+    "predictor": "15_predict_deep_video_v5cr.py",
+    "weightsSha256": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+    "accuracy": 0.8598,
+    "macroF1": 0.7852,
+    "trainingVideos": 117,
+    "trainingSubjects": 67
+  },
+  "artifactsPresent": true,
+  "visualTools": "unavailable; no desktop/mobile visual approval",
+  "http": [
+    {
+      "path": "/",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/login",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/admin/summary",
+      "status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/me/summary",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/me/analyses",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/me/reports",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/dashboard",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/analisis",
+      "status": 404,
+      "expected": 200,
+      "passed": false
+    },
+    {
+      "path": "/seguimiento",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/me/reports/[id]/pdf",
+      "status": 404
+    },
+    {
+      "path": "/api/admin/summary",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/admin",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/admin/analyses",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/admin/reports",
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    }
+  ],
+  "accounts": {
+    "total": 18,
+    "administrators": 3,
+    "ordinaryUsers": 15
+  },
+  "reports": {
+    "total": 79,
+    "canonicalRecordsPresent": 0,
+    "withStoredPdfUrl": 0
+  },
+  "storedModelVersions": [
+    {
+      "version": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+      "count": 74
+    },
+    {
+      "version": "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f",
+      "count": 9
+    }
+  ],
+  "serverReady": true,
+  "existingPdfDownload": {
+    "status": 404,
+    "validPdf": false,
+    "regenerationAttempted": false
+  },
+  "adminModelStatus": {
+    "available": true,
+    "accuracy": 0.8598,
+    "macroF1": 0.7852,
+    "modelVersion": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+    "weightsSha256": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+    "trainingVideos": 117,
+    "trainingSubjects": 67,
+    "validationScope": "Validación interna agrupada por sujeto (5x5), sin validación clínica ni externa",
+    "message": "Modelo experimental de 4 clases disponible"
+  },
+  "notExecuted": [
+    "Browser login and desktop/mobile rendering/interactions",
+    "Real upload in habitual database (would create records)",
+    "PDF regeneration on existing habitual reports (would update their records)"
+  ],
+  "databaseUnchanged": true
+}

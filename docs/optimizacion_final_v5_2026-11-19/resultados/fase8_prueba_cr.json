@@ -1,0 +1,10 @@
+{
+ "ventanas": 633,
+ "ventanas_con_diferencia_bajo_camara_que_sigue(>1e-6)": 0,
+ "max_dif_secuencia": 7.275957614183426e-12,
+ "max_dif_caracteristicas": 0.0,
+ "ventanas_sin_enmascarados": 137,
+ "de_ellas_identicas_a_V5C": 137,
+ "ventanas_con_enmascarados_donde_V5CR_difiere_de_V5C": 370,
+ "criterio_1_cumple": true
+}

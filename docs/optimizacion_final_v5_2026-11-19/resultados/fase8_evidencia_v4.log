@@ -1,0 +1,42 @@
+reproduccion {'coincidencia_prediccion': 1.0} {'macro_f1_media': 0.7252, 'accuracy_media': 0.8342}
+{"prueba": "camara que sigue a la persona (50 % del avance horizontal compensado)", "tipo": "grabacion", "macro_f1": 0.6086, "delta_macro_f1": -0.1166, "IC95_delta_(bootstrap por sujeto)": [-0.1576, -0.0798], "accuracy": 0.6684, "acuerdo_con_prediccion_original": 0.8154, "nota": "camara en mano / acompanando"}
+{"prueba": "camara que sigue a la persona (100 %: la cadera no se desplaza en la imagen)", "tipo": "grabacion", "macro_f1": 0.4004, "delta_macro_f1": -0.3248, "IC95_delta_(bootstrap por sujeto)": [-0.3688, -0.2791], "accuracy": 0.3761, "acuerdo_con_prediccion_original": 0.5009, "nota": "camara en mano / acompanando"}
+{
+ "version": "v4",
+ "linea_base": {
+  "macro_f1_media": 0.7252,
+  "accuracy_media": 0.8342
+ },
+ "pruebas": [
+  {
+   "prueba": "camara que sigue a la persona (50 % del avance horizontal compensado)",
+   "tipo": "grabacion",
+   "macro_f1": 0.6086,
+   "delta_macro_f1": -0.1166,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.1576,
+    -0.0798
+   ],
+   "accuracy": 0.6684,
+   "acuerdo_con_prediccion_original": 0.8154,
+   "nota": "camara en mano / acompanando"
+  },
+  {
+   "prueba": "camara que sigue a la persona (100 %: la cadera no se desplaza en la imagen)",
+   "tipo": "grabacion",
+   "macro_f1": 0.4004,
+   "delta_macro_f1": -0.3248,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.3688,
+    -0.2791
+   ],
+   "accuracy": 0.3761,
+   "acuerdo_con_prediccion_original": 0.5009,
+   "nota": "camara en mano / acompanando"
+  }
+ ],
+ "calibracion": {
+  "confianza_media_cruda": 0.7813,
+  "exactitud": 0.8342
+ }
+}

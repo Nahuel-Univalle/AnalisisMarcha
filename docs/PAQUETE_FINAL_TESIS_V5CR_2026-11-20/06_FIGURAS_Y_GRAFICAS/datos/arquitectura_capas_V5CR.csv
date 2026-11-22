@@ -1,0 +1,13 @@
+﻿capa,parametros_entrenables
+"seq_net.0 Conv1d(68→24, k=5, pad=2)",8184
+seq_net.1 BatchNorm1d(24),48
+"seq_net.4 Conv1d(24→32, k=3, dilación=2)",2336
+seq_net.5 BatchNorm1d(32),64
+"seq_net.8 Conv1d(32→32, k=3, dilación=4)",3104
+seq_net.9 BatchNorm1d(32),64
+feat_net.0 Linear(33→24),816
+feat_net.1 BatchNorm1d(24),48
+feat_net.4 Linear(24→16),400
+head.1 Linear(80→32),2592
+head.3 Linear(32→4),132
+TOTAL,17788

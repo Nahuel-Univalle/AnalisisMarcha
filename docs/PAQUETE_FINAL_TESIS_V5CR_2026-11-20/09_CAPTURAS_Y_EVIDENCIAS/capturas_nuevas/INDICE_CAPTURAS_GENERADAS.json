@@ -1,0 +1,82 @@
+{
+ "entorno": "build de producción local; BD técnica puerto 55432 (esquema propio); cuentas @example.invalid; Cloudinary vacío",
+ "anonimizacion": "elementos <video> ocultos con CSS visibility:hidden al capturar",
+ "capturas": [
+  {
+   "archivo": "01_inicio_de_sesion.png",
+   "contenido": "Pantalla de inicio de sesión"
+  },
+  {
+   "archivo": "02_registro.png",
+   "contenido": "Pantalla de registro de usuario"
+  },
+  {
+   "archivo": "03_panel_principal_usuario.png",
+   "contenido": "Panel principal del usuario (cuenta técnica, sin análisis previos)"
+  },
+  {
+   "archivo": "04_carga_de_video_vacia.png",
+   "contenido": "Carga de video: estado inicial"
+  },
+  {
+   "archivo": "05_carga_de_video_con_vista_previa.png",
+   "contenido": "Video cargado (el fotograma del video se oculta por privacidad)"
+  },
+  {
+   "archivo": "06_revision_del_video.png",
+   "contenido": "Revisión del video antes del análisis (video oculto por privacidad)"
+  },
+  {
+   "archivo": "07_procesamiento_en_curso.png",
+   "contenido": "Procesamiento V5-CR en curso: etapas y reproductor independiente (video oculto por privacidad)"
+  },
+  {
+   "archivo": "08_procesamiento_completado.png",
+   "contenido": "Procesamiento completado"
+  },
+  {
+   "archivo": "09_resultado_V5CR_probabilidades_y_advertencias.png",
+   "contenido": "Resultado: clase, probabilidades por clase, advertencias y parámetros (video oculto)"
+  },
+  {
+   "archivo": "10_evaluacion_detallada.png",
+   "contenido": "Evaluación detallada (video oculto por privacidad)"
+  },
+  {
+   "archivo": "12_informe_visual.png",
+   "contenido": "Informe visual (vista previa A4; mismo modelo de datos que el PDF descargable)"
+  },
+  {
+   "archivo": "13_informe_guardado_e_historial_de_informes.png",
+   "contenido": "Informe guardado y lista «Informes guardados» con «Ver informe» y «Descargar PDF»"
+  },
+  {
+   "archivo": "14_seguimiento_historial_de_analisis.png",
+   "contenido": "Seguimiento: historial de análisis del usuario"
+  },
+  {
+   "archivo": "11_informes_guardados_tras_recargar.png",
+   "contenido": "Pantalla de informes tras recargar: sin resultado en memoria, con la lista de informes guardados leída de la base"
+  },
+  {
+   "archivo": "15_movil_panel_principal.png",
+   "contenido": "Vista móvil (390 px): panel principal"
+  },
+  {
+   "archivo": "16_movil_historial.png",
+   "contenido": "Vista móvil (390 px): historial"
+  },
+  {
+   "archivo": "17_administracion_estado_del_modelo.png",
+   "contenido": "Panel de administración: estado y versión del modelo (cuenta técnica de administrador)"
+  },
+  {
+   "archivo": "18_administracion_analisis.png",
+   "contenido": "Administración: análisis del sistema"
+  },
+  {
+   "archivo": "19_administracion_informes_guardados.png",
+   "contenido": "Administración: informes guardados del sistema"
+  }
+ ]
+}

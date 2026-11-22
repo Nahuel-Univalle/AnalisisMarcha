@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "name": "decimal display trimmed",
+      "passed": true
+    },
+    {
+      "name": "integer has no artificial decimals",
+      "passed": true
+    },
+    {
+      "name": "tiny nonzero value is not rounded to zero",
+      "passed": true
+    },
+    {
+      "name": "version identifier remains exact",
+      "passed": true
+    },
+    {
+      "name": "no redundant machine class",
+      "passed": true
+    },
+    {
+      "name": "legacy rhythm uses presentation precision",
+      "passed": true
+    },
+    {
+      "name": "rendering does not mutate raw scientific data",
+      "passed": true
+    },
+    {
+      "name": "valid PDF output",
+      "passed": true
+    }
+  ],
+  "passed": 8,
+  "failed": 0,
+  "source": "Existing real-video technical test output; no database writes or new patient",
+  "originalScientificDataSha256": "5d8a5fe4376356f09dbd603511c9cbadadf7fbaf838d3e1fd8e420c6a911d8ba"
+}

@@ -1,0 +1,22 @@
+PASS setup: fresh test schema, never public or habitual
+PASS setup: isolated schema created
+PASS setup: original real-video technical result exists
+PASS setup: actual previous technical PDF exists
+PASS setup: third existing technical record for missing-artifact fixture
+PASS setup: previous PDF checksum matches its original manifest
+PASS setup: test server ready
+PASS auth: unauthenticated request rejected
+PASS auth: another account cannot read the report
+PASS http: missing historical artifact has explicit 404 JSON
+PASS http: cannot silently reconstruct a missing historical record
+PASS integrity: unavailable report row was not changed
+PASS http: history distinguishes unavailable and ungenerated PDF
+PASS http: complete source is distinguished from missing history
+PASS http: new PDF generated from unchanged original technical data
+PASS http: new PDF downloaded with valid MIME and header
+PASS http: repeated download is byte-identical
+PASS http: compatible legacy cache downloaded byte-for-byte
+PASS http: history only marks validated PDFs as available
+PASS http: admin list includes true PDF availability
+PASS integrity: previous original PDF file untouched
+PASS integrity: source technical records unchanged

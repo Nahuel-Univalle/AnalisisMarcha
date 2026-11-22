@@ -1,0 +1,217 @@
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://127.0.0.1:3000
+- Network:       http://127.0.0.1:3000
+- Environments: .env.local, .env
+✓ Ready in 1247ms
+
+ GET /api/auth/me 401 in 1039ms (next.js: 951ms, application-code: 87ms)
+○ Compiling /api/me/reports/[id]/pdf ...
+ GET /api/me/reports/cmpxgj4oh000gul801oeh4b4l/pdf 404 in 12.5s (next.js: 9.9s, application-code: 2.6s)
+ GET /api/me/reports/cmpy0zos3000hul7440ewxqaf/pdf 404 in 62ms (next.js: 18ms, application-code: 44ms)
+ GET /api/me/reports/cmqensbet000ful0ocsx5xqzs/pdf 404 in 40ms (next.js: 5ms, application-code: 36ms)
+ GET /api/me/reports/cmts2dqv2000eulgceh6bp8p2/pdf 404 in 39ms (next.js: 6ms, application-code: 33ms)
+ GET /api/me/reports/cmu4ilzip000wul10w851plps/pdf 404 in 37ms (next.js: 6ms, application-code: 31ms)
+ GET /api/me/reports/cmvibtifu000eulus26hbhzeo/pdf 404 in 39ms (next.js: 4ms, application-code: 35ms)
+ GET /api/me/reports/cmvubcp6m001xulykjg5dd9sh/pdf 404 in 36ms (next.js: 5ms, application-code: 32ms)
+ GET /api/me/reports/cmvubcp7z001zulykj4yw1j3i/pdf 404 in 43ms (next.js: 5ms, application-code: 38ms)
+ GET /api/me/reports/cmvubcp9a0021ulyk5qg66pnv/pdf 404 in 39ms (next.js: 4ms, application-code: 34ms)
+ GET /api/me/reports/cmvubcpag0023ulykli9oqm44/pdf 404 in 39ms (next.js: 5ms, application-code: 34ms)
+ GET /api/me/reports/cmvubh01p002oulykfmd67nrp/pdf 404 in 28ms (next.js: 4ms, application-code: 24ms)
+ GET /api/me/reports/cmvubl4sq003aulyk5cso7o8u/pdf 404 in 36ms (next.js: 5ms, application-code: 31ms)
+ GET /api/me/reports/cmvufxcdj009hul1866ghxzlq/pdf 404 in 40ms (next.js: 4ms, application-code: 36ms)
+ GET /api/me/reports/cmvufxcfc009jul185dhomqro/pdf 404 in 40ms (next.js: 4ms, application-code: 36ms)
+ GET /api/me/reports/cmvufxcgl009lul18i5t3wrp7/pdf 404 in 40ms (next.js: 4ms, application-code: 35ms)
+ GET /api/me/reports/cmvufxchp009nul18srn92qpw/pdf 404 in 27ms (next.js: 4ms, application-code: 23ms)
+ GET /api/me/reports/cmvufxcj0009pul1829drsn3q/pdf 404 in 43ms (next.js: 4ms, application-code: 39ms)
+ GET /api/me/reports/cmvufxck7009rul18dz9avj3q/pdf 404 in 41ms (next.js: 5ms, application-code: 36ms)
+ GET /api/me/reports/cmvufxclf009tul18bp3ql2mh/pdf 404 in 39ms (next.js: 5ms, application-code: 35ms)
+ GET /api/me/reports/cmvufxcmk009vul18x7f711rk/pdf 404 in 39ms (next.js: 5ms, application-code: 35ms)
+ GET /api/me/reports/cmvufxcns009xul18dc1eh8ef/pdf 404 in 41ms (next.js: 5ms, application-code: 37ms)
+ GET /api/me/reports/cmvufxcoz009zul18q0accap7/pdf 404 in 27ms (next.js: 5ms, application-code: 22ms)
+ GET /api/me/reports/cmvufxcq500a1ul185nn51jx8/pdf 404 in 42ms (next.js: 5ms, application-code: 37ms)
+ GET /api/me/reports/cmvufxcra00a3ul180ohyc1k8/pdf 404 in 26ms (next.js: 4ms, application-code: 22ms)
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+⨯ Failed to generate static paths for /api/me/reports/[id]/pdf:
+TypeError: Cannot read properties of undefined (reading 'definition')
+    at ignore-listed frames {
+  type: 'TypeError'
+}
+ GET /api/me/reports/cmvufxcsg00a5ul186lp6zinm/pdf 404 in 79s (next.js: 4ms, application-code: 79s)
+⚠ Slow filesystem detected. The benchmark took 122076ms. If c:\Users\fnahu\Desktop\GITMarcha\AnalisisMarcha\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+ GET /api/me/reports/cmvufxctn00a7ul18uchm6o28/pdf 404 in 31.0s (next.js: 31.0s, application-code: 58ms)
+ GET /api/me/reports/cmvufxcux00a9ul18oravjj4s/pdf 404 in 63ms (next.js: 20ms, application-code: 43ms)
+ GET /api/me/reports/cmvufxcwc00abul1849b80jb3/pdf 404 in 71ms (next.js: 19ms, application-code: 51ms)
+ GET /api/me/reports/cmvufxcxl00adul18pat5kmtb/pdf 404 in 48ms (next.js: 6ms, application-code: 42ms)
+ GET /api/me/reports/cmvufxcz200aful180hka211e/pdf 404 in 63ms (next.js: 9ms, application-code: 54ms)
+ GET /api/me/reports/cmvufxd0a00ahul18pe4g4yha/pdf 404 in 52ms (next.js: 8ms, application-code: 45ms)
+ GET /api/me/reports/cmvufxd1j00ajul181r8qscsq/pdf 404 in 50ms (next.js: 8ms, application-code: 42ms)
+ GET /api/me/reports/cmvug41f000b4ul1837vu0z94/pdf 404 in 49ms (next.js: 8ms, application-code: 42ms)
+ GET /api/me/reports/cmvug7grj00bqul18npwyb5ei/pdf 404 in 50ms (next.js: 7ms, application-code: 42ms)
+ GET /api/me/reports/cmvuig3jb009hul48wg9nmvju/pdf 404 in 47ms (next.js: 6ms, application-code: 41ms)
+ GET /api/me/reports/cmvuig3ky009jul484t0z3w67/pdf 404 in 47ms (next.js: 7ms, application-code: 40ms)
+ GET /api/me/reports/cmvuig3ma009lul48trbz39mr/pdf 404 in 49ms (next.js: 7ms, application-code: 42ms)
+ GET /api/me/reports/cmvuig3ng009nul48bnfnkfwo/pdf 404 in 40ms (next.js: 6ms, application-code: 33ms)
+ GET /api/me/reports/cmvuig3on009pul48vwo2kagl/pdf 404 in 43ms (next.js: 6ms, application-code: 37ms)
+ GET /api/me/reports/cmvuig3pw009rul48x56d7oqc/pdf 404 in 48ms (next.js: 7ms, application-code: 41ms)
+ GET /api/me/reports/cmvuig3r6009tul48p5eawcvc/pdf 404 in 39ms (next.js: 6ms, application-code: 34ms)
+ GET /api/me/reports/cmvuig3si009vul48lzgydp5l/pdf 404 in 40ms (next.js: 6ms, application-code: 34ms)
+ GET /api/me/reports/cmvuig3to009xul487l0r15nu/pdf 404 in 40ms (next.js: 5ms, application-code: 35ms)
+ GET /api/me/reports/cmvuig3uu009zul48d4cvz2od/pdf 404 in 40ms (next.js: 6ms, application-code: 35ms)
+ GET /api/me/reports/cmvuig3w300a1ul48lq8r7zzb/pdf 404 in 39ms (next.js: 6ms, application-code: 33ms)
+ GET /api/me/reports/cmvuig3xa00a3ul48c492peqx/pdf 404 in 39ms (next.js: 6ms, application-code: 33ms)
+ GET /api/me/reports/cmvuig3yh00a5ul48lt8rnf1n/pdf 404 in 39ms (next.js: 6ms, application-code: 33ms)
+ GET /api/me/reports/cmvuig3zm00a7ul48232yd34a/pdf 404 in 40ms (next.js: 6ms, application-code: 34ms)
+ GET /api/me/reports/cmvuig40u00a9ul483cv2h42l/pdf 404 in 38ms (next.js: 6ms, application-code: 32ms)
+ GET /api/me/reports/cmvuig42100abul48rqbjp5hj/pdf 404 in 41ms (next.js: 6ms, application-code: 35ms)
+ GET /api/me/reports/cmvuig43800adul48ywczo83y/pdf 404 in 50ms (next.js: 6ms, application-code: 44ms)
+ GET /api/me/reports/cmvuig44b00aful48q3oxojpd/pdf 404 in 42ms (next.js: 6ms, application-code: 35ms)
+ GET /api/me/reports/cmvuig45n00ahul48c7wffx9i/pdf 404 in 46ms (next.js: 7ms, application-code: 39ms)
+ GET /api/me/reports/cmvuig46w00ajul48ke73i63u/pdf 404 in 36ms (next.js: 5ms, application-code: 31ms)
+ GET /api/me/reports/cmvuimqn900b4ul48kxn1206u/pdf 404 in 51ms (next.js: 5ms, application-code: 45ms)
+ GET /api/me/reports/cmvuiq86p00bqul48j8s8zahp/pdf 404 in 61ms (next.js: 9ms, application-code: 52ms)
+ GET /api/me/reports/cmw0xa4lc008oulj8oo8e9xtn/pdf 404 in 55ms (next.js: 9ms, application-code: 46ms)
+ GET /api/me/reports/cmw0xa4my008qulj8ykhxmtnp/pdf 404 in 56ms (next.js: 9ms, application-code: 47ms)
+ GET /api/me/reports/cmw0xa4om008sulj8fkd5iif0/pdf 404 in 57ms (next.js: 9ms, application-code: 48ms)
+ GET /api/me/reports/cmw0xa4q0008uulj85ooipio8/pdf 404 in 57ms (next.js: 8ms, application-code: 49ms)
+ GET /api/me/reports/cmw0xa4ra008wulj83wq7kcw4/pdf 404 in 44ms (next.js: 9ms, application-code: 35ms)
+ GET /api/me/reports/cmw0xa4sl008yulj8x7s1qy2i/pdf 404 in 1313ms (next.js: 1264ms, application-code: 49ms)
+ GET /api/me/reports/cmw0xa4ty0090ulj8hof8vncx/pdf 404 in 53ms (next.js: 9ms, application-code: 44ms)
+ GET /api/me/reports/cmw0xa4vc0092ulj8z8odckx4/pdf 404 in 68ms (next.js: 12ms, application-code: 56ms)
+ GET /api/me/reports/cmw0xa4wq0094ulj8egrmyyp7/pdf 404 in 58ms (next.js: 9ms, application-code: 49ms)
+ GET /api/me/reports/cmw0xa4y00096ulj8qlrhhupa/pdf 404 in 76ms (next.js: 19ms, application-code: 57ms)
+ GET /api/me/reports/cmw0xa4zf0098ulj8mtb6c5tx/pdf 404 in 47ms (next.js: 6ms, application-code: 41ms)
+ GET /api/me/reports/cmw0xa50s009aulj87ldvmexr/pdf 404 in 57ms (next.js: 10ms, application-code: 47ms)
+ GET /api/me/reports/cmw0xa523009culj80xx1il9z/pdf 404 in 54ms (next.js: 8ms, application-code: 46ms)
+ GET /api/me/reports/cmw0xa53l009eulj8b65ioll3/pdf 404 in 60ms (next.js: 9ms, application-code: 51ms)
+ GET /api/me/reports/cmw0xa550009gulj8qd9v4w0z/pdf 404 in 55ms (next.js: 11ms, application-code: 44ms)
+ GET /api/me/reports/cmw0xa56f009iulj8iuatk1sz/pdf 404 in 53ms (next.js: 9ms, application-code: 44ms)
+ GET /api/me/reports/cmw0xa57u009kulj8o4a5yysa/pdf 404 in 57ms (next.js: 9ms, application-code: 48ms)
+ GET /api/me/reports/cmw0xa595009mulj8hs6kgxdc/pdf 404 in 56ms (next.js: 9ms, application-code: 47ms)
+ GET /api/me/reports/cmw0xa5ah009oulj8s1xh101f/pdf 404 in 53ms (next.js: 9ms, application-code: 44ms)
+ GET /api/me/reports/cmw0xa5br009qulj86igkxelf/pdf 404 in 49ms (next.js: 8ms, application-code: 41ms)
+ GET /api/me/reports/cmw0xe1iu00a9ulj8d519v88q/pdf 404 in 79ms (next.js: 19ms, application-code: 60ms)
+ GET /api/me/reports/cmw0xg7ms00atulj8ktp373wb/pdf 404 in 71ms (next.js: 9ms, application-code: 62ms)
+ GET /api/me/reports/cmw0xkdji00bculj84huxalaa/pdf 404 in 79ms (next.js: 14ms, application-code: 65ms)
+ GET /api/me/reports 200 in 1628ms (next.js: 1520ms, application-code: 107ms)
+ GET /api/me/reports 200 in 62ms (next.js: 12ms, application-code: 50ms)
+ GET /api/me/reports 200 in 77ms (next.js: 29ms, application-code: 48ms)
+ GET /api/me/reports 200 in 53ms (next.js: 9ms, application-code: 44ms)
+ GET /api/me/reports 200 in 89ms (next.js: 23ms, application-code: 66ms)
+ GET /api/me/reports 200 in 1924ms (next.js: 10ms, application-code: 1914ms)
+ GET /api/me/reports 200 in 79ms (next.js: 17ms, application-code: 63ms)
+ GET /api/me/reports 200 in 130ms (next.js: 17ms, application-code: 113ms)

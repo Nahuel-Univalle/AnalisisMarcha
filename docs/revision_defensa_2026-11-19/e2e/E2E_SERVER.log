@@ -1,0 +1,42 @@
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://127.0.0.1:3047
+- Network:       http://127.0.0.1:3047
+- Environments: .env.local, .env
+✓ Ready in 1108ms
+Creating turbopack project {
+  dir: 'C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha',
+  testMode: true
+}
+
+ GET /api/auth/me 401 in 560ms (next.js: 347ms, application-code: 213ms)
+ GET /api/admin/summary 401 in 65ms (next.js: 44ms, application-code: 21ms)
+ POST /api/auth/login 200 in 208ms (next.js: 72ms, application-code: 136ms)
+ GET /api/me/reports/cmwnyxuop000gul3wzk1tqc3c/pdf 200 in 1748ms (next.js: 1692ms, application-code: 56ms)
+ POST /api/analysis/video 400 in 143ms (next.js: 108ms, application-code: 35ms)
+SPRINT4_DATASET_EVIDENCE {"analysisId":"a30ee3ae-056c-488a-a438-2644ada91ce4","category":"control","iteration7Status":null,"iteration8Status":null,"datasetFile":null,"error":"disabled: ENABLE_LEGACY_SPRINT4_DATASET no está activado"}
+CLOUDINARY_VIDEO_UPLOAD_FALLBACK missing_config: Faltan variables de Cloudinary: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_FOLDER | missing_config: Faltan variables de Cloudinary: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_FOLDER
+GAIT_DEBUG_LAST_ANALYSIS {"metrics":{"walkingSpeed":0.091629,"cadence":61.016949,"stepLength":0.079801,"armSwing":0.125417,"symmetry":0.884615,"gaitVariability":0.224379},"metricAuditIssues":[],"modelOutput":{"modelSource":"gait_deep_model","modelVersion":"gait_deep_v5exp_V5CR_7e9ed60965fe","analysisReliable":true,"detectedClass":"normal","modelUsed":true,"modelUsedForVideo":true,"predictionLabel":"control","predictionConfidence":0.9480193526590531,"controlProbability":null,"parkinsonProbability":0.01428299531665668,"riskLevel":"bajo","predictionBasis":"experimental_v5cr_temporal_cnn_hip_relative_interpolation_mean_window_logits"},"rulesTriggered":[{"name":"Balanceo de brazos reducido o asimétrico","relevance":"ALTO","description":"El sistema observó menor movimiento o diferencia entre ambos brazos durante la caminata. Esta característica puede presentarse en diferentes alteraciones de la marcha."},{"name":"Postura alterada","relevance":"MEDIO","description":"El sistema observó una inclinación o cambio postural durante el desplazamiento."},{"name":"Pasos irregulares","relevance":"MEDIO","description":"El sistema observó que los pasos no mantuvieron una regularidad constante."}],"pythonSignals":["estabilidad_tronco_reducida","variabilidad_movimiento_alta"],"iteration7":{"status":null,"poseLandmarksFile":null,"gaitBasicParametersFile":null,"validationReportFile":null},"iteration8":{"status":null,"gaitFeaturesDatasetFile":null,"trainFile":null,"validationFile":null,"testFile":null,"validationReportFile":null},"datasetCategory":"control","comparison":{"modelSuggestsParkinson":false,"observationsSuggestParkinson":false,"evaluationPossibleCondition":"sin_alerta","finalDecisionSource":"modelo"},"finalDecision":"Resultado orientativo: Marcha dentro de patrones esperados","generatedSignals":[],"signalDecision":"No high signals because model risk is low","alertLevel":"BAJO"}
+ POST /api/analysis/video 200 in 21.7s (next.js: 6ms, application-code: 21.7s)
+ GET /api/me/analyses 200 in 126ms (next.js: 81ms, application-code: 45ms)
+ POST /api/me/reports 201 in 120ms (next.js: 59ms, application-code: 61ms)
+ POST /api/me/reports/cmwo3pn8f000gul74faf8i7m0/pdf 200 in 140ms (next.js: 18ms, application-code: 122ms)
+ GET /api/me/reports/cmwo3pn8f000gul74faf8i7m0/pdf 200 in 50ms (next.js: 4ms, application-code: 45ms)
+ GET /api/admin/summary 403 in 37ms (next.js: 6ms, application-code: 30ms)
+ POST /api/auth/login 200 in 105ms (next.js: 5ms, application-code: 101ms)
+ GET /api/admin/summary 200 in 91ms (next.js: 5ms, application-code: 85ms)
+ POST /api/auth/login 200 in 149ms (next.js: 6ms, application-code: 143ms)
+PYTHON_VIDEO_ANALYSIS_ERROR Error: No se pudo abrir el video. Verifique que el archivo exista, sea un video válido y no esté dañado.
+    at ChildProcess.<anonymous> (src\app\api\analysis\video\route.ts:328:20)
+  326 |           const parsed = await parseJsonFile(outputJsonPath);
+  327 |           if (parsed.success === false) {
+> 328 |             reject(new Error(String(parsed.error || PYTHON_ANALYSIS_FAILED)));
+      |                    ^
+  329 |             return;
+  330 |           }
+  331 |
+ POST /api/analysis/video 400 in 3.9s (next.js: 6ms, application-code: 3.9s)
+SPRINT4_DATASET_EVIDENCE {"analysisId":"943b71fa-9661-4e7b-9ac9-54854e1d1a4f","category":"control","iteration7Status":null,"iteration8Status":null,"datasetFile":null,"error":"disabled: ENABLE_LEGACY_SPRINT4_DATASET no está activado"}
+CLOUDINARY_VIDEO_UPLOAD_FALLBACK missing_config: Faltan variables de Cloudinary: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_FOLDER | missing_config: Faltan variables de Cloudinary: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_FOLDER
+EXPERIMENTAL_GAIT_MODEL_FAILED Video no decodificable o sin pose suficiente.
+GAIT_DEBUG_LAST_ANALYSIS {"metrics":{"walkingSpeed":0,"cadence":null,"stepLength":0,"armSwing":0,"symmetry":0,"gaitVariability":0},"metricAuditIssues":[{"metric":"cadence","issue":"missing","value":null,"unit":"pasos/min"}],"modelOutput":{"modelSource":"fallback_gait_rules","modelVersion":null,"analysisReliable":false,"detectedClass":null,"modelUsed":false,"modelUsedForVideo":false,"predictionLabel":null,"predictionConfidence":null,"controlProbability":null,"parkinsonProbability":null,"riskLevel":"bajo","predictionBasis":null},"rulesTriggered":[{"name":"Balanceo de brazos reducido o asimétrico","relevance":"ALTO","description":"El sistema observó menor movimiento o diferencia entre ambos brazos durante la caminata. Esta característica puede presentarse en diferentes alteraciones de la marcha."},{"name":"Pasos irregulares","relevance":"MEDIO","description":"El sistema observó que los pasos no mantuvieron una regularidad constante."}],"pythonSignals":["pose_insuficiente"],"iteration7":{"status":null,"poseLandmarksFile":null,"gaitBasicParametersFile":null,"validationReportFile":null},"iteration8":{"status":null,"gaitFeaturesDatasetFile":null,"trainFile":null,"validationFile":null,"testFile":null,"validationReportFile":null},"datasetCategory":"control","comparison":{"modelSuggestsParkinson":false,"observationsSuggestParkinson":false,"evaluationPossibleCondition":"sin_alerta","finalDecisionSource":"observaciones"},"finalDecision":"Análisis no concluyente por calidad del video","generatedSignals":[],"signalDecision":"No clinical signals because video quality is insufficient","alertLevel":"BAJO"}
+ POST /api/analysis/video 200 in 13.3s (next.js: 4ms, application-code: 13.3s)

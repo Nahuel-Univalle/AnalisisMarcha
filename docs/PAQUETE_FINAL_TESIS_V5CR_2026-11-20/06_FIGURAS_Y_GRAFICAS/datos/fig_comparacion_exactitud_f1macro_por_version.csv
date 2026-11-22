@@ -1,0 +1,11 @@
+﻿modelo,metrica,valor,IC95_inf,IC95_sup
+V4 base,Exactitud,0.8342,0.7553,0.9008
+V4 activo (BN recalibrada),Exactitud,0.8513,0.7752,0.9162
+V5-P,Exactitud,0.8803,0.821,0.928
+V5-C,Exactitud,0.841,0.7696,0.8984
+V5-CR,Exactitud,0.8598,0.7982,0.9091
+V4 base,F1 macro,0.7252,0.6295,0.7951
+V4 activo (BN recalibrada),F1 macro,0.7442,0.6548,0.8143
+V5-P,F1 macro,0.7999,0.7213,0.8542
+V5-C,F1 macro,0.7716,0.6704,0.842
+V5-CR,F1 macro,0.7852,0.6965,0.8467

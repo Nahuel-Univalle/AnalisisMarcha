@@ -1,8 +1,9 @@
 import { mapEvaluationToAnalysisResult } from "./mapApiAnalysis";
 import { keyGaitMetricGroups, modelQualityWarnings, analysisQuality, experimentalClassification } from "./resultPresentation";
+import { buildReportModel } from "./reportModel";
+import { renderReportPdf } from "./reportPdf";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
-import { jsPDF } from "jspdf";
 import { canonicalAnalysisPath } from "./canonicalAnalysis";
 import { prisma } from "@/lib/prisma";
 
@@ -28,20 +29,13 @@ export async function canonicalDocument(reportId: string, userId: string) {
  const hash = createHash("sha256").update(JSON.stringify(data)).digest("hex"); return { data, hash };
 }
 export function renderCanonicalPdf(doc: NonNullable<Awaited<ReturnType<typeof canonicalDocument>>>) {
- const pdf = new jsPDF(); pdf.setCreationDate(new Date(doc.data.date)); pdf.setFileId(doc.hash.slice(0,32)); let y = 20;
- function text(s: string, size = 10, bold = false) { pdf.setFont("helvetica", bold ? "bold" : "normal");pdf.setFontSize(size);const lines: string[] = pdf.splitTextToSize(s, 178); for (const line of lines) { if(y>277){pdf.addPage();y=20;}pdf.text(line,16,y);y+=size===10?5.5:7;} y+=3; }
- function section(s: string) { if(y>255){pdf.addPage();y=20;}pdf.setDrawColor(18,79,72);pdf.line(16,y,194,y);y+=9;pdf.setTextColor(18,79,72);text(s,12,true);pdf.setTextColor(35,55,55); }
- pdf.setTextColor(18,79,72);text("Análisis de Marcha IA",12,true);text("Informe de análisis de marcha",20,true);text("Documento orientativo. No constituye diagnóstico médico.");
- section("1. Datos del análisis");text(`Usuario evaluado: ${doc.data.name}`);text(`Fecha del registro: ${doc.data.date.slice(0,10)}`);text(`Análisis: ${doc.data.analysisId}`);
- section("2. Resultado");text(doc.data.summary);text(doc.data.analysis.analysisReliable ? `Confianza del modelo: ${doc.data.ui.confidence} (valor registrado: ${doc.data.analysis.confidence})` : "Análisis no concluyente por calidad del video. Sin clasificación ni confianza.",11,true);
- if(doc.data.ui.caveat) text(doc.data.ui.caveat);
- if(doc.data.analysis.analysisReliable) for(const key of ["normal","parkinson","esclerosis_multiple","riesgo_caida"]){const p=doc.data.analysis.classProbabilitiesList.find(p=>p.key===key);if(!p)throw new Error("Clase ausente");text(`${p.shortLabel}: ${Math.round(p.probability*100)}% (${p.probability})`);}
- text("La confianza expresa la salida del modelo, no la probabilidad de padecer una enfermedad.");
- section("3. Advertencias del resultado");if(!doc.data.analysis.analysisReliable)text(doc.data.ui.quality);for(const w of doc.data.ui.warnings)text(`${w.code}: ${w.title}. ${w.message}`);
- section("4. Características de marcha presentadas");for(const group of doc.data.ui.metrics)for(const p of group.params)text(`${p.label}: ${p.value}${p.unit ? " " + p.unit : ""}. ${p.explanation}`);
- section("Registro técnico de persistencia (valores legados)");for(const p of doc.data.parameters)text(`${p.name}: ${p.value}. ${p.state}`);
- section("5. Observaciones guardadas");for(const s of doc.data.signals)text(`${s.name}: ${s.description}`);
- section("6. Recomendaciones registradas");for(const recommendation of doc.data.analysis.evaluation.recommendations ?? [])text(recommendation);
- section("7. Advertencia");text("Clasificación experimental de patrones de marcha. No confirma una enfermedad. Requiere valoración por un profesional de salud.");
- return Buffer.from(pdf.output("arraybuffer"));
+ // Misma fuente de datos y misma plantilla que el informe en pantalla (MedicalReport):
+ // el PDF solo presenta el análisis guardado; no recalcula nada ni añade datos técnicos.
+ const result = mapEvaluationToAnalysisResult(doc.data.analysis as unknown as Parameters<typeof mapEvaluationToAnalysisResult>[0]);
+ const created = new Date(doc.data.date);
+ const model = buildReportModel(result, {
+  userName: doc.data.name || "Usuario",
+  issuedAt: created.toLocaleDateString("es-BO", { timeZone: "America/La_Paz" }),
+ });
+ return renderReportPdf(model, { createdAt: created, fileId: doc.hash.slice(0, 32) });
 }

@@ -1,0 +1,31 @@
+{
+ "duracion_ventana_V4 (w_eff, llena) [logreg]": {
+  "macro_f1_OOF_media": 0.4262,
+  "sd": 0.0055
+ },
+ "duracion_ventana_V4 (w_eff, llena) [rf]": {
+  "macro_f1_OOF_media": 0.3943,
+  "sd": 0.0149
+ },
+ "referencia_azar_aprox_macroF1": 0.25,
+ "videos_con_ventana_V4<2.6s": 0,
+ "ventana_V4_s_por_clase": {
+  "normal": {
+   "min": 2.77,
+   "mediana": 4.0
+  },
+  "parkinson": {
+   "min": 5.03,
+   "mediana": 5.03
+  },
+  "esclerosis_multiple": {
+   "min": 4.5,
+   "mediana": 5.03
+  },
+  "riesgo_caida": {
+   "min": 5.03,
+   "mediana": 5.03
+  }
+ },
+ "ventanas_V5: tamano fijo (s)": 2.6
+}

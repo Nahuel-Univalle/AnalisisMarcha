@@ -1,0 +1,22 @@
+PASS setup: schema in isolated database on port 55432
+PASS setup: isolated Next.js server
+PASS regression: unauthenticated admin denied
+PASS e2e: login with test account
+PASS regression: legacy PDF remains downloadable and unchanged
+PASS e2e: missing video rejected
+PASS e2e: real upload, pose extraction, V5-CR inference
+PASS e2e: actual version and valid probabilities
+PASS e2e: PostgreSQL persistence
+PASS integrated: version stored per analysis
+PASS e2e: history includes real analysis
+PASS regression: historical V4 identity preserved
+PASS e2e: save report
+PASS e2e: canonical PDF generation
+PASS e2e: PDF download
+PASS regression: ordinary user cannot read admin summary
+PASS e2e: test administrator login
+PASS e2e: admin active version/internal metrics
+PASS e2e: corrupt upload rejected
+PASS setup: empty video is a negative code fixture
+PASS e2e: no-person video has no fabricated prediction
+HTTP acceptance complete. Server remains for visual checks.

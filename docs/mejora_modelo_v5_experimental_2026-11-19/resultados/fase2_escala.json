@@ -1,0 +1,128 @@
+{
+ "visibilidad<0.2_fraccion_de_landmarks": {
+  "media": 0.0592,
+  "max": 0.133
+ },
+ "alternativas": {
+  "torso": {
+   "cv_intra_ventana_mediana": 0.0445,
+   "escala/altura_corporal_mediana_por_vista": {
+    "frontal": 0.3667,
+    "frontal (se acerca)": 0.383,
+    "frontal y posterior": 0.359,
+    "frontal-oblicua": 0.4293,
+    "frontal/posterior": 0.3413,
+    "lateral": 0.3791,
+    "posterior": 0.3903,
+    "posterior (se aleja)": 0.4023
+   },
+   "dispersion_entre_vistas_max/min": 1.258,
+   "n_por_vista": {
+    "frontal": 10,
+    "frontal (se acerca)": 2,
+    "frontal y posterior": 1,
+    "frontal-oblicua": 1,
+    "frontal/posterior": 1,
+    "lateral": 94,
+    "posterior": 6,
+    "posterior (se aleja)": 2
+   }
+  },
+  "v4_seq_max": {
+   "cv_intra_ventana_mediana": 0.0445,
+   "escala/altura_corporal_mediana_por_vista": {
+    "frontal": 0.3667,
+    "frontal (se acerca)": 0.383,
+    "frontal y posterior": 0.359,
+    "frontal-oblicua": 0.4293,
+    "frontal/posterior": 0.3413,
+    "lateral": 0.3791,
+    "posterior": 0.3903,
+    "posterior (se aleja)": 0.4023
+   },
+   "dispersion_entre_vistas_max/min": 1.258,
+   "n_por_vista": {
+    "frontal": 10,
+    "frontal (se acerca)": 2,
+    "frontal y posterior": 1,
+    "frontal-oblicua": 1,
+    "frontal/posterior": 1,
+    "lateral": 94,
+    "posterior": 6,
+    "posterior (se aleja)": 2
+   }
+  },
+  "v4_feat_median3": {
+   "cv_intra_ventana_mediana": 0.411,
+   "escala/altura_corporal_mediana_por_vista": {
+    "frontal": 0.2364,
+    "frontal (se acerca)": 0.2683,
+    "frontal y posterior": 0.2514,
+    "frontal-oblicua": 0.1736,
+    "frontal/posterior": 0.2235,
+    "lateral": 0.0763,
+    "posterior": 0.2491,
+    "posterior (se aleja)": 0.2429
+   },
+   "dispersion_entre_vistas_max/min": 3.516,
+   "n_por_vista": {
+    "frontal": 10,
+    "frontal (se acerca)": 2,
+    "frontal y posterior": 1,
+    "frontal-oblicua": 1,
+    "frontal/posterior": 1,
+    "lateral": 94,
+    "posterior": 6,
+    "posterior (se aleja)": 2
+   }
+  },
+  "torso_plus_thigh": {
+   "cv_intra_ventana_mediana": 0.0357,
+   "escala/altura_corporal_mediana_por_vista": {
+    "frontal": 0.6347,
+    "frontal (se acerca)": 0.6719,
+    "frontal y posterior": 0.6182,
+    "frontal-oblicua": 0.6965,
+    "frontal/posterior": 0.6049,
+    "lateral": 0.643,
+    "posterior": 0.6227,
+    "posterior (se aleja)": 0.6326
+   },
+   "dispersion_entre_vistas_max/min": 1.151,
+   "n_por_vista": {
+    "frontal": 10,
+    "frontal (se acerca)": 2,
+    "frontal y posterior": 1,
+    "frontal-oblicua": 1,
+    "frontal/posterior": 1,
+    "lateral": 94,
+    "posterior": 6,
+    "posterior (se aleja)": 2
+   }
+  },
+  "torso_shoulder_hip_mean": {
+   "cv_intra_ventana_mediana": 0.1036,
+   "escala/altura_corporal_mediana_por_vista": {
+    "frontal": 0.2452,
+    "frontal (se acerca)": 0.2697,
+    "frontal y posterior": 0.2489,
+    "frontal-oblicua": 0.2336,
+    "frontal/posterior": 0.2348,
+    "lateral": 0.1666,
+    "posterior": 0.255,
+    "posterior (se aleja)": 0.2533
+   },
+   "dispersion_entre_vistas_max/min": 1.619,
+   "n_por_vista": {
+    "frontal": 10,
+    "frontal (se acerca)": 2,
+    "frontal y posterior": 1,
+    "frontal-oblicua": 1,
+    "frontal/posterior": 1,
+    "lateral": 94,
+    "posterior": 6,
+    "posterior (se aleja)": 2
+   }
+  }
+ }
+}

@@ -1,0 +1,59 @@
+PASS unit: frozen checkpoint SHA-256
+PASS unit: reject altered checkpoint, no fallback
+PASS unit: feature order (bank/config/preprocessor/scaler)
+PASS unit: statistics unchanged
+PASS unit: exact imputation/normalization
+PASS unit: NaN/inf imputed with original medians
+PASS unit: reject wrong dimensions
+PASS unit: reject wrong dimensions
+PASS integrated: scaler statistics reproduced from training evaluation windows (no model training)
+PASS integrated: window selection on 117 original segments
+PASS integrated: training bank sequence equality
+PASS integrated: training bank feature equality
+PASS integrated: evaluator/deployment logits
+PASS integrated: evaluator/deployment temperature probabilities
+PASS unit on 633 real windows: horizontal camera translation
+PASS unit on 633 real windows: aspect correction
+PASS unit: no prediction without pose
+V5CR_STAGE {"stage": "model_loaded", "t": 0.01}
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1795131559.043753   17064 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795131559.070996   17064 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+C:\Users\fnahu\Desktop\GITMarcha\AnalisisMarcha\.venv311\Lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+V5CR_STAGE {"stage": "pose_extracted", "t": 5.03, "frames": 44, "duration": 3.933333333333333}
+V5CR_STAGE {"stage": "inference_done", "t": 5.04, "windows": 2}
+V5CR_STAGE {"stage": "background_motion_done", "t": 5.94}
+PASS integrated: real video normal horizontal
+V5CR_STAGE {"stage": "model_loaded", "t": 0.01}
+W0000 00:00:1795131563.043757   26260 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795131563.074611   19272 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+V5CR_STAGE {"stage": "pose_extracted", "t": 8.74, "frames": 124, "duration": 10.633333333333333}
+V5CR_STAGE {"stage": "inference_done", "t": 8.78, "windows": 5}
+V5CR_STAGE {"stage": "background_motion_done", "t": 11.34}
+PASS integrated: real video parkinson horizontal
+V5CR_STAGE {"stage": "model_loaded", "t": 0.01}
+W0000 00:00:1795131574.374170   27248 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795131574.405698   30484 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+V5CR_STAGE {"stage": "pose_extracted", "t": 16.75, "frames": 367, "duration": 24.433333333333334}
+V5CR_STAGE {"stage": "inference_done", "t": 16.86, "windows": 5}
+V5CR_STAGE {"stage": "background_motion_done", "t": 25.99}
+PASS integrated: real video esclerosis_multiple vertical
+V5CR_STAGE {"stage": "model_loaded", "t": 0.01}
+W0000 00:00:1795131600.381308    5480 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795131600.421664   26680 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+V5CR_STAGE {"stage": "pose_extracted", "t": 7.21, "frames": 166, "duration": 11.059811111111111}
+V5CR_STAGE {"stage": "inference_done", "t": 7.26, "windows": 5}
+V5CR_STAGE {"stage": "background_motion_done", "t": 8.76}
+PASS integrated: real video riesgo_caida horizontal
+V5CR_STAGE {"stage": "model_loaded", "t": 0.01}
+V5CR_STAGE {"stage": "pose_extracted", "t": 0.41, "frames": 0, "duration": null}
+PASS integrated: negative fixture corrupt.mp4
+V5CR_STAGE {"stage": "model_loaded", "t": 0.01}
+W0000 00:00:1795131609.575942   25340 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795131609.610288   28844 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+V5CR_STAGE {"stage": "pose_extracted", "t": 2.03, "frames": 0, "duration": 4.0}
+PASS integrated: negative fixture empty.mp4
+PASS integrated: negative fixture missing.mp4
+[mov,mp4,m4a,3gp,3g2,mj2 @ 000001c94150a240] moov atom not found

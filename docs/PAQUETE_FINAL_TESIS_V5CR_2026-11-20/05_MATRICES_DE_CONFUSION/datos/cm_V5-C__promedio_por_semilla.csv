@@ -1,0 +1,5 @@
+﻿clase_verdadera \ clase_predicha,normal,parkinson,esclerosis_multiple,riesgo_caida
+normal,52.40,4.80,0.20,0.60
+parkinson,0.20,24.80,0.60,0.40
+esclerosis_multiple,1.00,0.40,13.40,7.20
+riesgo_caida,0.00,0.40,2.80,7.80

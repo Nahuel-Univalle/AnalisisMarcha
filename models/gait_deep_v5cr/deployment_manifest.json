@@ -1,0 +1,13 @@
+{
+  "version": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+  "sha256": {
+    "gait_deep_v5exp_V5CR_7e9ed60965fe.pt": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+    "gait_deep_v5exp_V5CR_7e9ed60965fe_config.json": "4128ef87955874a9fb822214019603b687d37ab82b1787e1843b68f2ec994076",
+    "gait_deep_v5exp_V5CR_7e9ed60965fe_feature_scaler.json": "ba91a6a6af0c7c24cf41ef0a5c7fab568f5bbcb8ce3876840f3b46d8594431d2",
+    "gait_deep_v5exp_V5CR_7e9ed60965fe_label_map.json": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986"
+  },
+  "metadata_changes": [
+    "scaler.columns from bank.feature_names (33)",
+    "config.status V5-CR"
+  ]
+}

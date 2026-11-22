@@ -1,0 +1,7 @@
+﻿grupo,caracteristicas_V4,caracteristicas_V5CR,cambio
+Desplazamiento global,7,4,"−3 eliminadas (cadera, hombros, avance horizontal); 4 relativas"
+Piernas (relativas),11,11,relativas a la pelvis (V4 incluía traslación global)
+Brazos,6,6,ángulo respecto al tronco (V4: rango de x absoluta)
+Tronco y postura,5,5,ángulo en coordenadas isotrópicas
+Ritmo de pasos,5,5,"ventana fija 2,6 s; cadencia en picos/min"
+Proxies de vista,2,2,se conservan (proxy de vista)

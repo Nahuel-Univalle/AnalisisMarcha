@@ -1,0 +1,51 @@
+{
+ "scenario": "despues",
+ "video": "analysis_5184ba1b-3b52-493c-8d9d-80ee4b4b7e6d.mp4",
+ "checks": [
+  {
+   "name": "upload page shows the preview <video>",
+   "passed": true
+  },
+  {
+   "name": "continue to validation",
+   "passed": true
+  },
+  {
+   "name": "start analysis",
+   "passed": true
+  },
+  {
+   "name": "analysis finished",
+   "passed": true
+  },
+  {
+   "name": "go to result",
+   "passed": true
+  },
+  {
+   "name": "go to report page",
+   "passed": true
+  },
+  {
+   "name": "click real \"Descargar PDF\" button",
+   "passed": true
+  },
+  {
+   "name": "PDF downloaded by the app button",
+   "passed": true,
+   "detail": "informe_analisis_marcha.pdf"
+  }
+ ],
+ "notes": [
+  {
+   "rect": {
+    "x": 269.5,
+    "y": 329.78125,
+    "w": 794,
+    "h": 1751.375
+   }
+  }
+ ],
+ "screenText": "Análisis de Marcha IA\n\nInforme de análisis de marcha\n\nDocumento orientativo para profesionales de salud\n\nCLASIFICACIÓN EXPERIMENTAL\n\n1.\nDATOS DEL ANÁLISIS\nUSUARIO EVALUADO\nPrueba reproductor\nFECHA DE EMISIÓN\n19/11/2026\nCONFIANZA DEL MODELO\n83%\n2.\nRESULTADO\n\nCLASIFICACIÓN EXPERIMENTAL DE PATRONES DE MARCHA\n\nMarcha sin alteraciones específicas identificadas por el modelo.\n\nMarcha normal\n(clase indicada por el modelo)\n83%\nParkinson\n1%\nEsclerosis múltiple\n11%\nRiesgo de caída\n6%\n\nEs la confianza del modelo en la clase indicada, no la probabilidad de tener una enfermedad. Una confianza alta no garantiza que la clasificación sea correcta.\n\nADVERTENCIAS SOBRE EL VIDEO\n\nCámara en movimiento. Se detectó movimiento de cámara. V5-CR corrige la traslación horizontal y la interpolación relativa; no se ha validado toda rotación, perspectiva, desenfoque u oclusión.\nVista de la cámara no verificada. El sistema no verifica automáticamente la vista; se entrenó principalmente con video lateral de cuerpo completo. Validación interna sobre 117 videos, sin validación clínica ni externa.\n3.\nOBSERVACIONES DEL MOVIMIENTO\n\nNo se identificaron hallazgos relevantes en la marcha analizada.\n\n4.\nPARÁMETROS DE MARCHA\nPARÁMETRO\tDESCRIPCIÓN\tVALOR\nRitmo estimado por picos\tPicos de altura de ambos tobillos por minuto, calculados en la primera ventana seleccionada de 2,6 s. No es un conteo de pasos validado clínicamente.\t135 picos/min\nSimetría del movimiento de las piernas\tDiferencia relativa entre ambos lados, calculada respecto a la cadera (piernas) o al hombro (muñecas); 0 indica igualdad, sin umbral clínico. Primera ventana seleccionada.\t2 %\n5.\nINTERPRETACIÓN\n\nEl modelo no identificó un patrón de alteración de la marcha. Esto no descarta condiciones que no se expresen en la marcha analizada.\n\nEste resultado no confirma una enfermedad y requiere valoración por un profesional de salud.\n\n6.\nRECOMENDACIONES\nRevisar el resultado con un profesional de salud.\nRepetir el análisis si el video no muestra el cuerpo completo o tiene mala iluminación.\nNo tomar decisiones médicas ni iniciar tratamientos solo con este resultado.\n7.\nADVERTENCIA\n\nEste análisis constituye una orientación basada en patrones de movimiento y no representa un diagnóstico médico. Los resultados corresponden a una clasificación experimental de patrones de marcha y requieren valoración por un profesional de salud.",
+ "analysisId": "cmwo9kl9t0004ulnc9f7uiofx"
+}

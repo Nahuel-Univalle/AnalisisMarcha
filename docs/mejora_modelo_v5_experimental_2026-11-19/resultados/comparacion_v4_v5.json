@@ -1,0 +1,612 @@
+{
+ "modelos": {
+  "V4 base (M1)": {
+   "accuracy": 0.8342,
+   "macro_f1": 0.7252,
+   "macro_f1_por_semilla": [
+    0.7168,
+    0.7233,
+    0.7089,
+    0.7466,
+    0.7302
+   ],
+   "f1_por_clase": [
+    0.9532,
+    0.8458,
+    0.7387,
+    0.363
+   ],
+   "recall_por_clase": [
+    0.9138,
+    0.9692,
+    0.7091,
+    0.3455
+   ],
+   "precision_por_clase": [
+    0.9964,
+    0.7515,
+    0.7722,
+    0.3893
+   ],
+   "brier": 0.2732,
+   "nll": 0.541,
+   "ece": 0.0949,
+   "matriz_confusion_suma_5_semillas": [
+    [
+     265,
+     25,
+     0,
+     0
+    ],
+    [
+     1,
+     126,
+     0,
+     3
+    ],
+    [
+     0,
+     4,
+     78,
+     28
+    ],
+    [
+     0,
+     13,
+     23,
+     19
+    ]
+   ],
+   "accuracy_normal+parkinson": 0.931,
+   "accuracy_EM+riesgo": 0.5879
+  },
+  "V4 BN (candidato)": {
+   "accuracy": 0.8513,
+   "macro_f1": 0.7442,
+   "macro_f1_por_semilla": [
+    0.758,
+    0.7319,
+    0.7384,
+    0.7511,
+    0.7416
+   ],
+   "f1_por_clase": [
+    0.9626,
+    0.8806,
+    0.7555,
+    0.3781
+   ],
+   "recall_por_clase": [
+    0.9345,
+    0.9615,
+    0.7455,
+    0.3636
+   ],
+   "precision_por_clase": [
+    0.9927,
+    0.813,
+    0.7667,
+    0.3956
+   ],
+   "brier": 0.2451,
+   "nll": 0.4965,
+   "ece": 0.0666,
+   "matriz_confusion_suma_5_semillas": [
+    [
+     271,
+     19,
+     0,
+     0
+    ],
+    [
+     1,
+     125,
+     0,
+     4
+    ],
+    [
+     0,
+     1,
+     82,
+     27
+    ],
+    [
+     1,
+     9,
+     25,
+     20
+    ]
+   ],
+   "accuracy_normal+parkinson": 0.9429,
+   "accuracy_EM+riesgo": 0.6182
+  },
+  "V5-P (principal)": {
+   "accuracy": 0.8803,
+   "macro_f1": 0.7999,
+   "macro_f1_por_semilla": [
+    0.7827,
+    0.854,
+    0.8,
+    0.7929,
+    0.7701
+   ],
+   "f1_por_clase": [
+    0.977,
+    0.9311,
+    0.7301,
+    0.5615
+   ],
+   "recall_por_clase": [
+    0.9552,
+    0.9846,
+    0.6818,
+    0.6364
+   ],
+   "precision_por_clase": [
+    1.0,
+    0.8838,
+    0.7942,
+    0.5142
+   ],
+   "brier": 0.2308,
+   "nll": 0.4751,
+   "ece": 0.1467,
+   "matriz_confusion_suma_5_semillas": [
+    [
+     277,
+     12,
+     1,
+     0
+    ],
+    [
+     0,
+     128,
+     1,
+     1
+    ],
+    [
+     0,
+     3,
+     75,
+     32
+    ],
+    [
+     0,
+     2,
+     18,
+     35
+    ]
+   ],
+   "accuracy_normal+parkinson": 0.9643,
+   "accuracy_EM+riesgo": 0.6667
+  },
+  "V5-S (sensibilidad)": {
+   "accuracy": 0.8667,
+   "macro_f1": 0.7919,
+   "macro_f1_por_semilla": [
+    0.8153,
+    0.8046,
+    0.8109,
+    0.7625,
+    0.7663
+   ],
+   "f1_por_clase": [
+    0.968,
+    0.9206,
+    0.6897,
+    0.5894
+   ],
+   "recall_por_clase": [
+    0.9414,
+    0.9769,
+    0.6091,
+    0.7273
+   ],
+   "precision_por_clase": [
+    0.9964,
+    0.8717,
+    0.7983,
+    0.4985
+   ],
+   "brier": 0.2397,
+   "nll": 0.4853,
+   "ece": 0.1364,
+   "matriz_confusion_suma_5_semillas": [
+    [
+     273,
+     16,
+     1,
+     0
+    ],
+    [
+     1,
+     127,
+     2,
+     0
+    ],
+    [
+     0,
+     2,
+     67,
+     41
+    ],
+    [
+     0,
+     1,
+     14,
+     40
+    ]
+   ],
+   "accuracy_normal+parkinson": 0.9524,
+   "accuracy_EM+riesgo": 0.6485
+  }
+ },
+ "diferencias": {
+  "V5-P (principal) - V4 base (M1)": {
+   "mf1": {
+    "obs": 0.0748,
+    "lo": 0.0162,
+    "hi": 0.1359,
+    "p_bootstrap_2colas": 0.018
+   },
+   "acc": {
+    "obs": 0.0462,
+    "lo": 0.0,
+    "hi": 0.0931,
+    "p_bootstrap_2colas": 0.051
+   },
+   "F": {
+    "obs": [
+     0.0237,
+     0.0853,
+     -0.0085,
+     0.1985
+    ],
+    "lo": [
+     -0.0022,
+     0.0212,
+     -0.1127,
+     0.0631
+    ],
+    "hi": [
+     0.0645,
+     0.2117,
+     0.0891,
+     0.3303
+    ],
+    "p_bootstrap_2colas": [
+     0.098,
+     0.003,
+     0.86,
+     0.007
+    ]
+   },
+   "R": {
+    "obs": [
+     0.0414,
+     0.0154,
+     -0.0273,
+     0.2909
+    ],
+    "lo": [
+     -0.006,
+     -0.0375,
+     -0.181,
+     0.1636
+    ],
+    "hi": [
+     0.1143,
+     0.091,
+     0.1043,
+     0.4286
+    ],
+    "p_bootstrap_2colas": [
+     0.147,
+     0.816,
+     0.754,
+     0.002
+    ]
+   },
+   "brier": {
+    "obs": -0.0424,
+    "lo": -0.1024,
+    "hi": 0.0146,
+    "p_bootstrap_2colas": 0.152
+   },
+   "nll": {
+    "obs": -0.0659,
+    "lo": -0.1762,
+    "hi": 0.0381,
+    "p_bootstrap_2colas": 0.238
+   },
+   "ece": {
+    "obs": 0.0518,
+    "lo": 0.0113,
+    "hi": 0.0761,
+    "p_bootstrap_2colas": 0.011
+   },
+   "mcnemar_voto_mayoritario": {
+    "solo_nuevo_acierta": 10,
+    "solo_referencia_acierta": 1,
+    "p_exacto": 0.0117,
+    "aciertos_nuevo": 107,
+    "aciertos_ref": 98
+   }
+  },
+  "V5-P (principal) - V4 BN (candidato)": {
+   "mf1": {
+    "obs": 0.0557,
+    "lo": -0.0064,
+    "hi": 0.1143,
+    "p_bootstrap_2colas": 0.082
+   },
+   "acc": {
+    "obs": 0.0291,
+    "lo": -0.0148,
+    "hi": 0.0745,
+    "p_bootstrap_2colas": 0.194
+   },
+   "F": {
+    "obs": [
+     0.0143,
+     0.0505,
+     -0.0254,
+     0.1833
+    ],
+    "lo": [
+     -0.0066,
+     -0.0071,
+     -0.124,
+     0.0269
+    ],
+    "hi": [
+     0.0487,
+     0.15,
+     0.0658,
+     0.3172
+    ],
+    "p_bootstrap_2colas": [
+     0.386,
+     0.102,
+     0.576,
+     0.026
+    ]
+   },
+   "R": {
+    "obs": [
+     0.0207,
+     0.0231,
+     -0.0636,
+     0.2727
+    ],
+    "lo": [
+     -0.0167,
+     -0.025,
+     -0.2083,
+     0.1125
+    ],
+    "hi": [
+     0.0844,
+     0.1,
+     0.0546,
+     0.4286
+    ],
+    "p_bootstrap_2colas": [
+     0.634,
+     0.735,
+     0.353,
+     0.004
+    ]
+   },
+   "brier": {
+    "obs": -0.0143,
+    "lo": -0.0748,
+    "hi": 0.0444,
+    "p_bootstrap_2colas": 0.63
+   },
+   "nll": {
+    "obs": -0.0214,
+    "lo": -0.133,
+    "hi": 0.0826,
+    "p_bootstrap_2colas": 0.709
+   },
+   "ece": {
+    "obs": 0.0801,
+    "lo": 0.034,
+    "hi": 0.0996,
+    "p_bootstrap_2colas": 0.001
+   },
+   "mcnemar_voto_mayoritario": {
+    "solo_nuevo_acierta": 10,
+    "solo_referencia_acierta": 1,
+    "p_exacto": 0.0117,
+    "aciertos_nuevo": 107,
+    "aciertos_ref": 98
+   }
+  },
+  "V5-S (sensibilidad) - V4 base (M1)": {
+   "mf1": {
+    "obs": 0.0668,
+    "lo": -0.0009,
+    "hi": 0.1344,
+    "p_bootstrap_2colas": 0.054
+   },
+   "acc": {
+    "obs": 0.0325,
+    "lo": -0.022,
+    "hi": 0.0883,
+    "p_bootstrap_2colas": 0.246
+   },
+   "F": {
+    "obs": [
+     0.0148,
+     0.0748,
+     -0.049,
+     0.2265
+    ],
+    "lo": [
+     -0.0171,
+     0.0046,
+     -0.1628,
+     0.0753
+    ],
+    "hi": [
+     0.0586,
+     0.2015,
+     0.063,
+     0.3635
+    ],
+    "p_bootstrap_2colas": [
+     0.44,
+     0.032,
+     0.366,
+     0.007
+    ]
+   },
+   "R": {
+    "obs": [
+     0.0276,
+     0.0077,
+     -0.1,
+     0.3818
+    ],
+    "lo": [
+     -0.0302,
+     -0.05,
+     -0.2556,
+     0.2
+    ],
+    "hi": [
+     0.1077,
+     0.07,
+     0.0476,
+     0.55
+    ],
+    "p_bootstrap_2colas": [
+     0.464,
+     0.932,
+     0.193,
+     0.0
+    ]
+   },
+   "brier": {
+    "obs": -0.0334,
+    "lo": -0.0981,
+    "hi": 0.0273,
+    "p_bootstrap_2colas": 0.292
+   },
+   "nll": {
+    "obs": -0.0557,
+    "lo": -0.1673,
+    "hi": 0.052,
+    "p_bootstrap_2colas": 0.323
+   },
+   "ece": {
+    "obs": 0.0414,
+    "lo": 0.0029,
+    "hi": 0.0696,
+    "p_bootstrap_2colas": 0.036
+   },
+   "mcnemar_voto_mayoritario": {
+    "solo_nuevo_acierta": 10,
+    "solo_referencia_acierta": 5,
+    "p_exacto": 0.3018,
+    "aciertos_nuevo": 103,
+    "aciertos_ref": 98
+   }
+  },
+  "V5-S (sensibilidad) - V4 BN (candidato)": {
+   "mf1": {
+    "obs": 0.0477,
+    "lo": -0.0202,
+    "hi": 0.1096,
+    "p_bootstrap_2colas": 0.167
+   },
+   "acc": {
+    "obs": 0.0154,
+    "lo": -0.0347,
+    "hi": 0.0667,
+    "p_bootstrap_2colas": 0.565
+   },
+   "F": {
+    "obs": [
+     0.0054,
+     0.04,
+     -0.0658,
+     0.2113
+    ],
+    "lo": [
+     -0.023,
+     -0.022,
+     -0.1707,
+     0.0485
+    ],
+    "hi": [
+     0.0444,
+     0.1362,
+     0.028,
+     0.3518
+    ],
+    "p_bootstrap_2colas": [
+     0.833,
+     0.238,
+     0.177,
+     0.015
+    ]
+   },
+   "R": {
+    "obs": [
+     0.0069,
+     0.0154,
+     -0.1364,
+     0.3636
+    ],
+    "lo": [
+     -0.0449,
+     -0.025,
+     -0.28,
+     0.16
+    ],
+    "hi": [
+     0.0778,
+     0.075,
+     -0.0125,
+     0.5429
+    ],
+    "p_bootstrap_2colas": [
+     0.926,
+     0.765,
+     0.033,
+     0.004
+    ]
+   },
+   "brier": {
+    "obs": -0.0053,
+    "lo": -0.0722,
+    "hi": 0.0565,
+    "p_bootstrap_2colas": 0.87
+   },
+   "nll": {
+    "obs": -0.0112,
+    "lo": -0.1296,
+    "hi": 0.0965,
+    "p_bootstrap_2colas": 0.863
+   },
+   "ece": {
+    "obs": 0.0698,
+    "lo": 0.0247,
+    "hi": 0.095,
+    "p_bootstrap_2colas": 0.003
+   },
+   "mcnemar_voto_mayoritario": {
+    "solo_nuevo_acierta": 10,
+    "solo_referencia_acierta": 5,
+    "p_exacto": 0.3018,
+    "aciertos_nuevo": 103,
+    "aciertos_ref": 98
+   }
+  }
+ },
+ "n_bootstrap": 2000,
+ "nota": "IC95 percentil por grupo de sujeto (67 grupos); las 5 semillas se promedian, no se tratan como independientes"
+}

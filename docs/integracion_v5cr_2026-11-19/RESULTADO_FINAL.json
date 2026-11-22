@@ -1,0 +1,42 @@
+{
+  "model": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+  "weightsSha256": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+  "default": "v5cr",
+  "explicitRollback": "GAIT_MODEL_VERSION=v4",
+  "suites": {
+    "PRUEBAS_PYTHON": {
+      "passed": 24,
+      "failed": 0
+    },
+    "PRUEBAS_TYPESCRIPT": {
+      "passed": 12,
+      "failed": 0
+    },
+    "PRUEBAS_E2E": {
+      "passed": 20,
+      "failed": 0
+    },
+    "AUDITORIA_INTEGRIDAD": {
+      "passed": 37,
+      "failed": 0
+    }
+  },
+  "nativeExitCodes": {
+    "BUILD": 0,
+    "PYTHON": 0,
+    "E2E": 0,
+    "PRESENTATION": 0,
+    "TYPESCRIPT": 0,
+    "LINT": 0
+  },
+  "pdfVisualReview": {
+    "pages": 2,
+    "reviewed": true
+  },
+  "notExecuted": [
+    "Desktop/tablet/mobile browser visual and interaction checks: browser host and desktop native pipe unavailable",
+    "External Cloudinary upload",
+    "External/clinical validation"
+  ],
+  "testContainer": "gait-v5cr-integration-20261119 (stopped, data preserved)"
+}

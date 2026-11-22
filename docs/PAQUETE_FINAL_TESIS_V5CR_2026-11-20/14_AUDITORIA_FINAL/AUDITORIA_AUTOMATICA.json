@@ -1,0 +1,158 @@
+{
+ "carpetas": {
+  "00_INDICE_Y_GUIA": 6,
+  "01_ESTADO_FINAL_DEL_SOFTWARE": 1,
+  "02_MODELO_V5CR_Y_ARQUITECTURA": 3,
+  "03_DATASET_Y_METODOLOGIA": 5,
+  "04_METRICAS_Y_COMPARACIONES": 8,
+  "05_MATRICES_DE_CONFUSION": 39,
+  "06_FIGURAS_Y_GRAFICAS": 32,
+  "07_PREPROCESAMIENTO_Y_FORMULAS": 4,
+  "08_PRUEBAS_DEL_SISTEMA": 5,
+  "09_CAPTURAS_Y_EVIDENCIAS": 29,
+  "10_INFORMES_PDF_E_HISTORIAL": 12,
+  "11_CAMBIOS_POR_CAPITULO": 3,
+  "12_TEXTOS_PROPUESTOS_PARA_TESIS": 10,
+  "13_FUENTES_Y_TRAZABILIDAD": 4,
+  "14_AUDITORIA_FINAL": 4
+ },
+ "carpetas_vacias": [],
+ "archivos_totales": 166,
+ "archivos_vacios": [],
+ "png_total": 46,
+ "png_con_problemas": [],
+ "dpi_matrices": [
+  [
+   "matriz_confusion_D_comparacion_V4activo_vs_V5CR.png",
+   [
+    299.9994,
+    299.9994
+   ]
+  ],
+  [
+   "matriz_confusion_V4activo_A_absoluta_suma5.png",
+   [
+    299.9994,
+    299.9994
+   ]
+  ],
+  [
+   "matriz_confusion_V4activo_B_normalizada.png",
+   [
+    299.9994,
+    299.9994
+   ]
+  ],
+  [
+   "matriz_confusion_V4activo_C_voto_mayoritario.png",
+   [
+    299.9994,
+    299.9994
+   ]
+  ],
+  [
+   "matriz_confusion_V5CR_A_absoluta_suma5.png",
+   [
+    299.9994,
+    299.9994
+   ]
+  ],
+  [
+   "matriz_confusion_V5CR_B_normalizada.png",
+   [
+    299.9994,
+    299.9994
+   ]
+  ],
+  [
+   "matriz_confusion_V5CR_C_voto_mayoritario.png",
+   [
+    299.9994,
+    299.9994
+   ]
+  ]
+ ],
+ "svg_pares": {
+  "matrices": 7,
+  "figuras": 10
+ },
+ "privacidad": {
+  "correo_real": [],
+  "ruta_usuario": [],
+  "secreto": [
+   [
+    "14_AUDITORIA_FINAL/AUDITORIA_AUTOMATICA.json",
+    "AUTH_SESSION_SECRET: randomBytes(48).toString('hex'),\\\\\\\"\\\"\""
+   ],
+   [
+    "14_AUDITORIA_FINAL/AUDITORIA_AUTOMATICA.json",
+    "AUTH_SESSION_SECRET: randomBytes(48).toString('hex'),\\\\\\\"\\\"\""
+   ],
+   [
+    "14_AUDITORIA_FINAL/AUDITORIA_AUTOMATICA.json",
+    "AUTH_SESSION_SECRET: randomBytes(48).toString('hex'),\\\"\""
+   ],
+   [
+    "14_AUDITORIA_FINAL/AUDITORIA_AUTOMATICA.json",
+    "AUTH_SESSION_SECRET: randomBytes(48).toString('hex'),\\\"\""
+   ],
+   [
+    "14_AUDITORIA_FINAL/AUDITORIA_AUTOMATICA.json",
+    "AUTH_SESSION_SECRET: randomBytes(48).toString('hex'),\""
+   ],
+   [
+    "14_AUDITORIA_FINAL/AUDITORIA_AUTOMATICA.json",
+    "AUTH_SESSION_SECRET: randomBytes(48).toString('hex'),\""
+   ],
+   [
+    "09_CAPTURAS_Y_EVIDENCIAS/scripts/capturar_admin_inicio.mjs",
+    "AUTH_SESSION_SECRET: randomBytes(48).toString('hex'),"
+   ],
+   [
+    "09_CAPTURAS_Y_EVIDENCIAS/scripts/capturar_pantallas.mjs",
+    "AUTH_SESSION_SECRET: randomBytes(48).toString('hex'),"
+   ]
+  ]
+ },
+ "privacidad_conteos": {
+  "correo_real": 0,
+  "ruta_usuario": 0,
+  "secreto": 8
+ },
+ "binarios_pesados_o_videos": [
+  "_cache_metricas.npz"
+ ],
+ "tamano_total_MB": 31.2,
+ "V5CR_exactitud_f1macro_csv": [
+  "0.8598",
+  "0.7852"
+ ],
+ "verificacion_metricas": {
+  "filas": 63,
+  "no_coinciden": 0
+ },
+ "textos_V5CR_con_0_880_o_0_800": 2,
+ "textos_mencionan_no_concluyente": 13,
+ "textos_mencionan_validacion_interna": 5,
+ "aplicacion_snapshot_archivos": 151,
+ "aplicacion_cambios_desde_la_instantanea": [],
+ "git_modificados_tracked": [
+  "docs/FRONTEND_RULES.md",
+  "package.json",
+  "src/app/analisis/informe/page.tsx",
+  "src/app/api/admin/reports/route.ts",
+  "src/app/api/admin/summary/route.ts",
+  "src/app/api/analysis/video/route.ts",
+  "src/app/api/me/reports/[id]/pdf/route.ts",
+  "src/app/api/me/reports/route.ts",
+  "src/components/analysis/HistoryTimeline.tsx",
+  "src/components/analysis/SavedReportsList.tsx",
+  "src/components/analysis/VideoStage.tsx",
+  "src/components/report/MedicalReport.tsx",
+  "src/context/AnalysisContext.tsx",
+  "src/lib/analysis/canonicalPdf.ts",
+  "src/lib/analysis/resultPresentation.ts",
+  "src/lib/ml/modelMetrics.ts",
+  "src/types/index.ts"
+ ]
+}

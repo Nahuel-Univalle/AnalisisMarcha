@@ -1,0 +1,263 @@
+{
+  "previous_manifest_sha256": "7314c17fca492524affba5dd53733e5d64f70aae4a0518be2963d98b0b27228f",
+  "files": [
+    {
+      "path": "src/app/api/analysis/video/route.ts",
+      "before": "90bdd5da33a8859812917560a151176a085ca1af4f5fc055a7ab345f2dcfebd3",
+      "after": "de29f34f3ce76221897ad2b9a3fb3090f01b8cb6f34806e2b6f2ddb4f8401de6",
+      "changed": true
+    },
+    {
+      "path": "src/lib/ml/modelMetrics.ts",
+      "before": "71180723860e8e7f06b82d949ef75c3790bdff8151c82a9d389af41aa8014de7",
+      "after": "772905fb778130596fbf9de9b80632663c0d5e041d6e38ed701e7b7a64246df4",
+      "changed": true
+    },
+    {
+      "path": "src/app/api/admin/summary/route.ts",
+      "before": "daf01c5df8eb6a49220a2a1b06f8a91bc4a4b2e10b77e400ae5e48d98b8eb27e",
+      "after": "ac2556fe1514ea25bff1a9bd137c55486bf174815a9b7dc27cb629e6dbd11c40",
+      "changed": true
+    },
+    {
+      "path": "scripts/video_training/deep/14_predict_deep_video_v4exp.py",
+      "before": "399762a547abebff9b3a444dca2be822a03cf76a45c32c8a89226f7898e9883f",
+      "after": "399762a547abebff9b3a444dca2be822a03cf76a45c32c8a89226f7898e9883f",
+      "changed": false
+    },
+    {
+      "path": "scripts/video_training/deep/deep_common.py",
+      "before": "53734de2bd71a592f4332a8e430137130e1d218245563988ddc9728890d262b4",
+      "after": "53734de2bd71a592f4332a8e430137130e1d218245563988ddc9728890d262b4",
+      "changed": false
+    },
+    {
+      "path": "scripts/video_training/deep/24_normalized_reextract.py",
+      "before": "ceca31c26d97e5f7797c7279e4210e8e5451384a317b68c23ceed95f4ae08302",
+      "after": "ceca31c26d97e5f7797c7279e4210e8e5451384a317b68c23ceed95f4ae08302",
+      "changed": false
+    },
+    {
+      "path": "models/gait_deep_v4exp_bn_candidate_v1/README.md",
+      "before": "acb2e605b053faf0728ea9839cd313c9eb63a045c29103d6c1591ac0bfe13767",
+      "after": "acb2e605b053faf0728ea9839cd313c9eb63a045c29103d6c1591ac0bfe13767",
+      "changed": false
+    },
+    {
+      "path": "models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1.pt",
+      "before": "7b4ac547ff80367b74ddf93c95a9deae82c44f36f3c671f63eb5a4a82c53400d",
+      "after": "7b4ac547ff80367b74ddf93c95a9deae82c44f36f3c671f63eb5a4a82c53400d",
+      "changed": false
+    },
+    {
+      "path": "models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1_config.json",
+      "before": "d5bcac4f60141da036c5195a2280cfcbe6c1354669a8976dcdb1b9846b72bdac",
+      "after": "d5bcac4f60141da036c5195a2280cfcbe6c1354669a8976dcdb1b9846b72bdac",
+      "changed": false
+    },
+    {
+      "path": "models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1_feature_scaler.json",
+      "before": "a6c96a7929c2af329f3470245c76534c0de52ce403d1a7550b145da68d3822a6",
+      "after": "a6c96a7929c2af329f3470245c76534c0de52ce403d1a7550b145da68d3822a6",
+      "changed": false
+    },
+    {
+      "path": "models/gait_deep_v4exp_bn_candidate_v1/gait_deep_v4exp_M1_BN_recalibrated_candidate_v1_label_map.json",
+      "before": "c96c82a18d16787c96a209869b12de355b77b0a1a22490b84a38d982edf3dace",
+      "after": "c96c82a18d16787c96a209869b12de355b77b0a1a22490b84a38d982edf3dace",
+      "changed": false
+    },
+    {
+      "path": "models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f.pt",
+      "before": "d7323250d26fa81c9306660ada47bc00c2aa1bd9bba374e2e87b3619c5213048",
+      "after": "d7323250d26fa81c9306660ada47bc00c2aa1bd9bba374e2e87b3619c5213048",
+      "changed": false
+    },
+    {
+      "path": "models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f_config.json",
+      "before": "032f205d15e27edaf6146accbe4acdb10455f59e0ff2524cc81d332fe23d419c",
+      "after": "032f205d15e27edaf6146accbe4acdb10455f59e0ff2524cc81d332fe23d419c",
+      "changed": false
+    },
+    {
+      "path": "models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f_feature_scaler.json",
+      "before": "a6c96a7929c2af329f3470245c76534c0de52ce403d1a7550b145da68d3822a6",
+      "after": "a6c96a7929c2af329f3470245c76534c0de52ce403d1a7550b145da68d3822a6",
+      "changed": false
+    },
+    {
+      "path": "models/gait_deep_v4exp/gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f_label_map.json",
+      "before": "c96c82a18d16787c96a209869b12de355b77b0a1a22490b84a38d982edf3dace",
+      "after": "c96c82a18d16787c96a209869b12de355b77b0a1a22490b84a38d982edf3dace",
+      "changed": false
+    },
+    {
+      "path": "models/gait_deep/gait_deep_model.pt",
+      "before": "eb10429885a298c179e522cfc5d9940d1ccad534f3986cb9bff1693a2676f947",
+      "after": "eb10429885a298c179e522cfc5d9940d1ccad534f3986cb9bff1693a2676f947",
+      "changed": false
+    },
+    {
+      "path": "docs/mejora_modelo_v5_experimental_2026-11-19/checkpoints/gait_deep_v5exp_V5P_f8bc0617a0ef.pt",
+      "before": "f8bc0617a0ef2e3c0d8dd9e918be8f488717fd45e6616398903f4c1b16b4b349",
+      "after": "f8bc0617a0ef2e3c0d8dd9e918be8f488717fd45e6616398903f4c1b16b4b349",
+      "changed": false
+    },
+    {
+      "path": "docs/mejora_modelo_v5_experimental_2026-11-19/checkpoints/gait_deep_v5exp_V5S_e96039e2a654.pt",
+      "before": "e96039e2a6540dbfafc6df717815b833c29c3d3c4af24ebe46becdc33100a3dc",
+      "after": "e96039e2a6540dbfafc6df717815b833c29c3d3c4af24ebe46becdc33100a3dc",
+      "changed": false
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe.pt",
+      "before": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+      "after": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+      "changed": false
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe_config.json",
+      "before": "f7b03c7f3e440fc4462ae74994a48639ec904b1af39b4cf44db54426b64223c8",
+      "after": "f7b03c7f3e440fc4462ae74994a48639ec904b1af39b4cf44db54426b64223c8",
+      "changed": false
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe_feature_scaler.json",
+      "before": "3af47c7e03639426a6da13104b2df7d28b0c801090b55939832d2a5e37b4645b",
+      "after": "3af47c7e03639426a6da13104b2df7d28b0c801090b55939832d2a5e37b4645b",
+      "changed": false
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5CR_7e9ed60965fe_label_map.json",
+      "before": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986",
+      "after": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986",
+      "changed": false
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442.pt",
+      "before": "fdb5ace914428f4ba95ab6dce1bc282a9b235b1c36c052f9a71fdc17f20ef3c0",
+      "after": "fdb5ace914428f4ba95ab6dce1bc282a9b235b1c36c052f9a71fdc17f20ef3c0",
+      "changed": false
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442_config.json",
+      "before": "f48a83311c8408f5cc1d1c8f15feb159e3964fb54fae9e4118ded670da53bc50",
+      "after": "f48a83311c8408f5cc1d1c8f15feb159e3964fb54fae9e4118ded670da53bc50",
+      "changed": false
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442_feature_scaler.json",
+      "before": "21ee82d118fb54dba6806e0c9b4fbb324043489c28eeb5891acdbf47b228d496",
+      "after": "21ee82d118fb54dba6806e0c9b4fbb324043489c28eeb5891acdbf47b228d496",
+      "changed": false
+    },
+    {
+      "path": "docs/optimizacion_final_v5_2026-11-19/checkpoints/gait_deep_v5exp_V5C_fdb5ace91442_label_map.json",
+      "before": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986",
+      "after": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986",
+      "changed": false
+    },
+    {
+      "path": "src/lib/analysis/resultPresentation.ts",
+      "before": "dca2d9161443d3b4508ceccebd946f7523846137393fa538356cf01fb2e219cb",
+      "after": "16f1ba63891832e7fe4b8d666c19a38fcf9b7f8999b26bb654e59f5624edcb0f",
+      "changed": true
+    },
+    {
+      "path": "package.json",
+      "before": "eb2c2ea048a6bb1d54185758a5433e66ce4a2757503752ce04a0f7dd099786ed",
+      "after": "0cfab1ffb339ce74ca021528afa6a81f2ea854746363afed4b37c899baf4752a",
+      "changed": true
+    },
+    {
+      "path": "models/gait_deep_v5cr/deployment_manifest.json",
+      "before": null,
+      "after": "124a1c638b60acb65e98e101dfa6d06e026244ca2d8e5a280925da55c073f5cc"
+    },
+    {
+      "path": "models/gait_deep_v5cr/gait_deep_v5exp_V5CR_7e9ed60965fe.pt",
+      "before": null,
+      "after": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade"
+    },
+    {
+      "path": "models/gait_deep_v5cr/gait_deep_v5exp_V5CR_7e9ed60965fe_config.json",
+      "before": null,
+      "after": "4128ef87955874a9fb822214019603b687d37ab82b1787e1843b68f2ec994076"
+    },
+    {
+      "path": "models/gait_deep_v5cr/gait_deep_v5exp_V5CR_7e9ed60965fe_feature_scaler.json",
+      "before": null,
+      "after": "ba91a6a6af0c7c24cf41ef0a5c7fab568f5bbcb8ce3876840f3b46d8594431d2"
+    },
+    {
+      "path": "models/gait_deep_v5cr/gait_deep_v5exp_V5CR_7e9ed60965fe_label_map.json",
+      "before": null,
+      "after": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986"
+    },
+    {
+      "path": "models/gait_deep_v5cr/README.md",
+      "before": null,
+      "after": "cc50fb886c50c71e543fbeccf384df524e8e63c8842ddaecfd9223e2ba6e5ca5"
+    },
+    {
+      "path": "scripts/video_training/deep/v5cr/__init__.py",
+      "before": null,
+      "after": "c3848e47c5dfef211b628b861e82737fa53dee01fff1a65de35364b39a462cfc"
+    },
+    {
+      "path": "scripts/video_training/deep/v5cr/v5_preproc.py",
+      "before": null,
+      "after": "796b42a62a78b5220cabb3370b4a91ec8262490e7e8b722ded859b89232eba9d"
+    },
+    {
+      "path": "scripts/video_training/deep/v5cr/v5c_preproc.py",
+      "before": null,
+      "after": "fb7b8e958bc2019a7ed540eb808d30c1cea9775ed7ab32018714eed833214c5f"
+    },
+    {
+      "path": "scripts/video_training/deep/v5cr/v5cr_preproc.py",
+      "before": null,
+      "after": "845f72dfaefd901542fe11208e4d12f1202af5da880d52e4cda74cfe1dbc818d"
+    },
+    {
+      "path": "src/lib/ml/activeModel.ts",
+      "before": null,
+      "after": "eed7091d1568ac346b367706919c66efac5ee217089e8b2e0d771238b4ce9662"
+    },
+    {
+      "path": "scripts/test-v5cr-e2e.mjs",
+      "before": null,
+      "after": "7dc2ec90c49001669fa8fad1718d3488c2442b28797a06aae581d523270b6809"
+    },
+    {
+      "path": "scripts/test-v5cr-presentation.ts",
+      "before": null,
+      "after": "e7fbb960c1c1e9de5717575af858499a6165a3f590a00a9d0b5a2e34739dd5c5"
+    },
+    {
+      "path": "scripts/run-v5cr-check.mjs",
+      "before": null,
+      "after": "f7856af55f6e274b89421365e4c0433b76fd0a0310cfd92985e775856e96cc0b"
+    },
+    {
+      "path": "scripts/audit-v5cr-integration.py",
+      "before": null,
+      "after": "b9a1534e7284ca39f77d5f2ffb87d32dd2fc36b16535097bd9c78ab8e5c02f69"
+    },
+    {
+      "path": "scripts/video_training/deep/15_predict_deep_video_v5cr.py",
+      "before": null,
+      "after": "131b98c76e583755ffa6d7ba6472014cf29d8be21435fd6d2cfd1927631ec35d"
+    },
+    {
+      "path": "scripts/video_training/deep/prepare_v5cr_deployment.py",
+      "before": null,
+      "after": "0bab2961abd07a8d034887afac091f65eff26e12ea328401715e0699ba0fb4fa"
+    },
+    {
+      "path": "scripts/video_training/deep/test_v5cr_deployment.py",
+      "before": null,
+      "after": "4dd2508df4bc0be65b3c03c92a5b198d366971923a2efe490e5c604dbb8d50aa"
+    }
+  ]
+}

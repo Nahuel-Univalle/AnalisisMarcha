@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/prisma";
 import { reportPatternFields } from "@/lib/analysis/conditionLabels";
+import { reportPdfAvailability } from "@/lib/analysis/reportPdfStorage";
 
 export const runtime = "nodejs";
 
@@ -74,7 +75,7 @@ export async function GET() {
   });
 
   return NextResponse.json({
-    reports: reports.map(reportPayload),
+    reports: await Promise.all(reports.map(async (report) => ({ ...reportPayload(report), pdfAvailability: await reportPdfAvailability(report.id, user.id, report.analysisId) }))),
   });
 }
 

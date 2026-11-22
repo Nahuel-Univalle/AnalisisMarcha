@@ -1,0 +1,26 @@
+﻿modelo,semilla,f1_macro
+V4 base,42,0.7168
+V4 base,43,0.7233
+V4 base,44,0.7089
+V4 base,45,0.7466
+V4 base,46,0.7302
+V4 activo (BN recalibrada),42,0.758
+V4 activo (BN recalibrada),43,0.7319
+V4 activo (BN recalibrada),44,0.7384
+V4 activo (BN recalibrada),45,0.7511
+V4 activo (BN recalibrada),46,0.7416
+V5-P,42,0.7827
+V5-P,43,0.854
+V5-P,44,0.8
+V5-P,45,0.7929
+V5-P,46,0.7701
+V5-C,42,0.7907
+V5-C,43,0.7906
+V5-C,44,0.7676
+V5-C,45,0.7519
+V5-C,46,0.7572
+V5-CR,42,0.7857
+V5-CR,43,0.7795
+V5-CR,44,0.7792
+V5-CR,45,0.8215
+V5-CR,46,0.7603

@@ -1,0 +1,14 @@
+/** Reject error JSON/HTML even when a response incorrectly claims HTTP 200. */
+export async function validatedPdfBlob(response: Response): Promise<Blob> {
+  if (!response.ok || response.headers.get("content-type")?.split(";")[0].trim() !== "application/pdf") {
+    let message = "No se pudo descargar un archivo PDF válido.";
+    try {
+      const payload = await response.json();
+      if (typeof payload.message === "string") message = payload.message;
+    } catch { /* Keep the explicit error; never download the error response. */ }
+    throw new Error(message);
+  }
+  const blob = await response.blob();
+  if (await blob.slice(0, 5).text() !== "%PDF-") throw new Error("La respuesta no contiene un archivo PDF válido.");
+  return blob;
+}

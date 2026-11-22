@@ -1,0 +1,62 @@
+[
+ {
+  "prueba": "secuencia V5-C identica a V5-P",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "33 caracteristicas y nombres coherentes",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "caracteristicas no redefinidas identicas a V5-P",
+  "resultado": "PASS",
+  "detalle": "0.0"
+ },
+ {
+  "prueba": "V5-C invariante a camara que sigue (compensacion 50 %)",
+  "resultado": "PASS",
+  "detalle": "3.265872906295088e-16"
+ },
+ {
+  "prueba": "V5-C invariante a camara que sigue (compensacion 100 %)",
+  "resultado": "PASS",
+  "detalle": "0.0"
+ },
+ {
+  "prueba": "DEMOSTRACION: V5-P NO es invariante (umbral inicial 0.05 era arbitrario y demasiado alto para la velocidad sintetica; se usa >1e-3 = cualquier cambio real)",
+  "resultado": "PASS",
+  "detalle": "0.032"
+ },
+ {
+  "prueba": "espejo: caracteristicas de landmarks reflejados == permutacion L/R de las originales",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "invariante al zoom",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "invariante a la relacion de aspecto",
+  "resultado": "PASS",
+  "detalle": ""
+ },
+ {
+  "prueba": "persona rigida (sin piernas ni brazos): body_motion_mean ~ 0 aunque avance",
+  "resultado": "PASS",
+  "detalle": "0.0"
+ },
+ {
+  "prueba": "sin NaN/inf invalidos en 633 ventanas reales",
+  "resultado": "PASS",
+  "detalle": "0"
+ },
+ {
+  "prueba": "conjunto completo sin FAIL",
+  "resultado": "PASS",
+  "detalle": ""
+ }
+]

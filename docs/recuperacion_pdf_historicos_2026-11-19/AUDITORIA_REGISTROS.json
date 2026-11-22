@@ -1,0 +1,3906 @@
+{
+  "databaseSnapshot": {
+    "User": [
+      {
+        "count": 18,
+        "fingerprint": "9732dc2eae0193127e13ec50dac7e9f9"
+      }
+    ],
+    "VideoMarcha": [
+      {
+        "count": 173,
+        "fingerprint": "e74c91a9e4673f53a12c2ee10d7dbe3f"
+      }
+    ],
+    "PosePoint": [
+      {
+        "count": 0,
+        "fingerprint": "d751713988987e9331980363e24189ce"
+      }
+    ],
+    "GaitAnalysis": [
+      {
+        "count": 169,
+        "fingerprint": "777b3ae4d989649538bd3fc060655f8c"
+      }
+    ],
+    "GaitParameter": [
+      {
+        "count": 1094,
+        "fingerprint": "e627b45adc88c122a42adadb1f288c47"
+      }
+    ],
+    "DetectedSignal": [
+      {
+        "count": 423,
+        "fingerprint": "0ed23d1aa713b0081f576353152722ac"
+      }
+    ],
+    "AssociatedCondition": [
+      {
+        "count": 169,
+        "fingerprint": "4e1af26eae37f7e499d643666173c52b"
+      }
+    ],
+    "MedicalReport": [
+      {
+        "count": 79,
+        "fingerprint": "2aff9e177545e4561b18f1d0f78d75a3"
+      }
+    ],
+    "SystemLog": [
+      {
+        "count": 240,
+        "fingerprint": "4a37cd7aa221d5e5aa2ec808befe4e40"
+      }
+    ]
+  },
+  "canonicalRoots": [
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\analysis-records",
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\analysis-records",
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\data\\analysis-records",
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\tmp\\analysis-records"
+  ],
+  "pdfRoots": [
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\tmp\\reports",
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\public\\reports",
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\uploads\\reports",
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\private-reports"
+  ],
+  "records": [
+    {
+      "reportId": "cmpxgj4oh000gul801oeh4b4l",
+      "analysisId": "cmpxgedek0004ul80p8x5c0kv",
+      "userId": "cmpu9wmub0000ulc8ek8ub7tj",
+      "ownershipConsistent": true,
+      "createdAt": "2026-06-03T02:38:38.705Z",
+      "analysisCreatedAt": "2026-06-03T02:34:56.732Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 5,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": false,
+        "roundedConfidencePresent": false,
+        "modelVersion": null,
+        "rawProbabilityFields": [],
+        "linkedLogs": []
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmpy0zos3000hul7440ewxqaf",
+      "analysisId": "cmpy0oziy0005ul745503b3ya",
+      "userId": "65544a17-089b-473f-a7b0-c42a93ef1621",
+      "ownershipConsistent": true,
+      "createdAt": "2026-06-03T12:11:23.571Z",
+      "analysisCreatedAt": "2026-06-03T12:03:04.282Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 5,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": false,
+        "roundedConfidencePresent": false,
+        "modelVersion": null,
+        "rawProbabilityFields": [],
+        "linkedLogs": []
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmqensbet000ful0ocsx5xqzs",
+      "analysisId": "cmqenqaxi0003ul0oyf043172",
+      "userId": "cmpu9wmub0000ulc8ek8ub7tj",
+      "ownershipConsistent": true,
+      "createdAt": "2026-06-15T03:33:49.638Z",
+      "analysisCreatedAt": "2026-06-15T03:32:15.701Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 5,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": false,
+        "roundedConfidencePresent": false,
+        "modelVersion": null,
+        "rawProbabilityFields": [],
+        "linkedLogs": []
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmts2dqv2000eulgceh6bp8p2",
+      "analysisId": "cmts2cuao0003ulgcnwebpv75",
+      "userId": "2dcbc0e6-056e-4193-aeb2-d4751b30ac92",
+      "ownershipConsistent": true,
+      "createdAt": "2026-09-08T02:42:31.358Z",
+      "analysisCreatedAt": "2026-09-08T02:41:49.152Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 5,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": false,
+        "roundedConfidencePresent": false,
+        "modelVersion": null,
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmu4ilzip000wul10w851plps",
+      "analysisId": "cmu4i9de4000jul100gel926l",
+      "userId": "cmpu9wmub0000ulc8ek8ub7tj",
+      "ownershipConsistent": true,
+      "createdAt": "2026-09-16T19:50:03.794Z",
+      "analysisCreatedAt": "2026-09-16T19:40:15.244Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 5,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": false,
+        "roundedConfidencePresent": false,
+        "modelVersion": null,
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvibtifu000eulus26hbhzeo",
+      "analysisId": "cmvibt7ka0004ulushly09fns",
+      "userId": "336e00dd-b1e6-4691-abad-afd00b223ca3",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-21T16:28:26.394Z",
+      "analysisCreatedAt": "2026-10-21T16:28:12.299Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 5,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha"
+        ],
+        "signals": 1,
+        "conditions": 1,
+        "classPresent": false,
+        "roundedConfidencePresent": false,
+        "modelVersion": null,
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvubcp6m001xulykjg5dd9sh",
+      "analysisId": "cmvub7j9n0005ulykkdz62jwo",
+      "userId": "6714baff-ebd5-4dc8-8cf2-aaabd7f44a1c",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T01:48:36.094Z",
+      "analysisCreatedAt": "2026-10-30T01:44:35.147Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 0,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvubcp7z001zulykj4yw1j3i",
+      "analysisId": "cmvuba44l000julykhw6vrtc4",
+      "userId": "6714baff-ebd5-4dc8-8cf2-aaabd7f44a1c",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T01:48:36.144Z",
+      "analysisCreatedAt": "2026-10-30T01:46:35.494Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvubcp9a0021ulyk5qg66pnv",
+      "analysisId": "cmvubbk1i0011ulykfzki2pbx",
+      "userId": "6714baff-ebd5-4dc8-8cf2-aaabd7f44a1c",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T01:48:36.190Z",
+      "analysisCreatedAt": "2026-10-30T01:47:42.774Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvubcpag0023ulykli9oqm44",
+      "analysisId": "cmvubcp31001iulykwzvyfjy5",
+      "userId": "6714baff-ebd5-4dc8-8cf2-aaabd7f44a1c",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T01:48:36.233Z",
+      "analysisCreatedAt": "2026-10-30T01:48:35.965Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvubh01p002oulykfmd67nrp",
+      "analysisId": "cmvubgs6d0029ulykw8evcj0h",
+      "userId": "6714baff-ebd5-4dc8-8cf2-aaabd7f44a1c",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T01:51:56.798Z",
+      "analysisCreatedAt": "2026-10-30T01:51:46.597Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvubl4sq003aulyk5cso7o8u",
+      "analysisId": "cmvubkwsm002uulykcd7ean3z",
+      "userId": "6714baff-ebd5-4dc8-8cf2-aaabd7f44a1c",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T01:55:09.578Z",
+      "analysisCreatedAt": "2026-10-30T01:54:59.206Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_protocolV2_M1_20261029_162234_d7323250d26f",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcdj009hul1866ghxzlq",
+      "analysisId": "cmvueyz830005ul18iv8j0t9q",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:37.735Z",
+      "analysisCreatedAt": "2026-10-30T03:29:54.388Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 0,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcfc009jul185dhomqro",
+      "analysisId": "cmvuf0c92000jul18cldrxb99",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:37.801Z",
+      "analysisCreatedAt": "2026-10-30T03:30:57.926Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 0,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcgl009lul18i5t3wrp7",
+      "analysisId": "cmvuf1wyl000xul18pmk3g3j0",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:37.845Z",
+      "analysisCreatedAt": "2026-10-30T03:32:11.422Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 0,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxchp009nul18srn92qpw",
+      "analysisId": "cmvuf4e2p001bul18oxiyzest",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:37.885Z",
+      "analysisCreatedAt": "2026-10-30T03:34:06.913Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcj0009pul1829drsn3q",
+      "analysisId": "cmvuf7mmy001tul18mzoz8gmo",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:37.932Z",
+      "analysisCreatedAt": "2026-10-30T03:36:37.979Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxck7009rul18dz9avj3q",
+      "analysisId": "cmvufa55y002bul18scf1vsx9",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:37.975Z",
+      "analysisCreatedAt": "2026-10-30T03:38:35.303Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxclf009tul18bp3ql2mh",
+      "analysisId": "cmvufd5kf002tul188dy4qi9m",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.019Z",
+      "analysisCreatedAt": "2026-10-30T03:40:55.791Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcmk009vul18x7f711rk",
+      "analysisId": "cmvufg2ub003aul18gpvafcwc",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.061Z",
+      "analysisCreatedAt": "2026-10-30T03:43:12.228Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcns009xul18dc1eh8ef",
+      "analysisId": "cmvufiig2003rul189k2dopy1",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.104Z",
+      "analysisCreatedAt": "2026-10-30T03:45:05.762Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcoz009zul18q0accap7",
+      "analysisId": "cmvufl2350049ul185m7lkwoz",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.147Z",
+      "analysisCreatedAt": "2026-10-30T03:47:04.530Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcq500a1ul185nn51jx8",
+      "analysisId": "cmvufmg79004pul18i3yeqeht",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.189Z",
+      "analysisCreatedAt": "2026-10-30T03:48:09.477Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcra00a3ul180ohyc1k8",
+      "analysisId": "cmvufnstq0056ul18m1bw8v5o",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.230Z",
+      "analysisCreatedAt": "2026-10-30T03:49:12.494Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcsg00a5ul186lp6zinm",
+      "analysisId": "cmvufp4fn005nul18in2cly8j",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.273Z",
+      "analysisCreatedAt": "2026-10-30T03:50:14.196Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxctn00a7ul18uchm6o28",
+      "analysisId": "cmvufq7zx0065ul18w8rqswnu",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.316Z",
+      "analysisCreatedAt": "2026-10-30T03:51:05.469Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcux00a9ul18oravjj4s",
+      "analysisId": "cmvufrb7z006nul18i3fa4t74",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.361Z",
+      "analysisCreatedAt": "2026-10-30T03:51:56.304Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Asimetría",
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcwc00abul1849b80jb3",
+      "analysisId": "cmvufsiwz0074ul18efv7026p",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.412Z",
+      "analysisCreatedAt": "2026-10-30T03:52:52.931Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcxl00adul18pat5kmtb",
+      "analysisId": "cmvuftoeb007lul18yh9s87fg",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.458Z",
+      "analysisCreatedAt": "2026-10-30T03:53:46.691Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxcz200aful180hka211e",
+      "analysisId": "cmvufuv5u0082ul18r38konk7",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.511Z",
+      "analysisCreatedAt": "2026-10-30T03:54:42.114Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxd0a00ahul18pe4g4yha",
+      "analysisId": "cmvufw4qc008jul18ubngd07f",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.554Z",
+      "analysisCreatedAt": "2026-10-30T03:55:41.172Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvufxd1j00ajul181r8qscsq",
+      "analysisId": "cmvufxca30091ul18lauy0z9j",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T03:56:38.599Z",
+      "analysisCreatedAt": "2026-10-30T03:56:37.611Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvug41f000b4ul1837vu0z94",
+      "analysisId": "cmvug3t0y00aoul18i93w7ww2",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T04:01:50.124Z",
+      "analysisCreatedAt": "2026-10-30T04:01:39.251Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvug7grj00bqul18npwyb5ei",
+      "analysisId": "cmvug790900baul18v0c62vnz",
+      "userId": "6f183e80-bc2f-4d52-a4f7-b9db6fd867db",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T04:04:29.983Z",
+      "analysisCreatedAt": "2026-10-30T04:04:19.929Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3jb009hul48wg9nmvju",
+      "analysisId": "cmvuhhnml0005ul48a7x6kiac",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:11.976Z",
+      "analysisCreatedAt": "2026-10-30T04:40:25.054Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 0,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3ky009jul484t0z3w67",
+      "analysisId": "cmvuhizzv000jul48orbpkdyb",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.034Z",
+      "analysisCreatedAt": "2026-10-30T04:41:27.739Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 0,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3ma009lul48trbz39mr",
+      "analysisId": "cmvuhkhor000xul48pdedrbno",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.082Z",
+      "analysisCreatedAt": "2026-10-30T04:42:37.323Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 0,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3ng009nul48bnfnkfwo",
+      "analysisId": "cmvuhmvjy001bul48bmlli5gj",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.125Z",
+      "analysisCreatedAt": "2026-10-30T04:44:28.606Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3on009pul48vwo2kagl",
+      "analysisId": "cmvuhqa63001tul48h4139pdu",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.168Z",
+      "analysisCreatedAt": "2026-10-30T04:47:07.515Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3pw009rul48x56d7oqc",
+      "analysisId": "cmvuhsq3x002bul48l9mzaui6",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.213Z",
+      "analysisCreatedAt": "2026-10-30T04:49:01.486Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3r6009tul48p5eawcvc",
+      "analysisId": "cmvuhvpu8002tul48thi0ghb1",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.258Z",
+      "analysisCreatedAt": "2026-10-30T04:51:21.104Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3si009vul48lzgydp5l",
+      "analysisId": "cmvuhykks003aul48haozoo9s",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.306Z",
+      "analysisCreatedAt": "2026-10-30T04:53:34.252Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3to009xul487l0r15nu",
+      "analysisId": "cmvui0zf8003rul484twvluyl",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.348Z",
+      "analysisCreatedAt": "2026-10-30T04:55:26.804Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3uu009zul48d4cvz2od",
+      "analysisId": "cmvui3n2b0049ul48ckxue6e3",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.391Z",
+      "analysisCreatedAt": "2026-10-30T04:57:30.756Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3w300a1ul48lq8r7zzb",
+      "analysisId": "cmvui4yi8004pul48t6nlxt14",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.435Z",
+      "analysisCreatedAt": "2026-10-30T04:58:32.240Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3xa00a3ul48c492peqx",
+      "analysisId": "cmvui67yd0056ul48xydpg25n",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.479Z",
+      "analysisCreatedAt": "2026-10-30T04:59:31.142Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3yh00a5ul48lt8rnf1n",
+      "analysisId": "cmvui7lfw005nul48qegjv2z4",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.521Z",
+      "analysisCreatedAt": "2026-10-30T05:00:35.277Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig3zm00a7ul48232yd34a",
+      "analysisId": "cmvui8qei0065ul48l1m8aprs",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.562Z",
+      "analysisCreatedAt": "2026-10-30T05:01:28.362Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig40u00a9ul483cv2h42l",
+      "analysisId": "cmvui9uvg006nul48bxgk7xno",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.606Z",
+      "analysisCreatedAt": "2026-10-30T05:02:20.812Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig42100abul48rqbjp5hj",
+      "analysisId": "cmvuib3hq0074ul48wohbnpaq",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.650Z",
+      "analysisCreatedAt": "2026-10-30T05:03:18.638Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig43800adul48ywczo83y",
+      "analysisId": "cmvuicc4e007lul48itgcvras",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.692Z",
+      "analysisCreatedAt": "2026-10-30T05:04:16.478Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig44b00aful48q3oxojpd",
+      "analysisId": "cmvuidjkd0082ul48y348ldls",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.732Z",
+      "analysisCreatedAt": "2026-10-30T05:05:12.781Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 3,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig45n00ahul48c7wffx9i",
+      "analysisId": "cmvuiewb5008jul48cqwb0rj3",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.780Z",
+      "analysisCreatedAt": "2026-10-30T05:06:15.953Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuig46w00ajul48ke73i63u",
+      "analysisId": "cmvuig3g90091ul484nz1r3gm",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:07:12.824Z",
+      "analysisCreatedAt": "2026-10-30T05:07:11.865Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuimqn900b4ul48kxn1206u",
+      "analysisId": "cmvuimir500aoul48ku607njr",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:12:21.861Z",
+      "analysisCreatedAt": "2026-10-30T05:12:11.634Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmvuiq86p00bqul48j8s8zahp",
+      "analysisId": "cmvuiq0dn00baul486vu1qhj4",
+      "userId": "2352cb5f-ab4c-486f-9f46-286ade4a0a93",
+      "ownershipConsistent": true,
+      "createdAt": "2026-10-30T05:15:04.562Z",
+      "analysisCreatedAt": "2026-10-30T05:14:54.443Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 4,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4lc008oulj8oo8e9xtn",
+      "analysisId": "cmw0w987q0008ulj8152npb64",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:04.705Z",
+      "analysisCreatedAt": "2026-11-03T16:20:23.127Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 0,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4my008qulj8ykhxmtnp",
+      "analysisId": "cmw0waoji000mulj8dk0c33em",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:04.763Z",
+      "analysisCreatedAt": "2026-11-03T16:21:30.942Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 0,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4om008sulj8fkd5iif0",
+      "analysisId": "cmw0wcc3z0010ulj8y3i2a5o1",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:04.822Z",
+      "analysisCreatedAt": "2026-11-03T16:22:48.144Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 0,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4q0008uulj85ooipio8",
+      "analysisId": "cmw0wf7xd001eulj8kzrtzhb1",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:04.872Z",
+      "analysisCreatedAt": "2026-11-03T16:25:02.689Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4ra008wulj83wq7kcw4",
+      "analysisId": "cmw0wipl4001uulj8q8991kcc",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:04.918Z",
+      "analysisCreatedAt": "2026-11-03T16:27:45.544Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4sl008yulj8x7s1qy2i",
+      "analysisId": "cmw0wlc2p002aulj8kd73u6ep",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:04.965Z",
+      "analysisCreatedAt": "2026-11-03T16:29:48.002Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4ty0090ulj8hof8vncx",
+      "analysisId": "cmw0wo9t6002qulj8a1honza0",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.014Z",
+      "analysisCreatedAt": "2026-11-03T16:32:05.034Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 1,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4vc0092ulj8z8odckx4",
+      "analysisId": "cmw0wrb3m0035ulj85ba2u5qk",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.064Z",
+      "analysisCreatedAt": "2026-11-03T16:34:26.675Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 1,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4wq0094ulj8egrmyyp7",
+      "analysisId": "cmw0wtu3d003kulj8cahdexhd",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.114Z",
+      "analysisCreatedAt": "2026-11-03T16:36:24.601Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4y00096ulj8qlrhhupa",
+      "analysisId": "cmw0wwklf0040ulj8lvzuvzyw",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.160Z",
+      "analysisCreatedAt": "2026-11-03T16:38:32.260Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 1,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa4zf0098ulj8mtb6c5tx",
+      "analysisId": "cmw0wy829004fulj8cileae0o",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.211Z",
+      "analysisCreatedAt": "2026-11-03T16:39:49.329Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa50s009aulj87ldvmexr",
+      "analysisId": "cmw0wzp3y004vulj82clf7pii",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.260Z",
+      "analysisCreatedAt": "2026-11-03T16:40:58.078Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 1,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa523009culj80xx1il9z",
+      "analysisId": "cmw0x16zy005aulj88uqbhtdk",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.308Z",
+      "analysisCreatedAt": "2026-11-03T16:42:07.918Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa53l009eulj8b65ioll3",
+      "analysisId": "cmw0x2iw8005qulj8c8otv0mg",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.362Z",
+      "analysisCreatedAt": "2026-11-03T16:43:09.993Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa550009gulj8qd9v4w0z",
+      "analysisId": "cmw0x3p370066ulj8ac39p62y",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.413Z",
+      "analysisCreatedAt": "2026-11-03T16:44:04.676Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 1,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa56f009iulj8iuatk1sz",
+      "analysisId": "cmw0x50qi006lulj84dqth0p1",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.463Z",
+      "analysisCreatedAt": "2026-11-03T16:45:06.426Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 1,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa57u009kulj8o4a5yysa",
+      "analysisId": "cmw0x69f50070ulj8teios0o9",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.514Z",
+      "analysisCreatedAt": "2026-11-03T16:46:04.338Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 1,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa595009mulj8hs6kgxdc",
+      "analysisId": "cmw0x7hsd007fulj8t1jhu0df",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.561Z",
+      "analysisCreatedAt": "2026-11-03T16:47:01.837Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 1,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa5ah009oulj8s1xh101f",
+      "analysisId": "cmw0x8rlj007uulj8cygwmy81",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.609Z",
+      "analysisCreatedAt": "2026-11-03T16:48:01.208Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xa5br009qulj86igkxelf",
+      "analysisId": "cmw0xa4gz008aulj8mcuvdgie",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:49:05.656Z",
+      "analysisCreatedAt": "2026-11-03T16:49:04.547Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xe1iu00a9ulj8d519v88q",
+      "analysisId": "cmw0xdtno009vulj817f2x1wx",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:52:07.350Z",
+      "analysisCreatedAt": "2026-11-03T16:51:57.157Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xg7ms00atulj8ktp373wb",
+      "analysisId": "cmw0xfze200afulj8x34vscpg",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:53:48.580Z",
+      "analysisCreatedAt": "2026-11-03T16:53:37.899Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    },
+    {
+      "reportId": "cmw0xkdji00bculj84huxalaa",
+      "analysisId": "cmw0xk5uj00ayulj8ltamtwxx",
+      "userId": "f5c30a1b-c23b-42a6-9c82-39e4e673b577",
+      "ownershipConsistent": true,
+      "createdAt": "2026-11-03T16:57:02.862Z",
+      "analysisCreatedAt": "2026-11-03T16:56:52.892Z",
+      "pdfUrl": null,
+      "canonicalFiles": [],
+      "cacheDirectories": [],
+      "stored": {
+        "summaryPresent": true,
+        "parameters": 8,
+        "parameterNames": [
+          "Cuerpo detectado en el video",
+          "Momentos analizados",
+          "Velocidad de marcha",
+          "Asimetría",
+          "Ritmo de la marcha",
+          "Clase predicha por el modelo experimental",
+          "Confianza del modelo",
+          "Versión del modelo"
+        ],
+        "signals": 2,
+        "conditions": 1,
+        "classPresent": true,
+        "roundedConfidencePresent": true,
+        "modelVersion": "gait_deep_v4exp_M1_BN_recalibrated_candidate_v1",
+        "rawProbabilityFields": [],
+        "linkedLogs": [
+          {
+            "action": "GAIT_ANALYSIS_MODEL",
+            "keys": [
+              "analysisId",
+              "videoId",
+              "modelSource",
+              "modelVersion",
+              "detectedClass",
+              "analysisReliable",
+              "poseDetectionRate",
+              "framesWithPose"
+            ]
+          }
+        ]
+      },
+      "classification": "no_original_or_canonical_located",
+      "faithfulFullReconstructionSupported": false,
+      "partialRecordExportPossible": true
+    }
+  ],
+  "parameterNames": {
+    "Cuerpo detectado en el video": 79,
+    "Momentos analizados": 79,
+    "Velocidad de marcha": 79,
+    "Asimetría": 79,
+    "Ritmo de la marcha": 79,
+    "Clase predicha por el modelo experimental": 73,
+    "Confianza del modelo": 73,
+    "Versión del modelo": 73
+  },
+  "counts": {
+    "reports": 79,
+    "pdfUrlPresent": 0,
+    "canonicalCandidates": 0,
+    "cacheCandidates": 0,
+    "classPresent": 73,
+    "roundedConfidencePresent": 73,
+    "partialRecordExportPossible": 79
+  },
+  "dateRange": [
+    "2026-06-03T02:38:38.705Z",
+    "2026-11-03T16:57:02.862Z"
+  ]
+}

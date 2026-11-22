@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "name": "valid PDF bytes preserved",
+      "passed": true
+    },
+    {
+      "name": "historical 404 is a visible error, never a download",
+      "passed": true
+    },
+    {
+      "name": "HTTP 200 JSON cannot be saved as PDF",
+      "passed": true
+    },
+    {
+      "name": "HTML error page cannot be saved as PDF",
+      "passed": true
+    },
+    {
+      "name": "false PDF MIME type is rejected",
+      "passed": true
+    },
+    {
+      "name": "empty PDF response is rejected",
+      "passed": true
+    }
+  ],
+  "passed": 6,
+  "failed": 0
+}

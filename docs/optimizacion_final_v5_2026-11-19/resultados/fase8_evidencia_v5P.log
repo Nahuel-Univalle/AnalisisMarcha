@@ -1,0 +1,51 @@
+reproduccion {'coincidencia_prediccion': 1.0} {'macro_f1_media': 0.7999, 'accuracy_media': 0.8803}
+{"prueba": "camara que sigue a la persona (50 % del avance horizontal compensado)", "tipo": "grabacion", "macro_f1": 0.6809, "delta_macro_f1": -0.119, "IC95_delta_(bootstrap por sujeto)": [-0.1662, -0.08], "accuracy": 0.7248, "acuerdo_con_prediccion_original": 0.841, "nota": "camara en mano / acompanando"}
+{"prueba": "camara que sigue a la persona (100 %: la cadera no se desplaza en la imagen)", "tipo": "grabacion", "macro_f1": 0.4874, "delta_macro_f1": -0.3125, "IC95_delta_(bootstrap por sujeto)": [-0.3622, -0.2576], "accuracy": 0.4769, "acuerdo_con_prediccion_original": 0.5812, "nota": "camara en mano / acompanando"}
+{
+ "version": "v5P",
+ "linea_base": {
+  "macro_f1_media": 0.7999,
+  "accuracy_media": 0.8803
+ },
+ "pruebas": [
+  {
+   "prueba": "camara que sigue a la persona (50 % del avance horizontal compensado)",
+   "tipo": "grabacion",
+   "macro_f1": 0.6809,
+   "delta_macro_f1": -0.119,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.1662,
+    -0.08
+   ],
+   "accuracy": 0.7248,
+   "acuerdo_con_prediccion_original": 0.841,
+   "nota": "camara en mano / acompanando"
+  },
+  {
+   "prueba": "camara que sigue a la persona (100 %: la cadera no se desplaza en la imagen)",
+   "tipo": "grabacion",
+   "macro_f1": 0.4874,
+   "delta_macro_f1": -0.3125,
+   "IC95_delta_(bootstrap por sujeto)": [
+    -0.3622,
+    -0.2576
+   ],
+   "accuracy": 0.4769,
+   "acuerdo_con_prediccion_original": 0.5812,
+   "nota": "camara en mano / acompanando"
+  }
+ ],
+ "consistencia_ventanas": {
+  "exactitud_por_ventana": 0.855,
+  "exactitud_video_5_ventanas (usada)": 0.8803,
+  "exactitud_video_todas_las_ventanas": 0.8769,
+  "exactitud_video_voto_mayoritario": 0.8838,
+  "fraccion_media_de_ventanas_discrepantes_del_voto": 0.0542,
+  "videos_con_ventanas_discrepantes": 0.1966
+ },
+ "calibracion": {
+  "confianza_media_cruda": 0.7599,
+  "exactitud": 0.8803,
+  "confianza_media_calibrada": 0.8398
+ }
+}

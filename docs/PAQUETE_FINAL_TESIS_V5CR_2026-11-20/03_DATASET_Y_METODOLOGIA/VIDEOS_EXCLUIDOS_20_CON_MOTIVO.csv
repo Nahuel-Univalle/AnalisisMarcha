@@ -1,0 +1,21 @@
+﻿ID video,Categoría,Decisión,Motivo
+011_NM_01,Normal,EXCLUDE,valid_for_training=False en pose_quality_report (pose_rate 0.469 < 0.50); mismo gate que V4.
+001_PD_01_SV,Parkinson,MANUAL_REVIEW,Un asistente camina pegado al paciente; riesgo de mezclar landmarks de 2 personas. Fuera del preview hasta revision humana; el sujeto 001_PD sigue con sus clips ML/MD.
+001_PD_02_SV,Parkinson,MANUAL_REVIEW,"Asistente solapado con el paciente al entrar en cuadro (1.0-1.9 s, salto de cadera 0.72 torsos). Fuera del preview hasta revision humana."
+Escleorosis1,Esclerosis múltiple,EXCLUDE,Pies fuera de cuadro en toda la ventana (visibilidad de ambos tobillos 0%); tobillos extrapolados.
+Escleorosis11,Esclerosis múltiple,EXCLUDE,Bajando escaleras con baranda 0-~7.5 s; tramo a nivel ~2.5 s < 3.4 s (criterio RC21/Escleorosis3).
+Escleorosis17,Esclerosis múltiple,EXCLUDE,Marcha en CINTA de correr (no sobre suelo) con asistencia: condicion no comparable.
+Escleorosis2,Esclerosis múltiple,EXCLUDE,Piernas salen por abajo desde ~3 s (cuerpo completo 48%); tramo util ~3.0 s < 3.4 s.
+Escleorosis24,Esclerosis múltiple,EXCLUDE,"Montaje de terapia (cortes 1.73, 5.97, 9.2 s) con ejercicio de brazos 2-4 s; tramos de marcha 1.7 s y 3.2 s < 3.4 s; contenido antes/despues de tratamiento."
+Escleorosis7,Esclerosis múltiple,EXCLUDE,"Montaje de clips cortos (cortes cada ~1.5 s), escalones 22-32 s, escaleras interiores 34-46 s y tarjeta promocional final; ningun tramo continuo a nivel >= 3.4 s."
+RiesgoCaida3,Riesgo de caída,EXCLUDE,Pasada mas larga 3.0 s < 3.4 s; unir pasadas no esta soportado (hueco de 4 s sin persona).
+RiesgoCaida8,Riesgo de caída,EXCLUDE,Tramo de marcha 3.0 s < 3.4 s; 33/36 features finitas; el resto no es marcha.
+RiesgoCaida12,Riesgo de caída,EXCLUDE,"Unico tramo fiable 5.5-7.43 s = 1.9 s, con 68% de cuadros fuera de borde."
+RiesgoCaida13,Riesgo de caída,EXCLUDE,Sin hombros/cabeza en ningun cuadro: el pipeline no puede anclar origen/escala.
+RiesgoCaida14,Riesgo de caída,EXCLUDE,Tramo limpio maximo 0-2.0 s < 3.4 s. El APTO preliminar no se sostiene.
+RiesgoCaida15,Riesgo de caída,EXCLUDE,Tramo 2.3 s < 3.4 s; cuerpo completo 27%; no hay evidencia de que la persona tenga riesgo de caida.
+RiesgoCaida16,Riesgo de caída,EXCLUDE,"Decision humana (Paso 3): EXCLUDE. Tramo 1.0-4.5 s tecnicamente usable, pero se excluye para mantener un conjunto conservador sin ejemplos ambiguos."
+RiesgoCaida17,Riesgo de caída,EXCLUDE,Ningun tramo recupera la pose; recuperarlo exigiria recorte/ampliacion solo para este video (preprocesamiento por clase = atajo). Ademas pendiente.
+RiesgoCaida18,Riesgo de caída,EXCLUDE,"Decision humana (Paso 3): EXCLUDE. Tramo 0.0-4.0 s tecnicamente usable, pero empujar un carro cargado es una actividad auxiliar, no la marcha a modelar."
+RiesgoCaida20,Riesgo de caída,EXCLUDE,No hay marcha continua; el pipeline igual estima 19 pasos/149 ppm (features espurias).
+RiesgoCaida21,Riesgo de caída,EXCLUDE,Todo el clip es escalera: no hay tramo a nivel del suelo (criterio de Escleorosis3.mp4).

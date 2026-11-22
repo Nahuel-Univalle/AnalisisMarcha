@@ -11,6 +11,7 @@ import { MedicalReport } from "@/components/report/MedicalReport";
 import { isPlaceholderResult } from "@/components/analysis/NoAnalysisState";
 import { SavedReportsList } from "@/components/analysis/SavedReportsList";
 import { useAnalysis } from "@/context/AnalysisContext";
+import { validatedPdfBlob } from "@/lib/analysis/pdfDownload";
 
 
 export default function ReportPage() {
@@ -37,23 +38,25 @@ export default function ReportPage() {
       let existing = await fetch(url, { cache: "no-store" });
       let pdfBlob: Blob;
       if (existing.ok) {
-        pdfBlob = await existing.blob();
+        pdfBlob = await validatedPdfBlob(existing);
       } else {
         if (existing.status !== 404) throw new Error("No se pudo consultar el PDF.");
+        const missing = await existing.clone().json().catch(() => null);
+        if (missing?.code !== "PDF_NOT_GENERATED") throw new Error(missing?.message || "El archivo histórico de este informe no está disponible.");
         const generation = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
-        if (!generation.ok) throw new Error("No se pudo generar el PDF canónico en el servidor.");
+        if (!generation.ok) {const failure = await generation.json().catch(() => null);throw new Error(failure?.message || "No se pudo generar el PDF canónico en el servidor.");}
         existing = await fetch(url, { cache: "no-store" });
         if (!existing.ok) throw new Error("No se pudo recuperar el PDF canónico.");
-        pdfBlob = await existing.blob();
+        pdfBlob = await validatedPdfBlob(existing);
       }
       const objectUrl = URL.createObjectURL(pdfBlob);
       const link = document.createElement("a"); link.href = objectUrl; link.download = "informe_analisis_marcha.pdf";
       document.body.appendChild(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(objectUrl), 30000);
       setSaved(true);
       setSavedCount((count) => count + 1);
-    } catch {
+    } catch (error) {
       setDownloadError(
-        "No se pudo completar la generación o el guardado del PDF. Si el archivo ya se descargó, consérvalo; su descarga posterior podría no estar disponible."
+        error instanceof Error ? error.message : "No se pudo descargar el PDF. No se ha confirmado ninguna descarga."
       );
     } finally {
       setDownloading(false);

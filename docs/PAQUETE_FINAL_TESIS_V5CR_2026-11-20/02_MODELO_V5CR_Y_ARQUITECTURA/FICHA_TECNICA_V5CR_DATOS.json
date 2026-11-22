@@ -1,0 +1,91 @@
+{
+ "modelo": "gait_deep_v5exp_V5CR_7e9ed60965fe",
+ "sha256_checkpoint": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+ "hashes_archivos": {
+  "gait_deep_v5exp_V5CR_7e9ed60965fe.pt": "7e9ed60965feabe85a3dc2e6ddc568265596c706a378a94d7fdf01b6a8c9dade",
+  "gait_deep_v5exp_V5CR_7e9ed60965fe_config.json": "4128ef87955874a9fb822214019603b687d37ab82b1787e1843b68f2ec994076",
+  "gait_deep_v5exp_V5CR_7e9ed60965fe_feature_scaler.json": "ba91a6a6af0c7c24cf41ef0a5c7fab568f5bbcb8ce3876840f3b46d8594431d2",
+  "gait_deep_v5exp_V5CR_7e9ed60965fe_label_map.json": "47b3b44601c0e690156e919bdd36b546d7728ec4bd0149255ff096eee503b986"
+ },
+ "coinciden_con_deployment_manifest": {
+  "gait_deep_v5exp_V5CR_7e9ed60965fe.pt": true,
+  "gait_deep_v5exp_V5CR_7e9ed60965fe_config.json": true,
+  "gait_deep_v5exp_V5CR_7e9ed60965fe_feature_scaler.json": true,
+  "gait_deep_v5exp_V5CR_7e9ed60965fe_label_map.json": true
+ },
+ "entradas": {
+  "secuencia": [
+   68,
+   40
+  ],
+  "caracteristicas": 33
+ },
+ "clases_en_orden": [
+  "normal",
+  "parkinson",
+  "esclerosis_multiple",
+  "riesgo_caida"
+ ],
+ "temperatura": 0.6615,
+ "epoca_E_star": 73,
+ "ventana_s": 2.6,
+ "fps": 15.0,
+ "protocolo": {
+  "partition_seeds": [
+   42,
+   43,
+   44,
+   45,
+   46
+  ],
+  "outer_folds": 5,
+  "inner_folds": 3,
+  "max_epochs": 240,
+  "smoothing_window": 5,
+  "batch_size": 16,
+  "lr": 0.001,
+  "weight_decay": 0.0002,
+  "label_smoothing": 0.05,
+  "grad_clip": 5.0,
+  "K_eval_windows": 5,
+  "noise_std": 0.01,
+  "mirror_prob": 0.5,
+  "noise_prob": 0.6
+ },
+ "caracteristicas": [
+  "body_motion_mean",
+  "body_motion_std",
+  "vertical_motion_mean",
+  "left_ankle_rel_motion_mean",
+  "right_ankle_rel_motion_mean",
+  "left_knee_rel_motion_mean",
+  "right_knee_rel_motion_mean",
+  "leg_rel_motion_asymmetry",
+  "ankle_rel_vrange_left",
+  "ankle_rel_vrange_right",
+  "ankle_rel_vrange_asymmetry",
+  "knee_rel_vrange_left",
+  "knee_rel_vrange_right",
+  "step_regularity_score",
+  "left_wrist_rel_motion_mean",
+  "right_wrist_rel_motion_mean",
+  "arm_swing_angle_mean",
+  "arm_swing_angle_asymmetry",
+  "left_arm_swing_angle",
+  "right_arm_swing_angle",
+  "shoulder_width_mean",
+  "hip_width_mean",
+  "trunk_inclination_mean",
+  "trunk_inclination_std",
+  "trunk_sway_mean",
+  "trunk_sway_std",
+  "posture_stability_score",
+  "estimated_step_count",
+  "estimated_cadence_steps_per_min",
+  "step_frequency_hz",
+  "gait_variability",
+  "motion_smoothness",
+  "rhythm_variability"
+ ],
+ "parametros_entrenables": 17788
+}

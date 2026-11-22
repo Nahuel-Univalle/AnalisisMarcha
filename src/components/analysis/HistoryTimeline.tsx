@@ -26,6 +26,8 @@ export type HistoryItem = {
   processedSrc?: string | null;
   /** Indicador adicional junto al título (p. ej. "Informe guardado"). */
   tag?: ReactNode;
+  /** Acciones del registro (p. ej. Ver informe / Descargar PDF), junto al botón Videos. */
+  actions?: ReactNode;
 };
 
 const ALL = "todos";
@@ -166,19 +168,22 @@ export function HistoryTimeline({
                           )}
                         </div>
 
-                        {hasVideos && (
-                          <div className="flex items-start">
-                            <Button
-                              variant="secondary"
-                              size="sm"
-                              aria-expanded={open}
-                              aria-controls={`videos-${item.id}`}
-                              onClick={() => setOpenVideos(open ? null : item.id)}
-                            >
-                              <Video aria-hidden />
-                              Videos
-                              <ChevronDown className={cn("transition-transform duration-200", open && "rotate-180")} aria-hidden />
-                            </Button>
+                        {(hasVideos || item.actions) && (
+                          <div className="flex flex-wrap items-start gap-2 sm:max-w-[300px] sm:justify-end">
+                            {item.actions}
+                            {hasVideos && (
+                              <Button
+                                variant="secondary"
+                                size="sm"
+                                aria-expanded={open}
+                                aria-controls={`videos-${item.id}`}
+                                onClick={() => setOpenVideos(open ? null : item.id)}
+                              >
+                                <Video aria-hidden />
+                                Videos
+                                <ChevronDown className={cn("transition-transform duration-200", open && "rotate-180")} aria-hidden />
+                              </Button>
+                            )}
                           </div>
                         )}
                       </div>

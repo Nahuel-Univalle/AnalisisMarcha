@@ -1,0 +1,106 @@
+{
+  "filesInspected": 1400,
+  "bytesInspected": 10082861,
+  "roots": [
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\tmp",
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\data",
+    "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\outputs",
+    "C:\\Users\\fnahu\\Documents\\Codex\\2026-11-05\\files-pasted-by-the-user-proyecto",
+    "C:\\Users\\fnahu\\Desktop\\QA_JMETER_2026_20261105_155207"
+  ],
+  "canonicalDirectories": [
+    "C:\\Users\\fnahu\\Documents\\Codex\\2026-11-05\\files-pasted-by-the-user-proyecto\\work\\QA_INTEGRADA_20261105\\analysis-records",
+    "C:\\Users\\fnahu\\Documents\\Codex\\2026-11-05\\files-pasted-by-the-user-proyecto\\work\\QA_ISOLATED_20261105\\analysis-records"
+  ],
+  "matches": [
+    {
+      "path": "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\outputs\\dataset_v4_4class\\final_cleanup\\e2e_api_results.json",
+      "matchingIds": [
+        "cmw0x69f50070ulj8teios0o9",
+        "cmw0wzp3y004vulj82clf7pii",
+        "cmw0x50qi006lulj84dqth0p1",
+        "cmw0w987q0008ulj8152npb64",
+        "cmw0wo9t6002qulj8a1honza0",
+        "cmw0wipl4001uulj8q8991kcc",
+        "cmw0x7hsd007fulj8t1jhu0df",
+        "cmw0wf7xd001eulj8kzrtzhb1",
+        "cmw0wcc3z0010ulj8y3i2a5o1",
+        "cmw0wwklf0040ulj8lvzuvzyw",
+        "cmw0x16zy005aulj88uqbhtdk",
+        "cmw0xa4gz008aulj8mcuvdgie",
+        "cmw0wy829004fulj8cileae0o",
+        "cmw0wlc2p002aulj8kd73u6ep",
+        "cmw0wrb3m0035ulj85ba2u5qk",
+        "cmw0x3p370066ulj8ac39p62y",
+        "cmw0wtu3d003kulj8cahdexhd",
+        "cmw0waoji000mulj8dk0c33em",
+        "cmw0x8rlj007uulj8cygwmy81",
+        "cmw0x2iw8005qulj8c8otv0mg"
+      ],
+      "canonicalIdFilename": false
+    },
+    {
+      "path": "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\outputs\\dataset_v4_4class\\step16_final_integration\\api_e2e_4clases.json",
+      "matchingIds": [
+        "cmvub7j9n0005ulykkdz62jwo",
+        "cmvuba44l000julykhw6vrtc4",
+        "cmvubbk1i0011ulykfzki2pbx",
+        "cmvubcp31001iulykwzvyfjy5"
+      ],
+      "canonicalIdFilename": false
+    },
+    {
+      "path": "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\outputs\\dataset_v4_4class\\step20_integration\\e2e_api_results.json",
+      "matchingIds": [
+        "cmvufq7zx0065ul18w8rqswnu",
+        "cmvufsiwz0074ul18efv7026p",
+        "cmvuftoeb007lul18yh9s87fg",
+        "cmvufrb7z006nul18i3fa4t74",
+        "cmvufnstq0056ul18m1bw8v5o",
+        "cmvufa55y002bul18scf1vsx9",
+        "cmvufg2ub003aul18gpvafcwc",
+        "cmvufp4fn005nul18in2cly8j",
+        "cmvuf1wyl000xul18pmk3g3j0",
+        "cmvufmg79004pul18i3yeqeht",
+        "cmvufl2350049ul185m7lkwoz",
+        "cmvueyz830005ul18iv8j0t9q",
+        "cmvuf7mmy001tul18mzoz8gmo",
+        "cmvufuv5u0082ul18r38konk7",
+        "cmvufw4qc008jul18ubngd07f",
+        "cmvufiig2003rul189k2dopy1",
+        "cmvufd5kf002tul188dy4qi9m",
+        "cmvuf4e2p001bul18oxiyzest",
+        "cmvufxca30091ul18lauy0z9j",
+        "cmvuf0c92000jul18cldrxb99"
+      ],
+      "canonicalIdFilename": false
+    },
+    {
+      "path": "C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha\\outputs\\dataset_v4_4class\\step22_final_qa\\e2e_api_results.json",
+      "matchingIds": [
+        "cmvui0zf8003rul484twvluyl",
+        "cmvui7lfw005nul48qegjv2z4",
+        "cmvui8qei0065ul48l1m8aprs",
+        "cmvuicc4e007lul48itgcvras",
+        "cmvuidjkd0082ul48y348ldls",
+        "cmvuiewb5008jul48cqwb0rj3",
+        "cmvui67yd0056ul48xydpg25n",
+        "cmvuib3hq0074ul48wohbnpaq",
+        "cmvuhsq3x002bul48l9mzaui6",
+        "cmvui4yi8004pul48t6nlxt14",
+        "cmvuhhnml0005ul48a7x6kiac",
+        "cmvuhmvjy001bul48bmlli5gj",
+        "cmvuhkhor000xul48pdedrbno",
+        "cmvuhykks003aul48haozoo9s",
+        "cmvuhqa63001tul48h4139pdu",
+        "cmvuig3g90091ul484nz1r3gm",
+        "cmvuhizzv000jul48orbpkdyb",
+        "cmvui3n2b0049ul48ckxue6e3",
+        "cmvui9uvg006nul48bxgk7xno",
+        "cmvuhvpu8002tul48thi0ghb1"
+      ],
+      "canonicalIdFilename": false
+    }
+  ],
+  "errors": []
+}

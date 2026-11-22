@@ -1,0 +1,32 @@
+{
+ "V4 base (M1), calibrado por fold": {
+  "ece": 0.0762,
+  "brier": 0.2691,
+  "nll": 0.5427
+ },
+ "V4 base (M1), crudo": {
+  "ece": 0.0949,
+  "brier": 0.2732,
+  "nll": 0.541
+ },
+ "V5P, crudo": {
+  "ece": 0.1467,
+  "brier": 0.2308,
+  "nll": 0.4751
+ },
+ "V5P, calibrado por fold": {
+  "ece": 0.0821,
+  "brier": 0.2077,
+  "nll": 0.4615
+ },
+ "V5S, crudo": {
+  "ece": 0.1364,
+  "brier": 0.2397,
+  "nll": 0.4853
+ },
+ "V5S, calibrado por fold": {
+  "ece": 0.0729,
+  "brier": 0.2178,
+  "nll": 0.458
+ }
+}

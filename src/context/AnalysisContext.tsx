@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { AnalysisResult, SavedReport, VideoMeta } from "@/types";
 import { mockAnalysisResult } from "@/data/mockAnalysis";
 import { associatedConditionText, isGaitClassKey } from "@/lib/analysis/conditionLabels";
@@ -37,6 +37,14 @@ export function AnalysisProvider({ children }: { children: React.ReactNode }) {
   // Sprint 4 Iteración 8: categoría del dataset (etiqueta organizativa, no diagnóstico).
   const [category, setCategory] = useState<string>("control");
 
+  // Única URL temporal viva. Se libera al reemplazar/limpiar el video (setVideo/clearVideo)
+  // y al desmontar el proveedor; nunca mientras el video sigue siendo el activo.
+  const liveUrl = useRef<string | null>(null);
+  useEffect(() => () => {
+    if (liveUrl.current) URL.revokeObjectURL(liveUrl.current);
+    liveUrl.current = null;
+  }, []);
+
   useEffect(() => {
     queueMicrotask(() => {
       if (!user?.email) {
@@ -59,6 +67,7 @@ export function AnalysisProvider({ children }: { children: React.ReactNode }) {
     }
 
     const url = URL.createObjectURL(file);
+    liveUrl.current = url;
 
     setVideoFile(file);
     setVideoUrl(url);
@@ -75,6 +84,7 @@ export function AnalysisProvider({ children }: { children: React.ReactNode }) {
       URL.revokeObjectURL(videoUrl);
     }
 
+    liveUrl.current = null;
     setVideoFile(null);
     setVideoUrl(null);
     setVideoMeta(null);

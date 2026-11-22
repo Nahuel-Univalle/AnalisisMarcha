@@ -1,0 +1,6 @@
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": PostgreSQL database "gait_v5cr_test", schema "pdf_recovery_1795138459017_9d5113" at "127.0.0.1:55432"
+
+Your database is now in sync with your Prisma schema. Done in 372ms
+
+Environment variables loaded from .env

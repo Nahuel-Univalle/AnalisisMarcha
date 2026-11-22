@@ -1,0 +1,26 @@
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://127.0.0.1:3000
+- Network:       http://127.0.0.1:3000
+- Environments: .env.local, .env
+✓ Ready in 3.3s
+Creating turbopack project {
+  dir: 'C:\\Users\\fnahu\\Desktop\\GITMarcha\\AnalisisMarcha',
+  testMode: true
+}
+
+ GET /api/auth/me 401 in 543ms (next.js: 405ms, application-code: 138ms)
+○ Compiling / ...
+ GET / 200 in 8.0s (next.js: 7.5s, application-code: 544ms)
+ GET /login 200 in 233ms (next.js: 63ms, proxy.ts: 72ms, application-code: 99ms)
+ GET /api/admin/summary 401 in 62ms (next.js: 43ms, application-code: 19ms)
+ GET /api/me/summary 200 in 901ms (next.js: 792ms, application-code: 109ms)
+ GET /api/me/analyses 200 in 118ms (next.js: 57ms, application-code: 62ms)
+ GET /api/me/reports 200 in 71ms (next.js: 43ms, application-code: 28ms)
+ GET /dashboard 200 in 159ms (next.js: 53ms, proxy.ts: 9ms, application-code: 97ms)
+ GET /analisis 404 in 855ms (next.js: 801ms, proxy.ts: 7ms, application-code: 47ms)
+ GET /seguimiento 200 in 135ms (next.js: 49ms, proxy.ts: 7ms, application-code: 79ms)
+ GET /api/me/reports/cmu4ilzip000wul10w851plps/pdf 404 in 1744ms (next.js: 1710ms, application-code: 34ms)
+ GET /api/admin/summary 200 in 72ms (next.js: 4ms, application-code: 68ms)
+ GET /admin 200 in 149ms (next.js: 57ms, proxy.ts: 8ms, application-code: 84ms)
+ GET /api/admin/analyses 200 in 127ms (next.js: 52ms, application-code: 75ms)
+ GET /api/admin/reports 200 in 92ms (next.js: 41ms, application-code: 51ms)

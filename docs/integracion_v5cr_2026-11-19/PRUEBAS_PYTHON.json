@@ -1,0 +1,151 @@
+{
+  "checks": [
+    {
+      "name": "unit: frozen checkpoint SHA-256",
+      "passed": true
+    },
+    {
+      "name": "unit: reject altered checkpoint, no fallback",
+      "passed": true
+    },
+    {
+      "name": "unit: feature order (bank/config/preprocessor/scaler)",
+      "passed": true
+    },
+    {
+      "name": "unit: statistics unchanged",
+      "passed": true
+    },
+    {
+      "name": "unit: exact imputation/normalization",
+      "passed": true
+    },
+    {
+      "name": "unit: NaN/inf imputed with original medians",
+      "passed": true
+    },
+    {
+      "name": "unit: reject wrong dimensions",
+      "passed": true
+    },
+    {
+      "name": "unit: reject wrong dimensions",
+      "passed": true
+    },
+    {
+      "name": "integrated: scaler statistics reproduced from training evaluation windows (no model training)",
+      "passed": true
+    },
+    {
+      "name": "integrated: window selection on 117 original segments",
+      "passed": true
+    },
+    {
+      "name": "integrated: training bank sequence equality",
+      "passed": true,
+      "max_abs_error": 0.0
+    },
+    {
+      "name": "integrated: training bank feature equality",
+      "passed": true,
+      "max_abs_error": 0.0
+    },
+    {
+      "name": "integrated: evaluator/deployment logits",
+      "passed": true,
+      "max_abs_error": 0.0
+    },
+    {
+      "name": "integrated: evaluator/deployment temperature probabilities",
+      "passed": true,
+      "max_abs_error": 0.0
+    },
+    {
+      "name": "unit on 633 real windows: horizontal camera translation",
+      "passed": true,
+      "max_abs_error": 2.310651670001107e-15
+    },
+    {
+      "name": "unit on 633 real windows: aspect correction",
+      "passed": true,
+      "max_abs_error": 3.2682190287403046e-15
+    },
+    {
+      "name": "unit: no prediction without pose",
+      "passed": true
+    },
+    {
+      "name": "integrated: real video normal horizontal",
+      "passed": true
+    },
+    {
+      "name": "integrated: real video parkinson horizontal",
+      "passed": true
+    },
+    {
+      "name": "integrated: real video esclerosis_multiple vertical",
+      "passed": true
+    },
+    {
+      "name": "integrated: real video riesgo_caida horizontal",
+      "passed": true
+    },
+    {
+      "name": "integrated: negative fixture corrupt.mp4",
+      "passed": true
+    },
+    {
+      "name": "integrated: negative fixture empty.mp4",
+      "passed": true
+    },
+    {
+      "name": "integrated: negative fixture missing.mp4",
+      "passed": true
+    }
+  ],
+  "real_videos": [
+    {
+      "video": "001_NM_01",
+      "source_class": "normal",
+      "orientation": "horizontal",
+      "camera_style": "fija (tripode)",
+      "result": "normal",
+      "modelUsed": true,
+      "seconds": 5.94,
+      "evidence": "real_001_NM_01.json"
+    },
+    {
+      "video": "001_PD_01_ML",
+      "source_class": "parkinson",
+      "orientation": "horizontal",
+      "camera_style": "fija (tripode)",
+      "result": "parkinson",
+      "modelUsed": true,
+      "seconds": 11.34,
+      "evidence": "real_001_PD_01_ML.json"
+    },
+    {
+      "video": "Escleorosis10",
+      "source_class": "esclerosis_multiple",
+      "orientation": "vertical",
+      "camera_style": "no anotado (ver camera_motion_norm)",
+      "result": "esclerosis_multiple",
+      "modelUsed": true,
+      "seconds": 25.99,
+      "evidence": "real_Escleorosis10.json"
+    },
+    {
+      "video": "RiesgoCaida1",
+      "source_class": "riesgo_caida",
+      "orientation": "horizontal",
+      "camera_style": "acompana (paneo)",
+      "result": "riesgo_caida",
+      "modelUsed": true,
+      "seconds": 8.76,
+      "evidence": "real_RiesgoCaida1.json"
+    }
+  ],
+  "passed": 24,
+  "failed": 0,
+  "real_videos_requested": true
+}

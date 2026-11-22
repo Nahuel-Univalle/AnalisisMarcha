@@ -1,0 +1,8 @@
+{
+  "class_names": [
+    "normal",
+    "parkinson",
+    "esclerosis_multiple",
+    "riesgo_caida"
+  ]
+}

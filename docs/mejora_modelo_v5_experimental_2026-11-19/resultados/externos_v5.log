@@ -1,0 +1,69 @@
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1795063939.621940   21036 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795063939.698630   10264 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+C:\Users\fnahu\Desktop\GITMarcha\AnalisisMarcha\.venv311\Lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+  warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+001_PD_01_SV riesgo_caida parkinson
+W0000 00:00:1795063967.320909    3340 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795063967.356197    8928 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+001_PD_02_SV parkinson parkinson
+W0000 00:00:1795063993.403665   31076 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795063993.443556   27352 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+011_NM_01 normal normal
+W0000 00:00:1795064001.241854    6836 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064001.293582   23040 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+EXT_PD_001 parkinson parkinson
+W0000 00:00:1795064008.242465    2568 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064008.298759   21752 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+EXT_PD_002 riesgo_caida parkinson
+W0000 00:00:1795064020.438253   31856 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064020.487768   31856 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+Escleorosis1 esclerosis_multiple esclerosis_multiple
+W0000 00:00:1795064034.125870    1388 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064034.177514   28728 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+Escleorosis11 riesgo_caida esclerosis_multiple
+W0000 00:00:1795064043.586850   29560 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064043.618728   18992 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+Escleorosis17 esclerosis_multiple esclerosis_multiple
+W0000 00:00:1795064057.733223   20436 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064057.771534   23576 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+Escleorosis2 esclerosis_multiple esclerosis_multiple
+W0000 00:00:1795064078.507669   25896 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064078.548864    5704 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+Escleorosis24 esclerosis_multiple esclerosis_multiple
+W0000 00:00:1795064086.637655   29216 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064086.689850    2568 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+Escleorosis7 riesgo_caida esclerosis_multiple
+W0000 00:00:1795064108.634331   34716 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064108.662428   34716 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+RiesgoCaida12 esclerosis_multiple riesgo_caida
+W0000 00:00:1795064115.304864    9184 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064115.340497   13900 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064127.175041   20780 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064127.206603     916 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+RiesgoCaida14 riesgo_caida riesgo_caida
+W0000 00:00:1795064137.252572   34440 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064137.289311   14680 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+RiesgoCaida15 esclerosis_multiple riesgo_caida
+W0000 00:00:1795064140.515608   21388 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064140.552431   24388 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+RiesgoCaida16 riesgo_caida riesgo_caida
+W0000 00:00:1795064153.839586    1520 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064153.880208   10680 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064165.625879   29348 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064165.655083   27116 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+RiesgoCaida18 riesgo_caida riesgo_caida
+W0000 00:00:1795064173.018200   33280 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064173.046250   23276 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+RiesgoCaida20 riesgo_caida riesgo_caida
+W0000 00:00:1795064179.126411   31060 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064179.180702   12764 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+RiesgoCaida21 parkinson riesgo_caida
+W0000 00:00:1795064188.126933    2956 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064188.162975   13068 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+RiesgoCaida3 esclerosis_multiple riesgo_caida
+W0000 00:00:1795064198.231659   22780 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795064198.269841   24700 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+RiesgoCaida8 riesgo_caida riesgo_caida
+{"n": 20, "V4_BN_A": 12, "V4_base_B": 8, "V5P": 12, "V5S": 13, "por_clase_n": {"normal": 1, "parkinson": 4, "esclerosis_multiple": 6, "riesgo_caida": 9}, "por_clase_aciertos_V5P": {"normal": 1, "parkinson": 2, "esclerosis_multiple": 4, "riesgo_caida": 5}, "por_clase_aciertos_V4_BN": {"normal": 1, "parkinson": 3, "esclerosis_multiple": 3, "riesgo_caida": 5}, "por_clase_aciertos_V4_base": {"normal": 1, "parkinson": 0, "esclerosis_multiple": 6, "riesgo_caida": 1}, "predicciones_V5P": {"normal": 1, "parkinson": 3, "esclerosis_multiple": 7, "riesgo_caida": 9}, "predicciones_V4_BN": {"normal": 2, "parkinson": 3, "esclerosis_multiple": 6, "riesgo_caida": 9}, "predicciones_V4_base": {"normal": 1, "parkinson": 0, "esclerosis_multiple": 15, "riesgo_caida": 4}}

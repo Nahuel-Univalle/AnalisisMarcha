@@ -1,0 +1,18 @@
+{
+ "modelo_base_M1.pt": "d7323250d26fa81c9306660ada47bc00c2aa1bd9bba374e2e87b3619c5213048",
+ "modelo_candidato_BN.pt": "7b4ac547ff80367b74ddf93c95a9deae82c44f36f3c671f63eb5a4a82c53400d",
+ "scaler_base.json": "a6c96a7929c2af329f3470245c76534c0de52ce403d1a7550b145da68d3822a6",
+ "dataset_v4_preview.npz": "c3f837f8b3846f7f5918f4c56668d492e26e66c2faca4701fc9e21e79897a9e2",
+ "samples_v4_preview.csv": "7c5cdbdb8bf46a42a75792ff2e27dd5730ba78126037bcffc04b48d8ebcbcd76",
+ "manifest_v4_preview.csv": "814dd3a21cebd787906a457df7ab4caebb693713772041a0d3b493adfd67374b",
+ "oof_probabilities.npz": "143afd91e9fa0f4099a74fc8d85b73914ebda3614d2e5280b9dc443d1b402d10",
+ "oof_predictions_step12.csv": "0bda31a2c32ac45c990a9718d51264b9a55b96309d254a6fb0ea3be8e56e2773",
+ "train_protocol_v2.py": "cc5494355e1e6878673af592ec4e07fddc936f311091ec53224e623415235db1",
+ "deep_common.py": "53734de2bd71a592f4332a8e430137130e1d218245563988ddc9728890d262b4",
+ "video_training_common.py": "17919e9217d0b6531ea297df23b82c47189d4a10996c608ec07c2bee1d270e83",
+ "11_train_deep_model.py": "cb252ad20407c4ac3234ee1dbcfde5288b6bcbd25f3c833de4c877d0cb106335",
+ "14_predict_deep_video_v4exp.py": "399762a547abebff9b3a444dca2be822a03cf76a45c32c8a89226f7898e9883f",
+ "24_normalized_reextract.py": "ceca31c26d97e5f7797c7279e4210e8e5451384a317b68c23ceed95f4ae08302",
+ "pose_cache_pkl_count": 125,
+ "pose_cache_combined_sha256": "11a9d81c4f907969fd2ea8865c10f64788f629e401a5ceda81bdd15f66fa6b91"
+}
